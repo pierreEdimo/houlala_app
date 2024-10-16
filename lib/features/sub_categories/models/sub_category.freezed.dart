@@ -25,8 +25,12 @@ mixin _$SubCategory {
   String? get imageUrl => throw _privateConstructorUsedError;
   Categories? get category => throw _privateConstructorUsedError;
 
+  /// Serializes this SubCategory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubCategoryCopyWith<SubCategory> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$SubCategoryCopyWithImpl<$Res, $Val extends SubCategory>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class _$SubCategoryCopyWithImpl<$Res, $Val extends SubCategory>
     ) as $Val);
   }
 
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CategoriesCopyWith<$Res>? get category {
@@ -115,6 +123,8 @@ class __$$SubCategoryImplCopyWithImpl<$Res>
       _$SubCategoryImpl _value, $Res Function(_$SubCategoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -179,11 +189,13 @@ class _$SubCategoryImpl implements _SubCategory {
                 other.category == category));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, imageUrl, category);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubCategoryImplCopyWith<_$SubCategoryImpl> get copyWith =>
@@ -215,8 +227,11 @@ abstract class _SubCategory implements SubCategory {
   String? get imageUrl;
   @override
   Categories? get category;
+
+  /// Create a copy of SubCategory
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubCategoryImplCopyWith<_$SubCategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

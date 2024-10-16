@@ -20,7 +20,9 @@ mixin _$SubCategoryState {
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubCategoryStateCopyWith<SubCategoryState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$SubCategoryStateCopyWithImpl<$Res, $Val extends SubCategoryState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubCategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class __$$SubCategoryStateImplCopyWithImpl<$Res>
       $Res Function(_$SubCategoryStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubCategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,7 +168,9 @@ class _$SubCategoryStateImpl implements _SubCategoryState {
       loading,
       errorMessage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubCategoryStateImplCopyWith<_$SubCategoryStateImpl> get copyWith =>
@@ -182,8 +190,11 @@ abstract class _SubCategoryState implements SubCategoryState {
   bool get loading;
   @override
   String get errorMessage;
+
+  /// Create a copy of SubCategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubCategoryStateImplCopyWith<_$SubCategoryStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

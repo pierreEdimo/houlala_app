@@ -1,17 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/model/login.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
@@ -21,19 +24,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = AuthController(ref);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: LayoutBuilder(builder: (context, constraints){
+        child: LayoutBuilder(builder: (context, constraints) {
           return SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 30.0),
             child: ConstrainedBox(
               constraints: BoxConstraints(minHeight: constraints.minHeight),
               child: IntrinsicHeight(
                 child: Form(
                   key: _formkey,
                   child: Padding(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: horizontalPadding),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: horizontalPadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -115,6 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (kDebugMode) {
                                 print('Hello');
                               }
+                              Login login = Login(
+                                  email: emailController.text,
+                                  passWord: passwordController.text);
+
+                              authController.login(login);
                             }
                           },
                           leadingIcon: HeroIcons.arrowRightEndOnRectangle,
@@ -128,8 +138,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             const Text('Vous etes nouveau?'),
                             TextButton(
-                              onPressed: () => Navigator.of(context)
-                                  .pushNamed("/logup"),
+                              onPressed: () =>
+                                  Navigator.of(context).pushNamed("/logup"),
                               child: const Text(
                                 'S\'inscrire',
                               ),

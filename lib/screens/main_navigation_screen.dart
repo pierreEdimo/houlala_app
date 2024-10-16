@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/main.dart';
 import 'package:houlala_app/screens/user_screen.dart';
 import 'package:houlala_app/screens/wallet_screen.dart';
 import '../features/products/controllers/product_controller.dart';
@@ -14,20 +16,24 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
 
   @override
-  ConsumerState<MainNavigationScreen> createState() => _MainNavigationScreenState();
+  ConsumerState<MainNavigationScreen> createState() =>
+      _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
-
 
   final List<Widget> _widgetOptions = <Widget>[
     // const Homescreen(),
     // const DiscoverScreen(),
     // const WalletScreen(),
     // const UserScreen(),
-    const Center(child: Text('Home'),),
-    const Center(child: Text('Decouvrir'),),
+    const Center(
+      child: Text('Home'),
+    ),
+    const Center(
+      child: Text('Decouvrir'),
+    ),
     const WalletScreen(),
     const UserScreen(),
   ];
@@ -36,6 +42,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     setState(() {
       _selectedIndex = index;
     });
+    // if (_selectedIndex == 3) {
+    //   AuthController authController = AuthController(ref);
+    //   authController.checkConnectedUser();
+    // }
   }
 
   @override
@@ -45,14 +55,18 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title:  SearchInput(
+        title: SearchInput(
           productList: productList,
           hinText: 'Rechercher les produits',
         ),
         actions: [
           IconButton(
-              onPressed: () =>  Navigator.of(context).pushNamed('/cart'), icon: const HeroIcon(HeroIcons.shoppingBag)),
-          IconButton(onPressed: () => Navigator.of(context).pushNamed('/notifications'), icon: const HeroIcon(HeroIcons.bell))
+              onPressed: () => Navigator.of(context).pushNamed('/cart'),
+              icon: const HeroIcon(HeroIcons.shoppingBag)),
+          IconButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed('/notifications'),
+              icon: const HeroIcon(HeroIcons.bell))
         ],
       ),
       body: Stack(
@@ -129,105 +143,3 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
     );
   }
 }
-
-// class MainNavigationScreen extends StatefulWidget {
-//   const MainNavigationScreen({super.key});
-//
-//   @override
-//   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
-// }
-//
-// class _MainNavigationScreenState extends State<MainNavigationScreen> {
-//   int _selectedIndex = 0;
-//
-//   final List<Widget> _widgetOptions = const <Widget>[
-//     Homescreen(),
-//     DiscoverScreen(),
-//     CartScreen(),
-//     BellScreen(),
-//     UserScreen()
-//   ];
-//
-//   void _onItemTaped(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: _widgetOptions.elementAtOrNull(_selectedIndex),
-//       ),
-//       bottomNavigationBar: NavigationBar(
-//         backgroundColor: Colors.white,
-//         destinations: const <NavigationDestination>[
-//           NavigationDestination(
-//             selectedIcon: HeroIcon(
-//               HeroIcons.homeModern,
-//               color: Colors.black,
-//               style: HeroIconStyle.solid,
-//             ),
-//             icon: HeroIcon(
-//               HeroIcons.homeModern,
-//               style: HeroIconStyle.outline,
-//             ),
-//             label: "Accueil",
-//           ),
-//           NavigationDestination(
-//             selectedIcon: HeroIcon(
-//               HeroIcons.magnifyingGlass,
-//               color: Colors.black,
-//               style: HeroIconStyle.solid,
-//             ),
-//             icon: HeroIcon(
-//               HeroIcons.magnifyingGlass,
-//               color: Colors.black,
-//               style: HeroIconStyle.outline,
-//             ),
-//             label: "Decouvrir",
-//           ),
-//           NavigationDestination(
-//             selectedIcon: HeroIcon(
-//               HeroIcons.shoppingBag,
-//               color: Colors.black,
-//               style: HeroIconStyle.solid,
-//             ),
-//             icon: HeroIcon(
-//               HeroIcons.shoppingBag,
-//               style: HeroIconStyle.outline,
-//             ),
-//             label: "Panier",
-//           ),
-//           NavigationDestination(
-//             selectedIcon: HeroIcon(
-//               HeroIcons.bell,
-//               color: Colors.black,
-//               style: HeroIconStyle.solid,
-//             ),
-//             icon: HeroIcon(
-//               HeroIcons.bell,
-//               style: HeroIconStyle.outline,
-//             ),
-//             label: "Notifications",
-//           ),
-//           NavigationDestination(
-//             selectedIcon: HeroIcon(
-//               HeroIcons.user,
-//               color: Colors.black,
-//               style: HeroIconStyle.solid,
-//             ),
-//             icon: HeroIcon(
-//               HeroIcons.user,
-//               style: HeroIconStyle.outline,
-//             ),
-//             label: "Profile",
-//           ),
-//         ],
-//         selectedIndex: _selectedIndex,
-//         onDestinationSelected: _onItemTaped,
-//       ),
-//     );
-//   }
-// }

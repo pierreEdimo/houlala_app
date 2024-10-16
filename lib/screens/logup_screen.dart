@@ -29,6 +29,7 @@ class _LogupScreenState extends State<LogupScreen> {
         child: LayoutBuilder(
           builder: (context, constraints){
             return SingleChildScrollView(
+              padding: const EdgeInsets.only(top: 30.0),
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: constraints.minHeight),
                 child: Form(

@@ -17,6 +17,8 @@ import 'package:houlala_app/screens/search_screen.dart';
 import 'package:houlala_app/screens/sub_category_detail_screen.dart';
 
 const storage = FlutterSecureStorage();
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 
 Future main() async {
   await dotenv.load(fileName: '.env');
@@ -36,6 +38,7 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   const MyApp({super.key});
 
   @override
@@ -43,13 +46,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Houla la',
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFf4efe8),
       ),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         '/': (context) => const MainNavigationScreen(),
         '/productDetail': (context) => const ProductDetailScreen(),

@@ -5,7 +5,6 @@ import '../../sellers/model/seller.dart';
 import '../../sub_categories/models/sub_category.dart';
 
 part 'product.freezed.dart';
-
 part 'product.g.dart';
 
 @freezed
