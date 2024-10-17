@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
-import 'package:houlala_app/main.dart';
 import 'package:houlala_app/screens/user_screen.dart';
 import 'package:houlala_app/screens/wallet_screen.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input.dart';
-import 'discover_screen.dart';
-import 'home_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
