@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../model/user_model.dart';
 
 part 'auth_state.freezed.dart';
 
@@ -8,6 +9,7 @@ class AuthState with _$AuthState{
     @Default(false) bool loading,
     @Default('') String token,
     @Default(false) bool loggedIn,
+    @Default(null) UserModel? connectedUser,
     @Default('') String errorMessage
   }) = _AuthState;
 }
