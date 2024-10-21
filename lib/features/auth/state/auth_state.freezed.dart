@@ -131,7 +131,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 
 class _$AuthStateImpl implements _AuthState {
   _$AuthStateImpl(
-      {this.loading = true,
+      {this.loading = false,
       this.token = '',
       this.loggedIn = false,
       this.errorMessage = ''});
