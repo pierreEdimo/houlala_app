@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
+import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/auth/model/user_token.dart';
 import 'package:houlala_app/features/auth/repositories/auth_repository.dart';
 import 'package:houlala_app/features/auth/state/auth_state.dart';
@@ -31,7 +32,8 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
       if (response.statusCode == HttpStatus.accepted) {
         UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
         TokenHelper.saveToken(userToken.token!);
-        state = state.copyWith(token: userToken.token!);
+        UserModel connectedUser = await authRepository.fetchConnectedUser();
+        state = state.copyWith(token: userToken.token!, connectedUser: connectedUser);
         navigatorKey.currentState?.pushReplacementNamed('/');
       }
     } catch (exception) {
@@ -45,8 +47,9 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
     state = state.copyWith(loading: true);
     String? token = await TokenHelper.getToken();
     if (token!.isNotEmpty) {
-      print('test');
-      state = state.copyWith(loggedIn: true, loading: false);
+      UserModel userModel = await authRepository.fetchConnectedUser();
+      state =
+          state.copyWith(loggedIn: true, loading: false, connectedUser: userModel);
     } else {
       navigatorKey.currentState?.pushNamed('/login');
     }
