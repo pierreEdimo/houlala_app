@@ -19,6 +19,7 @@ mixin _$AuthState {
   bool get loading => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
   bool get loggedIn => throw _privateConstructorUsedError;
+  UserModel? get connectedUser => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
@@ -33,7 +34,14 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool loading, String token, bool loggedIn, String errorMessage});
+  $Res call(
+      {bool loading,
+      String token,
+      bool loggedIn,
+      UserModel? connectedUser,
+      String errorMessage});
+
+  $UserModelCopyWith<$Res>? get connectedUser;
 }
 
 /// @nodoc
@@ -54,6 +62,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? loading = null,
     Object? token = null,
     Object? loggedIn = null,
+    Object? connectedUser = freezed,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
@@ -69,11 +78,29 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.loggedIn
           : loggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectedUser: freezed == connectedUser
+          ? _value.connectedUser
+          : connectedUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get connectedUser {
+    if (_value.connectedUser == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.connectedUser!, (value) {
+      return _then(_value.copyWith(connectedUser: value) as $Val);
+    });
   }
 }
 
@@ -85,7 +112,15 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, String token, bool loggedIn, String errorMessage});
+  $Res call(
+      {bool loading,
+      String token,
+      bool loggedIn,
+      UserModel? connectedUser,
+      String errorMessage});
+
+  @override
+  $UserModelCopyWith<$Res>? get connectedUser;
 }
 
 /// @nodoc
@@ -104,6 +139,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? token = null,
     Object? loggedIn = null,
+    Object? connectedUser = freezed,
     Object? errorMessage = null,
   }) {
     return _then(_$AuthStateImpl(
@@ -119,6 +155,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.loggedIn
           : loggedIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      connectedUser: freezed == connectedUser
+          ? _value.connectedUser
+          : connectedUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -134,6 +174,7 @@ class _$AuthStateImpl implements _AuthState {
       {this.loading = false,
       this.token = '',
       this.loggedIn = false,
+      this.connectedUser = null,
       this.errorMessage = ''});
 
   @override
@@ -147,11 +188,14 @@ class _$AuthStateImpl implements _AuthState {
   final bool loggedIn;
   @override
   @JsonKey()
+  final UserModel? connectedUser;
+  @override
+  @JsonKey()
   final String errorMessage;
 
   @override
   String toString() {
-    return 'AuthState(loading: $loading, token: $token, loggedIn: $loggedIn, errorMessage: $errorMessage)';
+    return 'AuthState(loading: $loading, token: $token, loggedIn: $loggedIn, connectedUser: $connectedUser, errorMessage: $errorMessage)';
   }
 
   @override
@@ -163,13 +207,15 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.loggedIn, loggedIn) ||
                 other.loggedIn == loggedIn) &&
+            (identical(other.connectedUser, connectedUser) ||
+                other.connectedUser == connectedUser) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, loading, token, loggedIn, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, loading, token, loggedIn, connectedUser, errorMessage);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -185,6 +231,7 @@ abstract class _AuthState implements AuthState {
       {final bool loading,
       final String token,
       final bool loggedIn,
+      final UserModel? connectedUser,
       final String errorMessage}) = _$AuthStateImpl;
 
   @override
@@ -193,6 +240,8 @@ abstract class _AuthState implements AuthState {
   String get token;
   @override
   bool get loggedIn;
+  @override
+  UserModel? get connectedUser;
   @override
   String get errorMessage;
 
