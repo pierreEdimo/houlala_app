@@ -7,6 +7,8 @@ import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input.dart';
+import 'discover_screen.dart';
+import 'home_screen.dart';
 
 class MainNavigationScreen extends ConsumerStatefulWidget {
   const MainNavigationScreen({super.key});
@@ -20,16 +22,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    // const Homescreen(),
-    // const DiscoverScreen(),
-    // const WalletScreen(),
-    // const UserScreen(),
-    const Center(
-      child: Text('Home'),
-    ),
-    const Center(
-      child: Text('Decouvrir'),
-    ),
+    const Homescreen(),
+    const DiscoverScreen(),
     const WalletScreen(),
     const UserScreen(),
   ];

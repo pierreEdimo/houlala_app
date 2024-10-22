@@ -18,8 +18,8 @@ class AuthRepository {
     return response;
   }
 
-  Future<UserModel> fetchConnectedUser() async {
-    var token = await TokenHelper.getToken();
+  Future<UserModel> fetchConnectedUser({String? userToken}) async {
+    var token = userToken ?? await TokenHelper.getToken();
     final Response response = await get(
         Uri.parse('${dotenv.env['AUTH_URL']}/user'),
         headers: <String, String>{

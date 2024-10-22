@@ -32,9 +32,8 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
       if (response.statusCode == HttpStatus.accepted) {
         UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
         TokenHelper.saveToken(userToken.token!);
-        UserModel connectedUser = await authRepository.fetchConnectedUser();
-        state = state.copyWith(token: userToken.token!, connectedUser: connectedUser);
-        navigatorKey.currentState?.pushReplacementNamed('/');
+        checkAndSetConnectedUser(userToken: userToken.token);
+        navigatorKey.currentState!.pushNamed('/');
       }
     } catch (exception) {
       if (kDebugMode) {
@@ -43,11 +42,11 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> checkAndSetConnectedUser() async {
+  Future<void> checkAndSetConnectedUser({String? userToken}) async {
     state = state.copyWith(loading: true);
-    String? token = await TokenHelper.getToken();
-    if (token!.isNotEmpty) {
-      UserModel userModel = await authRepository.fetchConnectedUser();
+    String? token = userToken ?? await TokenHelper.getToken();
+    if (token != null) {
+      UserModel userModel = await authRepository.fetchConnectedUser(userToken: userToken);
       state =
           state.copyWith(loggedIn: true, loading: false, connectedUser: userModel);
     } else {
