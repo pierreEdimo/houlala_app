@@ -33,7 +33,7 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
         UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
         TokenHelper.saveToken(userToken.token!);
         checkAndSetConnectedUser(userToken: userToken.token);
-        navigatorKey.currentState!.pushNamed('/');
+        navigatorKey.currentState!.pushReplacementNamed('/');
       }
     } catch (exception) {
       if (kDebugMode) {
@@ -50,7 +50,7 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
       state =
           state.copyWith(loggedIn: true, loading: false, connectedUser: userModel);
     } else {
-      navigatorKey.currentState?.pushNamed('/login');
+      navigatorKey.currentState?.pushReplacementNamed('/login');
     }
   }
 }
