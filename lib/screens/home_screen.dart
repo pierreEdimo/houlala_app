@@ -51,7 +51,7 @@ class Homescreen extends ConsumerWidget {
                 bottom: 110),
             child: Column(
               children: [
-                Column(
+                products.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
@@ -81,7 +81,7 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
+                categories.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const ColumnHeaders(title: 'Top Categories'),
@@ -104,7 +104,7 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
+                products.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
@@ -140,7 +140,7 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
+                sellers.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
@@ -172,7 +172,7 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
+               products.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
@@ -204,25 +204,25 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const ColumnHeaders(
-                      title: 'Laissez-nous vous inspirer',
-                    ),
-                    SizedBox(
-                      height: 200,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          //ToDo implement filters functionality
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                // products.isEmpty ? Container() : Column(
+                //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                //   children: [
+                //     const ColumnHeaders(
+                //       title: 'Laissez-nous vous inspirer',
+                //     ),
+                //     SizedBox(
+                //       height: 200,
+                //       child: ListView(
+                //         scrollDirection: Axis.horizontal,
+                //         children: const [
+                //           //ToDo implement filters functionality
+                //         ],
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(height: verticalPadding),
-                Column(
+                products.isEmpty ? Container() : Column(
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -255,25 +255,25 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const ColumnHeaders(
-                      title: 'Nos services',
-                    ),
-                    SizedBox(
-                      height: 200,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          //TODO: fetch the services
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                //   children: [
+                //     const ColumnHeaders(
+                //       title: 'Nos services',
+                //     ),
+                //     SizedBox(
+                //       height: 200,
+                //       child: ListView(
+                //         scrollDirection: Axis.horizontal,
+                //         children: const [
+                //           //TODO: fetch the services
+                //         ],
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(height: verticalPadding),
-                Column(
+                products.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
