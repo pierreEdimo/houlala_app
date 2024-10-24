@@ -81,28 +81,28 @@ class Homescreen extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: verticalPadding),
-                categories.isEmpty ? Container() : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const ColumnHeaders(title: 'Top Categories'),
-                    SizedBox(
-                      height: 180,
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        scrollDirection: Axis.horizontal,
-                        childAspectRatio: 1 / 2,
-                        children: categories
-                            .take(6)
-                            .map(
-                              (categories) => CategoriesCard(
-                                categories: categories,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    )
-                  ],
-                ),
+                // categories.isEmpty ? Container() : Column(
+                //   crossAxisAlignment: CrossAxisAlignment.stretch,
+                //   children: [
+                //     const ColumnHeaders(title: 'Top Categories'),
+                //     SizedBox(
+                //       height: 180,
+                //       child: GridView.count(
+                //         crossAxisCount: 2,
+                //         scrollDirection: Axis.horizontal,
+                //         childAspectRatio: 1 / 2,
+                //         children: categories
+                //             .take(6)
+                //             .map(
+                //               (categories) => CategoriesCard(
+                //                 categories: categories,
+                //               ),
+                //             )
+                //             .toList(),
+                //       ),
+                //     )
+                //   ],
+                // ),
                 const SizedBox(height: verticalPadding),
                 products.isEmpty ? Container() : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
