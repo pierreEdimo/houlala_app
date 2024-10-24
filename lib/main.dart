@@ -11,6 +11,7 @@ import 'package:houlala_app/screens/food_and_drinks_screen.dart';
 import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
 import 'package:houlala_app/screens/main_navigation_screen.dart';
+import 'package:houlala_app/screens/no_product_screen.dart';
 import 'package:houlala_app/screens/notification_screen.dart';
 import 'package:houlala_app/screens/product_detail_screen.dart';
 import 'package:houlala_app/screens/search_screen.dart';
@@ -65,7 +66,8 @@ class MyApp extends StatelessWidget {
         '/cart': (context) => const CartScreen(),
         '/notifications': (context) => const NotificationScreen(),
         '/login': (context) => const LoginScreen(),
-        '/logup': (context) => const LogupScreen()
+        '/logup': (context) => const LogupScreen(),
+        '/noProducts': (context) => const NoProductScreen()
       },
     );
   }
