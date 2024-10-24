@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
@@ -138,16 +137,16 @@ class ProductDetailScreen extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  Html(
-                    style: {
-                      "body": Style(
-                        letterSpacing: 0.5, 
-                        lineHeight: LineHeight.em(1.3),
-                        wordSpacing: 0.5
-                      )
-                    },
-                    data: selectedProduct.longDescription,
-                  )
+                  // Html(
+                  //   style: {
+                  //     "body": Style(
+                  //       letterSpacing: 0.5,
+                  //       lineHeight: LineHeight.em(1.3),
+                  //       wordSpacing: 0.5
+                  //     )
+                  //   },
+                  //   data: selectedProduct.longDescription,
+                  // )
                 ],
               ),
             ),
