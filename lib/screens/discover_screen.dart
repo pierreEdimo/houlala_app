@@ -25,13 +25,13 @@ class DiscoverScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const ColumnHeaders(
-                title: 'Toutes les Categories',
+                title: 'Decouvrez les produits par Categories',
               ),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
-                childAspectRatio: 1/0.45,
+                childAspectRatio: 1/1.1,
                 children: categories
                     .map((categorie) => CategoriesCard(
                           categories: categorie,
