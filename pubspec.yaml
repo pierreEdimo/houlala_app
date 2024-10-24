@@ -46,9 +46,6 @@ dependencies:
   flutter_dotenv: ^5.1.0
   json_annotation: ^4.9.0
   google_fonts: ^6.2.1
-  webview_flutter: ^4.8.0
-  flutter_inappwebview: ^6.0.0
-  flutter_html: ^3.0.0-beta.2
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +65,18 @@ flutter:
     - .env
     - images/houlala.png
     - images/houlala1.png
+    - images/categories/books.png
+    - images/categories/cars.png
+    - images/categories/electronics.png
+    - images/categories/fashion.png
+    - images/categories/fruits.png
+    - images/categories/furniture.png
+    - images/categories/games.png
+    - images/categories/groceries.png
+    - images/categories/sport.png
+    - images/categories/stores.png
+    - images/categories/toys.png
+    - images/categories/workspace.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
