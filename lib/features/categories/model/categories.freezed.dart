@@ -23,6 +23,7 @@ mixin _$Categories {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
+  String? get route => throw _privateConstructorUsedError;
 
   /// Serializes this Categories to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +41,7 @@ abstract class $CategoriesCopyWith<$Res> {
           Categories value, $Res Function(Categories) then) =
       _$CategoriesCopyWithImpl<$Res, Categories>;
   @useResult
-  $Res call({int? id, String? name, String? imageUrl});
+  $Res call({int? id, String? name, String? imageUrl, String? route});
 }
 
 /// @nodoc
@@ -61,6 +62,7 @@ class _$CategoriesCopyWithImpl<$Res, $Val extends Categories>
     Object? id = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? route = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -75,6 +77,10 @@ class _$CategoriesCopyWithImpl<$Res, $Val extends Categories>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      route: freezed == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -87,7 +93,7 @@ abstract class _$$CategoriesImplCopyWith<$Res>
       __$$CategoriesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, String? imageUrl});
+  $Res call({int? id, String? name, String? imageUrl, String? route});
 }
 
 /// @nodoc
@@ -106,6 +112,7 @@ class __$$CategoriesImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? route = freezed,
   }) {
     return _then(_$CategoriesImpl(
       id: freezed == id
@@ -120,6 +127,10 @@ class __$$CategoriesImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      route: freezed == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -127,7 +138,7 @@ class __$$CategoriesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CategoriesImpl implements _Categories {
-  _$CategoriesImpl({this.id, this.name, this.imageUrl});
+  _$CategoriesImpl({this.id, this.name, this.imageUrl, this.route});
 
   factory _$CategoriesImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoriesImplFromJson(json);
@@ -138,10 +149,12 @@ class _$CategoriesImpl implements _Categories {
   final String? name;
   @override
   final String? imageUrl;
+  @override
+  final String? route;
 
   @override
   String toString() {
-    return 'Categories(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'Categories(id: $id, name: $name, imageUrl: $imageUrl, route: $route)';
   }
 
   @override
@@ -152,12 +165,13 @@ class _$CategoriesImpl implements _Categories {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+                other.imageUrl == imageUrl) &&
+            (identical(other.route, route) || other.route == route));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, imageUrl);
+  int get hashCode => Object.hash(runtimeType, id, name, imageUrl, route);
 
   /// Create a copy of Categories
   /// with the given fields replaced by the non-null parameter values.
@@ -179,7 +193,8 @@ abstract class _Categories implements Categories {
   factory _Categories(
       {final int? id,
       final String? name,
-      final String? imageUrl}) = _$CategoriesImpl;
+      final String? imageUrl,
+      final String? route}) = _$CategoriesImpl;
 
   factory _Categories.fromJson(Map<String, dynamic> json) =
       _$CategoriesImpl.fromJson;
@@ -190,6 +205,8 @@ abstract class _Categories implements Categories {
   String? get name;
   @override
   String? get imageUrl;
+  @override
+  String? get route;
 
   /// Create a copy of Categories
   /// with the given fields replaced by the non-null parameter values.

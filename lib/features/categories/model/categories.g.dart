@@ -11,6 +11,7 @@ _$CategoriesImpl _$$CategoriesImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       imageUrl: json['imageUrl'] as String?,
+      route: json['route'] as String?,
     );
 
 Map<String, dynamic> _$$CategoriesImplToJson(_$CategoriesImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$CategoriesImplToJson(_$CategoriesImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'imageUrl': instance.imageUrl,
+      'route': instance.route,
     };
