@@ -15,27 +15,33 @@ class CategoriesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context)
-          .pushNamed('/categoryDetail', arguments: categories!.id!),
+          .pushNamed('${categories!.route}', arguments: categories!.name!),
       child: Card(
         color: Colors.white,
         elevation: 0,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(categories!.imageUrl!),
+              Image.asset(
+                'images/categories/${categories!.imageUrl}',
+                height: 80,
               ),
-              const SizedBox(width: horizontalPadding),
+              // CircleAvatar(
+              //   radius: 50,
+              //   backgroundImage:
+              //       AssetImage('images/categories/${categories!.imageUrl}'),
+              // ),
+              const SizedBox(height: 8),
               Flexible(
                 child: Text(
                   categories!.name!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               )
             ],
