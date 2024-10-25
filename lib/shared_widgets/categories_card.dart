@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houlala_app/args/category_args.dart';
 import '../features/categories/model/categories.dart';
 import '../helpers/constants.dart';
 
@@ -14,8 +15,11 @@ class CategoriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed('${categories!.route}', arguments: categories!.name!),
+      onTap: () => Navigator.of(context).pushNamed('${categories!.route}',
+          arguments: CategoryArg(
+            categoryName: categories!.name!,
+            categoryId: categories!.id!,
+          )),
       child: Card(
         color: Colors.white,
         elevation: 0,
@@ -29,11 +33,6 @@ class CategoriesCard extends StatelessWidget {
                 'images/categories/${categories!.imageUrl}',
                 height: 80,
               ),
-              // CircleAvatar(
-              //   radius: 50,
-              //   backgroundImage:
-              //       AssetImage('images/categories/${categories!.imageUrl}'),
-              // ),
               const SizedBox(height: 8),
               Flexible(
                 child: Text(
