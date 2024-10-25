@@ -22,11 +22,17 @@ class SubCategoryCard extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(150.0),
-                  image: DecorationImage(
-                      image: NetworkImage(subCategory!.imageUrl!),
-                      fit: BoxFit.cover)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(150.0),
+              ),
+              child: Center(
+                child: SizedBox(
+                  height: 110,
+                  child: Image.asset(
+                    'images/sub-categories/${subCategory!.imageUrl!}',
+                  ),
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
