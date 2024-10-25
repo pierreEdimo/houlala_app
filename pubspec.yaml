@@ -77,6 +77,10 @@ flutter:
     - images/categories/stores.png
     - images/categories/toys.png
     - images/categories/workspace.png
+    - images/sub-categories/cereale.png
+    - images/sub-categories/fruits.png
+    - images/sub-categories/tubercule.png
+    - images/sub-categories/vegetable.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
