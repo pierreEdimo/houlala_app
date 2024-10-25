@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/args/category_args.dart';
 import '../features/categories/controllers/categories_controller.dart';
 import '../features/categories/model/categories.dart';
 import '../features/products/controllers/product_controller.dart';
@@ -21,11 +22,11 @@ class CategoryDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int id = ModalRoute.of(context)!.settings.arguments as int;
+    final categoryArg = ModalRoute.of(context)!.settings.arguments as CategoryArg;
     CategoriesController controller = CategoriesController(ref);
 
     var selectedCategory = controller.categories
-        .where((category) => category.id == id)
+        .where((category) => category.id == categoryArg.categoryId)
         .toList()
         .first;
 
@@ -42,27 +43,10 @@ class CategoryDetailBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (category!.name!) {
-      case 'Commerces':
-        return const Center(
-          child: Text('Hello Commercs'),
-        );
-      case 'Services':
-        return const Center(
-          child: Text('Hello Services'),
-        );
-      case 'Immobilier':
-        return const CategoryBookScreen();
-      case 'Livre':
-        return const Scaffold(
-          appBar: CustomAppBar(),
-        );
-      default:
-        return CategoryDefaultScreen(
-          categoryId: category!.id!,
-          categoryName: category!.name,
-        );
-    }
+    return CategoryDefaultScreen(
+      categoryId: category!.id!,
+      categoryName: category!.name,
+    );
   }
 }
 
@@ -140,20 +124,18 @@ class CategoryDefaultScreen extends ConsumerWidget {
                         ? const SizedBox(height: verticalPadding)
                         : Container(),
                     subCategoryList.length > 1
-                        ? SizedBox(
-                            height: 350,
-                            child: GridView.count(
-                              crossAxisCount: 2,
-                              scrollDirection: Axis.horizontal,
-                              children: subCategoryList
-                                  .map(
-                                    (category) => SubCategoryCard(
-                                      subCategory: category,
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          )
+                        ? GridView.count(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
+                          crossAxisCount: 2,
+                          children: subCategoryList
+                              .map(
+                                (category) => SubCategoryCard(
+                                  subCategory: category,
+                                ),
+                              )
+                              .toList(),
+                        )
                         : Container(),
                     subCategoryList.length > 1
                         ? const SizedBox(
