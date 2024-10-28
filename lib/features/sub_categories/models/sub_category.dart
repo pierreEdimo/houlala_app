@@ -11,6 +11,7 @@ class SubCategory with _$SubCategory {
     String? name,
     String? imageUrl,
     Categories? category,
+    String? route,
   }) = _SubCategory;
 
   factory SubCategory.fromJson(Map<String, dynamic> json) => _$SubCategoryFromJson(json);
