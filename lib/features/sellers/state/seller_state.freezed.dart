@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SellerState {
   List<Seller> get sellerList => throw _privateConstructorUsedError;
+  List<Seller> get filteredSellerList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -33,7 +34,11 @@ abstract class $SellerStateCopyWith<$Res> {
           SellerState value, $Res Function(SellerState) then) =
       _$SellerStateCopyWithImpl<$Res, SellerState>;
   @useResult
-  $Res call({List<Seller> sellerList, bool loading, String errorMessage});
+  $Res call(
+      {List<Seller> sellerList,
+      List<Seller> filteredSellerList,
+      bool loading,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -52,6 +57,7 @@ class _$SellerStateCopyWithImpl<$Res, $Val extends SellerState>
   @override
   $Res call({
     Object? sellerList = null,
+    Object? filteredSellerList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
@@ -59,6 +65,10 @@ class _$SellerStateCopyWithImpl<$Res, $Val extends SellerState>
       sellerList: null == sellerList
           ? _value.sellerList
           : sellerList // ignore: cast_nullable_to_non_nullable
+              as List<Seller>,
+      filteredSellerList: null == filteredSellerList
+          ? _value.filteredSellerList
+          : filteredSellerList // ignore: cast_nullable_to_non_nullable
               as List<Seller>,
       loading: null == loading
           ? _value.loading
@@ -80,7 +90,11 @@ abstract class _$$SellerStateImplCopyWith<$Res>
       __$$SellerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Seller> sellerList, bool loading, String errorMessage});
+  $Res call(
+      {List<Seller> sellerList,
+      List<Seller> filteredSellerList,
+      bool loading,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -97,6 +111,7 @@ class __$$SellerStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sellerList = null,
+    Object? filteredSellerList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
@@ -104,6 +119,10 @@ class __$$SellerStateImplCopyWithImpl<$Res>
       sellerList: null == sellerList
           ? _value._sellerList
           : sellerList // ignore: cast_nullable_to_non_nullable
+              as List<Seller>,
+      filteredSellerList: null == filteredSellerList
+          ? _value._filteredSellerList
+          : filteredSellerList // ignore: cast_nullable_to_non_nullable
               as List<Seller>,
       loading: null == loading
           ? _value.loading
@@ -122,9 +141,11 @@ class __$$SellerStateImplCopyWithImpl<$Res>
 class _$SellerStateImpl implements _SellerState {
   _$SellerStateImpl(
       {final List<Seller> sellerList = const [],
+      final List<Seller> filteredSellerList = const [],
       this.loading = false,
       this.errorMessage = ''})
-      : _sellerList = sellerList;
+      : _sellerList = sellerList,
+        _filteredSellerList = filteredSellerList;
 
   final List<Seller> _sellerList;
   @override
@@ -133,6 +154,16 @@ class _$SellerStateImpl implements _SellerState {
     if (_sellerList is EqualUnmodifiableListView) return _sellerList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_sellerList);
+  }
+
+  final List<Seller> _filteredSellerList;
+  @override
+  @JsonKey()
+  List<Seller> get filteredSellerList {
+    if (_filteredSellerList is EqualUnmodifiableListView)
+      return _filteredSellerList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredSellerList);
   }
 
   @override
@@ -144,7 +175,7 @@ class _$SellerStateImpl implements _SellerState {
 
   @override
   String toString() {
-    return 'SellerState(sellerList: $sellerList, loading: $loading, errorMessage: $errorMessage)';
+    return 'SellerState(sellerList: $sellerList, filteredSellerList: $filteredSellerList, loading: $loading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -154,14 +185,20 @@ class _$SellerStateImpl implements _SellerState {
             other is _$SellerStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._sellerList, _sellerList) &&
+            const DeepCollectionEquality()
+                .equals(other._filteredSellerList, _filteredSellerList) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_sellerList), loading, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_sellerList),
+      const DeepCollectionEquality().hash(_filteredSellerList),
+      loading,
+      errorMessage);
 
   /// Create a copy of SellerState
   /// with the given fields replaced by the non-null parameter values.
@@ -175,11 +212,14 @@ class _$SellerStateImpl implements _SellerState {
 abstract class _SellerState implements SellerState {
   factory _SellerState(
       {final List<Seller> sellerList,
+      final List<Seller> filteredSellerList,
       final bool loading,
       final String errorMessage}) = _$SellerStateImpl;
 
   @override
   List<Seller> get sellerList;
+  @override
+  List<Seller> get filteredSellerList;
   @override
   bool get loading;
   @override
