@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/args/category_args.dart';
 
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../features/sub_categories/models/sub_category.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
-import '../shared_widgets/filter_products_button.dart';
+import '../shared_widgets/filter_button.dart';
 import '../shared_widgets/product_card.dart';
 import '../shared_widgets/search_input.dart';
 
@@ -16,12 +17,14 @@ class SubCategoryDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SubCategory subCategory =
-        ModalRoute.of(context)!.settings.arguments as SubCategory;
+    CategoryArg categoryArg =
+        ModalRoute.of(context)!.settings.arguments as CategoryArg;
+
+    SubCategory? subCategory = categoryArg.subCategory;
 
     ProductController productController = ProductController(ref);
     List<Product> productList = productController.getProductBySubCategoryId(
-        subCategory.category!.id!, subCategory.id!);
+        subCategory!.category!.id!, subCategory.id!);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -31,7 +34,6 @@ class SubCategoryDetailScreen extends ConsumerWidget {
         ),
         title: SearchInput(
           hinText: 'Rechnercher dans ${subCategory.name}',
-          productList: productList,
         ),
       ),
       body: Stack(
@@ -68,7 +70,7 @@ class SubCategoryDetailScreen extends ConsumerWidget {
             ),
           ),
           productList.length > 1
-              ? const FilterProductsButton()
+              ? const FilterButton()
               : Container()
         ],
       ),
