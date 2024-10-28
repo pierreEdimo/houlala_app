@@ -5,7 +5,7 @@ import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
-import '../shared_widgets/filter_products_button.dart';
+import '../shared_widgets/filter_button.dart';
 import '../shared_widgets/product_card.dart';
 
 class AllProductScreen extends ConsumerStatefulWidget {
@@ -71,7 +71,7 @@ class _AllProductScreenState extends ConsumerState<AllProductScreen> {
               ),
             ),
           ),
-          products.length > 1 ? const FilterProductsButton() : Container()
+          products.length > 1 ? const FilterButton() : Container()
         ],
       ),
     );
