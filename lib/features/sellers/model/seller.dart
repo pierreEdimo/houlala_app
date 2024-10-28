@@ -1,5 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:houlala_app/features/sub_categories/models/sub_category.dart';
 
 part 'seller.freezed.dart';
 part 'seller.g.dart';
@@ -19,7 +20,8 @@ class Seller with _$Seller{
     String? city,
     String? adress,
     DateTime?  createdAt,
-    DateTime? updatedAt
+    DateTime? updatedAt,
+    SubCategory? subCategory,
 }) = _Seller;
 
   factory Seller.fromJson(Map<String, dynamic> json) => _$SellerFromJson(json);

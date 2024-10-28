@@ -24,6 +24,9 @@ _$SellerImpl _$$SellerImplFromJson(Map<String, dynamic> json) => _$SellerImpl(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
+      subCategory: json['subCategory'] == null
+          ? null
+          : SubCategory.fromJson(json['subCategory'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$SellerImplToJson(_$SellerImpl instance) =>
@@ -41,4 +44,5 @@ Map<String, dynamic> _$$SellerImplToJson(_$SellerImpl instance) =>
       'adress': instance.adress,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
+      'subCategory': instance.subCategory,
     };

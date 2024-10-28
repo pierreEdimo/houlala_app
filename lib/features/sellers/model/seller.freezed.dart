@@ -33,6 +33,7 @@ mixin _$Seller {
   String? get adress => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  SubCategory? get subCategory => throw _privateConstructorUsedError;
 
   /// Serializes this Seller to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,7 +62,10 @@ abstract class $SellerCopyWith<$Res> {
       String? city,
       String? adress,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      SubCategory? subCategory});
+
+  $SubCategoryCopyWith<$Res>? get subCategory;
 }
 
 /// @nodoc
@@ -92,6 +96,7 @@ class _$SellerCopyWithImpl<$Res, $Val extends Seller>
     Object? adress = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? subCategory = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -146,7 +151,25 @@ class _$SellerCopyWithImpl<$Res, $Val extends Seller>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      subCategory: freezed == subCategory
+          ? _value.subCategory
+          : subCategory // ignore: cast_nullable_to_non_nullable
+              as SubCategory?,
     ) as $Val);
+  }
+
+  /// Create a copy of Seller
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SubCategoryCopyWith<$Res>? get subCategory {
+    if (_value.subCategory == null) {
+      return null;
+    }
+
+    return $SubCategoryCopyWith<$Res>(_value.subCategory!, (value) {
+      return _then(_value.copyWith(subCategory: value) as $Val);
+    });
   }
 }
 
@@ -170,7 +193,11 @@ abstract class _$$SellerImplCopyWith<$Res> implements $SellerCopyWith<$Res> {
       String? city,
       String? adress,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      SubCategory? subCategory});
+
+  @override
+  $SubCategoryCopyWith<$Res>? get subCategory;
 }
 
 /// @nodoc
@@ -199,6 +226,7 @@ class __$$SellerImplCopyWithImpl<$Res>
     Object? adress = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? subCategory = freezed,
   }) {
     return _then(_$SellerImpl(
       id: freezed == id
@@ -253,6 +281,10 @@ class __$$SellerImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      subCategory: freezed == subCategory
+          ? _value.subCategory
+          : subCategory // ignore: cast_nullable_to_non_nullable
+              as SubCategory?,
     ));
   }
 }
@@ -273,7 +305,8 @@ class _$SellerImpl implements _Seller {
       this.city,
       this.adress,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.subCategory});
 
   factory _$SellerImpl.fromJson(Map<String, dynamic> json) =>
       _$$SellerImplFromJson(json);
@@ -304,10 +337,12 @@ class _$SellerImpl implements _Seller {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  @override
+  final SubCategory? subCategory;
 
   @override
   String toString() {
-    return 'Seller(id: $id, sellerName: $sellerName, imageUrl: $imageUrl, isStore: $isStore, longDescription: $longDescription, telephoneNumber: $telephoneNumber, email: $email, website: $website, countryCode: $countryCode, city: $city, adress: $adress, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Seller(id: $id, sellerName: $sellerName, imageUrl: $imageUrl, isStore: $isStore, longDescription: $longDescription, telephoneNumber: $telephoneNumber, email: $email, website: $website, countryCode: $countryCode, city: $city, adress: $adress, createdAt: $createdAt, updatedAt: $updatedAt, subCategory: $subCategory)';
   }
 
   @override
@@ -334,7 +369,9 @@ class _$SellerImpl implements _Seller {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.subCategory, subCategory) ||
+                other.subCategory == subCategory));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -353,7 +390,8 @@ class _$SellerImpl implements _Seller {
       city,
       adress,
       createdAt,
-      updatedAt);
+      updatedAt,
+      subCategory);
 
   /// Create a copy of Seller
   /// with the given fields replaced by the non-null parameter values.
@@ -385,7 +423,8 @@ abstract class _Seller implements Seller {
       final String? city,
       final String? adress,
       final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$SellerImpl;
+      final DateTime? updatedAt,
+      final SubCategory? subCategory}) = _$SellerImpl;
 
   factory _Seller.fromJson(Map<String, dynamic> json) = _$SellerImpl.fromJson;
 
@@ -415,6 +454,8 @@ abstract class _Seller implements Seller {
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
+  @override
+  SubCategory? get subCategory;
 
   /// Create a copy of Seller
   /// with the given fields replaced by the non-null parameter values.
