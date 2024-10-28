@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
 import '../features/categories/controllers/categories_controller.dart';
-import '../features/categories/model/categories.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../features/sub_categories/controllers/sub_category_controllers.dart';
@@ -12,7 +11,7 @@ import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/c_container.dart';
 import '../shared_widgets/column_headers.dart';
-import '../shared_widgets/filter_products_button.dart';
+import '../shared_widgets/filter_button.dart';
 import '../shared_widgets/product_card.dart';
 import '../shared_widgets/search_input.dart';
 import '../shared_widgets/sub_category_card.dart';
@@ -31,47 +30,17 @@ class CategoryDetailScreen extends ConsumerWidget {
         .first;
 
     return CategoryDetailBody(
-      category: selectedCategory,
+      categoryId: selectedCategory.id,
+      categoryName: selectedCategory.name,
     );
   }
 }
 
-class CategoryDetailBody extends StatelessWidget {
-  final Categories? category;
-
-  const CategoryDetailBody({super.key, this.category});
-
-  @override
-  Widget build(BuildContext context) {
-    return CategoryDefaultScreen(
-      categoryId: category!.id!,
-      categoryName: category!.name,
-    );
-  }
-}
-
-class CategoryBookScreen extends StatelessWidget {
-  const CategoryBookScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const HeroIcon(HeroIcons.chevronLeft),
-        ),
-        title: const SearchInput(),
-      ),
-    );
-  }
-}
-
-class CategoryDefaultScreen extends ConsumerWidget {
+class CategoryDetailBody extends ConsumerWidget {
   final int? categoryId;
   final String? categoryName;
 
-  const CategoryDefaultScreen({
+  const CategoryDetailBody({
     super.key,
     this.categoryId,
     this.categoryName,
@@ -99,7 +68,6 @@ class CategoryDefaultScreen extends ConsumerWidget {
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
         title: SearchInput(
-          productList: productFromCategories,
           hinText: 'Rechercher dans $categoryName',
         ),
       ),
@@ -168,7 +136,7 @@ class CategoryDefaultScreen extends ConsumerWidget {
               ),
             ),
             productFromCategories.length > 1
-                ? const FilterProductsButton()
+                ? const FilterButton()
                 : Container()
           ],
         ),
