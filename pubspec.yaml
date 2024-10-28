@@ -81,6 +81,9 @@ flutter:
     - images/sub-categories/fruits.png
     - images/sub-categories/tubercule.png
     - images/sub-categories/vegetable.png
+    - images/nkonda.webp
+    - images/sub-categories/toys.png
+    - images/sub-categories/electronics.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
