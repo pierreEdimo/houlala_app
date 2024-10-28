@@ -7,7 +7,19 @@ import '../model/seller.dart';
 class SellerRepository {
   Future<List<Seller>> fetchSellers() async {
     String? uri = dotenv.env['SELLER_URL'];
-    final Response response = await get(Uri.parse(uri!));
+    return await _fetchFromApi(uri!);
+  }
+
+  Future<List<Seller>> filterSellers(String term, {int? subCategoryId}) async {
+    String? uri = '${dotenv.env['SELLER_URL']}/search?term=$term';
+    if (subCategoryId != null) {
+      uri += '&subCategory=$subCategoryId';
+    }
+    return await _fetchFromApi(uri);
+  }
+
+  Future<List<Seller>> _fetchFromApi(String uri) async {
+    final Response response = await get(Uri.parse(uri));
     if (response.statusCode == HttpStatus.ok) {
       List<dynamic> body = jsonDecode(response.body);
       List<Seller> sellers =
