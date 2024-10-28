@@ -12,14 +12,17 @@ import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
 import 'package:houlala_app/screens/main_navigation_screen.dart';
 import 'package:houlala_app/screens/no_product_screen.dart';
+import 'package:houlala_app/screens/no_store_screen.dart';
 import 'package:houlala_app/screens/notification_screen.dart';
 import 'package:houlala_app/screens/product_detail_screen.dart';
 import 'package:houlala_app/screens/search_screen.dart';
+import 'package:houlala_app/screens/search_store_screen.dart';
+import 'package:houlala_app/screens/store_detail_screen.dart';
+import 'package:houlala_app/screens/store_sub_category_detail_screen.dart';
 import 'package:houlala_app/screens/sub_category_detail_screen.dart';
 
 const storage = FlutterSecureStorage();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 
 Future main() async {
   await dotenv.load(fileName: '.env');
@@ -39,7 +42,6 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   const MyApp({super.key});
 
   @override
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
         '/productDetail': (context) => const ProductDetailScreen(),
         '/categoryDetail': (context) => const CategoryDetailScreen(),
         '/search': (context) => const SearchScreen(),
+        '/searchStore': (context) => const SearchStoreScreen(),
         '/allProducts': (context) => const AllProductScreen(),
         '/foodAndDrinks': (context) => const FoodAndDrinksScreen(),
         '/subCategoryDetail': (context) => const SubCategoryDetailScreen(),
@@ -67,7 +70,10 @@ class MyApp extends StatelessWidget {
         '/notifications': (context) => const NotificationScreen(),
         '/login': (context) => const LoginScreen(),
         '/logup': (context) => const LogupScreen(),
-        '/noProducts': (context) => const NoProductScreen()
+        '/noProducts': (context) => const NoProductScreen(),
+        '/storeDetail': (context) => const StoreDetailScreen(),
+        '/noStore': (context) => const NoStoreScreen(),
+        '/subStoreCategoryDetail': (context) => const StoreSubCategoryDetailScreen()
       },
     );
   }
