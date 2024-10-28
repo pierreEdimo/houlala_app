@@ -7,6 +7,7 @@ part 'seller_state.freezed.dart';
 class SellerState with _$SellerState {
   factory SellerState({
     @Default([]) List<Seller> sellerList,
+    @Default([]) List<Seller> filteredSellerList,
     @Default(false) bool loading,
     @Default('') String errorMessage,
   }) = _SellerState;
