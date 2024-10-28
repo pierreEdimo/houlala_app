@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
-import '../features/products/model/product.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../helpers/constants.dart';
 import '../helpers/search_args.dart';
 
 class SearchInput extends StatelessWidget {
-  final List<Product>? productList;
   final String? hinText;
+  final String? route;
+  final int? subCategoryId;
 
   const SearchInput({
     super.key,
-    this.productList,
     this.hinText,
+    this.route,
+    @Default(null) this.subCategoryId
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: () => Navigator.of(context).pushNamed('/search',
-          arguments: SearchArgs(
-            productList: productList,
-            hinText: hinText,
-          )),
+      onTap: () =>
+          Navigator.of(context).pushNamed(route != null ? route! : '/search',
+              arguments: SearchArgs(
+                hinText: hinText,
+                subCategoryId: subCategoryId
+              )),
       textInputAction: TextInputAction.search,
       onFieldSubmitted: (value) {},
       decoration: InputDecoration(
