@@ -22,7 +22,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const Homescreen(),
+    const HomeScreen(),
     const DiscoverScreen(),
     const WalletScreen(),
     const UserScreen(),
@@ -33,7 +33,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
       _selectedIndex = index;
     });
     // if (_selectedIndex == 3) {
-    //   AuthController authController = AuthController(ref);
+    //   AuthController authController = AuthController(ref);Homescreen
     //   authController.checkConnectedUser();
     // }
   }
@@ -45,8 +45,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        title: SearchInput(
-          productList: productList,
+        title: const SearchInput(
           hinText: 'Rechercher les produits',
         ),
         actions: [
