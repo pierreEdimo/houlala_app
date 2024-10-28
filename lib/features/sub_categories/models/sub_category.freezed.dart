@@ -24,6 +24,7 @@ mixin _$SubCategory {
   String? get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   Categories? get category => throw _privateConstructorUsedError;
+  String? get route => throw _privateConstructorUsedError;
 
   /// Serializes this SubCategory to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,12 @@ abstract class $SubCategoryCopyWith<$Res> {
           SubCategory value, $Res Function(SubCategory) then) =
       _$SubCategoryCopyWithImpl<$Res, SubCategory>;
   @useResult
-  $Res call({int? id, String? name, String? imageUrl, Categories? category});
+  $Res call(
+      {int? id,
+      String? name,
+      String? imageUrl,
+      Categories? category,
+      String? route});
 
   $CategoriesCopyWith<$Res>? get category;
 }
@@ -65,6 +71,7 @@ class _$SubCategoryCopyWithImpl<$Res, $Val extends SubCategory>
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? category = freezed,
+    Object? route = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -83,6 +90,10 @@ class _$SubCategoryCopyWithImpl<$Res, $Val extends SubCategory>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Categories?,
+      route: freezed == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -109,7 +120,12 @@ abstract class _$$SubCategoryImplCopyWith<$Res>
       __$$SubCategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, String? imageUrl, Categories? category});
+  $Res call(
+      {int? id,
+      String? name,
+      String? imageUrl,
+      Categories? category,
+      String? route});
 
   @override
   $CategoriesCopyWith<$Res>? get category;
@@ -132,6 +148,7 @@ class __$$SubCategoryImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? category = freezed,
+    Object? route = freezed,
   }) {
     return _then(_$SubCategoryImpl(
       id: freezed == id
@@ -150,6 +167,10 @@ class __$$SubCategoryImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Categories?,
+      route: freezed == route
+          ? _value.route
+          : route // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -157,7 +178,8 @@ class __$$SubCategoryImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SubCategoryImpl implements _SubCategory {
-  _$SubCategoryImpl({this.id, this.name, this.imageUrl, this.category});
+  _$SubCategoryImpl(
+      {this.id, this.name, this.imageUrl, this.category, this.route});
 
   factory _$SubCategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$SubCategoryImplFromJson(json);
@@ -170,10 +192,12 @@ class _$SubCategoryImpl implements _SubCategory {
   final String? imageUrl;
   @override
   final Categories? category;
+  @override
+  final String? route;
 
   @override
   String toString() {
-    return 'SubCategory(id: $id, name: $name, imageUrl: $imageUrl, category: $category)';
+    return 'SubCategory(id: $id, name: $name, imageUrl: $imageUrl, category: $category, route: $route)';
   }
 
   @override
@@ -186,12 +210,14 @@ class _$SubCategoryImpl implements _SubCategory {
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
             (identical(other.category, category) ||
-                other.category == category));
+                other.category == category) &&
+            (identical(other.route, route) || other.route == route));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, imageUrl, category);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, imageUrl, category, route);
 
   /// Create a copy of SubCategory
   /// with the given fields replaced by the non-null parameter values.
@@ -214,7 +240,8 @@ abstract class _SubCategory implements SubCategory {
       {final int? id,
       final String? name,
       final String? imageUrl,
-      final Categories? category}) = _$SubCategoryImpl;
+      final Categories? category,
+      final String? route}) = _$SubCategoryImpl;
 
   factory _SubCategory.fromJson(Map<String, dynamic> json) =
       _$SubCategoryImpl.fromJson;
@@ -227,6 +254,8 @@ abstract class _SubCategory implements SubCategory {
   String? get imageUrl;
   @override
   Categories? get category;
+  @override
+  String? get route;
 
   /// Create a copy of SubCategory
   /// with the given fields replaced by the non-null parameter values.

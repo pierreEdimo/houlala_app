@@ -14,6 +14,7 @@ _$SubCategoryImpl _$$SubCategoryImplFromJson(Map<String, dynamic> json) =>
       category: json['category'] == null
           ? null
           : Categories.fromJson(json['category'] as Map<String, dynamic>),
+      route: json['route'] as String?,
     );
 
 Map<String, dynamic> _$$SubCategoryImplToJson(_$SubCategoryImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$SubCategoryImplToJson(_$SubCategoryImpl instance) =>
       'name': instance.name,
       'imageUrl': instance.imageUrl,
       'category': instance.category,
+      'route': instance.route,
     };
