@@ -12,44 +12,58 @@ class SellerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 0,
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        width: 180,
-        child: Stack(
-          children: [
-            Center(
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(150.0),
-                    color: Colors.red,
-                    image: DecorationImage(
-                      image: NetworkImage(seller!.imageUrl!),
-                      fit: BoxFit.cover
-                    )),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 1,
-                padding: const EdgeInsets.only(top: 5.0),
-                color: Colors.white,
-                height: 50,
-                child: Text(
-                  seller!.sellerName!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+    return InkWell(
+      onTap: () {},
+      child: Card(
+        color: Colors.white,
+        elevation: 0,
+        child: Container(
+          padding: const EdgeInsets.all(12.0),
+          width: 180,
+          child: Stack(
+            children: [
+              Center(
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(150.0),
+                    color: Colors.orange,
+                  ),
+                  child: Center(
+                    child: Container(
+                      height: 90,
+                      width: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(150.0),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('images/${seller!.imageUrl}'),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            )
-          ],
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 1,
+                  padding: const EdgeInsets.only(top: 5.0),
+                  color: Colors.white,
+                  height: 50,
+                  child: Text(
+                    seller!.sellerName!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold, fontSize: 18.0),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
