@@ -64,7 +64,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               height: 80,
               width: MediaQuery.of(context).size.width * 0.85,
               child: Card(
-                elevation: 0,
+                elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(65.0)),
                 color: Colors.white,
