@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/args/category_args.dart';
 import '../features/categories/model/categories.dart';
-import '../helpers/constants.dart';
 
 class CategoriesCard extends StatelessWidget {
   final Categories? categories;

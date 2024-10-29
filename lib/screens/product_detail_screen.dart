@@ -47,12 +47,7 @@ class ProductDetailScreen extends ConsumerWidget {
         children: [
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: horizontalPadding,
-                right: horizontalPadding,
-                top: verticalPadding,
-                bottom: 110,
-              ),
+              padding: stackDefaultPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

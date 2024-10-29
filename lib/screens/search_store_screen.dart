@@ -72,11 +72,7 @@ class SearchStoreScreen extends ConsumerWidget {
               children: [
                 SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: verticalPadding,
-                        left: horizontalPadding,
-                        right: horizontalPadding,
-                        bottom: stackBottomPadding),
+                    padding: stackDefaultPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

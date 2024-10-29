@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
-
+import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../features/sub_categories/models/sub_category.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/filter_button.dart';
-import '../shared_widgets/product_card.dart';
 import '../shared_widgets/search_input.dart';
 
 class SubCategoryDetailScreen extends ConsumerWidget {
@@ -40,38 +39,24 @@ class SubCategoryDetailScreen extends ConsumerWidget {
         children: [
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: verticalPadding,
-                left: horizontalPadding,
-                right: horizontalPadding,
-                bottom: stackBottomPadding,
-              ),
+              padding: stackDefaultPadding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     '${productList.length} produits dans ${subCategory.name}',
                   ),
-                  GridView.count(
-                    crossAxisCount: 2,
+                  VerticalProductGrid(
                     shrinkWrap: true,
-                    childAspectRatio: productAspectRatio,
                     physics: const ClampingScrollPhysics(),
-                    children: productList
-                        .map(
-                          (product) => ProductCard(
-                            product: product,
-                          ),
-                        )
-                        .toList(),
+                    aspectRatio: productAspectRatio,
+                    productList: productList,
                   )
                 ],
               ),
             ),
           ),
-          productList.length > 1
-              ? const FilterButton()
-              : Container()
+          productList.length > 1 ? const FilterButton() : Container()
         ],
       ),
     );

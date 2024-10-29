@@ -18,14 +18,7 @@ class UserScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     AuthController authController = AuthController(ref);
     UserModel? connectedUser = authController.connectedUser;
-    // return Scaffold(
-    //   body: Center(
-    //     child: TextButton(
-    //       onPressed: () => logout(),
-    //       child: const Text("logout"),
-    //     ),
-    //   ),
-    // );
+
     return Scaffold(
       body: CustomContainer(
         loading: authController.loading,

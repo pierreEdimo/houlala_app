@@ -8,7 +8,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/filter_button.dart';
 import 'package:houlala_app/shared_widgets/search_input.dart';
-import 'package:houlala_app/shared_widgets/seller_card.dart';
+import 'package:houlala_app/shared_widgets/vsellers_grid.dart';
 
 import '../features/sellers/model/seller.dart';
 
@@ -46,25 +46,18 @@ class StoreSubCategoryDetailScreen extends ConsumerWidget {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    top: verticalPadding,
-                    left: horizontalPadding,
-                    right: horizontalPadding,
-                    bottom: stackBottomPadding),
+                padding: stackDefaultPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       '${sellerList.length} Magasin(s) dans ${categoryArg.subCategory!.name}',
                     ),
-                    GridView.count(
+                    VerticalSellersGrid(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
-                      crossAxisCount: 2,
-                      childAspectRatio: 1 / 1.2,
-                      children: sellerList
-                          .map((seller) => SellerCard(seller: seller))
-                          .toList(),
+                      aspectRatio: 1 / 1.2,
+                      sellerList: sellerList,
                     )
                   ],
                 ),

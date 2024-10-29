@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/screens/user_screen.dart';
-import 'package:houlala_app/screens/wallet_screen.dart';
-import '../features/products/controllers/product_controller.dart';
-import '../features/products/model/product.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input.dart';
 import 'discover_screen.dart';
@@ -24,7 +21,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const DiscoverScreen(),
-    const WalletScreen(),
     const UserScreen(),
   ];
 
@@ -40,9 +36,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ProductController productController = ProductController(ref);
-    List<Product> productList = productController.productList;
-
     return Scaffold(
       appBar: CustomAppBar(
         title: const SearchInput(
@@ -53,9 +46,9 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               onPressed: () => Navigator.of(context).pushNamed('/cart'),
               icon: const HeroIcon(HeroIcons.shoppingBag)),
           IconButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed('/notifications'),
-              icon: const HeroIcon(HeroIcons.bell))
+            onPressed: () => Navigator.of(context).pushNamed('/notifications'),
+            icon: const HeroIcon(HeroIcons.bell),
+          )
         ],
       ),
       body: Stack(
@@ -101,19 +94,19 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
                                 color: Colors.orange,
                               ),
                       ),
+                      // IconButton(
+                      //   onPressed: () => _onItemTaped(2),
+                      //   icon: _selectedIndex != 2
+                      //       ? const HeroIcon(HeroIcons.wallet)
+                      //       : const HeroIcon(
+                      //           HeroIcons.wallet,
+                      //           style: HeroIconStyle.solid,
+                      //           color: Colors.orange,
+                      //         ),
+                      // ),
                       IconButton(
                         onPressed: () => _onItemTaped(2),
                         icon: _selectedIndex != 2
-                            ? const HeroIcon(HeroIcons.wallet)
-                            : const HeroIcon(
-                                HeroIcons.wallet,
-                                style: HeroIconStyle.solid,
-                                color: Colors.orange,
-                              ),
-                      ),
-                      IconButton(
-                        onPressed: () => _onItemTaped(3),
-                        icon: _selectedIndex != 3
                             ? const HeroIcon(HeroIcons.user)
                             : const HeroIcon(
                                 HeroIcons.user,

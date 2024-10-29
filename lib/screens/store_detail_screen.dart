@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
 import 'package:houlala_app/features/sellers/controllers/sellers_controller.dart';
-import 'package:houlala_app/features/sellers/model/seller.dart';
 import 'package:houlala_app/features/sub_categories/controllers/sub_category_controllers.dart';
 import 'package:houlala_app/features/sub_categories/models/sub_category.dart';
 import 'package:houlala_app/helpers/constants.dart';
@@ -11,7 +10,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input.dart';
-import 'package:houlala_app/shared_widgets/sub_category_card.dart';
+import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
 
 class StoreDetailScreen extends ConsumerWidget {
   const StoreDetailScreen({super.key});
@@ -25,7 +24,7 @@ class StoreDetailScreen extends ConsumerWidget {
     SellersController sellersController = SellersController(ref);
 
     bool isLoading = sellersController.loading;
-    List<Seller> sellers = sellersController.sellerList;
+    // List<Seller> sellers = sellersController.sellerList;
     String errorMessage = sellersController.errorMessage;
 
     List<SubCategory> subCategoryList =
@@ -47,8 +46,7 @@ class StoreDetailScreen extends ConsumerWidget {
         errorMessage: errorMessage,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: horizontalPadding, vertical: verticalPadding),
+            padding: defaultPadding,
             child: Column(
               children: [
                 subCategoryList.length > 1
@@ -58,17 +56,10 @@ class StoreDetailScreen extends ConsumerWidget {
                           const ColumnHeaders(
                               title:
                                   'Decouvrez nos partenaires par categories.'),
-                          GridView.count(
+                          VerticalSubCategoryGrid(
                             shrinkWrap: true,
-                            crossAxisCount: 2,
                             physics: const ClampingScrollPhysics(),
-                            children: subCategoryList
-                                .map(
-                                  (sbctry) => SubCategoryCard(
-                                    subCategory: sbctry,
-                                  ),
-                                )
-                                .toList(),
+                            subCategoryList: subCategoryList,
                           )
                         ],
                       )

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
+import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
+import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
 import '../features/categories/controllers/categories_controller.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
@@ -12,16 +14,15 @@ import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/c_container.dart';
 import '../shared_widgets/column_headers.dart';
 import '../shared_widgets/filter_button.dart';
-import '../shared_widgets/product_card.dart';
 import '../shared_widgets/search_input.dart';
-import '../shared_widgets/sub_category_card.dart';
 
 class CategoryDetailScreen extends ConsumerWidget {
   const CategoryDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoryArg = ModalRoute.of(context)!.settings.arguments as CategoryArg;
+    final categoryArg =
+        ModalRoute.of(context)!.settings.arguments as CategoryArg;
     CategoriesController controller = CategoriesController(ref);
 
     var selectedCategory = controller.categories
@@ -58,7 +59,7 @@ class CategoryDetailBody extends ConsumerWidget {
 
     bool isLoading = productController.loading;
     String errorMessage = productController.errorMessage.isNotEmpty
-        ? 'Error connecting to the Database'
+        ? 'Erreur dans la connexion à la base de données'
         : '';
 
     return Scaffold(
@@ -78,12 +79,7 @@ class CategoryDetailBody extends ConsumerWidget {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
-                  top: verticalPadding,
-                  left: horizontalPadding,
-                  right: horizontalPadding,
-                  bottom: stackBottomPadding,
-                ),
+                padding: stackDefaultPadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -92,18 +88,11 @@ class CategoryDetailBody extends ConsumerWidget {
                         ? const SizedBox(height: verticalPadding)
                         : Container(),
                     subCategoryList.length > 1
-                        ? GridView.count(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          crossAxisCount: 2,
-                          children: subCategoryList
-                              .map(
-                                (category) => SubCategoryCard(
-                                  subCategory: category,
-                                ),
-                              )
-                              .toList(),
-                        )
+                        ? VerticalSubCategoryGrid(
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            subCategoryList: subCategoryList,
+                          )
                         : Container(),
                     subCategoryList.length > 1
                         ? const SizedBox(
@@ -116,18 +105,11 @@ class CategoryDetailBody extends ConsumerWidget {
                         Text(
                           '${productFromCategories.length} produits',
                         ),
-                        GridView.count(
-                          crossAxisCount: 2,
+                        VerticalProductGrid(
                           shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
-                          childAspectRatio: productAspectRatio,
-                          children: productFromCategories
-                              .map(
-                                (product) => ProductCard(
-                                  product: product,
-                                ),
-                              )
-                              .toList(),
+                          aspectRatio: productAspectRatio,
+                          productList: productFromCategories,
                         )
                       ],
                     )

@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
 import 'package:houlala_app/screens/cart_screen.dart';
 import 'package:houlala_app/screens/category_detail_screen.dart';
-import 'package:houlala_app/screens/food_and_drinks_screen.dart';
 import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
 import 'package:houlala_app/screens/main_navigation_screen.dart';
@@ -64,7 +63,6 @@ class MyApp extends StatelessWidget {
         '/search': (context) => const SearchScreen(),
         '/searchStore': (context) => const SearchStoreScreen(),
         '/allProducts': (context) => const AllProductScreen(),
-        '/foodAndDrinks': (context) => const FoodAndDrinksScreen(),
         '/subCategoryDetail': (context) => const SubCategoryDetailScreen(),
         '/cart': (context) => const CartScreen(),
         '/notifications': (context) => const NotificationScreen(),
