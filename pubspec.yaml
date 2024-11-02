@@ -84,6 +84,16 @@ flutter:
     - images/nkonda.webp
     - images/sub-categories/toys.png
     - images/sub-categories/electronics.png
+    - images/user-menu/account.png
+    - images/user-menu/bills.png
+    - images/user-menu/buyAgain.png
+    - images/user-menu/favorites.png
+    - images/user-menu/historic.png
+    - images/user-menu/list.png
+    - images/user-menu/messages.png
+    - images/user-menu/orders.png
+    - images/user-menu/transactions.png
+    - images/user.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
