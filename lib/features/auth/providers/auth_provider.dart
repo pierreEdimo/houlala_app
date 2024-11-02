@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
@@ -46,11 +45,14 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
     state = state.copyWith(loading: true);
     String? token = userToken ?? await TokenHelper.getToken();
     if (token != null) {
-      UserModel userModel = await authRepository.fetchConnectedUser(userToken: userToken);
-      state =
-          state.copyWith(loggedIn: true, loading: false, connectedUser: userModel);
-    } else {
-      navigatorKey.currentState?.pushReplacementNamed('/login');
+      UserModel userModel =
+          await authRepository.fetchConnectedUser(userToken: userToken);
+      state = state.copyWith(loggedIn: true, connectedUser: userModel);
     }
+    state = state.copyWith(loading: false);
+  }
+
+  void loggOut() {
+    state = state.copyWith(loggedIn: false);
   }
 }
