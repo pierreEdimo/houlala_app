@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/screens/user_screen.dart';
+import 'package:houlala_app/screens/profile_screen.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input.dart';
 import 'discover_screen.dart';
@@ -17,21 +17,19 @@ class MainNavigationScreen extends ConsumerStatefulWidget {
 
 class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   int _selectedIndex = 0;
+  final bool isLoggedIn = false;
+  late bool loading;
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const DiscoverScreen(),
-    const UserScreen(),
+    const ProfileScreen(),
   ];
 
   void _onItemTaped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    // if (_selectedIndex == 3) {
-    //   AuthController authController = AuthController(ref);Homescreen
-    //   authController.checkConnectedUser();
-    // }
   }
 
   @override
@@ -94,16 +92,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
                                 color: Colors.orange,
                               ),
                       ),
-                      // IconButton(
-                      //   onPressed: () => _onItemTaped(2),
-                      //   icon: _selectedIndex != 2
-                      //       ? const HeroIcon(HeroIcons.wallet)
-                      //       : const HeroIcon(
-                      //           HeroIcons.wallet,
-                      //           style: HeroIconStyle.solid,
-                      //           color: Colors.orange,
-                      //         ),
-                      // ),
                       IconButton(
                         onPressed: () => _onItemTaped(2),
                         icon: _selectedIndex != 2
