@@ -23,7 +23,7 @@ class CategoriesStateNotifier extends StateNotifier<CategoriesState> {
       state = state.copyWith(loading: true);
       List<Categories> categories =
           await categoriesRepository.fetchCategories();
-      state = state.copyWith(loading: false, categoriesList: categories);
+      state = state.copyWith(loading: false, categoryList: categories);
     } catch (exception) {
       state = state.copyWith(
         loading: false,
