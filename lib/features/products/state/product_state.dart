@@ -6,6 +6,9 @@ part 'product_state.freezed.dart';
 class ProductState with _$ProductState {
   factory ProductState({
     @Default([]) List<Product> productList,
+    @Default([]) List<Product> topSellingProductList,
+    @Default([]) List<Product> offerProductList,
+    @Default([]) List<Product> historicProductList,
     @Default(false) bool loading,
     @Default('') String errorMessage,
     @Default([]) List<Product> bookmarkedList,
