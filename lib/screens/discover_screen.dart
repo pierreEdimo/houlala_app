@@ -12,7 +12,7 @@ class DiscoverScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CategoriesController categoriesController = CategoriesController(ref);
-    List<Categories> categories = categoriesController.categories;
+    List<Categories> categories = categoriesController.categoryList;
     bool loading = categoriesController.loading;
     return Scaffold(
       body: loading
