@@ -11,11 +11,17 @@ class SellersController {
     return ref!.watch(sellerStateNotifierProvider).sellerList;
   }
 
-  List<Seller> getSellerListByCategoryId(int categoryId){
-    return sellerList.where((seller) => seller.subCategory!.id == categoryId).toList();
+  List<Seller> get topSellerList {
+    return ref!.watch(sellerStateNotifierProvider).topSellerList;
   }
 
-  List<Seller>  get filteredSellers {
+  List<Seller> getSellerListByCategoryId(int categoryId) {
+    return sellerList
+        .where((seller) => seller.subCategory!.id == categoryId)
+        .toList();
+  }
+
+  List<Seller> get filteredSellers {
     return ref!.watch(sellerStateNotifierProvider).filteredSellerList;
   }
 
@@ -23,15 +29,17 @@ class SellersController {
     return ref!.watch(sellerStateNotifierProvider).loading;
   }
 
-  void searchSellers(String term, {int? subCategoryId}){
-    ref!.read(sellerStateNotifierProvider.notifier).searchSellers(term, subCategoryId: subCategoryId);
+  void searchSellers(String term, {int? subCategoryId}) {
+    ref!
+        .read(sellerStateNotifierProvider.notifier)
+        .searchSellers(term, subCategoryId: subCategoryId);
   }
 
   String get errorMessage {
     return ref!.watch(sellerStateNotifierProvider).errorMessage;
   }
 
-  void resetFilterSellers(){
+  void resetFilterSellers() {
     ref!.read(sellerStateNotifierProvider.notifier).resetFilterSeller();
   }
 }
