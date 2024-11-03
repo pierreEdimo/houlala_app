@@ -8,8 +8,12 @@ class CategoriesController {
 
   CategoriesController(this.ref) : super();
 
-  List<Categories> get categories {
-    return ref!.watch(categoriesStateNotifierProvider).categoriesList;
+  List<Categories> get categoryList {
+    return ref!.watch(categoriesStateNotifierProvider).categoryList;
+  }
+
+  List<Categories> get topCategoryList {
+    return ref!.watch(categoriesStateNotifierProvider).topCategoryList;
   }
 
   bool get loading {
