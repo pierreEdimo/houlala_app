@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SellerState {
   List<Seller> get sellerList => throw _privateConstructorUsedError;
   List<Seller> get filteredSellerList => throw _privateConstructorUsedError;
+  List<Seller> get topSellerList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -37,6 +38,7 @@ abstract class $SellerStateCopyWith<$Res> {
   $Res call(
       {List<Seller> sellerList,
       List<Seller> filteredSellerList,
+      List<Seller> topSellerList,
       bool loading,
       String errorMessage});
 }
@@ -58,6 +60,7 @@ class _$SellerStateCopyWithImpl<$Res, $Val extends SellerState>
   $Res call({
     Object? sellerList = null,
     Object? filteredSellerList = null,
+    Object? topSellerList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
@@ -69,6 +72,10 @@ class _$SellerStateCopyWithImpl<$Res, $Val extends SellerState>
       filteredSellerList: null == filteredSellerList
           ? _value.filteredSellerList
           : filteredSellerList // ignore: cast_nullable_to_non_nullable
+              as List<Seller>,
+      topSellerList: null == topSellerList
+          ? _value.topSellerList
+          : topSellerList // ignore: cast_nullable_to_non_nullable
               as List<Seller>,
       loading: null == loading
           ? _value.loading
@@ -93,6 +100,7 @@ abstract class _$$SellerStateImplCopyWith<$Res>
   $Res call(
       {List<Seller> sellerList,
       List<Seller> filteredSellerList,
+      List<Seller> topSellerList,
       bool loading,
       String errorMessage});
 }
@@ -112,6 +120,7 @@ class __$$SellerStateImplCopyWithImpl<$Res>
   $Res call({
     Object? sellerList = null,
     Object? filteredSellerList = null,
+    Object? topSellerList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
@@ -123,6 +132,10 @@ class __$$SellerStateImplCopyWithImpl<$Res>
       filteredSellerList: null == filteredSellerList
           ? _value._filteredSellerList
           : filteredSellerList // ignore: cast_nullable_to_non_nullable
+              as List<Seller>,
+      topSellerList: null == topSellerList
+          ? _value._topSellerList
+          : topSellerList // ignore: cast_nullable_to_non_nullable
               as List<Seller>,
       loading: null == loading
           ? _value.loading
@@ -142,10 +155,12 @@ class _$SellerStateImpl implements _SellerState {
   _$SellerStateImpl(
       {final List<Seller> sellerList = const [],
       final List<Seller> filteredSellerList = const [],
+      final List<Seller> topSellerList = const [],
       this.loading = false,
       this.errorMessage = ''})
       : _sellerList = sellerList,
-        _filteredSellerList = filteredSellerList;
+        _filteredSellerList = filteredSellerList,
+        _topSellerList = topSellerList;
 
   final List<Seller> _sellerList;
   @override
@@ -166,6 +181,15 @@ class _$SellerStateImpl implements _SellerState {
     return EqualUnmodifiableListView(_filteredSellerList);
   }
 
+  final List<Seller> _topSellerList;
+  @override
+  @JsonKey()
+  List<Seller> get topSellerList {
+    if (_topSellerList is EqualUnmodifiableListView) return _topSellerList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topSellerList);
+  }
+
   @override
   @JsonKey()
   final bool loading;
@@ -175,7 +199,7 @@ class _$SellerStateImpl implements _SellerState {
 
   @override
   String toString() {
-    return 'SellerState(sellerList: $sellerList, filteredSellerList: $filteredSellerList, loading: $loading, errorMessage: $errorMessage)';
+    return 'SellerState(sellerList: $sellerList, filteredSellerList: $filteredSellerList, topSellerList: $topSellerList, loading: $loading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -187,6 +211,8 @@ class _$SellerStateImpl implements _SellerState {
                 .equals(other._sellerList, _sellerList) &&
             const DeepCollectionEquality()
                 .equals(other._filteredSellerList, _filteredSellerList) &&
+            const DeepCollectionEquality()
+                .equals(other._topSellerList, _topSellerList) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
@@ -197,6 +223,7 @@ class _$SellerStateImpl implements _SellerState {
       runtimeType,
       const DeepCollectionEquality().hash(_sellerList),
       const DeepCollectionEquality().hash(_filteredSellerList),
+      const DeepCollectionEquality().hash(_topSellerList),
       loading,
       errorMessage);
 
@@ -213,6 +240,7 @@ abstract class _SellerState implements SellerState {
   factory _SellerState(
       {final List<Seller> sellerList,
       final List<Seller> filteredSellerList,
+      final List<Seller> topSellerList,
       final bool loading,
       final String errorMessage}) = _$SellerStateImpl;
 
@@ -220,6 +248,8 @@ abstract class _SellerState implements SellerState {
   List<Seller> get sellerList;
   @override
   List<Seller> get filteredSellerList;
+  @override
+  List<Seller> get topSellerList;
   @override
   bool get loading;
   @override
