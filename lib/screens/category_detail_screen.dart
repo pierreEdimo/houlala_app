@@ -25,7 +25,7 @@ class CategoryDetailScreen extends ConsumerWidget {
         ModalRoute.of(context)!.settings.arguments as CategoryArg;
     CategoriesController controller = CategoriesController(ref);
 
-    var selectedCategory = controller.categories
+    var selectedCategory = controller.categoryList
         .where((category) => category.id == categoryArg.categoryId)
         .toList()
         .first;
