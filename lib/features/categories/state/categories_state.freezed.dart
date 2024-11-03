@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CategoriesState {
-  List<Categories> get categoriesList => throw _privateConstructorUsedError;
+  List<Categories> get categoryList => throw _privateConstructorUsedError;
+  List<Categories> get topCategoryList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
 
@@ -34,7 +35,10 @@ abstract class $CategoriesStateCopyWith<$Res> {
       _$CategoriesStateCopyWithImpl<$Res, CategoriesState>;
   @useResult
   $Res call(
-      {List<Categories> categoriesList, bool loading, String errorMessage});
+      {List<Categories> categoryList,
+      List<Categories> topCategoryList,
+      bool loading,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -52,14 +56,19 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categoriesList = null,
+    Object? categoryList = null,
+    Object? topCategoryList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
     return _then(_value.copyWith(
-      categoriesList: null == categoriesList
-          ? _value.categoriesList
-          : categoriesList // ignore: cast_nullable_to_non_nullable
+      categoryList: null == categoryList
+          ? _value.categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
+              as List<Categories>,
+      topCategoryList: null == topCategoryList
+          ? _value.topCategoryList
+          : topCategoryList // ignore: cast_nullable_to_non_nullable
               as List<Categories>,
       loading: null == loading
           ? _value.loading
@@ -82,7 +91,10 @@ abstract class _$$CategoriesStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Categories> categoriesList, bool loading, String errorMessage});
+      {List<Categories> categoryList,
+      List<Categories> topCategoryList,
+      bool loading,
+      String errorMessage});
 }
 
 /// @nodoc
@@ -98,14 +110,19 @@ class __$$CategoriesStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categoriesList = null,
+    Object? categoryList = null,
+    Object? topCategoryList = null,
     Object? loading = null,
     Object? errorMessage = null,
   }) {
     return _then(_$CategoriesStateImpl(
-      categoriesList: null == categoriesList
-          ? _value._categoriesList
-          : categoriesList // ignore: cast_nullable_to_non_nullable
+      categoryList: null == categoryList
+          ? _value._categoryList
+          : categoryList // ignore: cast_nullable_to_non_nullable
+              as List<Categories>,
+      topCategoryList: null == topCategoryList
+          ? _value._topCategoryList
+          : topCategoryList // ignore: cast_nullable_to_non_nullable
               as List<Categories>,
       loading: null == loading
           ? _value.loading
@@ -123,18 +140,29 @@ class __$$CategoriesStateImplCopyWithImpl<$Res>
 
 class _$CategoriesStateImpl implements _CategoriesState {
   _$CategoriesStateImpl(
-      {final List<Categories> categoriesList = const [],
+      {final List<Categories> categoryList = const [],
+      final List<Categories> topCategoryList = const [],
       this.loading = false,
       this.errorMessage = ''})
-      : _categoriesList = categoriesList;
+      : _categoryList = categoryList,
+        _topCategoryList = topCategoryList;
 
-  final List<Categories> _categoriesList;
+  final List<Categories> _categoryList;
   @override
   @JsonKey()
-  List<Categories> get categoriesList {
-    if (_categoriesList is EqualUnmodifiableListView) return _categoriesList;
+  List<Categories> get categoryList {
+    if (_categoryList is EqualUnmodifiableListView) return _categoryList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categoriesList);
+    return EqualUnmodifiableListView(_categoryList);
+  }
+
+  final List<Categories> _topCategoryList;
+  @override
+  @JsonKey()
+  List<Categories> get topCategoryList {
+    if (_topCategoryList is EqualUnmodifiableListView) return _topCategoryList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topCategoryList);
   }
 
   @override
@@ -146,7 +174,7 @@ class _$CategoriesStateImpl implements _CategoriesState {
 
   @override
   String toString() {
-    return 'CategoriesState(categoriesList: $categoriesList, loading: $loading, errorMessage: $errorMessage)';
+    return 'CategoriesState(categoryList: $categoryList, topCategoryList: $topCategoryList, loading: $loading, errorMessage: $errorMessage)';
   }
 
   @override
@@ -155,7 +183,9 @@ class _$CategoriesStateImpl implements _CategoriesState {
         (other.runtimeType == runtimeType &&
             other is _$CategoriesStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._categoriesList, _categoriesList) &&
+                .equals(other._categoryList, _categoryList) &&
+            const DeepCollectionEquality()
+                .equals(other._topCategoryList, _topCategoryList) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
@@ -164,7 +194,8 @@ class _$CategoriesStateImpl implements _CategoriesState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_categoriesList),
+      const DeepCollectionEquality().hash(_categoryList),
+      const DeepCollectionEquality().hash(_topCategoryList),
       loading,
       errorMessage);
 
@@ -180,12 +211,15 @@ class _$CategoriesStateImpl implements _CategoriesState {
 
 abstract class _CategoriesState implements CategoriesState {
   factory _CategoriesState(
-      {final List<Categories> categoriesList,
+      {final List<Categories> categoryList,
+      final List<Categories> topCategoryList,
       final bool loading,
       final String errorMessage}) = _$CategoriesStateImpl;
 
   @override
-  List<Categories> get categoriesList;
+  List<Categories> get categoryList;
+  @override
+  List<Categories> get topCategoryList;
   @override
   bool get loading;
   @override
