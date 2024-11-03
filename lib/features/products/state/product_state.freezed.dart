@@ -17,6 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProductState {
   List<Product> get productList => throw _privateConstructorUsedError;
+  List<Product> get topSellingProductList => throw _privateConstructorUsedError;
+  List<Product> get offerProductList => throw _privateConstructorUsedError;
+  List<Product> get historicProductList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<Product> get bookmarkedList => throw _privateConstructorUsedError;
@@ -36,6 +39,9 @@ abstract class $ProductStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<Product> productList,
+      List<Product> topSellingProductList,
+      List<Product> offerProductList,
+      List<Product> historicProductList,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
@@ -57,6 +63,9 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
   @override
   $Res call({
     Object? productList = null,
+    Object? topSellingProductList = null,
+    Object? offerProductList = null,
+    Object? historicProductList = null,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -65,6 +74,18 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
       productList: null == productList
           ? _value.productList
           : productList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      topSellingProductList: null == topSellingProductList
+          ? _value.topSellingProductList
+          : topSellingProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      offerProductList: null == offerProductList
+          ? _value.offerProductList
+          : offerProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      historicProductList: null == historicProductList
+          ? _value.historicProductList
+          : historicProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       loading: null == loading
           ? _value.loading
@@ -92,6 +113,9 @@ abstract class _$$ProductStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<Product> productList,
+      List<Product> topSellingProductList,
+      List<Product> offerProductList,
+      List<Product> historicProductList,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
@@ -111,6 +135,9 @@ class __$$ProductStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? productList = null,
+    Object? topSellingProductList = null,
+    Object? offerProductList = null,
+    Object? historicProductList = null,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -119,6 +146,18 @@ class __$$ProductStateImplCopyWithImpl<$Res>
       productList: null == productList
           ? _value._productList
           : productList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      topSellingProductList: null == topSellingProductList
+          ? _value._topSellingProductList
+          : topSellingProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      offerProductList: null == offerProductList
+          ? _value._offerProductList
+          : offerProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      historicProductList: null == historicProductList
+          ? _value._historicProductList
+          : historicProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       loading: null == loading
           ? _value.loading
@@ -141,10 +180,16 @@ class __$$ProductStateImplCopyWithImpl<$Res>
 class _$ProductStateImpl implements _ProductState {
   _$ProductStateImpl(
       {final List<Product> productList = const [],
+      final List<Product> topSellingProductList = const [],
+      final List<Product> offerProductList = const [],
+      final List<Product> historicProductList = const [],
       this.loading = false,
       this.errorMessage = '',
       final List<Product> bookmarkedList = const []})
       : _productList = productList,
+        _topSellingProductList = topSellingProductList,
+        _offerProductList = offerProductList,
+        _historicProductList = historicProductList,
         _bookmarkedList = bookmarkedList;
 
   final List<Product> _productList;
@@ -154,6 +199,36 @@ class _$ProductStateImpl implements _ProductState {
     if (_productList is EqualUnmodifiableListView) return _productList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_productList);
+  }
+
+  final List<Product> _topSellingProductList;
+  @override
+  @JsonKey()
+  List<Product> get topSellingProductList {
+    if (_topSellingProductList is EqualUnmodifiableListView)
+      return _topSellingProductList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_topSellingProductList);
+  }
+
+  final List<Product> _offerProductList;
+  @override
+  @JsonKey()
+  List<Product> get offerProductList {
+    if (_offerProductList is EqualUnmodifiableListView)
+      return _offerProductList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_offerProductList);
+  }
+
+  final List<Product> _historicProductList;
+  @override
+  @JsonKey()
+  List<Product> get historicProductList {
+    if (_historicProductList is EqualUnmodifiableListView)
+      return _historicProductList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_historicProductList);
   }
 
   @override
@@ -173,7 +248,7 @@ class _$ProductStateImpl implements _ProductState {
 
   @override
   String toString() {
-    return 'ProductState(productList: $productList, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
+    return 'ProductState(productList: $productList, topSellingProductList: $topSellingProductList, offerProductList: $offerProductList, historicProductList: $historicProductList, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
   }
 
   @override
@@ -183,6 +258,12 @@ class _$ProductStateImpl implements _ProductState {
             other is _$ProductStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._productList, _productList) &&
+            const DeepCollectionEquality()
+                .equals(other._topSellingProductList, _topSellingProductList) &&
+            const DeepCollectionEquality()
+                .equals(other._offerProductList, _offerProductList) &&
+            const DeepCollectionEquality()
+                .equals(other._historicProductList, _historicProductList) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -194,6 +275,9 @@ class _$ProductStateImpl implements _ProductState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_productList),
+      const DeepCollectionEquality().hash(_topSellingProductList),
+      const DeepCollectionEquality().hash(_offerProductList),
+      const DeepCollectionEquality().hash(_historicProductList),
       loading,
       errorMessage,
       const DeepCollectionEquality().hash(_bookmarkedList));
@@ -210,12 +294,21 @@ class _$ProductStateImpl implements _ProductState {
 abstract class _ProductState implements ProductState {
   factory _ProductState(
       {final List<Product> productList,
+      final List<Product> topSellingProductList,
+      final List<Product> offerProductList,
+      final List<Product> historicProductList,
       final bool loading,
       final String errorMessage,
       final List<Product> bookmarkedList}) = _$ProductStateImpl;
 
   @override
   List<Product> get productList;
+  @override
+  List<Product> get topSellingProductList;
+  @override
+  List<Product> get offerProductList;
+  @override
+  List<Product> get historicProductList;
   @override
   bool get loading;
   @override
