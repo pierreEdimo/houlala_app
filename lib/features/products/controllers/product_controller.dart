@@ -15,6 +15,18 @@ class ProductController {
     return productList.where((product) => product.category!.id == cid).toList();
   }
 
+  List<Product> get topSellingProductList {
+    return ref!.watch(productStateNotifierProvider).topSellingProductList;
+  }
+
+  List<Product> get recommandedProductList {
+    return ref!.watch(productStateNotifierProvider).offerProductList;
+  }
+
+  List<Product> get historicProductList {
+    return ref!.watch(productStateNotifierProvider).historicProductList;
+  }
+
   List<Product> getProductBySubCategoryId(int cid, int scid) {
     return productList
         .where((product) =>
