@@ -11,16 +11,19 @@ class SubCategoryCard extends StatelessWidget {
     this.subCategory,
   });
 
+  bool isUrl(String imageUrl) {
+    return Uri.parse(imageUrl).isAbsolute;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
         subCategory!.route!,
         arguments: CategoryArg(
-          subCategory: subCategory,
-          categoryId: subCategory!.category!.id,
-          categoryName: subCategory!.name
-        ),
+            subCategory: subCategory,
+            categoryId: subCategory!.category!.id,
+            categoryName: subCategory!.name),
       ),
       child: Card(
         elevation: 0,
@@ -33,10 +36,15 @@ class SubCategoryCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(150.0),
               ),
               child: Center(
-                child: Image.asset(
-                  height: 110,
-                  'images/sub-categories/${subCategory!.imageUrl!}',
-                ),
+                child: !isUrl(subCategory!.imageUrl!)
+                    ? Image.asset(
+                        height: 110,
+                        'images/sub-categories/${subCategory!.imageUrl!}',
+                      )
+                    : Image.network(
+                        height: 110,
+                        subCategory!.imageUrl!,
+                      ),
               ),
             ),
             Align(

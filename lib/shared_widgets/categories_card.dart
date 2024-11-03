@@ -11,6 +11,10 @@ class CategoriesCard extends StatelessWidget {
     this.categories,
   });
 
+  bool isUrl(String imageUrl) {
+    return Uri.parse(imageUrl).isAbsolute;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,10 +32,15 @@ class CategoriesCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Image.asset(
-                'images/categories/${categories!.imageUrl}',
-                height: 80,
-              ),
+              !isUrl(categories!.imageUrl!)
+                  ? Image.asset(
+                      'images/categories/${categories!.imageUrl}',
+                      height: 80,
+                    )
+                  : Image.network(
+                      categories!.imageUrl!,
+                      height: 80,
+                    ),
               const SizedBox(height: 8),
               Flexible(
                 child: Text(

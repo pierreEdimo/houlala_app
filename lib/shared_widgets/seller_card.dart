@@ -10,6 +10,10 @@ class SellerCard extends StatelessWidget {
     this.seller,
   });
 
+  bool isUrl(String imageUrl) {
+    return Uri.parse(imageUrl).isAbsolute;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -38,7 +42,9 @@ class SellerCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(150.0),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('images/${seller!.imageUrl}'),
+                          image: !isUrl(seller!.imageUrl!)
+                              ? AssetImage('images/${seller!.imageUrl}')
+                              : NetworkImage(seller!.imageUrl!),
                         ),
                       ),
                     ),
