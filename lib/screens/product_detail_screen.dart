@@ -151,7 +151,7 @@ class ProductDetailScreen extends ConsumerWidget {
             child: Container(
               width: MediaQuery.of(context).size.width * 1,
               height: 90,
-              color: Colors.white,
+              color: Colors.transparent,
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: horizontalPadding),
