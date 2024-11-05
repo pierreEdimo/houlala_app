@@ -31,11 +31,11 @@ class CustomButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HeroIcon(
+            leadingIcon  != null ? HeroIcon(
               leadingIcon!,
               size: 17,
               color: Colors.white,
-            ),
+            ) : const SizedBox(),
             const SizedBox(width: 5.0),
             Text(
               title!,
