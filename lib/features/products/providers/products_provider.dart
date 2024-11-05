@@ -25,7 +25,7 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
     } catch (exception) {
       state = state.copyWith(
           loading: false,
-          errorMessage: "Les produits n'ont pas pu être chargés.");
+          errorMessage: "Erreur lors du chargement des produits.");
     }
   }
 }
