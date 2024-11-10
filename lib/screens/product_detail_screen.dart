@@ -1,7 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/model/user_model.dart';
+import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
+import 'package:houlala_app/features/carts/model/create_cart_item.dart';
 
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
@@ -16,8 +21,12 @@ class ProductDetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ProductController productController = ProductController(ref);
+    AuthController authController = AuthController(ref);
+    CartController cartController = CartController(ref);
 
     final int productId = ModalRoute.of(context)!.settings.arguments as int;
+    final UserModel connectedUser = authController.connectedUser!;
+    final bool isLoggedIn = authController.isLoggedIn;
 
     Product selectedProduct = productController.productList
         .where((product) => product.id == productId)
@@ -25,6 +34,22 @@ class ProductDetailScreen extends ConsumerWidget {
         .first;
 
     late int quantity = selectedProduct.quantity!;
+
+    void addProductToCart(int qty) {
+      int price = selectedProduct.sellingPrice! * qty;
+      CreateCartItem createCartItem = CreateCartItem(
+          quantity: qty,
+          price: price,
+          productId: productId,
+          userId: connectedUser.id);
+      cartController.addProductToCart(createCartItem);
+    }
+
+    void addProductToGastCard() {
+      if (kDebugMode) {
+        print('this is for gast');
+      }
+    }
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -43,7 +68,7 @@ class ProductDetailScreen extends ConsumerWidget {
           )
         ],
       ),
-      body: Stack(
+      body:   Stack(
         children: [
           SingleChildScrollView(
             child: Padding(
@@ -176,7 +201,9 @@ class ProductDetailScreen extends ConsumerWidget {
                       ],
                     ),
                     CustomButton(
-                      onTap: () {},
+                      onPressed: () => isLoggedIn
+                          ? addProductToCart(quantity)
+                          : addProductToGastCard(),
                       leadingIcon: HeroIcons.shoppingBag,
                       title: 'Ajouter au Panier',
                     )
