@@ -23,22 +23,22 @@ class LoggedInCartScreen extends ConsumerWidget {
     return CustomContainer(
       loading: loading,
       errorMessage: errorMessage,
-      child: cartItems.isNotEmpty
-          ? Scaffold(
-              appBar: CustomAppBar(
-                leading: IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const HeroIcon(HeroIcons.chevronLeft),
-                ),
-                title: Text(
-                  'Mon panier',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                ),
-              ),
-              body: Stack(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const HeroIcon(HeroIcons.chevronLeft),
+          ),
+          title: Text(
+            'Mon panier',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
+          ),
+        ),
+        body: cartItems.isNotEmpty
+            ? Stack(
                 children: [
                   ListView(
                     shrinkWrap: true,
@@ -54,9 +54,11 @@ class LoggedInCartScreen extends ConsumerWidget {
                   ),
                   const CheckoutButton()
                 ],
+              )
+            : const Center(
+                child: Text('Votre panier est vide'),
               ),
-            )
-          : Container(),
+      ),
     );
   }
 }
