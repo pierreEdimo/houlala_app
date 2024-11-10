@@ -7,7 +7,30 @@ import '../model/product.dart';
 class ProductRepository {
   Future<List<Product>> fetchProducts() async {
     String? uri = dotenv.env['PRODUCT_URL'];
-    final Response response = await get(Uri.parse(uri!));
+    return _fetchProductFromDb(uri!);
+  }
+
+  Future<List<Product>> searchProducts(String term,
+      {int? categoryId, int? subCategoryId, int? sellerId}) async {
+    String? uri = '${dotenv.env['PRODUCT_URL']}/search?term=$term';
+
+    if (categoryId != null) {
+      uri += '&categoryId=$categoryId';
+    }
+
+    if (subCategoryId != null) {
+      uri += '&subCategory=$subCategoryId';
+    }
+
+    if (sellerId != null) {
+      uri += '&sellerId=$sellerId';
+    }
+
+    return _fetchProductFromDb(uri);
+  }
+
+  Future<List<Product>> _fetchProductFromDb(String uri) async {
+    final Response response = await get(Uri.parse(uri));
     if (response.statusCode == HttpStatus.ok) {
       List<dynamic> body = jsonDecode(response.body);
       List<Product> products =

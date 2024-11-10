@@ -15,6 +15,10 @@ class ProductController {
     return productList.where((product) => product.category!.id == cid).toList();
   }
 
+  List<Product> get searchProductResultList {
+    return ref!.watch(productStateNotifierProvider).searchProductList;
+  }
+
   List<Product> get topSellingProductList {
     return ref!.watch(productStateNotifierProvider).topSellingProductList;
   }
@@ -25,6 +29,16 @@ class ProductController {
 
   List<Product> get historicProductList {
     return ref!.watch(productStateNotifierProvider).historicProductList;
+  }
+
+  void searchProduct(String term,
+      {int? categoryId, int? sellerId, int? subCategoryId}) {
+    ref!.read(productStateNotifierProvider.notifier).searchProducts(
+          term,
+          categoryId: categoryId,
+          sellerId: sellerId,
+          subCategoryId: subCategoryId,
+        );
   }
 
   List<Product> getProductBySubCategoryId(int cid, int scid) {
@@ -40,5 +54,11 @@ class ProductController {
 
   String get errorMessage {
     return ref!.watch(productStateNotifierProvider).errorMessage;
+  }
+
+  void resetSearchAndFilterungList() {
+    ref!
+        .read(productStateNotifierProvider.notifier)
+        .resetSearchAndFilterungProductList();
   }
 }

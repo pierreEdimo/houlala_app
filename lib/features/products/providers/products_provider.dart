@@ -28,4 +28,26 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
           errorMessage: "Erreur lors du chargement des produits.");
     }
   }
+
+  Future<void> searchProducts(String term,
+      {int? subCategoryId, int? categoryId, int? sellerId}) async {
+    try {
+      state = state.copyWith(loading: true);
+      List<Product> products = await productRepository.searchProducts(
+        term,
+        subCategoryId: subCategoryId,
+        categoryId: categoryId,
+        sellerId: sellerId,
+      );
+      state = state.copyWith(loading: false, searchProductList: products);
+    } catch (exception) {
+      state = state.copyWith(
+          loading: false,
+          errorMessage: "Erreur lors du chargement des produits.");
+    }
+  }
+
+  void resetSearchAndFilterungProductList() {
+    state = state.copyWith(searchProductList: []);
+  }
 }
