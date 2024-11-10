@@ -1,15 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 
-class MappedCartItemCard extends StatelessWidget {
+class MappedCartItemCard extends ConsumerWidget {
   final MappedCartItem? mappedCartItem;
 
   const MappedCartItemCard({super.key, this.mappedCartItem});
 
+  int get totalQuantity {
+    int qty = 0;
+    List<CartItem> items = mappedCartItem!.cartItems!;
+    for (var item in items) {
+      qty += item.quantity!;
+    }
+    return qty;
+  }
+
+  int get totalPrice {
+    int price = 0;
+    List<CartItem> items = mappedCartItem!.cartItems!;
+    for (var item in items) {
+      price += item.price!;
+    }
+    return price;
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    CartController cartController = CartController(ref);
+
+    void deleteProductFromCart(int id) {
+      cartController.removeProductFromCart(id);
+    }
+
+    void decreaseItemQuantity(int id){
+      cartController.decreaseItemQuantity(id);
+    }
+
+    void increaseItemQuantity(int id){
+      cartController.increaseItemQuantity(id);
+    }
+
     return Card(
       color: Colors.white,
       elevation: 0,
@@ -56,10 +90,52 @@ class MappedCartItemCard extends StatelessWidget {
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               children: mappedCartItem!.cartItems!
-                  .map((item) => CartItemCard(
-                        cartItem: item,
-                      ))
+                  .map(
+                    (item) => CartItemCard(
+                      onDecrease: () => decreaseItemQuantity(item.id!),
+                      onIncrease: () => increaseItemQuantity(item.id!),
+                      onPressed: () => deleteProductFromCart(item.id!),
+                      cartItem: item,
+                    ),
+                  )
                   .toList(),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Total: ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[TextSpan(text: '$totalQuantity')],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                RichText(
+                  text: TextSpan(
+                    text: 'Prix: ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '$totalPrice',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const TextSpan(
+                        text: 'XAF',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           )
         ],
@@ -70,10 +146,16 @@ class MappedCartItemCard extends StatelessWidget {
 
 class CartItemCard extends StatelessWidget {
   final CartItem? cartItem;
+  final VoidCallback? onPressed;
+  final VoidCallback? onIncrease;
+  final VoidCallback? onDecrease;
 
   const CartItemCard({
     super.key,
     this.cartItem,
+    this.onPressed,
+    this.onDecrease,
+    this.onIncrease,
   });
 
   @override
@@ -92,12 +174,13 @@ class CartItemCard extends StatelessWidget {
                 color: Colors.white,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                        image: NetworkImage(cartItem!.product!.images![0]),
-                        fit: BoxFit.cover,
-                      )),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                      image: NetworkImage(cartItem!.product!.images![0]),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -120,13 +203,24 @@ class CartItemCard extends StatelessWidget {
                       return Row(
                         children: [
                           IconButton(
-                            onPressed: () => {},
-                            icon: const HeroIcon(HeroIcons.minus),
+                            onPressed: cartItem!.quantity! == 1
+                                ? onPressed
+                                : onDecrease,
+                            icon: cartItem!.quantity! == 1
+                                ? const HeroIcon(HeroIcons.trash)
+                                : const HeroIcon(HeroIcons.minus),
                           ),
                           Text('${cartItem!.quantity!}'),
                           IconButton(
-                            onPressed: () => {},
+                            onPressed: onIncrease,
                             icon: const HeroIcon(HeroIcons.plus),
+                          ),
+                          const SizedBox(width: 20),
+                          IconButton(
+                            onPressed: onPressed,
+                            icon: const HeroIcon(
+                              HeroIcons.trash,
+                            ),
                           )
                         ],
                       );
@@ -139,14 +233,12 @@ class CartItemCard extends StatelessWidget {
                       Text(
                         '${cartItem!.price!}',
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 22),
                       ),
                       Text(
                         ' XAF',
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.bold,
                         ),
                       )
                     ],
