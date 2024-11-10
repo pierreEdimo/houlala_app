@@ -20,6 +20,7 @@ mixin _$ProductState {
   List<Product> get topSellingProductList => throw _privateConstructorUsedError;
   List<Product> get offerProductList => throw _privateConstructorUsedError;
   List<Product> get historicProductList => throw _privateConstructorUsedError;
+  List<Product> get searchProductList => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<Product> get bookmarkedList => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $ProductStateCopyWith<$Res> {
       List<Product> topSellingProductList,
       List<Product> offerProductList,
       List<Product> historicProductList,
+      List<Product> searchProductList,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
@@ -66,6 +68,7 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
     Object? topSellingProductList = null,
     Object? offerProductList = null,
     Object? historicProductList = null,
+    Object? searchProductList = null,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -86,6 +89,10 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
       historicProductList: null == historicProductList
           ? _value.historicProductList
           : historicProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      searchProductList: null == searchProductList
+          ? _value.searchProductList
+          : searchProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       loading: null == loading
           ? _value.loading
@@ -116,6 +123,7 @@ abstract class _$$ProductStateImplCopyWith<$Res>
       List<Product> topSellingProductList,
       List<Product> offerProductList,
       List<Product> historicProductList,
+      List<Product> searchProductList,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
@@ -138,6 +146,7 @@ class __$$ProductStateImplCopyWithImpl<$Res>
     Object? topSellingProductList = null,
     Object? offerProductList = null,
     Object? historicProductList = null,
+    Object? searchProductList = null,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -158,6 +167,10 @@ class __$$ProductStateImplCopyWithImpl<$Res>
       historicProductList: null == historicProductList
           ? _value._historicProductList
           : historicProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      searchProductList: null == searchProductList
+          ? _value._searchProductList
+          : searchProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       loading: null == loading
           ? _value.loading
@@ -183,6 +196,7 @@ class _$ProductStateImpl implements _ProductState {
       final List<Product> topSellingProductList = const [],
       final List<Product> offerProductList = const [],
       final List<Product> historicProductList = const [],
+      final List<Product> searchProductList = const [],
       this.loading = false,
       this.errorMessage = '',
       final List<Product> bookmarkedList = const []})
@@ -190,6 +204,7 @@ class _$ProductStateImpl implements _ProductState {
         _topSellingProductList = topSellingProductList,
         _offerProductList = offerProductList,
         _historicProductList = historicProductList,
+        _searchProductList = searchProductList,
         _bookmarkedList = bookmarkedList;
 
   final List<Product> _productList;
@@ -231,6 +246,16 @@ class _$ProductStateImpl implements _ProductState {
     return EqualUnmodifiableListView(_historicProductList);
   }
 
+  final List<Product> _searchProductList;
+  @override
+  @JsonKey()
+  List<Product> get searchProductList {
+    if (_searchProductList is EqualUnmodifiableListView)
+      return _searchProductList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchProductList);
+  }
+
   @override
   @JsonKey()
   final bool loading;
@@ -248,7 +273,7 @@ class _$ProductStateImpl implements _ProductState {
 
   @override
   String toString() {
-    return 'ProductState(productList: $productList, topSellingProductList: $topSellingProductList, offerProductList: $offerProductList, historicProductList: $historicProductList, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
+    return 'ProductState(productList: $productList, topSellingProductList: $topSellingProductList, offerProductList: $offerProductList, historicProductList: $historicProductList, searchProductList: $searchProductList, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
   }
 
   @override
@@ -264,6 +289,8 @@ class _$ProductStateImpl implements _ProductState {
                 .equals(other._offerProductList, _offerProductList) &&
             const DeepCollectionEquality()
                 .equals(other._historicProductList, _historicProductList) &&
+            const DeepCollectionEquality()
+                .equals(other._searchProductList, _searchProductList) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -278,6 +305,7 @@ class _$ProductStateImpl implements _ProductState {
       const DeepCollectionEquality().hash(_topSellingProductList),
       const DeepCollectionEquality().hash(_offerProductList),
       const DeepCollectionEquality().hash(_historicProductList),
+      const DeepCollectionEquality().hash(_searchProductList),
       loading,
       errorMessage,
       const DeepCollectionEquality().hash(_bookmarkedList));
@@ -297,6 +325,7 @@ abstract class _ProductState implements ProductState {
       final List<Product> topSellingProductList,
       final List<Product> offerProductList,
       final List<Product> historicProductList,
+      final List<Product> searchProductList,
       final bool loading,
       final String errorMessage,
       final List<Product> bookmarkedList}) = _$ProductStateImpl;
@@ -309,6 +338,8 @@ abstract class _ProductState implements ProductState {
   List<Product> get offerProductList;
   @override
   List<Product> get historicProductList;
+  @override
+  List<Product> get searchProductList;
   @override
   bool get loading;
   @override
