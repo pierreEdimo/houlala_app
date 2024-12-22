@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/screens/profile_screen.dart';
 import '../shared_widgets/c_app_bar.dart';
-import '../shared_widgets/search_input.dart';
+import '../shared_widgets/search_input_button.dart';
 import 'discover_screen.dart';
 import 'home_screen.dart';
 
@@ -36,7 +37,12 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: const SearchInput(
+        title: SearchInputButton(
+          onPressed: () => Navigator.of(context).pushNamed(
+            '/searchProducts',
+            arguments: SearchArgs(
+                categoryId: null, productTypeId: null, sellerId: null),
+          ),
           hinText: 'Rechercher les produits',
         ),
         actions: [
