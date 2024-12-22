@@ -2,30 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
-import 'package:houlala_app/features/sellers/controllers/sellers_controller.dart';
+import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/filter_button.dart';
-import 'package:houlala_app/shared_widgets/search_input.dart';
+import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vsellers_grid.dart';
 
-import '../features/sellers/model/seller.dart';
+import '../features/locals/model/local_model.dart';
 
-class StoreSubCategoryDetailScreen extends ConsumerWidget {
-  const StoreSubCategoryDetailScreen({super.key});
+class StoreTypeDetailScreen extends ConsumerWidget {
+  const StoreTypeDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryArg =
         ModalRoute.of(context)!.settings.arguments as CategoryArg;
 
-    SellersController sellersController = SellersController(ref);
+    LocalsController localsController = LocalsController(ref);
 
-    bool isLoading = sellersController.loading;
-    String errorMessage = sellersController.errorMessage;
-    List<Seller> sellerList = sellersController
-        .getSellerListByCategoryId(categoryArg.subCategory!.id!);
+    bool isLoading = localsController.loading;
+    String errorMessage = localsController.errorMessage;
+    List<LocalModel> localList = localsController
+        .getLocalsListByCategoryId(categoryArg.productType!.id!);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -33,9 +34,14 @@ class StoreSubCategoryDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
-        title: SearchInput(
-          subCategoryId: categoryArg.subCategory!.id!,
-          route: '/searchStore',
+        title: SearchInputButton(
+          onPressed: () => Navigator.of(context).pushNamed(
+            '/searchStore',
+            arguments: SearchArgs(
+              productTypeId: categoryArg.productType!.id,
+              hinText: 'Rechercher dans ${categoryArg.productType!.name}'
+            ),
+          ),
           hinText: 'Rechercher dans ${categoryArg.categoryName}',
         ),
       ),
@@ -51,19 +57,19 @@ class StoreSubCategoryDetailScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      '${sellerList.length} Magasin(s) dans ${categoryArg.subCategory!.name}',
+                      '${localList.length} Magasin(s) dans ${categoryArg.productType!.name}',
                     ),
                     VerticalSellersGrid(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
                       aspectRatio: 1 / 1.2,
-                      sellerList: sellerList,
+                      localList: localList,
                     )
                   ],
                 ),
               ),
             ),
-            sellerList.length > 1 ? const FilterButton() : Container()
+            localList.length > 1 ? const FilterButton() : Container()
           ],
         ),
       ),
