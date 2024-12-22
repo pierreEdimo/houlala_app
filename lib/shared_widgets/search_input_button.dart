@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../helpers/constants.dart';
-import '../helpers/search_args.dart';
 
-class SearchInput extends StatelessWidget {
+class SearchInputButton extends StatelessWidget {
   final String? hinText;
   final String? route;
   final int? subCategoryId;
+  final VoidCallback? onPressed;
 
-  const SearchInput({
+  const SearchInputButton({
     super.key,
     this.hinText,
     this.route,
+    this.onPressed,
     @Default(null) this.subCategoryId
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onTap: () =>
-          Navigator.of(context).pushNamed(route != null ? route! : '/search',
-              arguments: SearchArgs(
-                hinText: hinText,
-                subCategoryId: subCategoryId
-              )),
+      onTap: onPressed,
       textInputAction: TextInputAction.search,
       onFieldSubmitted: (value) {},
+      readOnly: true,
+      enableInteractiveSelection: true,
       decoration: InputDecoration(
-        hintText: 'Rechercher',
+        hintText: hinText ?? 'Rechercher',
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.grey, width: 2.0),
           borderRadius: radius,
