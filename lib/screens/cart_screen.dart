@@ -21,8 +21,6 @@ class CartScreen extends ConsumerWidget {
       );
     }
 
-    return Scaffold(
-      body: loggedIn ? const LoggedInCartScreen() : const LoggedOutCartScreen(),
-    );
+    return loggedIn ? const LoggedInCartScreen() : const LoggedOutCartScreen();
   }
 }
