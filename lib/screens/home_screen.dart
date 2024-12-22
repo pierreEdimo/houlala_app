@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/categories/controllers/categories_controller.dart';
+import 'package:houlala_app/features/category/controllers/category_controller.dart';
+import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
 import 'package:houlala_app/features/products/model/product.dart';
-import 'package:houlala_app/features/sellers/controllers/sellers_controller.dart';
-import 'package:houlala_app/features/sellers/model/seller.dart';
+import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
-import 'package:houlala_app/shared_widgets/categories_card.dart';
+import 'package:houlala_app/shared_widgets/category_card.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/see_more_button.dart';
 import 'package:houlala_app/shared_widgets/seller_card.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
-import '../features/categories/model/categories.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -26,11 +26,11 @@ class HomeScreen extends ConsumerWidget {
         productController.recommandedProductList;
     List<Product> historicProductList = productController.historicProductList;
 
-    CategoriesController categoriesController = CategoriesController(ref);
-    List<Categories> topCategoryList = categoriesController.topCategoryList;
+    CategoryController categoriesController = CategoryController(ref);
+    List<CategoryModel> topCategoryList = categoriesController.topCategoryList;
 
-    SellersController sellersController = SellersController(ref);
-    List<Seller> topSellingList = sellersController.topSellerList;
+    LocalsController sellersController = LocalsController(ref);
+    List<LocalModel> topSellingList = sellersController.topLocalList;
 
     String getErrorMessage() {
       if (productController.errorMessage.isNotEmpty ||
@@ -105,8 +105,8 @@ class HomeScreen extends ConsumerWidget {
                                 .map(
                                   (category) => SizedBox(
                                     width: 200,
-                                    child: CategoriesCard(
-                                      categories: category,
+                                    child: CategoryCard(
+                                      category: category,
                                     ),
                                   ),
                                 )
@@ -148,10 +148,10 @@ class HomeScreen extends ConsumerWidget {
                             scrollDirection: Axis.horizontal,
                             children: topSellingList
                                 .map(
-                                  (seller) => SizedBox(
+                                  (local) => SizedBox(
                                     width: 200,
-                                    child: SellerCard(
-                                      seller: seller,
+                                    child: LocalCard(
+                                      local: local,
                                     ),
                                   ),
                                 )
