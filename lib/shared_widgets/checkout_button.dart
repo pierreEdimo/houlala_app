@@ -18,7 +18,7 @@ class CheckoutButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width * .7,
         margin: const EdgeInsets.only(bottom: 20),
         child: CustomButton(
-          onTap: onPressed,
+          onPressed: onPressed,
           title: 'Procedez au paiement',
           leadingIcon: HeroIcons.creditCard,
         ),
