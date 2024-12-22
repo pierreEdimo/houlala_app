@@ -13,7 +13,8 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed('/productDetail', arguments: product!.id!),
+      onTap: () => Navigator.of(context)
+          .pushNamed('/productDetail', arguments: product!.id!),
       child: Card(
         elevation: 0,
         color: Colors.transparent,
@@ -42,7 +43,7 @@ class ProductCard extends StatelessWidget {
                 Text(
                   product!.category!.name!,
                   maxLines: 1,
-                  overflow: TextOverflow.ellipsis ,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       color: Colors.grey, fontWeight: FontWeight.w500),
                 ),
@@ -54,7 +55,7 @@ class ProductCard extends StatelessWidget {
                       fontWeight: FontWeight.w900, fontSize: 16),
                 ),
                 Text(
-                  '${product!.sellingPrice!.toString()} XAF',
+                  '${product!.unitSellingPrice!.toString()} XAF',
                   style: GoogleFonts.poppins(
                       fontWeight: FontWeight.bold, fontSize: 17),
                 )

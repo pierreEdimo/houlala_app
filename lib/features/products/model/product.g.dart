@@ -10,12 +10,11 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      longDescription: json['longDescription'] as String?,
-      sellingPrice: (json['sellingPrice'] as num?)?.toInt(),
-      buyingPrice: (json['buyingPrice'] as num?)?.toDouble(),
-      availableQuantity: (json['availableQuantity'] as num?)?.toInt(),
+      description: json['description'] as String?,
+      unitSellingPrice: (json['unitSellingPrice'] as num?)?.toDouble(),
+      unitBuyingPrice: (json['unitBuyingPrice'] as num?)?.toDouble(),
+      availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 10,
       quantity: (json['quantity'] as num?)?.toInt() ?? 1,
-      sku: json['sku'] as String?,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       createdAt: json['createdAt'] == null
@@ -29,30 +28,29 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['availableDate'] as String),
       category: json['category'] == null
           ? null
-          : Categories.fromJson(json['category'] as Map<String, dynamic>),
-      subCategory: json['subCategory'] == null
+          : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
+      productType: json['productType'] == null
           ? null
-          : SubCategory.fromJson(json['subCategory'] as Map<String, dynamic>),
-      seller: json['seller'] == null
+          : ProductType.fromJson(json['productType'] as Map<String, dynamic>),
+      local: json['local'] == null
           ? null
-          : Seller.fromJson(json['seller'] as Map<String, dynamic>),
+          : LocalModel.fromJson(json['local'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'longDescription': instance.longDescription,
-      'sellingPrice': instance.sellingPrice,
-      'buyingPrice': instance.buyingPrice,
+      'description': instance.description,
+      'unitSellingPrice': instance.unitSellingPrice,
+      'unitBuyingPrice': instance.unitBuyingPrice,
       'availableQuantity': instance.availableQuantity,
       'quantity': instance.quantity,
-      'sku': instance.sku,
       'images': instance.images,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'availableDate': instance.availableDate?.toIso8601String(),
       'category': instance.category,
-      'subCategory': instance.subCategory,
-      'seller': instance.seller,
+      'productType': instance.productType,
+      'local': instance.local,
     };

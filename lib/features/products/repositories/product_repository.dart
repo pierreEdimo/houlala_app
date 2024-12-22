@@ -25,7 +25,6 @@ class ProductRepository {
     if (sellerId != null) {
       uri += '&sellerId=$sellerId';
     }
-
     return _fetchProductFromDb(uri);
   }
 

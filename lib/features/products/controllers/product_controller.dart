@@ -15,6 +15,8 @@ class ProductController {
     return productList.where((product) => product.category!.id == cid).toList();
   }
 
+
+
   List<Product> get searchProductResultList {
     return ref!.watch(productStateNotifierProvider).searchProductList;
   }
@@ -44,7 +46,7 @@ class ProductController {
   List<Product> getProductBySubCategoryId(int cid, int scid) {
     return productList
         .where((product) =>
-            product.category!.id == cid && product.subCategory!.id == scid)
+            product.category!.id == cid && product.productType!.id == scid)
         .toList();
   }
 
