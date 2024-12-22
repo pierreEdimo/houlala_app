@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/sellers/model/seller.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
 
 class ResultSellerCard extends StatelessWidget {
-  final Seller? seller;
+  final LocalModel? local;
 
-  const ResultSellerCard({super.key, this.seller});
+  const ResultSellerCard({super.key, this.local});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ResultSellerCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100.0),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('images/${seller!.imageUrl}'))),
+                              image: AssetImage('images/${local!.imageUrl}'))),
                     ),
                   ),
                 ),
@@ -47,7 +47,7 @@ class ResultSellerCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    seller!.sellerName!,
+                    local!.name!,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.poppins(
