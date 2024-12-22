@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
-import '../features/sub_categories/models/sub_category.dart';
+import '../features/product_type/models/product_type.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/filter_button.dart';
-import '../shared_widgets/search_input.dart';
+import '../shared_widgets/search_input_button.dart';
 
-class SubCategoryDetailScreen extends ConsumerWidget {
-  const SubCategoryDetailScreen({super.key});
+class ProductTypeDetailScreen extends ConsumerWidget {
+  const ProductTypeDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CategoryArg categoryArg =
         ModalRoute.of(context)!.settings.arguments as CategoryArg;
 
-    SubCategory? subCategory = categoryArg.subCategory;
+    ProductType? productType = categoryArg.productType;
+
 
     ProductController productController = ProductController(ref);
-    List<Product> productList = productController.getProductBySubCategoryId(
-        subCategory!.category!.id!, subCategory.id!);
+    List<Product> productList = productController.getProductBySubCategoryId(categoryArg.categoryId!, productType!.id!);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -31,8 +32,16 @@ class SubCategoryDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
-        title: SearchInput(
-          hinText: 'Rechnercher dans ${subCategory.name}',
+        title: SearchInputButton(
+          hinText: 'Rechnercher dans ${productType?.name}',
+          onPressed: () => Navigator.of(context).pushNamed(
+            '/searchProducts',
+            arguments: SearchArgs(
+              hinText: 'Recherecher dans ${productType?.name}',
+              categoryId: categoryArg.categoryId,
+              productTypeId: productType!.id!
+            )
+          ),
         ),
       ),
       body: Stack(
@@ -44,7 +53,7 @@ class SubCategoryDetailScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    '${productList.length} produits dans ${subCategory.name}',
+                    '${productList.length} produits dans ${productType?.name}',
                   ),
                   VerticalProductGrid(
                     shrinkWrap: true,
