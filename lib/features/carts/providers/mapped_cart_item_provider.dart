@@ -10,6 +10,7 @@ import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/features/carts/repositories/cart_repository.dart';
 import 'package:houlala_app/features/carts/state/mapped_cart_item_state.dart';
+import 'package:houlala_app/helpers/ToastiNotification.dart';
 import 'package:http/http.dart';
 
 final cartItemRepositoryProvider =
@@ -54,13 +55,17 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
           await cartRepository.addProductToCart(createCartItem);
       if (response.statusCode == HttpStatus.ok) {
         _updateState(response);
+        ToastNotification.showSuccessFulAction(
+            'Votre produit a ete ajoute avec succes dans le panneau.');
       }
     } catch (exception) {
       if (kDebugMode) {
         print(exception);
       }
       state = state.copyWith(
-          errorMessage: "Erreur lors de l'ajout des produits dans le panier");
+          errorMessage: "Erreur lors de l'ajout des produits dans le panier.");
+      ToastNotification.showErrorAction(
+          "Erreur lors de l'ajout des produits dans le panier.");
     }
   }
 
