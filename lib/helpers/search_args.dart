@@ -4,10 +4,14 @@ import '../features/products/model/product.dart';
 
 class SearchArgs {
   final String? hinText;
-  final int? subCategoryId;
+  final int? productTypeId;
+  final int? categoryId;
+  final int? sellerId;
 
   SearchArgs({
     @Default('Rechercher') this.hinText,
-    @Default(null) this.subCategoryId
+    @Default(null) this.productTypeId,
+    @Default(null) this.categoryId,
+    @Default(null) this.sellerId,
   });
 }
