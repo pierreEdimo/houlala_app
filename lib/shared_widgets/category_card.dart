@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/args/category_args.dart';
-import '../features/categories/model/categories.dart';
+import 'package:houlala_app/features/category/model/category_model.dart';
 
-class CategoriesCard extends StatelessWidget {
-  final Categories? categories;
+class CategoryCard extends StatelessWidget {
+  final CategoryModel? category;
 
-  const CategoriesCard({
+  const CategoryCard({
     super.key,
-    this.categories,
+    this.category,
   });
 
   bool isUrl(String imageUrl) {
@@ -18,10 +18,10 @@ class CategoriesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed('${categories!.route}',
+      onTap: () => Navigator.of(context).pushNamed('${category!.route}',
           arguments: CategoryArg(
-            categoryName: categories!.name!,
-            categoryId: categories!.id!,
+            categoryName: category!.name!,
+            categoryId: category!.id!,
           )),
       child: Card(
         color: Colors.white,
@@ -32,19 +32,19 @@ class CategoriesCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              !isUrl(categories!.imageUrl!)
+              !isUrl(category!.imageUrl!)
                   ? Image.asset(
-                      'images/categories/${categories!.imageUrl}',
+                      'images/categories/${category!.imageUrl}',
                       height: 80,
                     )
                   : Image.network(
-                      categories!.imageUrl!,
+                      category!.imageUrl! ,
                       height: 80,
                     ),
               const SizedBox(height: 8),
               Flexible(
                 child: Text(
-                  categories!.name!,
+                  category!.name!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
