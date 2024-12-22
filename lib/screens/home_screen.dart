@@ -11,7 +11,7 @@ import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/category_card.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/see_more_button.dart';
-import 'package:houlala_app/shared_widgets/seller_card.dart';
+import 'package:houlala_app/shared_widgets/local_card.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 
 class HomeScreen extends ConsumerWidget {
