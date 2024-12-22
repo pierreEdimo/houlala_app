@@ -1,13 +1,13 @@
-import 'package:houlala_app/features/sub_categories/models/sub_category.dart';
+import 'package:houlala_app/features/product_type/models/product_type.dart';
 
 class CategoryArg {
   final String? categoryName;
   final int? categoryId;
-  final SubCategory? subCategory;
+  final ProductType? productType;
 
   CategoryArg({
     this.categoryId,
     this.categoryName,
-    this.subCategory,
+    this.productType,
   });
 }
