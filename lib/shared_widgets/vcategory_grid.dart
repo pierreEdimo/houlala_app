@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/categories/model/categories.dart';
-import 'package:houlala_app/shared_widgets/categories_card.dart';
+import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/shared_widgets/category_card.dart';
 
 class VerticalCategoryGrid extends StatelessWidget {
-  final List<Categories>? categoryList;
+  final List<CategoryModel>? categoryList;
   final bool? shrinkWrap;
   final double? aspectRatio;
   final ScrollPhysics? physics;
@@ -25,8 +25,8 @@ class VerticalCategoryGrid extends StatelessWidget {
       crossAxisCount: 2,
       children: categoryList!
           .map(
-            (category) => CategoriesCard(
-              categories: category,
+            (category) => CategoryCard(
+              category: category,
             ),
           )
           .toList(),
