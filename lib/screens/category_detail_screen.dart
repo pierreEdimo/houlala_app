@@ -5,7 +5,7 @@ import 'package:houlala_app/args/category_args.dart';
 import 'package:houlala_app/features/category/controllers/category_controller.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
-import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
+import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../features/product_type/controllers/product_type_controller.dart';

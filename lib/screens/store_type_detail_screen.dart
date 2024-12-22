@@ -9,7 +9,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/filter_button.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
-import 'package:houlala_app/shared_widgets/vsellers_grid.dart';
+import 'package:houlala_app/shared_widgets/vlocals_grid.dart';
 
 import '../features/locals/model/local_model.dart';
 
@@ -59,7 +59,7 @@ class StoreTypeDetailScreen extends ConsumerWidget {
                     Text(
                       '${localList.length} Magasin(s) dans ${categoryArg.productType!.name}',
                     ),
-                    VerticalSellersGrid(
+                    VerticalLocalsGrid(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
                       aspectRatio: 1 / 1.2,

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/sellers/model/seller.dart';
-import 'package:houlala_app/shared_widgets/seller_card.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/shared_widgets/local_card.dart';
 
-class VerticalSellersGrid extends StatelessWidget {
+class VerticalLocalsGrid extends StatelessWidget {
   final double? aspectRatio;
   final ScrollPhysics? physics;
   final bool? shrinkWrap;
-  final List<Seller>? sellerList;
+  final List<LocalModel>? localList;
 
-  const VerticalSellersGrid({
+  const VerticalLocalsGrid({
     super.key,
     this.physics,
     this.shrinkWrap,
     this.aspectRatio,
-    this.sellerList,
+    this.localList,
   });
 
   @override
@@ -23,9 +23,9 @@ class VerticalSellersGrid extends StatelessWidget {
       physics: physics,
       childAspectRatio: aspectRatio ?? 1.0,
       crossAxisCount: 2,
-      children: sellerList!
-          .map((seller) => SellerCard(
-                seller: seller,
+      children: localList!
+          .map((seller) => LocalCard(
+                local: seller,
               ))
           .toList(),
     );

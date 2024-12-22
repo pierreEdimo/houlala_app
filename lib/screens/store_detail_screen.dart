@@ -12,7 +12,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
-import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
+import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
 
 import '../shared_widgets/local_card.dart';
 
