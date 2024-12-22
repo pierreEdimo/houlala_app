@@ -1,11 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
-import 'package:houlala_app/features/carts/model/create_cart_item.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
-import 'package:houlala_app/features/sellers/providers/search_seller_provider.dart';
+import 'package:houlala_app/features/locals//providers/search_local_provider.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
@@ -15,6 +16,7 @@ import 'package:houlala_app/shared_widgets/list_product_card.dart';
 import '../features/auth/model/user_model.dart';
 import '../features/products/model/product.dart';
 
+// todo: delete this page.
 class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
 
@@ -31,9 +33,14 @@ class SearchScreen extends ConsumerWidget {
     TextEditingController textEditingController = TextEditingController();
     UserModel connectedUser = authController.connectedUser!;
 
-    addProductToCart(int id, int price) {
-      CreateCartItem createCartItem = CreateCartItem(
-          userId: connectedUser.id, productId: id, quantity: 1, price: price);
+    addProductToCart(Product? product, double price) {
+      CartItem createCartItem = CartItem(
+        id: -1,
+        userId: connectedUser.id,
+        product: product,
+        quantity: 1,
+        price: price,
+      );
 
       cartController.addProductToCart(createCartItem);
     }
@@ -57,11 +64,11 @@ class SearchScreen extends ConsumerWidget {
           controller: textEditingController,
           onFieldSubmitted: (value) {
             if (value.isNotEmpty) {
-              print(value);
+              if (kDebugMode) {
+                print(value);
+              }
               productController.searchProduct(value,
-                  categoryId: null,
-                  subCategoryId: searchArgs.subCategoryId,
-                  sellerId: null);
+                  categoryId: null, subCategoryId: null, sellerId: null);
               ref
                   .read(searchStateNotifierProvider.notifier)
                   .setSearchSubmittedTrue();
@@ -101,7 +108,7 @@ class SearchScreen extends ConsumerWidget {
                               .map(
                                 (product) => ListProductCard(
                                   onAddToBasket: () => addProductToCart(
-                                      product.id!, product.sellingPrice!),
+                                      product!, product.unitSellingPrice!),
                                   product: product,
                                 ),
                               )
