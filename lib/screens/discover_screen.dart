@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:houlala_app/features/category/controllers/category_controller.dart';
+import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/shared_widgets/vcategory_grid.dart';
-import '../features/categories/controllers/categories_controller.dart';
-import '../features/categories/model/categories.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/column_headers.dart';
 
@@ -11,8 +11,8 @@ class DiscoverScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    CategoriesController categoriesController = CategoriesController(ref);
-    List<Categories> categories = categoriesController.categoryList;
+    CategoryController categoriesController = CategoryController(ref);
+    List<CategoryModel> categories = categoriesController.categoryList;
     bool loading = categoriesController.loading;
     return Scaffold(
       body: loading
