@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
+import 'package:houlala_app/features/category/controllers/category_controller.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
-import '../features/categories/controllers/categories_controller.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
-import '../features/sub_categories/controllers/sub_category_controllers.dart';
-import '../features/sub_categories/models/sub_category.dart';
+import '../features/product_type/controllers/product_type_controller.dart';
+import '../features/product_type/models/product_type.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/c_container.dart';
 import '../shared_widgets/column_headers.dart';
 import '../shared_widgets/filter_button.dart';
-import '../shared_widgets/search_input.dart';
+import '../shared_widgets/search_input_button.dart';
 
 class CategoryDetailScreen extends ConsumerWidget {
   const CategoryDetailScreen({super.key});
@@ -23,7 +24,7 @@ class CategoryDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryArg =
         ModalRoute.of(context)!.settings.arguments as CategoryArg;
-    CategoriesController controller = CategoriesController(ref);
+    CategoryController controller = CategoryController(ref);
 
     var selectedCategory = controller.categoryList
         .where((category) => category.id == categoryArg.categoryId)
@@ -50,14 +51,15 @@ class CategoryDetailBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ProductController productController = ProductController(ref);
-    SubCategoryControllers subCategoryControllers = SubCategoryControllers(ref);
+    ProductTypeController productTypeController = ProductTypeController(ref);
 
-    List<SubCategory> subCategoryList =
-        subCategoryControllers.fetchCategoriesByCid(categoryId!);
+    List<ProductType> productTypeList =
+        productTypeController.fetchCategoriesByCid(categoryId!);
     List<Product> productFromCategories =
         productController.getProductByCategoryId(categoryId!);
 
-    bool isLoading = productController.loading;
+    bool typeLoading = productTypeController.isLoading;
+
     String errorMessage = productController.errorMessage.isNotEmpty
         ? 'Erreur dans la connexion à la base de données'
         : '';
@@ -68,12 +70,16 @@ class CategoryDetailBody extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
-        title: SearchInput(
+        title: SearchInputButton(
           hinText: 'Rechercher dans $categoryName',
+          onPressed: () => Navigator.of(context).pushNamed('/searchProducts', arguments: SearchArgs(
+            categoryId: categoryId,
+            hinText: 'Rechercher dans $categoryName'
+          )),
         ),
       ),
       body: CustomContainer(
-        loading: isLoading,
+        loading: typeLoading,
         errorMessage: errorMessage,
         child: Stack(
           children: [
@@ -84,17 +90,18 @@ class CategoryDetailBody extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     ColumnHeaders(title: categoryName),
-                    subCategoryList.isEmpty
+                    productTypeList.isEmpty
                         ? const SizedBox(height: verticalPadding)
                         : Container(),
-                    subCategoryList.length > 1
-                        ? VerticalSubCategoryGrid(
+                    productTypeList.length > 1
+                        ? VertiProductTypeGrid(
+                            categoryId: categoryId,
                             shrinkWrap: true,
                             physics: const ClampingScrollPhysics(),
-                            subCategoryList: subCategoryList,
+                            productTypeList: productTypeList,
                           )
                         : Container(),
-                    subCategoryList.length > 1
+                    productTypeList.length > 1
                         ? const SizedBox(
                             height: verticalPadding,
                           )
