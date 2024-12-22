@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
-import 'package:houlala_app/features/sellers/controllers/sellers_controller.dart';
-import 'package:houlala_app/features/sub_categories/controllers/sub_category_controllers.dart';
-import 'package:houlala_app/features/sub_categories/models/sub_category.dart';
+import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
+import 'package:houlala_app/features/product_type/controllers/product_type_controller.dart';
+import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
-import 'package:houlala_app/shared_widgets/search_input.dart';
+import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
+
+import '../shared_widgets/seller_card.dart';
 
 class StoreDetailScreen extends ConsumerWidget {
   const StoreDetailScreen({super.key});
@@ -20,14 +24,14 @@ class StoreDetailScreen extends ConsumerWidget {
     final categoryArg =
         ModalRoute.of(context)!.settings.arguments as CategoryArg;
 
-    SubCategoryControllers subCategoryControllers = SubCategoryControllers(ref);
-    SellersController sellersController = SellersController(ref);
+    ProductTypeController subCategoryControllers = ProductTypeController(ref);
+    LocalsController localsController = LocalsController(ref);
 
-    bool isLoading = sellersController.loading;
-    // List<Seller> sellers = sellersController.sellerList;
-    String errorMessage = sellersController.errorMessage;
+    bool isLoading = localsController.loading;
+    List<LocalModel> localList = localsController.localList;
+    String errorMessage = localsController.errorMessage;
 
-    List<SubCategory> subCategoryList =
+    List<ProductType> productTypeList =
         subCategoryControllers.fetchCategoriesByCid(categoryArg.categoryId!);
 
     return Scaffold(
@@ -36,8 +40,11 @@ class StoreDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
-        title: const SearchInput(
-          route: '/searchStore',
+        title: SearchInputButton(
+          onPressed: () => Navigator.of(context).pushNamed(
+            '/searchStore',
+            arguments: SearchArgs(hinText: 'Rechercher dans Magasin'),
+          ),
           hinText: 'Rechercher dans Magasin',
         ),
       ),
@@ -49,41 +56,41 @@ class StoreDetailScreen extends ConsumerWidget {
             padding: defaultPadding,
             child: Column(
               children: [
-                subCategoryList.length > 1
+                productTypeList.isNotEmpty
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const ColumnHeaders(
                               title:
                                   'Decouvrez nos partenaires par categories.'),
-                          VerticalSubCategoryGrid(
+                          VertiProductTypeGrid(
                             shrinkWrap: true,
                             physics: const ClampingScrollPhysics(),
-                            subCategoryList: subCategoryList,
+                            productTypeList: productTypeList,
                           )
                         ],
                       )
                     : Container(),
-                const SizedBox(height: verticalPadding), 
-                // Column(
-                //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                //   children: [
-                //     const ColumnHeaders(
-                //       title: 'Decouvrez nos partenaires',
-                //     ),
-                //     GridView.count(
-                //       shrinkWrap: true,
-                //       physics: const ClampingScrollPhysics(),
-                //       crossAxisCount: 2,
-                //       childAspectRatio: 1 / 1.2,
-                //       children: sellers
-                //           .map((seller) => SellerCard(
-                //                 seller: seller,
-                //               ))
-                //           .toList(),
-                //     )
-                //   ],
-                // )
+                const SizedBox(height: verticalPadding),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const ColumnHeaders(
+                      title: 'Decouvrez nos partenaires',
+                    ),
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      crossAxisCount: 2,
+                      childAspectRatio: 1 / 1.2,
+                      children: localList
+                          .map((local) => LocalCard(
+                                local: local,
+                              ))
+                          .toList(),
+                    )
+                  ],
+                )
               ],
             ),
           ),
