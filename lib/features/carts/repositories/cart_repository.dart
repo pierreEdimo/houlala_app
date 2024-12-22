@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:houlala_app/features/carts/model/create_cart_item.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:http/http.dart';
 
@@ -19,7 +19,7 @@ class CartRepository {
     }
   }
 
-  Future<Response> addProductToCart(CreateCartItem createCartItem) async {
+  Future<Response> addProductToCart(CartItem createCartItem) async {
     String? uri = dotenv.env['CART_URL'];
     return await post(Uri.parse('$uri'),
         headers: <String, String>{
@@ -30,7 +30,7 @@ class CartRepository {
 
   Future<Response> removeProductFromCart(int id, String userId) async {
     String? uri = dotenv.env['CART_URL'];
-    return await delete(Uri.parse('$uri/$id/user/$userId'));
+    return await delete(Uri.parse('$uri/$id/users/$userId'));
   }
 
   Future<Response> changeItemQuantity(String uri) async {
