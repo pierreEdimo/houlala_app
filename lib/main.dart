@@ -17,8 +17,8 @@ import 'package:houlala_app/screens/product_detail_screen.dart';
 import 'package:houlala_app/screens/search_product_screen.dart';
 import 'package:houlala_app/screens/search_store_screen.dart';
 import 'package:houlala_app/screens/store_detail_screen.dart';
-import 'package:houlala_app/screens/store_sub_category_detail_screen.dart';
-import 'package:houlala_app/screens/sub_category_detail_screen.dart';
+import 'package:houlala_app/screens/store_type_detail_screen.dart';
+import 'package:houlala_app/screens/product_type_detail_screen.dart';
 
 const storage = FlutterSecureStorage();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
         '/searchProducts': (context) => const SearchProductScreen(),
         '/searchStore': (context) => const SearchStoreScreen(),
         '/allProducts': (context) => const AllProductScreen(),
-        '/subCategoryDetail': (context) => const SubCategoryDetailScreen(),
+        '/subCategoryDetail': (context) => const ProductTypeDetailScreen(),
         '/cart': (context) => const CartScreen(),
         '/notifications': (context) => const NotificationScreen(),
         '/login': (context) => const LoginScreen(),
@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
         '/storeDetail': (context) => const StoreDetailScreen(),
         '/noStore': (context) => const NoStoreScreen(),
         '/subStoreCategoryDetail': (context) =>
-            const StoreSubCategoryDetailScreen()
+            const StoreTypeDetailScreen()
       },
     );
   }
