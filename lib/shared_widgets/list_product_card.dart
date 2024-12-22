@@ -74,7 +74,7 @@ class ListProductCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '${product!.sellingPrice!} XAF',
+                                '${product!.unitSellingPrice!} XAF',
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17,
