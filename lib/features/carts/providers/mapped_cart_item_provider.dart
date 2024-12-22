@@ -10,7 +10,7 @@ import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/features/carts/repositories/cart_repository.dart';
 import 'package:houlala_app/features/carts/state/mapped_cart_item_state.dart';
-import 'package:houlala_app/helpers/ToastiNotification.dart';
+import 'package:houlala_app/helpers/ToastNotification.dart';
 import 'package:http/http.dart';
 
 final cartItemRepositoryProvider =
