@@ -14,7 +14,7 @@ import 'package:houlala_app/screens/no_product_screen.dart';
 import 'package:houlala_app/screens/no_store_screen.dart';
 import 'package:houlala_app/screens/notification_screen.dart';
 import 'package:houlala_app/screens/product_detail_screen.dart';
-import 'package:houlala_app/screens/search_screen.dart';
+import 'package:houlala_app/screens/search_product_screen.dart';
 import 'package:houlala_app/screens/search_store_screen.dart';
 import 'package:houlala_app/screens/store_detail_screen.dart';
 import 'package:houlala_app/screens/store_sub_category_detail_screen.dart';
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const MainNavigationScreen(),
         '/productDetail': (context) => const ProductDetailScreen(),
         '/categoryDetail': (context) => const CategoryDetailScreen(),
-        '/search': (context) => const SearchScreen(),
+        '/searchProducts': (context) => const SearchProductScreen(),
         '/searchStore': (context) => const SearchStoreScreen(),
         '/allProducts': (context) => const AllProductScreen(),
         '/subCategoryDetail': (context) => const SubCategoryDetailScreen(),
@@ -71,7 +71,8 @@ class MyApp extends StatelessWidget {
         '/noProducts': (context) => const NoProductScreen(),
         '/storeDetail': (context) => const StoreDetailScreen(),
         '/noStore': (context) => const NoStoreScreen(),
-        '/subStoreCategoryDetail': (context) => const StoreSubCategoryDetailScreen()
+        '/subStoreCategoryDetail': (context) =>
+            const StoreSubCategoryDetailScreen()
       },
     );
   }
