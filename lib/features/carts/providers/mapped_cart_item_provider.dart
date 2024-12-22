@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/auth/providers/auth_provider.dart';
-import 'package:houlala_app/features/carts/model/create_cart_item.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/features/carts/repositories/cart_repository.dart';
 import 'package:houlala_app/features/carts/state/mapped_cart_item_state.dart';
@@ -48,11 +48,11 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
     }
   }
 
-  Future<void> addProductToCart(CreateCartItem createCartItem) async {
+  Future<void> addProductToCart(CartItem createCartItem) async {
     try {
       final Response response =
           await cartRepository.addProductToCart(createCartItem);
-      if (response.statusCode == HttpStatus.created) {
+      if (response.statusCode == HttpStatus.ok) {
         _updateState(response);
       }
     } catch (exception) {
@@ -83,9 +83,13 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
 
   Future<void> increaseItemQuantity(int id) async {
     String? userId = userModel.id;
-    String uri = '${dotenv.env['CART_URL']}/increase/$id/user/$userId';
+    String uri = '${dotenv.env['CART_URL']}/increase/$id/users/$userId';
     try {
       final Response response = await cartRepository.changeItemQuantity(uri);
+      if (kDebugMode) {
+        print(response.statusCode);
+        print(jsonEncode(response.body));
+      }
       if (response.statusCode == HttpStatus.ok) {
         _updateState(response);
       }
@@ -100,9 +104,13 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
 
   Future<void> decreaseItemQuantity(int id) async {
     String? userId = userModel.id;
-    String uri = '${dotenv.env['CART_URL']}/decrease/$id/user/$userId';
+    String uri = '${dotenv.env['CART_URL']}/decrease/$id/users/$userId';
     try {
       final Response response = await cartRepository.changeItemQuantity(uri);
+      if (kDebugMode) {
+        print(response.statusCode);
+        print(jsonEncode(response.body));
+      }
       if (response.statusCode == HttpStatus.ok) {
         _updateState(response);
       }

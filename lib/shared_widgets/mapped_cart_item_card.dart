@@ -5,6 +5,8 @@ import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 
+import '../features/carts/model/cart_item.dart';
+
 class MappedCartItemCard extends ConsumerWidget {
   final MappedCartItem? mappedCartItem;
 
@@ -19,8 +21,8 @@ class MappedCartItemCard extends ConsumerWidget {
     return qty;
   }
 
-  int get totalPrice {
-    int price = 0;
+  double get totalPrice {
+    double price = 0;
     List<CartItem> items = mappedCartItem!.cartItems!;
     for (var item in items) {
       price += item.price!;
@@ -36,11 +38,11 @@ class MappedCartItemCard extends ConsumerWidget {
       cartController.removeProductFromCart(id);
     }
 
-    void decreaseItemQuantity(int id){
+    void decreaseItemQuantity(int id) {
       cartController.decreaseItemQuantity(id);
     }
 
-    void increaseItemQuantity(int id){
+    void increaseItemQuantity(int id) {
       cartController.increaseItemQuantity(id);
     }
 
@@ -68,7 +70,7 @@ class MappedCartItemCard extends ConsumerWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
-                                'images/${mappedCartItem!.seller!.imageUrl!}'),
+                                'images/${mappedCartItem!.local!.imageUrl!}'),
                           ),
                         ),
                       ),
@@ -76,7 +78,7 @@ class MappedCartItemCard extends ConsumerWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    mappedCartItem!.seller!.sellerName!,
+                    mappedCartItem!.local!.name!,
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold, fontSize: 18),
                   )
