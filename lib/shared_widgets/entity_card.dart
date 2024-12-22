@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/auth/model/user_menu.dart';
+import 'package:houlala_app/features/app_menu/model/app_menu.dart';
 
 class EntityCard extends StatelessWidget {
-  final UserMenu? entity;
+  final AppMenu? entity;
 
   const EntityCard({
     super.key,
@@ -32,6 +32,8 @@ class EntityCard extends StatelessWidget {
             entity!.title!,
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           )
         ],
       ),
