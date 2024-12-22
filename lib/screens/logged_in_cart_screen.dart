@@ -30,7 +30,7 @@ class LoggedInCartScreen extends ConsumerWidget {
             icon: const HeroIcon(HeroIcons.chevronLeft),
           ),
           title: Text(
-            'Mon panier',
+            'Panier',
             style: GoogleFonts.poppins(
               fontWeight: FontWeight.bold,
               fontSize: 22,
@@ -52,7 +52,10 @@ class LoggedInCartScreen extends ConsumerWidget {
                         )
                         .toList(),
                   ),
-                  const CheckoutButton()
+                  CheckoutButton(
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed('/checkout'),
+                  )
                 ],
               )
             : const Center(
