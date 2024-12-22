@@ -14,7 +14,7 @@ import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vsub_category_grid.dart';
 
-import '../shared_widgets/seller_card.dart';
+import '../shared_widgets/local_card.dart';
 
 class StoreDetailScreen extends ConsumerWidget {
   const StoreDetailScreen({super.key});
