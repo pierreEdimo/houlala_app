@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/args/category_args.dart';
-import '../features/sub_categories/models/sub_category.dart';
+import '../features/product_type/models/product_type.dart';
 
-class SubCategoryCard extends StatelessWidget {
-  final SubCategory? subCategory;
+class ProductTypeCard extends StatelessWidget {
+  final ProductType? subCategory;
+  final int? categoryId;
 
-  const SubCategoryCard({
+  const ProductTypeCard({
     super.key,
     this.subCategory,
+    this.categoryId,
   });
 
   bool isUrl(String imageUrl) {
@@ -21,8 +23,8 @@ class SubCategoryCard extends StatelessWidget {
       onTap: () => Navigator.of(context).pushNamed(
         subCategory!.route!,
         arguments: CategoryArg(
-            subCategory: subCategory,
-            categoryId: subCategory!.category!.id,
+            productType: subCategory,
+            categoryId: categoryId,
             categoryName: subCategory!.name),
       ),
       child: Card(
