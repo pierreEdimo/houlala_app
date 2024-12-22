@@ -12,38 +12,47 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
+      padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
       color: const Color(0xFFf4efe8),
-      child: Column(
-        children: [
-          Expanded(child: Container()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    leading != null ? leading! : Container(),
-                    leading != null && title != null ? const   SizedBox(width: 10) : Container(),
-                    title != null ? Flexible(child: title!) : Container(),
-                  ],
-                ),
-              ),
-              actions != null ? Expanded(
-                flex: 1,
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: actions!,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Column(
+            children: [
+              const Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    flex: 3,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        leading != null ? leading! : Container(),
+                        leading != null && title != null
+                            ? const SizedBox(width: 10)
+                            : Container(),
+                        title != null ? Flexible(child: title!) : Container(),
+                      ],
+                    ),
                   ),
-                ),
-              ) : Container(),
+                  actions != null
+                      ? Expanded(
+                          flex: 1,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: actions!,
+                            ),
+                          ),
+                        )
+                      : Container(),
+                ],
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
