@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../features/sellers/model/seller.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
 
-class SellerCard extends StatelessWidget {
-  final Seller? seller;
+class LocalCard extends StatelessWidget {
+  final LocalModel? local;
 
-  const SellerCard({
+  const LocalCard({
     super.key,
-    this.seller,
+    this.local,
   });
 
   bool isUrl(String imageUrl) {
@@ -42,9 +42,9 @@ class SellerCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(150.0),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: !isUrl(seller!.imageUrl!)
-                              ? AssetImage('images/${seller!.imageUrl}')
-                              : NetworkImage(seller!.imageUrl!),
+                          image: !isUrl(local!.imageUrl!)
+                              ? AssetImage('images/${local!.imageUrl}')
+                              : NetworkImage(local!.imageUrl!),
                         ),
                       ),
                     ),
@@ -59,7 +59,7 @@ class SellerCard extends StatelessWidget {
                   color: Colors.white,
                   height: 50,
                   child: Text(
-                    seller!.sellerName!,
+                    local!.name!,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
