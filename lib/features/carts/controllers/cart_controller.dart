@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/carts/model/create_cart_item.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/features/carts/providers/mapped_cart_item_provider.dart';
 
@@ -20,7 +20,7 @@ class CartController {
     return ref!.watch(cartItemStateNotifierProvider).errorMessage;
   }
 
-  void addProductToCart(CreateCartItem createCartItem) {
+  void addProductToCart(CartItem createCartItem) {
     ref!
         .read(cartItemStateNotifierProvider.notifier)
         .addProductToCart(createCartItem);
