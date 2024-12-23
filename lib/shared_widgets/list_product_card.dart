@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
@@ -48,7 +49,7 @@ class ListProductCard extends StatelessWidget {
               Flexible(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -84,6 +85,7 @@ class ListProductCard extends StatelessWidget {
                           ),
                         ),
                         CustomButton(
+                          leadingIcon: HeroIcons.shoppingBag,
                           onPressed: onAddToBasket,
                           title: 'Ajouter au panier',
                         )
