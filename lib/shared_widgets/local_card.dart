@@ -17,7 +17,10 @@ class LocalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.of(context).pushNamed(
+        '/localDetail',
+        arguments: local?.id,
+      ),
       child: Card(
         color: Colors.white,
         elevation: 0,
