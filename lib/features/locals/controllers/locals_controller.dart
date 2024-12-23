@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
 import '../providers/local_provider.dart';
@@ -23,6 +24,10 @@ class LocalsController {
 
   List<LocalModel> get fllteredLocals {
     return ref!.watch(localStateNotifierProvider).filteredLocalList;
+  }
+
+  LocalModel? getSelectedLocal(int id) {
+    return localList.firstWhereOrNull((local) => local.id == id);
   }
 
   bool get loading {
