@@ -2,6 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/model/user_model.dart';
+import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/features/locals//providers/search_local_provider.dart';
@@ -21,10 +25,31 @@ class SearchProductScreen extends ConsumerWidget {
     bool isSearchSubmitted = ref.watch(searchStateNotifierProvider);
 
     ProductController productController = ProductController(ref);
+    AuthController authController = AuthController(ref);
+    CartController cartController = CartController(ref);
+
     List<Product> searchProductList = productController.searchProductResultList;
+    final UserModel? connectedUser = authController.connectedUser;
+    final bool isLoggedIn = authController.isLoggedIn;
 
     SearchArgs searchArgs =
         ModalRoute.of(context)!.settings.arguments as SearchArgs;
+
+    void addProductToCart(Product selectedProduct) {
+      CartItem createCartItem = CartItem(
+          quantity: 1,
+          price: selectedProduct.unitSellingPrice,
+          product: selectedProduct,
+          userId: connectedUser?.id);
+
+      cartController.addProductToCart(createCartItem);
+    }
+
+    void addProductToGastCard() {
+      if (kDebugMode) {
+        print('this is for gast');
+      }
+    }
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -80,6 +105,13 @@ class SearchProductScreen extends ConsumerWidget {
                                     if (kDebugMode) {
                                       print('added');
                                     }
+
+                                    if (isLoggedIn) {
+                                      addProductToCart(product);
+                                    } else {
+                                      addProductToGastCard();
+                                    }
+
                                   },
                                   product: product,
                                 ),
