@@ -15,7 +15,18 @@ class ProductController {
     return productList.where((product) => product.category!.id == cid).toList();
   }
 
+  List<Product> getTopSellingProductsByLocalId(int localId) {
+    return productList
+        .where((product) => product.local!.id == localId)
+        .take(4)
+        .toList();
+  }
 
+  List<Product> getProductByLocalId(int localId) {
+    return productList
+        .where((product) => product.local!.id == localId)
+        .toList();
+  }
 
   List<Product> get searchProductResultList {
     return ref!.watch(productStateNotifierProvider).searchProductList;
