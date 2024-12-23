@@ -55,8 +55,6 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
           await cartRepository.addProductToCart(createCartItem);
       if (response.statusCode == HttpStatus.ok) {
         _updateState(response);
-        ToastNotification.showSuccessFulAction(
-            'Votre produit a ete ajoute avec succes dans le panneau.');
       }
     } catch (exception) {
       if (kDebugMode) {
