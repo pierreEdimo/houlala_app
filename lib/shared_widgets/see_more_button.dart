@@ -16,7 +16,7 @@ class SeeMoreButton extends StatelessWidget {
         onTap: onTap,
         child: const Text(
           'Voir plus',
-          style: const TextStyle(color: Colors.blueAccent),
+          style: TextStyle(color: Colors.blueAccent),
         ),
       ),
     );

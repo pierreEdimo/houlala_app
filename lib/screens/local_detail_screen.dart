@@ -114,7 +114,7 @@ class LocalInfo extends ConsumerWidget {
       ),
       child: SingleChildScrollView(
         child: Column(
-          spacing: 20,
+          spacing: verticalPadding,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(localModel!.description!),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
 import 'package:houlala_app/screens/cart_screen.dart';
@@ -22,6 +23,7 @@ import 'package:houlala_app/screens/search_store_screen.dart';
 import 'package:houlala_app/screens/store_detail_screen.dart';
 import 'package:houlala_app/screens/store_type_detail_screen.dart';
 import 'package:houlala_app/screens/product_type_detail_screen.dart';
+import 'package:sizer/sizer.dart';
 import 'package:toastification/toastification.dart';
 
 const storage = FlutterSecureStorage();
@@ -49,40 +51,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ToastificationWrapper(
-      child: MaterialApp(
-        title: 'Houla la',
-        debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
-        theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme(),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          useMaterial3: true,
-          scaffoldBackgroundColor: const Color(0xFFf4efe8),
+    return Sizer(builder: (context, orientation, screenType){
+      return ToastificationWrapper(
+        child: GetMaterialApp(
+          title: 'Houla la',
+          debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+          theme: ThemeData(
+            textTheme: GoogleFonts.poppinsTextTheme(),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+            useMaterial3: true,
+            scaffoldBackgroundColor: const Color(0xFFf4efe8),
+          ),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => const MainNavigationScreen(),
+            '/productDetail': (context) => const ProductDetailScreen(),
+            '/categoryDetail': (context) => const CategoryDetailScreen(),
+            '/searchProducts': (context) => const SearchProductScreen(),
+            '/searchStore': (context) => const SearchStoreScreen(),
+            '/allProducts': (context) => const AllProductScreen(),
+            '/subCategoryDetail': (context) => const ProductTypeDetailScreen(),
+            '/cart': (context) => const CartScreen(),
+            '/notifications': (context) => const NotificationScreen(),
+            '/login': (context) => const LoginScreen(),
+            '/logup': (context) => const LogupScreen(),
+            '/noProducts': (context) => const NoProductScreen(),
+            '/storeDetail': (context) => const StoreDetailScreen(),
+            '/noStore': (context) => const NoStoreScreen(),
+            '/checkout': (context) => const CheckoutScreen(),
+            '/gastCheckout': (context) => const GastCheckoutScreen(),
+            '/localDetail': (context) => const LocalDetailScreen(),
+            '/subStoreCategoryDetail': (context) =>
+            const StoreTypeDetailScreen(),
+          },
         ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const MainNavigationScreen(),
-          '/productDetail': (context) => const ProductDetailScreen(),
-          '/categoryDetail': (context) => const CategoryDetailScreen(),
-          '/searchProducts': (context) => const SearchProductScreen(),
-          '/searchStore': (context) => const SearchStoreScreen(),
-          '/allProducts': (context) => const AllProductScreen(),
-          '/subCategoryDetail': (context) => const ProductTypeDetailScreen(),
-          '/cart': (context) => const CartScreen(),
-          '/notifications': (context) => const NotificationScreen(),
-          '/login': (context) => const LoginScreen(),
-          '/logup': (context) => const LogupScreen(),
-          '/noProducts': (context) => const NoProductScreen(),
-          '/storeDetail': (context) => const StoreDetailScreen(),
-          '/noStore': (context) => const NoStoreScreen(),
-          '/checkout': (context) => const CheckoutScreen(),
-          '/gastCheckout': (context) => const GastCheckoutScreen(),
-          '/localDetail': (context) => const LocalDetailScreen(),
-          '/subStoreCategoryDetail': (context) =>
-              const StoreTypeDetailScreen(), 
-        },
-      ),
-    );
+      );
+    });
   }
 }

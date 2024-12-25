@@ -54,6 +54,8 @@ class HomeScreen extends ConsumerWidget {
               right: horizontalPadding,
               top: verticalPadding),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: verticalPadding,
             children: [
               topSellingProductList.length > 1
                   ? Column(
@@ -69,7 +71,6 @@ class HomeScreen extends ConsumerWidget {
                         SeeMoreButton(
                           onTap: () {},
                         ),
-                        const SizedBox(height: verticalPadding),
                       ],
                     )
                   : Container(),
@@ -87,7 +88,6 @@ class HomeScreen extends ConsumerWidget {
                         SeeMoreButton(
                           onTap: () {},
                         ),
-                        const SizedBox(height: verticalPadding),
                       ],
                     )
                   : Container(),
@@ -114,7 +114,6 @@ class HomeScreen extends ConsumerWidget {
                                 .toList(),
                           ),
                         ),
-                        const SizedBox(height: verticalPadding),
                       ],
                     )
                   : Container(),
@@ -131,7 +130,6 @@ class HomeScreen extends ConsumerWidget {
                           productList: historicProductList.take(4).toList(),
                         ),
                         SeeMoreButton(onTap: () {}),
-                        const SizedBox(height: verticalPadding),
                       ],
                     )
                   : Container(),

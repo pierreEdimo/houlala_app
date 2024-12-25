@@ -28,6 +28,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Row(
+          spacing: 5,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,7 +37,6 @@ class CustomButton extends StatelessWidget {
               size: 17,
               color: Colors.white,
             ) : const SizedBox(),
-            const SizedBox(width: 5.0),
             Text(
               title!,
               style: const TextStyle(color: Colors.white),

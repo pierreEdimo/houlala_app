@@ -15,6 +15,7 @@ class ResultSellerCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
+          spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
@@ -40,7 +41,6 @@ class ResultSellerCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 8.0),
             Expanded(
               flex: 3,
               child: Column(

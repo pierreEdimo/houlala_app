@@ -79,30 +79,33 @@ class ProductDetailScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Container(
-                          height: 400,
-                          decoration: BoxDecoration(
-                              color: Colors.white, borderRadius: radius),
-                          child: ImageSlider(
-                            images: selectedProduct.images,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: verticalPadding,
-                        ),
-                        Row(
+                        Column(
+                          spacing: verticalPadding,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            const HeroIcon(
-                              HeroIcons.buildingStorefront,
-                              size: 17,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              selectedProduct.local!.name!,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w500,
+                            Container(
+                              height: 400,
+                              decoration: BoxDecoration(
+                                  color: Colors.white, borderRadius: radius),
+                              child: ImageSlider(
+                                images: selectedProduct.images,
                               ),
+                            ),
+                            Row(
+                              spacing: 10,
+                              children: [
+                                const HeroIcon(
+                                  HeroIcons.buildingStorefront,
+                                  size: 17,
+                                ),
+                                Text(
+                                  selectedProduct.local!.name!,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),
@@ -112,6 +115,7 @@ class ProductDetailScreen extends ConsumerWidget {
                               fontWeight: FontWeight.bold, fontSize: 22.0),
                         ),
                         Row(
+                          spacing: 20,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const Row(
@@ -128,7 +132,6 @@ class ProductDetailScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                SizedBox(width: 20.0),
                                 Text(
                                   '2.8k reviews',
                                   style: TextStyle(
@@ -201,7 +204,9 @@ class ProductDetailScreen extends ConsumerWidget {
                               Text(
                                 '${selectedProduct.unitSellingPrice} XAF',
                                 style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               )
                             ],
                           ),

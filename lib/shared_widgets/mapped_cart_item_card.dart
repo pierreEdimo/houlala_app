@@ -58,6 +58,7 @@ class MappedCartItemCard extends ConsumerWidget {
               height: 60,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                spacing: 8,
                 children: [
                   SizedBox(
                     height: 50,
@@ -76,7 +77,6 @@ class MappedCartItemCard extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
                   Text(
                     mappedCartItem!.local!.name!,
                     style: GoogleFonts.poppins(
@@ -107,6 +107,7 @@ class MappedCartItemCard extends ConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
+              spacing: 10,
               children: [
                 RichText(
                   text: TextSpan(
@@ -115,7 +116,6 @@ class MappedCartItemCard extends ConsumerWidget {
                     children: <TextSpan>[TextSpan(text: '$totalQuantity')],
                   ),
                 ),
-                const SizedBox(width: 8),
                 RichText(
                   text: TextSpan(
                     text: 'Prix: ',
@@ -168,6 +168,7 @@ class CartItemCard extends StatelessWidget {
       child: SizedBox(
         height: 170,
         child: Row(
+          spacing: 5,
           children: [
             Expanded(
               flex: 2,
@@ -186,11 +187,11 @@ class CartItemCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 5),
             Flexible(
               flex: 3,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                spacing: 10,
                 children: [
                   Text(
                     cartItem!.product!.name!,
@@ -199,7 +200,6 @@ class CartItemCard extends StatelessWidget {
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w900, fontSize: 16),
                   ),
-                  const SizedBox(height: 8),
                   StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
                       return Row(
@@ -228,7 +228,6 @@ class CartItemCard extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 8),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

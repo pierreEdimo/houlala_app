@@ -49,6 +49,7 @@ class LoggedInScreen extends ConsumerWidget {
                         top: verticalPadding,
                         bottom: 110),
                     child: Column(
+                      spacing: verticalPadding,
                       children: [
                         Row(
                           children: [
@@ -76,7 +77,6 @@ class LoggedInScreen extends ConsumerWidget {
                             )
                           ],
                         ),
-                        const SizedBox(height: verticalPadding),
                         GridView.count(
                           shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
@@ -92,7 +92,6 @@ class LoggedInScreen extends ConsumerWidget {
                               )
                               .toList(),
                         ),
-                        const SizedBox(height: verticalPadding),
                         GridView.count(
                           crossAxisCount: 1,
                           shrinkWrap: true,

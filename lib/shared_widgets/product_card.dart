@@ -19,6 +19,7 @@ class ProductCard extends StatelessWidget {
         elevation: 0,
         color: Colors.transparent,
         child: Column(
+          spacing: 5,
           children: [
             Expanded(
               child: Card(
@@ -36,7 +37,6 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 5.0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

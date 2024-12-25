@@ -20,7 +20,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
 
   final passWordRex =
-      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!?@#\$&*~]).{6,}$');
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!?@#&*~]).{6,}$');
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   key: _formkey,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: horizontalPadding),
+                      horizontal: horizontalPadding,
+                    ),
                     child: Column(
+                      spacing: verticalPadding,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
@@ -48,59 +50,56 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             height: 150,
                           ),
                         ),
-                        const SizedBox(
-                          height: verticalPadding,
-                        ),
-                        TextFormField(
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                                vertical: 11.0,
-                              ),
-                              labelText: "Email",
-                              border: OutlineInputBorder()),
-                          validator: (value) {
-                            value = emailController.text;
-                            if (value.isEmpty) {
-                              return 'Inserer une adresse E-mail';
-                            } else if (!value.contains('@')) {
-                              return 'Svp entrer une E-mail valide';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: passwordController,
-                          obscureText: true,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                                vertical: 11.0,
-                              ),
-                              labelText: "Mot de passe",
-                              border: OutlineInputBorder()),
-                          validator: (value) {
-                            value = passwordController.text;
-                            if (value.isEmpty) {
-                              return 'Inserer un Mot de passe';
-                            }
-                            if (value.length < 7) {
-                              return 'votre mot de passe doit avoir minimum 7 caracteres';
-                            }
-                            if (!passWordRex.hasMatch(value)) {
-                              return 'mot de passe invalide';
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: verticalPadding,
+                        Column(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            TextFormField(
+                              controller: emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                    vertical: 11.0,
+                                  ),
+                                  labelText: "Email",
+                                  border: OutlineInputBorder()),
+                              validator: (value) {
+                                value = emailController.text;
+                                if (value.isEmpty) {
+                                  return 'Inserer une adresse E-mail';
+                                } else if (!value.contains('@')) {
+                                  return 'Svp entrer une E-mail valide';
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: passwordController,
+                              obscureText: true,
+                              keyboardType: TextInputType.visiblePassword,
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                    vertical: 11.0,
+                                  ),
+                                  labelText: "Mot de passe",
+                                  border: OutlineInputBorder()),
+                              validator: (value) {
+                                value = passwordController.text;
+                                if (value.isEmpty) {
+                                  return 'Inserer un Mot de passe';
+                                }
+                                if (value.length < 7) {
+                                  return 'votre mot de passe doit avoir minimum 7 caracteres';
+                                }
+                                if (!passWordRex.hasMatch(value)) {
+                                  return 'mot de passe invalide';
+                                }
+                                return null;
+                              },
+                            )
+                          ],
                         ),
                         InkWell(
                           onTap: () => {},
@@ -111,41 +110,41 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: verticalPadding,
-                        ),
-                        CustomButton(
-                          onPressed: () {
-                            if (_formkey.currentState!.validate()) {
-                              if (kDebugMode) {
-                                print('Hello');
-                              }
-                              Login login = Login(
-                                  email: emailController.text,
-                                  passWord: passwordController.text);
-
-                              authController.login(login);
-                            }
-                          },
-                          leadingIcon: HeroIcons.arrowRightEndOnRectangle,
-                          color: Colors.orange,
-                          title: 'Se Connecter',
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Row(
+                        Column(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            const Text('Vous etes nouveau?'),
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.of(context).pushNamed("/logup"),
-                              child: const Text(
-                                'S\'inscrire',
-                              ),
+                            CustomButton(
+                              onPressed: () {
+                                if (_formkey.currentState!.validate()) {
+                                  if (kDebugMode) {
+                                    print('Hello');
+                                  }
+                                  Login login = Login(
+                                      email: emailController.text,
+                                      passWord: passwordController.text);
+
+                                  authController.login(login);
+                                }
+                              },
+                              leadingIcon: HeroIcons.arrowRightEndOnRectangle,
+                              color: Colors.orange,
+                              title: 'Se Connecter',
+                            ),
+                            Row(
+                              children: [
+                                const Text('Vous etes nouveau?'),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.of(context).pushNamed("/logup"),
+                                  child: const Text(
+                                    'S\'inscrire',
+                                  ),
+                                )
+                              ],
                             )
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),

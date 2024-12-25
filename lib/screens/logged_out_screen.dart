@@ -23,6 +23,7 @@ class LoggedOutScreen extends StatelessWidget {
                 top: verticalPadding,
                 bottom: 110),
             child: Column(
+              spacing: verticalPadding,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +41,6 @@ class LoggedOutScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                const SizedBox(height: verticalPadding),
                 GridView.count(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),

@@ -90,7 +90,6 @@ class SearchProductScreen extends ConsumerWidget {
                     padding: stackDefaultPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      spacing: 10,
                       children: [
                         Text(
                           '${searchProductList.length} produit(s) trouve(s)',

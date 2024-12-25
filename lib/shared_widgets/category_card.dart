@@ -29,6 +29,7 @@ class CategoryCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            spacing: 10,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -41,7 +42,6 @@ class CategoryCard extends StatelessWidget {
                       category!.imageUrl! ,
                       height: 80,
                     ),
-              const SizedBox(height: 8),
               Flexible(
                 child: Text(
                   category!.name!,

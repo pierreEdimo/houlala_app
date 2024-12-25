@@ -33,13 +33,13 @@ class ProductTypeDetailScreen extends ConsumerWidget {
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
         title: SearchInputButton(
-          hinText: 'Rechnercher dans ${productType?.name}',
+          hinText: 'Rechnercher dans ${productType.name}',
           onPressed: () => Navigator.of(context).pushNamed(
             '/searchProducts',
             arguments: SearchArgs(
-              hinText: 'Recherecher dans ${productType?.name}',
+              hinText: 'Recherecher dans ${productType.name}',
               categoryId: categoryArg.categoryId,
-              productTypeId: productType!.id!
+              productTypeId: productType.id!
             )
           ),
         ),
@@ -53,7 +53,7 @@ class ProductTypeDetailScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    '${productList.length} produits dans ${productType?.name}',
+                    '${productList.length} produits dans ${productType.name}',
                   ),
                   VerticalProductGrid(
                     shrinkWrap: true,
