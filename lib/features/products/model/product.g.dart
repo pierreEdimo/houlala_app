@@ -13,7 +13,6 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       unitSellingPrice: (json['unitSellingPrice'] as num?)?.toDouble(),
       unitBuyingPrice: (json['unitBuyingPrice'] as num?)?.toDouble(),
-      availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 10,
       quantity: (json['quantity'] as num?)?.toInt() ?? 1,
       defaultQuantity: (json['defaultQuantity'] as num?)?.toInt() ?? 1,
       images:
@@ -45,7 +44,6 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'description': instance.description,
       'unitSellingPrice': instance.unitSellingPrice,
       'unitBuyingPrice': instance.unitBuyingPrice,
-      'availableQuantity': instance.availableQuantity,
       'quantity': instance.quantity,
       'defaultQuantity': instance.defaultQuantity,
       'images': instance.images,

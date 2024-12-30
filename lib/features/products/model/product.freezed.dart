@@ -25,7 +25,6 @@ mixin _$Product {
   String? get description => throw _privateConstructorUsedError;
   double? get unitSellingPrice => throw _privateConstructorUsedError;
   double? get unitBuyingPrice => throw _privateConstructorUsedError;
-  int? get availableQuantity => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   int? get defaultQuantity => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
@@ -56,7 +55,6 @@ abstract class $ProductCopyWith<$Res> {
       String? description,
       double? unitSellingPrice,
       double? unitBuyingPrice,
-      int? availableQuantity,
       int? quantity,
       int? defaultQuantity,
       List<String>? images,
@@ -92,7 +90,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? description = freezed,
     Object? unitSellingPrice = freezed,
     Object? unitBuyingPrice = freezed,
-    Object? availableQuantity = freezed,
     Object? quantity = freezed,
     Object? defaultQuantity = freezed,
     Object? images = freezed,
@@ -124,10 +121,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.unitBuyingPrice
           : unitBuyingPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      availableQuantity: freezed == availableQuantity
-          ? _value.availableQuantity
-          : availableQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -223,7 +216,6 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? description,
       double? unitSellingPrice,
       double? unitBuyingPrice,
-      int? availableQuantity,
       int? quantity,
       int? defaultQuantity,
       List<String>? images,
@@ -260,7 +252,6 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? unitSellingPrice = freezed,
     Object? unitBuyingPrice = freezed,
-    Object? availableQuantity = freezed,
     Object? quantity = freezed,
     Object? defaultQuantity = freezed,
     Object? images = freezed,
@@ -292,10 +283,6 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.unitBuyingPrice
           : unitBuyingPrice // ignore: cast_nullable_to_non_nullable
               as double?,
-      availableQuantity: freezed == availableQuantity
-          ? _value.availableQuantity
-          : availableQuantity // ignore: cast_nullable_to_non_nullable
-              as int?,
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -345,7 +332,6 @@ class _$ProductImpl implements _Product {
       this.description,
       this.unitSellingPrice,
       this.unitBuyingPrice,
-      this.availableQuantity = 10,
       this.quantity = 1,
       this.defaultQuantity = 1,
       final List<String>? images,
@@ -370,9 +356,6 @@ class _$ProductImpl implements _Product {
   final double? unitSellingPrice;
   @override
   final double? unitBuyingPrice;
-  @override
-  @JsonKey()
-  final int? availableQuantity;
   @override
   @JsonKey()
   final int? quantity;
@@ -404,7 +387,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, availableQuantity: $availableQuantity, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local)';
+    return 'Product(id: $id, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local)';
   }
 
   @override
@@ -420,8 +403,6 @@ class _$ProductImpl implements _Product {
                 other.unitSellingPrice == unitSellingPrice) &&
             (identical(other.unitBuyingPrice, unitBuyingPrice) ||
                 other.unitBuyingPrice == unitBuyingPrice) &&
-            (identical(other.availableQuantity, availableQuantity) ||
-                other.availableQuantity == availableQuantity) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.defaultQuantity, defaultQuantity) ||
@@ -449,7 +430,6 @@ class _$ProductImpl implements _Product {
       description,
       unitSellingPrice,
       unitBuyingPrice,
-      availableQuantity,
       quantity,
       defaultQuantity,
       const DeepCollectionEquality().hash(_images),
@@ -483,7 +463,6 @@ abstract class _Product implements Product {
       final String? description,
       final double? unitSellingPrice,
       final double? unitBuyingPrice,
-      final int? availableQuantity,
       final int? quantity,
       final int? defaultQuantity,
       final List<String>? images,
@@ -506,8 +485,6 @@ abstract class _Product implements Product {
   double? get unitSellingPrice;
   @override
   double? get unitBuyingPrice;
-  @override
-  int? get availableQuantity;
   @override
   int? get quantity;
   @override
