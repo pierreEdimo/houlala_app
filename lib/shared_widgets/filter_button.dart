@@ -20,7 +20,7 @@ class FilterButton extends ConsumerWidget {
         width: MediaQuery.of(context).size.width * .4,
         margin: const EdgeInsets.only(bottom: 20),
         child: CustomButton(
-          onTap: onPressed,
+          onPressed: onPressed,
           leadingIcon: HeroIcons.adjustmentsHorizontal,
           title: 'Filtrer',
         ),
