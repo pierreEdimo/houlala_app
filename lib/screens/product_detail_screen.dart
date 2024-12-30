@@ -32,7 +32,7 @@ class ProductDetailScreen extends ConsumerWidget {
     Product? selectedProduct = productController.productList
         .firstWhereOrNull((product) => product.id == productId);
 
-    late int quantity = selectedProduct!.quantity!;
+    late int quantity = selectedProduct!.defaultQuantity!;
 
     void addProductToCart(int qty) {
       double price = selectedProduct!.unitSellingPrice! * qty;
