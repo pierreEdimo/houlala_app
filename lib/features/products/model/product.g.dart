@@ -15,6 +15,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       unitBuyingPrice: (json['unitBuyingPrice'] as num?)?.toDouble(),
       availableQuantity: (json['availableQuantity'] as num?)?.toInt() ?? 10,
       quantity: (json['quantity'] as num?)?.toInt() ?? 1,
+      defaultQuantity: (json['defaultQuantity'] as num?)?.toInt() ?? 1,
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       createdAt: json['createdAt'] == null
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'unitBuyingPrice': instance.unitBuyingPrice,
       'availableQuantity': instance.availableQuantity,
       'quantity': instance.quantity,
+      'defaultQuantity': instance.defaultQuantity,
       'images': instance.images,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
