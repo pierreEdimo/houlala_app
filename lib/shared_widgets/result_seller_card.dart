@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class ResultSellerCard extends StatelessWidget {
   final LocalModel? local;
@@ -9,11 +10,12 @@ class ResultSellerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
+    return InkWell(
+      onTap: () => Navigator.of(context).pushNamed(
+        '/localDetail',
+        arguments: local?.id,
+      ),
+      child: CustomCard(
         child: Row(
           spacing: 10,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,10 +34,12 @@ class ResultSellerCard extends StatelessWidget {
                       height: 60,
                       width: 60,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100.0),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('images/${local!.imageUrl}'))),
+                        borderRadius: BorderRadius.circular(100.0),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('images/${local!.imageUrl}'),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -51,9 +55,7 @@ class ResultSellerCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 18.0),
                   ),
                 ],
               ),
