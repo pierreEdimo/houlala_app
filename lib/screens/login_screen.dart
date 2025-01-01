@@ -6,6 +6,7 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -41,7 +42,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       horizontal: horizontalPadding,
                     ),
                     child: Column(
-                      spacing: verticalPadding,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
@@ -50,101 +50,107 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             height: 150,
                           ),
                         ),
-                        Column(
-                          spacing: 10,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            TextFormField(
-                              controller: emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
+                        CustomCard(
+                          child: Column(
+                            spacing: verticalPadding,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Column(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  TextFormField(
+                                    controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 8.0,
+                                          vertical: 11.0,
+                                        ),
+                                        labelText: "Email",
+                                        border: OutlineInputBorder()),
+                                    validator: (value) {
+                                      value = emailController.text;
+                                      if (value.isEmpty) {
+                                        return 'Inserer une adresse E-mail';
+                                      } else if (!value.contains('@')) {
+                                        return 'Svp entrer une E-mail valide';
+                                      }
+                                      return null;
+                                    },
                                   ),
-                                  labelText: "Email",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = emailController.text;
-                                if (value.isEmpty) {
-                                  return 'Inserer une adresse E-mail';
-                                } else if (!value.contains('@')) {
-                                  return 'Svp entrer une E-mail valide';
-                                }
-                                return null;
-                              },
-                            ),
-                            TextFormField(
-                              controller: passwordController,
-                              obscureText: true,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
+                                  TextFormField(
+                                    controller: passwordController,
+                                    obscureText: true,
+                                    keyboardType: TextInputType.visiblePassword,
+                                    decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 8.0,
+                                          vertical: 11.0,
+                                        ),
+                                        labelText: "Mot de passe",
+                                        border: OutlineInputBorder()),
+                                    validator: (value) {
+                                      value = passwordController.text;
+                                      if (value.isEmpty) {
+                                        return 'Inserer un Mot de passe';
+                                      }
+                                      if (value.length < 7) {
+                                        return 'votre mot de passe doit avoir minimum 7 caracteres';
+                                      }
+                                      if (!passWordRex.hasMatch(value)) {
+                                        return 'mot de passe invalide';
+                                      }
+                                      return null;
+                                    },
+                                  )
+                                ],
+                              ),
+                              InkWell(
+                                onTap: () => {},
+                                child: const Text(
+                                  "Mot de Passe oublie? / Probleme de connexion?",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  labelText: "Mot de passe",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = passwordController.text;
-                                if (value.isEmpty) {
-                                  return 'Inserer un Mot de passe';
-                                }
-                                if (value.length < 7) {
-                                  return 'votre mot de passe doit avoir minimum 7 caracteres';
-                                }
-                                if (!passWordRex.hasMatch(value)) {
-                                  return 'mot de passe invalide';
-                                }
-                                return null;
-                              },
-                            )
-                          ],
-                        ),
-                        InkWell(
-                          onTap: () => {},
-                          child: const Text(
-                            "Mot de Passe oublie? / Probleme de connexion?",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          spacing: 10,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            CustomButton(
-                              onPressed: () {
-                                if (_formkey.currentState!.validate()) {
-                                  if (kDebugMode) {
-                                    print('Hello');
-                                  }
-                                  Login login = Login(
-                                      email: emailController.text,
-                                      passWord: passwordController.text);
+                                ),
+                              ),
+                              Column(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  CustomButton(
+                                    onPressed: () {
+                                      if (_formkey.currentState!.validate()) {
+                                        Login login = Login(
+                                            email: emailController.text,
+                                            passWord: passwordController.text);
 
-                                  authController.login(login);
-                                }
-                              },
-                              leadingIcon: HeroIcons.arrowRightEndOnRectangle,
-                              color: Colors.orange,
-                              title: 'Se Connecter',
-                            ),
-                            Row(
-                              children: [
-                                const Text('Vous etes nouveau?'),
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.of(context).pushNamed("/logup"),
-                                  child: const Text(
-                                    'S\'inscrire',
+                                        authController.login(login);
+                                      }
+                                    },
+                                    leadingIcon: HeroIcons.arrowRightEndOnRectangle,
+                                    color: Colors.orange,
+                                    title: 'Se Connecter',
                                   ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
+                                  Row(
+                                    children: [
+                                      const Text('Vous etes nouveau?'),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pushNamed("/logup"),
+                                        child: const Text(
+                                          'S\'inscrire',
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                       ,
                       ],
                     ),
                   ),
