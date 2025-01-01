@@ -44,6 +44,9 @@ class SearchStoreScreen extends ConsumerWidget {
               } else {
                 sellersController.searchLocals(value);
               }
+              ref
+                  .read(searchStateNotifierProvider.notifier)
+                  .setSearchSubmittedTrue();
             } else {
               DoNothingAction();
             }
