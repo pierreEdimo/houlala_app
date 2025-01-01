@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
@@ -129,7 +128,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         authController.login(login);
                                       }
                                     },
-                                    leadingIcon: HeroIcons.arrowRightEndOnRectangle,
+                                    leadingIcon:
+                                        HeroIcons.arrowRightEndOnRectangle,
                                     color: Colors.orange,
                                     title: 'Se Connecter',
                                   ),
@@ -137,8 +137,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     children: [
                                       const Text('Vous etes nouveau?'),
                                       TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pushNamed("/logup"),
+                                        onPressed: () => Navigator.of(context)
+                                            .pushNamed("/logup"),
                                         child: const Text(
                                           'S\'inscrire',
                                         ),
@@ -149,8 +149,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ),
                             ],
                           ),
-                        )
-                       ,
+                        ),
                       ],
                     ),
                   ),
