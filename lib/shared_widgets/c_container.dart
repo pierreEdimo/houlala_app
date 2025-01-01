@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houlala_app/helpers/toast_notification.dart';
 
 class CustomContainer extends StatefulWidget {
   final bool? loading;
@@ -18,23 +19,7 @@ class _CustomContainerState extends State<CustomContainer> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.errorMessage!.isNotEmpty) {
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Error'),
-            content: Text(widget.errorMessage!),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
+        ToastNotification.showErrorAction(widget.errorMessage!);
       }
     });
   }
