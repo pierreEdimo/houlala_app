@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class LocalCard extends StatelessWidget {
   final LocalModel? local;
@@ -21,11 +22,8 @@ class LocalCard extends StatelessWidget {
         '/localDetail',
         arguments: local?.id,
       ),
-      child: Card(
-        color: Colors.white,
-        elevation: 0,
-        child: Container(
-          padding: const EdgeInsets.all(12.0),
+      child: CustomCard(
+        child: SizedBox(
           width: 180,
           child: Stack(
             children: [
