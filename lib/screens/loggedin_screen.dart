@@ -10,6 +10,7 @@ import 'package:houlala_app/features/auth/providers/auth_provider.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/card_tile.dart';
 import 'package:houlala_app/shared_widgets/entity_card.dart';
@@ -55,22 +56,18 @@ class LoggedInScreen extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {},
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 20),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(100)),
+                              child: CustomCard(
                                 child: Row(
+                                  spacing: 10,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const CircleAvatar(
                                       backgroundImage:
-                                          AssetImage('images/user.png'),
+                                      AssetImage('images/user.png'),
+                                      radius: 13,
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text('Bienvenu, ${connectedUser.userName}')
+                                    Text('${connectedUser.userName}')
                                   ],
                                 ),
                               ),
