@@ -44,6 +44,10 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
       if (kDebugMode) {
         print(exception);
       }
+
+      ToastNotification.showErrorAction(
+          'Erreur lors du chargement des articles.');
+
       state = state.copyWith(
           loading: false,
           errorMessage: 'Erreur lors du chargement des articles.');
@@ -51,80 +55,61 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
   }
 
   Future<void> addProductToCart(CartItem createCartItem) async {
-    try {
-      final Response response =
-          await cartRepository.addProductToCart(createCartItem);
-      if (response.statusCode == HttpStatus.ok) {
-        _updateState(response);
-        BottomSheet.openBottomSheetOnSuccess();
-      }
-    } catch (exception) {
+    final Response response =
+        await cartRepository.addProductToCart(createCartItem);
+    if (response.statusCode == HttpStatus.ok) {
+      _updateState(response);
+      BottomSheet.openBottomSheetOnSuccess();
+    } else {
       if (kDebugMode) {
-        print(exception);
+        print(response.body);
       }
-      state = state.copyWith(
-          errorMessage: "Erreur lors de l'ajout des produits dans le panier.");
       ToastNotification.showErrorAction(
-          "Erreur lors de l'ajout des produits dans le panier.");
+          "Erreur lors de l'ajout de produits dans le panier.");
     }
   }
 
   Future<void> removeProductFromCart(int id) async {
     String? userId = userModel.id;
-    try {
-      final Response response =
-          await cartRepository.removeProductFromCart(id, userId!);
-      if (response.statusCode == HttpStatus.ok) {
-        _updateState(response);
-      }
-    } catch (exception) {
-      if (kDebugMode) {
-        print(exception);
-      }
-      state = state.copyWith(
-          errorMessage: "Erreur lors de suppression du produit.");
+    final Response response =
+        await cartRepository.removeProductFromCart(id, userId!);
+    if (response.statusCode == HttpStatus.ok) {
+      _updateState(response);
+    } else {
+      ToastNotification.showErrorAction(
+          "Erreur lors du retrait d'un produit du panier.");
     }
   }
 
   Future<void> increaseItemQuantity(int id) async {
     String? userId = userModel.id;
     String uri = '${dotenv.env['CART_URL']}/increase/$id/users/$userId';
-    try {
-      final Response response = await cartRepository.changeItemQuantity(uri);
-      if (kDebugMode) {
-        print(response.statusCode);
-        print(jsonEncode(response.body));
-      }
-      if (response.statusCode == HttpStatus.ok) {
-        _updateState(response);
-      }
-    } catch (exception) {
-      if (kDebugMode) {
-        print(exception);
-      }
-      state = state.copyWith(
-          errorMessage: "Erreur lors de l'augmentation du produit.");
+    final Response response = await cartRepository.changeItemQuantity(uri);
+    if (kDebugMode) {
+      print(response.statusCode);
+      print(jsonEncode(response.body));
+    }
+    if (response.statusCode == HttpStatus.ok) {
+      _updateState(response);
+    } else {
+      ToastNotification.showErrorAction(
+          "Erreur lors de l'augmentation du produit.");
     }
   }
 
   Future<void> decreaseItemQuantity(int id) async {
     String? userId = userModel.id;
     String uri = '${dotenv.env['CART_URL']}/decrease/$id/users/$userId';
-    try {
-      final Response response = await cartRepository.changeItemQuantity(uri);
-      if (kDebugMode) {
-        print(response.statusCode);
-        print(jsonEncode(response.body));
-      }
-      if (response.statusCode == HttpStatus.ok) {
-        _updateState(response);
-      }
-    } catch (exception) {
-      if (kDebugMode) {
-        print(exception);
-      }
-      state = state.copyWith(
-          errorMessage: "Erreur lors de la reduction du produit.");
+    final Response response = await cartRepository.changeItemQuantity(uri);
+    if (kDebugMode) {
+      print(response.statusCode);
+      print(jsonEncode(response.body));
+    }
+    if (response.statusCode == HttpStatus.ok) {
+      _updateState(response);
+    } else {
+      ToastNotification.showErrorAction(
+          "Erreur lors de la reduction du produit.");
     }
   }
 
