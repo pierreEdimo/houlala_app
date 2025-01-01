@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
+import 'package:houlala_app/features/auth/model/register.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/auth/model/user_token.dart';
 import 'package:houlala_app/features/auth/repositories/auth_repository.dart';
@@ -28,7 +29,23 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
   Future<void> login(Login login) async {
     try {
       Response response = await authRepository.login(login);
-      if (response.statusCode == HttpStatus.accepted) {
+      if (response.statusCode == HttpStatus.ok) {
+        UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
+        TokenHelper.saveToken(userToken.token!);
+        checkAndSetConnectedUser(userToken: userToken.token);
+        navigatorKey.currentState!.pushReplacementNamed('/');
+      }
+    } catch (exception) {
+      if (kDebugMode) {
+        print(exception);
+      }
+    }
+  }
+
+  Future<void> register(Register register) async {
+    try {
+      Response response = await authRepository.register(register);
+      if (response.statusCode == HttpStatus.ok) {
         UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
         TokenHelper.saveToken(userToken.token!);
         checkAndSetConnectedUser(userToken: userToken.token);
