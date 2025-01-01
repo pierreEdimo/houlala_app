@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
+import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
+import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
 import '../features/carts/model/cart_item.dart';
 
@@ -46,99 +49,59 @@ class MappedCartItemCard extends ConsumerWidget {
       cartController.increaseItemQuantity(id);
     }
 
-    return Card(
-      color: Colors.white,
-      elevation: 0,
+    return CustomCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 10,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 60,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                spacing: 8,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(50.0),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                                'images/${mappedCartItem!.local!.imageUrl!}'),
-                          ),
+          SizedBox(
+            height: 60,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              spacing: 8,
+              children: [
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(50.0),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                              'images/${mappedCartItem!.local!.imageUrl!}'),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    mappedCartItem!.local!.name!,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold, fontSize: 18),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              children: mappedCartItem!.cartItems!
-                  .map(
-                    (item) => CartItemCard(
-                      onDecrease: () => decreaseItemQuantity(item.id!),
-                      onIncrease: () => increaseItemQuantity(item.id!),
-                      onPressed: () => deleteProductFromCart(item.id!),
-                      cartItem: item,
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              spacing: 10,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    text: 'Total: ',
-                    style: DefaultTextStyle.of(context).style,
-                    children: <TextSpan>[TextSpan(text: '$totalQuantity')],
                   ),
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Prix: ',
-                    style: DefaultTextStyle.of(context).style,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '$totalPrice',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const TextSpan(
-                        text: 'XAF',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    ],
-                  ),
+                Text(
+                  mappedCartItem!.local!.name!,
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold, fontSize: 18),
                 )
               ],
             ),
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            children: mappedCartItem!.cartItems!
+                .map(
+                  (item) => CartItemCard(
+                    onDecrease: () => decreaseItemQuantity(item.id!),
+                    onIncrease: () => increaseItemQuantity(item.id!),
+                    onPressed: () => deleteProductFromCart(item.id!),
+                    cartItem: item,
+                  ),
+                )
+                .toList(),
+          ),
+          TotalCartItem(
+            totalPrice: totalPrice,
+            totalQuantity: totalQuantity,
           )
         ],
       ),
@@ -172,19 +135,8 @@ class CartItemCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Card(
-                elevation: 3,
-                color: Colors.white,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: DecorationImage(
-                      image: NetworkImage(cartItem!.product!.images![0]),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+              child: CartItemProductImage(
+                productImageUrl: cartItem!.product!.images![0],
               ),
             ),
             Flexible(
@@ -198,7 +150,9 @@ class CartItemCard extends StatelessWidget {
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w900, fontSize: 16),
+                      fontWeight: FontWeight.w900,
+                      fontSize: 16,
+                    ),
                   ),
                   StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
@@ -234,13 +188,12 @@ class CartItemCard extends StatelessWidget {
                       Text(
                         '${cartItem!.price!}',
                         style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold, fontSize: 22),
-                      ),
-                      Text(
-                        ' XAF',
-                        style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
+                          fontSize: 22,
                         ),
+                      ),
+                      const Text(
+                        ' XAF',
                       )
                     ],
                   )
