@@ -1,28 +1,42 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/model/register.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 
-class LogupScreen extends StatefulWidget {
+class LogupScreen extends ConsumerStatefulWidget {
   const LogupScreen({super.key});
 
   @override
-  State<LogupScreen> createState() => _LogupScreenState();
+  ConsumerState<LogupScreen> createState() => _LogupScreenState();
 }
 
-class _LogupScreenState extends State<LogupScreen> {
+class _LogupScreenState extends ConsumerState<LogupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  final passWordRex =
+  final specialCharRegex =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!?@#&*~]).{6,}$');
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = AuthController(ref);
+
+    void register() {
+      Register register = Register(
+        userName: userNameController.text,
+        passWord: passwordController.text,
+        email: emailController.text
+      );
+
+      authController.register(register);
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -72,6 +86,24 @@ class _LogupScreenState extends State<LogupScreen> {
                               },
                             ),
                             TextFormField(
+                              controller: userNameController,
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                    vertical: 11.0,
+                                  ),
+                                  labelText: "Nom d'utilisateur",
+                                  border: OutlineInputBorder()),
+                              validator: (value) {
+                                value = userNameController.text;
+                                if (value.isEmpty) {
+                                  return "Inserer un nom d'utilisateur";
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
                               controller: passwordController,
                               obscureText: true,
                               keyboardType: TextInputType.visiblePassword,
@@ -90,36 +122,12 @@ class _LogupScreenState extends State<LogupScreen> {
                                 if (value.length < 7) {
                                   return 'votre mot de passe doit avoir minimum 7 caracteres';
                                 }
-                                if (!passWordRex.hasMatch(value)) {
+                                if (!specialCharRegex.hasMatch(value)) {
                                   return 'mot de passe invalide';
                                 }
                                 return null;
                               },
                             ),
-                            TextFormField(
-                              controller: confirmPasswordController,
-                              obscureText: true,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
-                                  ),
-                                  labelText: "répéter mot de passe",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = confirmPasswordController.text;
-                                if (value.isEmpty) {
-                                  return 'Inserer un Mot de passe';
-                                }
-
-                                if (value != passwordController.text) {
-                                  return 'Le mot de passe ne correspond pas';
-                                }
-
-                                return null;
-                              },
-                            )
                           ],
                         ),
                         Column(
@@ -131,6 +139,7 @@ class _LogupScreenState extends State<LogupScreen> {
                                   if (kDebugMode) {
                                     print('Hello');
                                   }
+                                  register();
                                 }
                               },
                               leadingIcon: HeroIcons.arrowRightEndOnRectangle,
