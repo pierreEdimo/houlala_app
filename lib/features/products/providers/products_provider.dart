@@ -7,7 +7,7 @@ final productRepositoryProvider =
     Provider<ProductRepository>((ref) => ProductRepository());
 
 final productStateNotifierProvider =
-    StateNotifierProvider<ProductStateNotifier, ProductState>(
+    StateNotifierProvider.autoDispose<ProductStateNotifier, ProductState>(
         (ref) => ProductStateNotifier(ref.watch(productRepositoryProvider)));
 
 class ProductStateNotifier extends StateNotifier<ProductState> {
