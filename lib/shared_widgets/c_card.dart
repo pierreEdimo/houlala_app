@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
   final Widget? child;
+  final EdgeInsetsGeometry? padding;
 
 
   const CustomCard({
     super.key,
     this.child,
+    this.padding,
   });
 
   @override
@@ -15,7 +17,7 @@ class CustomCard extends StatelessWidget {
       color: Colors.white,
       elevation: 0,
       child: Container(
-        padding: const EdgeInsets.all(15.0),
+        padding: padding ?? const EdgeInsets.all(15.0),
         child: child,
       ),
     );
