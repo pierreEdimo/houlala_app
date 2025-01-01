@@ -82,7 +82,7 @@ class SearchProductScreen extends ConsumerWidget {
         ),
       ),
       body: !isSearchSubmitted
-          ? Container() //todo: implement a screen to filter vorshlag
+          ? Container() //todo: implement a screen to filter Suggestion
           : Stack(
               children: [
                 SingleChildScrollView(
