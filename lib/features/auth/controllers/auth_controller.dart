@@ -29,6 +29,12 @@ class AuthController {
     return ref!.watch(authStateNotifierProvider).loading;
   }
 
+  bool get hasUserInfo {
+    return connectedUser!.firstName != null &&
+        connectedUser!.lastName != null &&
+        connectedUser!.phoneNumber != null;
+  }
+
   UserModel? get connectedUser {
     return ref!.watch(authStateNotifierProvider).connectedUser;
   }

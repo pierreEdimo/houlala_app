@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
 import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
@@ -14,21 +15,11 @@ class CheckOutCartItem extends StatelessWidget {
   });
 
   int get totalQuantity {
-    int qty = 0;
-    List<CartItem> items = mappedCartItem!.cartItems!;
-    for (var item in items) {
-      qty += item.quantity!;
-    }
-    return qty;
+    return ItemCalculations.getTotalQuantity(mappedCartItem!.cartItems!);
   }
 
   double get totalPrice {
-    double price = 0;
-    List<CartItem> items = mappedCartItem!.cartItems!;
-    for (var item in items) {
-      price += item.price!;
-    }
-    return price;
+    return ItemCalculations.getTotalPrice(mappedCartItem!.cartItems!);
   }
 
   @override

@@ -59,7 +59,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
         await cartRepository.addProductToCart(createCartItem);
     if (response.statusCode == HttpStatus.ok) {
       _updateState(response);
-      BottomSheet.openBottomSheetOnSuccess();
+      CustomBottomSheet.openBottomSheetOnSuccess();
     } else {
       if (kDebugMode) {
         print(response.body);

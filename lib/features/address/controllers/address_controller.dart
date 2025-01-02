@@ -12,7 +12,7 @@ class AddressController {
     return ref!.watch(addressStateNotifierProvider).errorMessage;
   }
 
-  bool hasAddress() {
+  bool get hasAddress {
     return usersAddresses.isNotEmpty;
 }
 

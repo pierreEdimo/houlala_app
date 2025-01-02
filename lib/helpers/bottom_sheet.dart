@@ -4,12 +4,12 @@ import 'package:houlala_app/main.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 import 'package:sizer/sizer.dart';
 
-class BottomSheet {
-  static void openBottomSheet(Widget child) {
+class CustomBottomSheet {
+  static void openBottomSheet(Widget child, {double? height}) {
     Get.bottomSheet(
       Container(
         width: 100.w,
-        height: 15.h,
+        height: height ?? 15.h,
         color: Colors.transparent,
         child: Container(
           decoration: const BoxDecoration(
@@ -58,7 +58,8 @@ class BottomSheet {
               ),
               Expanded(
                 child: CustomButton(
-                  onPressed: () => navigatorKey.currentState?.popAndPushNamed('/cart'),
+                  onPressed: () =>
+                      navigatorKey.currentState?.popAndPushNamed('/cart'),
                   title: 'Panier',
                 ),
               )
@@ -66,6 +67,13 @@ class BottomSheet {
           )
         ],
       ),
+    );
+  }
+
+  static void openSaveAddressForm() {
+    openBottomSheet(
+      Container(),
+      height: 50.h,
     );
   }
 }
