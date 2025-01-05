@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +9,10 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/order/controller/order_controller.dart';
+import 'package:houlala_app/features/order/model/order_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:houlala_app/shared_widgets/ItemTotalCard.dart';
 import 'package:houlala_app/shared_widgets/address_card.dart';
@@ -26,16 +30,37 @@ class CheckoutScreen extends ConsumerWidget {
     CartController cartController = CartController(ref);
     AddressController addressController = AddressController(ref);
     AuthController authController = AuthController(ref);
+    OrderController orderController = OrderController(ref);
 
     Address? selectedAddress = addressController.getDeliveryAddress(1);
-    List<MappedCartItem> cartItems = cartController.cartItemList;
+    List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     UserModel? connectedUser = authController.connectedUser;
 
     void confirmPayment() {
       if (!authController.hasUserInfo && !addressController.hasAddress) {
-        ToastNotification.showErrorAction(
+        CustomToastNotification.showErrorAction(
             'Svp veuillez ajouter vos informations personnelles et votre adresse.');
-      } else {}
+      } else {
+        for (var mappedCartItem in mappedCartItems) {
+          var order = OrderModel(
+              user: connectedUser,
+              cartItems: mappedCartItem.cartItems,
+              local: mappedCartItem.local,
+              totalPrice:
+                  ItemCalculations.getTotalPrice(mappedCartItem.cartItems!),
+              totalQuantity:
+                  ItemCalculations.getTotalQuantity(mappedCartItem.cartItems!));
+
+          try {
+            orderController.placeOrder(order);
+            cartController.emptiesTheCartAfterOrder();
+          } catch (e) {
+            if (kDebugMode) {
+              print(e);
+            }
+          }
+        }
+      }
     }
 
     return Scaffold(
@@ -62,6 +87,7 @@ class CheckoutScreen extends ConsumerWidget {
                     userModel: connectedUser,
                   ),
                   AddressCard(
+                    loading: addressController.loading,
                     hasAddress: addressController.hasAddress,
                     selectedAddress: selectedAddress,
                   ),
@@ -69,7 +95,7 @@ class CheckoutScreen extends ConsumerWidget {
                     child: ListView(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
-                      children: cartItems
+                      children: mappedCartItems
                           .map(
                             (item) => CheckOutCartItem(
                               mappedCartItem: item,
@@ -79,7 +105,7 @@ class CheckoutScreen extends ConsumerWidget {
                     ),
                   ),
                   ItemTotalCart(
-                    mappedCartItems: cartItems,
+                    mappedCartItems: mappedCartItems,
                   )
                 ],
               ),
