@@ -20,6 +20,12 @@ class CartController {
     return ref!.watch(cartItemStateNotifierProvider).errorMessage;
   }
 
+  void emptiesTheCartAfterOrder() {
+    ref!
+        .read(cartItemStateNotifierProvider.notifier)
+        .emptiesTheMappedListAfterOrder();
+  }
+
   void addProductToCart(CartItem createCartItem) {
     ref!
         .read(cartItemStateNotifierProvider.notifier)
