@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:houlala_app/features/auth/model/edit_info.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
 import 'package:houlala_app/features/auth/model/register.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
@@ -26,6 +27,18 @@ class AuthRepository {
           'Content-Type': 'application/json; charset=UTF-8'
         },
         body: jsonEncode(register));
+    return response;
+  }
+
+  Future<Response> editUserInfo(EditInfo info) async {
+    var token = await TokenHelper.getToken();
+    final Response response =
+        await put(Uri.parse('${dotenv.env['AUTH_URL']}/edit'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(info));
     return response;
   }
 

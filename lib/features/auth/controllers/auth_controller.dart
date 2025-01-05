@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:houlala_app/features/auth/model/edit_info.dart';
 import 'package:houlala_app/features/auth/model/login.dart';
 import 'package:houlala_app/features/auth/model/register.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
@@ -15,6 +16,10 @@ class AuthController {
 
   void register(Register register) {
     ref!.read(authStateNotifierProvider.notifier).register(register);
+  }
+
+  void editUserInfo(EditInfo info) {
+    ref!.read(authStateNotifierProvider.notifier).editUserInfo(info);
   }
 
   String get errorMessage {
