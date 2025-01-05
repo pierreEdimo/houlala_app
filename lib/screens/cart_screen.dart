@@ -10,17 +10,20 @@ class CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AuthController authController = AuthController(ref);
-    bool loading = authController.loading;
     bool loggedIn = authController.isLoggedIn;
+    bool loading = authController.loading;
 
-    if (loading) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    return loggedIn ? const LoggedInCartScreen() : const LoggedOutCartScreen();
+    return Scaffold(
+      body: Builder(builder: (context) {
+        if (loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return loggedIn
+            ? const LoggedInCartScreen()
+            : const LoggedOutCartScreen();
+      }),
+    );
   }
 }
