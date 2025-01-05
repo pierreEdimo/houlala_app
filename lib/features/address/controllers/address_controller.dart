@@ -14,7 +14,11 @@ class AddressController {
 
   bool get hasAddress {
     return usersAddresses.isNotEmpty;
-}
+  }
+
+  bool get loading {
+    return ref!.watch(addressStateNotifierProvider).loading;
+  }
 
   List<Address> get usersAddresses {
     return ref!.watch(addressStateNotifierProvider).addressList;
