@@ -13,7 +13,7 @@ _$AddressImpl _$$AddressImplFromJson(Map<String, dynamic> json) =>
       country: json['country'] as String?,
       poBox: json['poBox'] as String?,
       city: json['city'] as String?,
-      houseNumber: (json['houseNumber'] as num?)?.toInt(),
+      houseNumber: json['houseNumber'] as String?,
     );
 
 Map<String, dynamic> _$$AddressImplToJson(_$AddressImpl instance) =>

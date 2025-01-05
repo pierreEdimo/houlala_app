@@ -16,7 +16,7 @@ class PaymentButton extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        width: 30.w,
+        width: 90.w,
         margin: const EdgeInsets.only(bottom: 20),
         child: CustomButton(
           onPressed: onPressed,

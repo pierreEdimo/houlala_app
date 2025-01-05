@@ -45,7 +45,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
         print(exception);
       }
 
-      ToastNotification.showErrorAction(
+      CustomToastNotification.showErrorAction(
           'Erreur lors du chargement des articles.');
 
       state = state.copyWith(
@@ -64,7 +64,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
       if (kDebugMode) {
         print(response.body);
       }
-      ToastNotification.showErrorAction(
+      CustomToastNotification.showErrorAction(
           "Erreur lors de l'ajout de produits dans le panier.");
     }
   }
@@ -76,7 +76,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
     if (response.statusCode == HttpStatus.ok) {
       _updateState(response);
     } else {
-      ToastNotification.showErrorAction(
+      CustomToastNotification.showErrorAction(
           "Erreur lors du retrait d'un produit du panier.");
     }
   }
@@ -92,7 +92,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
     if (response.statusCode == HttpStatus.ok) {
       _updateState(response);
     } else {
-      ToastNotification.showErrorAction(
+      CustomToastNotification.showErrorAction(
           "Erreur lors de l'augmentation du produit.");
     }
   }
@@ -108,7 +108,7 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
     if (response.statusCode == HttpStatus.ok) {
       _updateState(response);
     } else {
-      ToastNotification.showErrorAction(
+      CustomToastNotification.showErrorAction(
           "Erreur lors de la reduction du produit.");
     }
   }
@@ -121,5 +121,9 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
   List<MappedCartItem> _getMapItemsFromDb(Response response) {
     List<dynamic> body = jsonDecode(response.body);
     return body.map((dynamic item) => MappedCartItem.fromJson(item)).toList();
+  }
+
+  void emptiesTheMappedListAfterOrder(){
+    state = state.copyWith(cartItemList: []);
   }
 }

@@ -11,7 +11,7 @@ class Address with _$Address {
     String? country,
     String? poBox,
     String? city,
-    int? houseNumber
+    String? houseNumber
 }) = _Address;
 
   factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);

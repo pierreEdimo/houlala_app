@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
-class ToastNotification {
+class CustomToastNotification {
   static void showSuccessFulAction(String message) {
     toastification.show(
       title: const Text('Succes'),

@@ -25,7 +25,7 @@ mixin _$Address {
   String? get country => throw _privateConstructorUsedError;
   String? get poBox => throw _privateConstructorUsedError;
   String? get city => throw _privateConstructorUsedError;
-  int? get houseNumber => throw _privateConstructorUsedError;
+  String? get houseNumber => throw _privateConstructorUsedError;
 
   /// Serializes this Address to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $AddressCopyWith<$Res> {
       String? country,
       String? poBox,
       String? city,
-      int? houseNumber});
+      String? houseNumber});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
       houseNumber: freezed == houseNumber
           ? _value.houseNumber
           : houseNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ) as $Val);
   }
 }
@@ -114,7 +114,7 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
       String? country,
       String? poBox,
       String? city,
-      int? houseNumber});
+      String? houseNumber});
 }
 
 /// @nodoc
@@ -161,7 +161,7 @@ class __$$AddressImplCopyWithImpl<$Res>
       houseNumber: freezed == houseNumber
           ? _value.houseNumber
           : houseNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -191,7 +191,7 @@ class _$AddressImpl implements _Address {
   @override
   final String? city;
   @override
-  final int? houseNumber;
+  final String? houseNumber;
 
   @override
   String toString() {
@@ -240,7 +240,7 @@ abstract class _Address implements Address {
       final String? country,
       final String? poBox,
       final String? city,
-      final int? houseNumber}) = _$AddressImpl;
+      final String? houseNumber}) = _$AddressImpl;
 
   factory _Address.fromJson(Map<String, dynamic> json) = _$AddressImpl.fromJson;
 
@@ -255,7 +255,7 @@ abstract class _Address implements Address {
   @override
   String? get city;
   @override
-  int? get houseNumber;
+  String? get houseNumber;
 
   /// Create a copy of Address
   /// with the given fields replaced by the non-null parameter values.

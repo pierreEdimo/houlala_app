@@ -11,17 +11,18 @@ import 'package:houlala_app/shared_widgets/checkout_button.dart';
 import 'package:houlala_app/shared_widgets/mapped_cart_item_card.dart';
 
 class LoggedInCartScreen extends ConsumerWidget {
-  const LoggedInCartScreen({super.key});
+  const LoggedInCartScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CartController cartController = CartController(ref);
-    bool loading = cartController.loading;
     String errorMessage = cartController.errorMessage;
     List<MappedCartItem> cartItems = cartController.cartItemList;
 
     return CustomContainer(
-      loading: loading,
+      loading: cartController.loading,
       errorMessage: errorMessage,
       child: Scaffold(
         appBar: CustomAppBar(
