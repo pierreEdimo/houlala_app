@@ -14,6 +14,12 @@ import 'package:houlala_app/screens/local_detail_screen.dart';
 import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
 import 'package:houlala_app/screens/main_navigation_screen.dart';
+import 'package:houlala_app/screens/my_account_screen.dart';
+import 'package:houlala_app/screens/my_bills_screen.dart';
+import 'package:houlala_app/screens/my_favorites_screen.dart';
+import 'package:houlala_app/screens/my_lists_screen.dart';
+import 'package:houlala_app/screens/my_messages_screen.dart';
+import 'package:houlala_app/screens/my_orders_screen.dart';
 import 'package:houlala_app/screens/no_product_screen.dart';
 import 'package:houlala_app/screens/no_store_screen.dart';
 import 'package:houlala_app/screens/notification_screen.dart';
@@ -51,7 +57,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, screenType){
+    return Sizer(builder: (context, orientation, screenType) {
       return ToastificationWrapper(
         child: GetMaterialApp(
           title: 'Houla la',
@@ -82,8 +88,14 @@ class MyApp extends StatelessWidget {
             '/checkout': (context) => const CheckoutScreen(),
             '/gastCheckout': (context) => const GastCheckoutScreen(),
             '/localDetail': (context) => const LocalDetailScreen(),
+            '/myOrders': (context) => const MyOrdersScreen(),
+            '/myAccount': (context) => const MyAccountScreen(),
+            '/myBills': (context) => const MyBillsScreen(),
+            '/myFavorite': (context) => const MyFavoritesScreen(),
+            '/myList': (context) => const MyListsScreen(),
+            '/myMessage': (context) => const MyMessagesScreen(),
             '/subStoreCategoryDetail': (context) =>
-            const StoreTypeDetailScreen(),
+                const StoreTypeDetailScreen(),
           },
         ),
       );

@@ -99,6 +99,7 @@ flutter:
     - images/user-menu/messages.png
     - images/user-menu/orders.png
     - images/user-menu/transactions.png
+    - images/user-menu/settings.png
     - images/user.png
 
   # To add assets to your application, add an assets section, like this:
