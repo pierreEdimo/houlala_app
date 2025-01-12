@@ -15,6 +15,9 @@ class OrderModel with _$OrderModel {
     int? totalQuantity,
     double? totalPrice,
     List<CartItem>? cartItems,
+    String? deliveryStatus,
+    DateTime? createdAt,
+    DateTime? updatedAt,
 }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
