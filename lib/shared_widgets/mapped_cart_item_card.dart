@@ -6,7 +6,9 @@ import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
+import 'package:houlala_app/shared_widgets/cart_header.dart';
 import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
+import 'package:houlala_app/shared_widgets/cart_product_name.dart';
 import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
 import '../features/carts/model/cart_item.dart';
@@ -45,36 +47,9 @@ class MappedCartItemCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 10,
         children: [
-          SizedBox(
-            height: 60,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              spacing: 8,
-              children: [
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.orange,
-                        borderRadius: BorderRadius.circular(50.0),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                              'images/${mappedCartItem!.local!.imageUrl!}'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Text(
-                  mappedCartItem!.local!.name!,
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                )
-              ],
-            ),
+          CartHeader(
+            name: mappedCartItem!.local!.name!,
+            imageUrl: mappedCartItem!.local!.imageUrl!,
           ),
           ListView(
             shrinkWrap: true,
@@ -136,14 +111,8 @@ class CartItemCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 spacing: 10,
                 children: [
-                  Text(
-                    cartItem!.product!.name!,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 16,
-                    ),
+                  CartProductName(
+                    name: cartItem!.product!.name!,
                   ),
                   StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
