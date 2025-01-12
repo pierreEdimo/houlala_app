@@ -24,6 +24,7 @@ class Product with _$Product {
     CategoryModel? category,
     ProductType? productType,
     LocalModel? local,
+    bool? isFavorite,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>
