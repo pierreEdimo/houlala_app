@@ -62,9 +62,6 @@ class SearchProductScreen extends ConsumerWidget {
         title: SearchField(
           placeholder: 'Rechercher produit',
           onSubmitted: (value) {
-            if (kDebugMode) {
-              print(value);
-            }
             if (value.isNotEmpty) {
               productController.searchProduct(
                 value,
@@ -101,16 +98,11 @@ class SearchProductScreen extends ConsumerWidget {
                               .map(
                                 (product) => ListProductCard(
                                   onAddToBasket: () {
-                                    if (kDebugMode) {
-                                      print('added');
-                                    }
-
                                     if (isLoggedIn) {
                                       addProductToCart(product);
                                     } else {
                                       addProductToGastCard();
                                     }
-
                                   },
                                   product: product,
                                 ),
