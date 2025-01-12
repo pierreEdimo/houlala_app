@@ -20,7 +20,9 @@ final orderStateNotifierProvider =
 final class OrderStateNotifier extends StateNotifier<OrderState> {
   final OrderRepository orderRepository;
 
-  OrderStateNotifier(this.orderRepository) : super(OrderState());
+  OrderStateNotifier(this.orderRepository) : super(OrderState()) {
+    fetchUserOrders();
+  }
 
   Future<void> placeOrder(OrderModel order) async {
     state = state.copyWith(loading: true);
@@ -35,6 +37,20 @@ final class OrderStateNotifier extends StateNotifier<OrderState> {
       CustomToastNotification.showErrorAction(
           "Erreur lors de l'envoie de vos commandes");
       throw 'error';
+    }
+    state = state.copyWith(loading: false);
+  }
+
+  Future<void> fetchUserOrders() async {
+    state = state.copyWith(loading: true);
+    try {
+      List<OrderModel> orders = await orderRepository.fetchUsersOrders();
+      state = state.copyWith(orderList: orders, loading: false);
+    } catch (e) {
+      CustomToastNotification.showErrorAction(
+          "Erreur lors du chargement de vos commandes.");
+      state = state.copyWith(
+          errorMessage: "erreur lors du chargement de vos commandes.");
     }
   }
 }
