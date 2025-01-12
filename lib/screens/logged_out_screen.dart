@@ -62,7 +62,7 @@ class LoggedOutScreen extends StatelessWidget {
                     CardTile(
                       onTap: () {},
                       title: Text(
-                        'Service client',
+                        'Contactez nous',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
                         ),
