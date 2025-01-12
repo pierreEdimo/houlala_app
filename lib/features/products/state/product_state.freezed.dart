@@ -21,6 +21,7 @@ mixin _$ProductState {
   List<Product> get offerProductList => throw _privateConstructorUsedError;
   List<Product> get historicProductList => throw _privateConstructorUsedError;
   List<Product> get searchProductList => throw _privateConstructorUsedError;
+  Product? get selectedProduct => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   List<Product> get bookmarkedList => throw _privateConstructorUsedError;
@@ -44,9 +45,12 @@ abstract class $ProductStateCopyWith<$Res> {
       List<Product> offerProductList,
       List<Product> historicProductList,
       List<Product> searchProductList,
+      Product? selectedProduct,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
+
+  $ProductCopyWith<$Res>? get selectedProduct;
 }
 
 /// @nodoc
@@ -69,6 +73,7 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
     Object? offerProductList = null,
     Object? historicProductList = null,
     Object? searchProductList = null,
+    Object? selectedProduct = freezed,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -94,6 +99,10 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
           ? _value.searchProductList
           : searchProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      selectedProduct: freezed == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product?,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -107,6 +116,20 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
           : bookmarkedList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
     ) as $Val);
+  }
+
+  /// Create a copy of ProductState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res>? get selectedProduct {
+    if (_value.selectedProduct == null) {
+      return null;
+    }
+
+    return $ProductCopyWith<$Res>(_value.selectedProduct!, (value) {
+      return _then(_value.copyWith(selectedProduct: value) as $Val);
+    });
   }
 }
 
@@ -124,9 +147,13 @@ abstract class _$$ProductStateImplCopyWith<$Res>
       List<Product> offerProductList,
       List<Product> historicProductList,
       List<Product> searchProductList,
+      Product? selectedProduct,
       bool loading,
       String errorMessage,
       List<Product> bookmarkedList});
+
+  @override
+  $ProductCopyWith<$Res>? get selectedProduct;
 }
 
 /// @nodoc
@@ -147,6 +174,7 @@ class __$$ProductStateImplCopyWithImpl<$Res>
     Object? offerProductList = null,
     Object? historicProductList = null,
     Object? searchProductList = null,
+    Object? selectedProduct = freezed,
     Object? loading = null,
     Object? errorMessage = null,
     Object? bookmarkedList = null,
@@ -172,6 +200,10 @@ class __$$ProductStateImplCopyWithImpl<$Res>
           ? _value._searchProductList
           : searchProductList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      selectedProduct: freezed == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product?,
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -197,6 +229,7 @@ class _$ProductStateImpl implements _ProductState {
       final List<Product> offerProductList = const [],
       final List<Product> historicProductList = const [],
       final List<Product> searchProductList = const [],
+      this.selectedProduct = null,
       this.loading = false,
       this.errorMessage = '',
       final List<Product> bookmarkedList = const []})
@@ -258,6 +291,9 @@ class _$ProductStateImpl implements _ProductState {
 
   @override
   @JsonKey()
+  final Product? selectedProduct;
+  @override
+  @JsonKey()
   final bool loading;
   @override
   @JsonKey()
@@ -273,7 +309,7 @@ class _$ProductStateImpl implements _ProductState {
 
   @override
   String toString() {
-    return 'ProductState(productList: $productList, topSellingProductList: $topSellingProductList, offerProductList: $offerProductList, historicProductList: $historicProductList, searchProductList: $searchProductList, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
+    return 'ProductState(productList: $productList, topSellingProductList: $topSellingProductList, offerProductList: $offerProductList, historicProductList: $historicProductList, searchProductList: $searchProductList, selectedProduct: $selectedProduct, loading: $loading, errorMessage: $errorMessage, bookmarkedList: $bookmarkedList)';
   }
 
   @override
@@ -291,6 +327,8 @@ class _$ProductStateImpl implements _ProductState {
                 .equals(other._historicProductList, _historicProductList) &&
             const DeepCollectionEquality()
                 .equals(other._searchProductList, _searchProductList) &&
+            (identical(other.selectedProduct, selectedProduct) ||
+                other.selectedProduct == selectedProduct) &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
@@ -306,6 +344,7 @@ class _$ProductStateImpl implements _ProductState {
       const DeepCollectionEquality().hash(_offerProductList),
       const DeepCollectionEquality().hash(_historicProductList),
       const DeepCollectionEquality().hash(_searchProductList),
+      selectedProduct,
       loading,
       errorMessage,
       const DeepCollectionEquality().hash(_bookmarkedList));
@@ -326,6 +365,7 @@ abstract class _ProductState implements ProductState {
       final List<Product> offerProductList,
       final List<Product> historicProductList,
       final List<Product> searchProductList,
+      final Product? selectedProduct,
       final bool loading,
       final String errorMessage,
       final List<Product> bookmarkedList}) = _$ProductStateImpl;
@@ -340,6 +380,8 @@ abstract class _ProductState implements ProductState {
   List<Product> get historicProductList;
   @override
   List<Product> get searchProductList;
+  @override
+  Product? get selectedProduct;
   @override
   bool get loading;
   @override

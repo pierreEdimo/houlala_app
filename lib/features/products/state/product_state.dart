@@ -10,6 +10,7 @@ class ProductState with _$ProductState {
     @Default([]) List<Product> offerProductList,
     @Default([]) List<Product> historicProductList,
     @Default([]) List<Product> searchProductList,
+    @Default(null) Product? selectedProduct,
     @Default(false) bool loading,
     @Default('') String errorMessage,
     @Default([]) List<Product> bookmarkedList,
