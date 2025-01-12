@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/products/controllers/product_controller.dart';
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 
-class ListProductCard extends StatelessWidget {
+class ListProductCard extends ConsumerWidget {
   final VoidCallback? onAddToBasket;
   final Product? product;
 
@@ -16,10 +18,15 @@ class ListProductCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ProductController productController = ProductController(ref);
+
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed('/productDetail', arguments: product!.id!),
+      onTap: () {
+        productController.getSelectedProduct(product!.id!);
+        Navigator.of(context)
+            .pushNamed('/productDetail', arguments: product!.id!);
+      },
       child: SizedBox(
         height: 210,
         child: Card(
@@ -49,7 +56,8 @@ class ListProductCard extends StatelessWidget {
               Flexible(
                   flex: 3,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
