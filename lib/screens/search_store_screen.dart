@@ -7,6 +7,7 @@ import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/filter_button.dart';
 import 'package:houlala_app/shared_widgets/result_seller_card.dart';
+import 'package:houlala_app/shared_widgets/search_field.dart';
 
 import '../features/locals/controllers/locals_controller.dart';
 import '../features/locals/model/local_model.dart';
@@ -20,7 +21,6 @@ class SearchStoreScreen extends ConsumerWidget {
     SearchArgs searchArgs =
         ModalRoute.of(context)!.settings.arguments as SearchArgs;
     List<LocalModel> filteredLocals = sellersController.fllteredLocals;
-    final TextEditingController textEditingController = TextEditingController();
 
     bool isSearchSubmitted = ref.watch(searchStateNotifierProvider);
 
@@ -33,10 +33,9 @@ class SearchStoreScreen extends ConsumerWidget {
           },
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
-        title: TextFormField(
-          textInputAction: TextInputAction.search,
-          controller: textEditingController,
-          onFieldSubmitted: (value) {
+        title: SearchField(
+          placeholder: searchArgs.hinText,
+          onSubmitted: (value) {
             if (value.isNotEmpty) {
               if (searchArgs.productTypeId != null) {
                 sellersController.searchLocals(value,
@@ -51,18 +50,6 @@ class SearchStoreScreen extends ConsumerWidget {
               DoNothingAction();
             }
           },
-          decoration: InputDecoration(
-            hintText: searchArgs.hinText,
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.grey, width: 2),
-              borderRadius: radius,
-            ),
-            hintStyle: const TextStyle(color: Color(0xff000000)),
-            prefixIcon: const Icon(
-              Icons.search,
-              color: Color(0xff000000),
-            ),
-          ),
         ),
       ),
       body: !isSearchSubmitted
