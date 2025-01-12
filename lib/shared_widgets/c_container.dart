@@ -13,7 +13,7 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       if (errorMessage!.isNotEmpty) {
-        CustomToastNotification.showErrorAction(errorMessage!);
+        print(errorMessage);
       }
 
       if (loading != null && loading == true) {
