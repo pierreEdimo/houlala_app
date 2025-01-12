@@ -6,6 +6,10 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/register.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
+import 'package:houlala_app/shared_widgets/input_email.dart';
+import 'package:houlala_app/shared_widgets/input_password.dart';
+import 'package:houlala_app/shared_widgets/input_text.dart';
 
 class LogupScreen extends ConsumerStatefulWidget {
   const LogupScreen({super.key});
@@ -52,7 +56,6 @@ class _LogupScreenState extends ConsumerState<LogupScreen> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: horizontalPadding),
                     child: Column(
-                      spacing: verticalPadding,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
@@ -61,102 +64,61 @@ class _LogupScreenState extends ConsumerState<LogupScreen> {
                             height: 150,
                           ),
                         ),
-                        Column(
-                          spacing: 10,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            TextFormField(
-                              controller: emailController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
+                        CustomCard(
+                          child: Column(
+                            spacing: verticalPadding,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Column(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  InputEmail(
+                                    emailController: emailController,
                                   ),
-                                  labelText: "Email",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = emailController.text;
-                                if (value.isEmpty) {
-                                  return 'Inserer une adresse E-mail';
-                                } else if (!value.contains('@')) {
-                                  return 'Svp entrer une E-mail valide';
-                                }
-                                return null;
-                              },
-                            ),
-                            TextFormField(
-                              controller: userNameController,
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
+                                  InputText(
+                                    textEditingController: userNameController,
+                                    mustFill: true,
+                                    keyboardType: TextInputType.text,
+                                    infoMessage: "Inserez votre nom d'utilisateur",
+                                    placeholder: "Nom d'utilisateur",
                                   ),
-                                  labelText: "Nom d'utilisateur",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = userNameController.text;
-                                if (value.isEmpty) {
-                                  return "Inserer un nom d'utilisateur";
-                                }
-                                return null;
-                              },
-                            ),
-                            TextFormField(
-                              controller: passwordController,
-                              obscureText: true,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                    vertical: 11.0,
+                                  InputPassword(
+                                    passwordRex: specialCharRegex,
+                                    passwordController: passwordController,
                                   ),
-                                  labelText: "Mot de passe",
-                                  border: OutlineInputBorder()),
-                              validator: (value) {
-                                value = passwordController.text;
-                                if (value.isEmpty) {
-                                  return 'Inserer un Mot de passe';
-                                }
-                                if (value.length < 7) {
-                                  return 'votre mot de passe doit avoir minimum 7 caracteres';
-                                }
-                                if (!specialCharRegex.hasMatch(value)) {
-                                  return 'mot de passe invalide';
-                                }
-                                return null;
-                              },
-                            ),
-                          ],
+                                ],
+                              ),
+                              Column(
+                                spacing: 10,
+                                children: [
+                                  CustomButton(
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        if (kDebugMode) {
+                                          print('Hello');
+                                        }
+                                        register();
+                                      }
+                                    },
+                                    leadingIcon: HeroIcons.arrowRightEndOnRectangle,
+                                    color: Colors.orange,
+                                    title: 'Créer un compte',
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Text('Vous avez un compte?'),
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pop(),
+                                        child: const Text('Se Connecter'),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                        Column(
-                          spacing: 10,
-                          children: [
-                            CustomButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  if (kDebugMode) {
-                                    print('Hello');
-                                  }
-                                  register();
-                                }
-                              },
-                              leadingIcon: HeroIcons.arrowRightEndOnRectangle,
-                              color: Colors.orange,
-                              title: 'Créer un compte',
-                            ),
-                            Row(
-                              children: [
-                                const Text('Vous avez un compte?'),
-                                TextButton(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  child: const Text('Se Connecter'),
-                                )
-                              ],
-                            )
-                          ],
-                        )
                       ],
                     ),
                   ),
