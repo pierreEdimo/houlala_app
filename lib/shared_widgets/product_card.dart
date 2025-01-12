@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houlala_app/features/products/controllers/product_controller.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 import '../features/products/model/product.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends ConsumerWidget {
   final Product? product;
 
   const ProductCard({
@@ -11,10 +14,14 @@ class ProductCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ProductController productController = ProductController(ref);
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed('/productDetail', arguments: product!.id!),
+      onTap: () {
+        productController.getSelectedProduct(product!.id!);
+        Navigator.of(context)
+            .pushNamed('/productDetail', arguments: product!.id!);
+      },
       child: Card(
         elevation: 0,
         color: Colors.transparent,
@@ -22,9 +29,8 @@ class ProductCard extends StatelessWidget {
           spacing: 5,
           children: [
             Expanded(
-              child: Card(
-                color: Colors.white,
-                elevation: 3,
+              child: CustomCard(
+                padding: EdgeInsets.zero,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
