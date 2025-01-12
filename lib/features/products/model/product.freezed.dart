@@ -34,6 +34,7 @@ mixin _$Product {
   CategoryModel? get category => throw _privateConstructorUsedError;
   ProductType? get productType => throw _privateConstructorUsedError;
   LocalModel? get local => throw _privateConstructorUsedError;
+  bool? get isFavorite => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +64,8 @@ abstract class $ProductCopyWith<$Res> {
       DateTime? availableDate,
       CategoryModel? category,
       ProductType? productType,
-      LocalModel? local});
+      LocalModel? local,
+      bool? isFavorite});
 
   $CategoryModelCopyWith<$Res>? get category;
   $ProductTypeCopyWith<$Res>? get productType;
@@ -99,6 +101,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? category = freezed,
     Object? productType = freezed,
     Object? local = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -157,6 +160,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.local
           : local // ignore: cast_nullable_to_non_nullable
               as LocalModel?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -224,7 +231,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       DateTime? availableDate,
       CategoryModel? category,
       ProductType? productType,
-      LocalModel? local});
+      LocalModel? local,
+      bool? isFavorite});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -261,6 +269,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? category = freezed,
     Object? productType = freezed,
     Object? local = freezed,
+    Object? isFavorite = freezed,
   }) {
     return _then(_$ProductImpl(
       id: freezed == id
@@ -319,6 +328,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.local
           : local // ignore: cast_nullable_to_non_nullable
               as LocalModel?,
+      isFavorite: freezed == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -340,7 +353,8 @@ class _$ProductImpl implements _Product {
       this.availableDate,
       this.category,
       this.productType,
-      this.local})
+      this.local,
+      this.isFavorite = false})
       : _images = images;
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -384,10 +398,13 @@ class _$ProductImpl implements _Product {
   final ProductType? productType;
   @override
   final LocalModel? local;
+  @override
+  @JsonKey()
+  final bool? isFavorite;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local)';
+    return 'Product(id: $id, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local, isFavorite: $isFavorite)';
   }
 
   @override
@@ -418,7 +435,9 @@ class _$ProductImpl implements _Product {
                 other.category == category) &&
             (identical(other.productType, productType) ||
                 other.productType == productType) &&
-            (identical(other.local, local) || other.local == local));
+            (identical(other.local, local) || other.local == local) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -438,7 +457,8 @@ class _$ProductImpl implements _Product {
       availableDate,
       category,
       productType,
-      local);
+      local,
+      isFavorite);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -471,7 +491,8 @@ abstract class _Product implements Product {
       final DateTime? availableDate,
       final CategoryModel? category,
       final ProductType? productType,
-      final LocalModel? local}) = _$ProductImpl;
+      final LocalModel? local,
+      final bool? isFavorite}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -503,6 +524,8 @@ abstract class _Product implements Product {
   ProductType? get productType;
   @override
   LocalModel? get local;
+  @override
+  bool? get isFavorite;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
