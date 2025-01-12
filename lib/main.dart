@@ -30,12 +30,14 @@ import 'package:houlala_app/screens/store_detail_screen.dart';
 import 'package:houlala_app/screens/store_type_detail_screen.dart';
 import 'package:houlala_app/screens/product_type_detail_screen.dart';
 import 'package:sizer/sizer.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:toastification/toastification.dart';
 
 const storage = FlutterSecureStorage();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
+  initializeDateFormatting('fr_FR', null);
   await dotenv.load(fileName: '.env');
   runApp(const ProviderScope(child: MyApp()));
 
