@@ -11,8 +11,28 @@ class ProductController {
     return ref!.watch(productStateNotifierProvider).productList;
   }
 
+  List<Product> get favoriteProductList {
+    return ref!.watch(productStateNotifierProvider).bookmarkedList;
+  }
+
   List<Product> getProductByCategoryId(int cid) {
     return productList.where((product) => product.category!.id == cid).toList();
+  }
+
+  void getSelectedProduct(int id) {
+    ref!.read(productStateNotifierProvider.notifier).fetchSelectedProduct(id);
+  }
+
+  Product? get selectedProduct {
+    return ref!.watch(productStateNotifierProvider).selectedProduct;
+  }
+
+  void addProductToFavorite(int id){
+    ref!.read(productStateNotifierProvider.notifier).addProductToFavorite(id);
+  }
+
+  void removeProductFromFavorite(int id) {
+    ref!.read(productStateNotifierProvider.notifier).removeProductFromFavorite(id);
   }
 
   List<Product> getTopSellingProductsByLocalId(int localId) {
