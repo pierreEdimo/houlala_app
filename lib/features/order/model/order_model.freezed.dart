@@ -26,6 +26,9 @@ mixin _$OrderModel {
   int? get totalQuantity => throw _privateConstructorUsedError;
   double? get totalPrice => throw _privateConstructorUsedError;
   List<CartItem>? get cartItems => throw _privateConstructorUsedError;
+  String? get deliveryStatus => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +52,10 @@ abstract class $OrderModelCopyWith<$Res> {
       LocalModel? local,
       int? totalQuantity,
       double? totalPrice,
-      List<CartItem>? cartItems});
+      List<CartItem>? cartItems,
+      String? deliveryStatus,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   $UserModelCopyWith<$Res>? get user;
   $LocalModelCopyWith<$Res>? get local;
@@ -76,6 +82,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? totalQuantity = freezed,
     Object? totalPrice = freezed,
     Object? cartItems = freezed,
+    Object? deliveryStatus = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -102,6 +111,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
               as List<CartItem>?,
+      deliveryStatus: freezed == deliveryStatus
+          ? _value.deliveryStatus
+          : deliveryStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -148,7 +169,10 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       LocalModel? local,
       int? totalQuantity,
       double? totalPrice,
-      List<CartItem>? cartItems});
+      List<CartItem>? cartItems,
+      String? deliveryStatus,
+      DateTime? createdAt,
+      DateTime? updatedAt});
 
   @override
   $UserModelCopyWith<$Res>? get user;
@@ -175,6 +199,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? totalQuantity = freezed,
     Object? totalPrice = freezed,
     Object? cartItems = freezed,
+    Object? deliveryStatus = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$OrderModelImpl(
       id: freezed == id
@@ -201,6 +228,18 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value._cartItems
           : cartItems // ignore: cast_nullable_to_non_nullable
               as List<CartItem>?,
+      deliveryStatus: freezed == deliveryStatus
+          ? _value.deliveryStatus
+          : deliveryStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -214,7 +253,10 @@ class _$OrderModelImpl implements _OrderModel {
       this.local,
       this.totalQuantity,
       this.totalPrice,
-      final List<CartItem>? cartItems})
+      final List<CartItem>? cartItems,
+      this.deliveryStatus,
+      this.createdAt,
+      this.updatedAt})
       : _cartItems = cartItems;
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -241,8 +283,15 @@ class _$OrderModelImpl implements _OrderModel {
   }
 
   @override
+  final String? deliveryStatus;
+  @override
+  final DateTime? createdAt;
+  @override
+  final DateTime? updatedAt;
+
+  @override
   String toString() {
-    return 'OrderModel(id: $id, user: $user, local: $local, totalQuantity: $totalQuantity, totalPrice: $totalPrice, cartItems: $cartItems)';
+    return 'OrderModel(id: $id, user: $user, local: $local, totalQuantity: $totalQuantity, totalPrice: $totalPrice, cartItems: $cartItems, deliveryStatus: $deliveryStatus, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -258,13 +307,28 @@ class _$OrderModelImpl implements _OrderModel {
             (identical(other.totalPrice, totalPrice) ||
                 other.totalPrice == totalPrice) &&
             const DeepCollectionEquality()
-                .equals(other._cartItems, _cartItems));
+                .equals(other._cartItems, _cartItems) &&
+            (identical(other.deliveryStatus, deliveryStatus) ||
+                other.deliveryStatus == deliveryStatus) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, user, local, totalQuantity,
-      totalPrice, const DeepCollectionEquality().hash(_cartItems));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      user,
+      local,
+      totalQuantity,
+      totalPrice,
+      const DeepCollectionEquality().hash(_cartItems),
+      deliveryStatus,
+      createdAt,
+      updatedAt);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -289,7 +353,10 @@ abstract class _OrderModel implements OrderModel {
       final LocalModel? local,
       final int? totalQuantity,
       final double? totalPrice,
-      final List<CartItem>? cartItems}) = _$OrderModelImpl;
+      final List<CartItem>? cartItems,
+      final String? deliveryStatus,
+      final DateTime? createdAt,
+      final DateTime? updatedAt}) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$OrderModelImpl.fromJson;
@@ -306,6 +373,12 @@ abstract class _OrderModel implements OrderModel {
   double? get totalPrice;
   @override
   List<CartItem>? get cartItems;
+  @override
+  String? get deliveryStatus;
+  @override
+  DateTime? get createdAt;
+  @override
+  DateTime? get updatedAt;
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
