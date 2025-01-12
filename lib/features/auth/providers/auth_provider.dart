@@ -29,33 +29,33 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> login(Login login) async {
-    try {
-      Response response = await authRepository.login(login);
-      if (response.statusCode == HttpStatus.ok) {
-        UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
-        TokenHelper.saveToken(userToken.token!);
-        checkAndSetConnectedUser(userToken: userToken.token);
-        navigatorKey.currentState!.pushReplacementNamed('/');
-      }
-    } catch (exception) {
+    final Response response = await authRepository.login(login);
+    if (response.statusCode == HttpStatus.ok) {
+      UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
+      TokenHelper.saveToken(userToken.token!);
+      checkAndSetConnectedUser(userToken: userToken.token);
+      navigatorKey.currentState!.pushReplacementNamed('/');
+    } else {
       if (kDebugMode) {
-        print(exception);
+        print(response.body);
       }
+      CustomToastNotification.showErrorAction(
+          "Erreur lors la connexion a votre compte. Veuillez réessayer plus tard.");
     }
   }
 
   Future<void> register(Register register) async {
-    try {
-      Response response = await authRepository.register(register);
-      if (response.statusCode == HttpStatus.ok) {
-        UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
-        TokenHelper.saveToken(userToken.token!);
-        checkAndSetConnectedUser(userToken: userToken.token);
-        navigatorKey.currentState!.pushReplacementNamed('/');
-      }
-    } catch (exception) {
+    Response response = await authRepository.register(register);
+    if (response.statusCode == HttpStatus.ok) {
+      UserToken userToken = UserToken.fromJson(jsonDecode(response.body));
+      TokenHelper.saveToken(userToken.token!);
+      checkAndSetConnectedUser(userToken: userToken.token);
+      navigatorKey.currentState!.pushReplacementNamed('/');
+    } else {
       if (kDebugMode) {
-        print(exception);
+        print(response.body);
+        CustomToastNotification.showErrorAction(
+            "Erreur lors la creation de votre compte. Veuillez réessayer plus tard.");
       }
     }
   }
