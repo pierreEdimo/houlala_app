@@ -45,38 +45,14 @@ class LoggedInScreen extends ConsumerWidget {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: horizontalPadding,
-                        right: horizontalPadding,
-                        top: verticalPadding,
-                        bottom: 110),
+                      left: horizontalPadding,
+                      right: horizontalPadding,
+                      top: verticalPadding,
+                      bottom: 110,
+                    ),
                     child: Column(
                       spacing: verticalPadding,
                       children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: Row(
-                                spacing: 10,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage('images/user.png'),
-                                    radius: 13,
-                                  ),
-                                  Text(
-                                    '${connectedUser.userName}',
-                                    style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
                         GridView.count(
                           shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
