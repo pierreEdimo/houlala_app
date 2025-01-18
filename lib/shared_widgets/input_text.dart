@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houlala_app/helpers/constants.dart';
 
 class InputText extends StatelessWidget {
   final String? placeholder;
@@ -22,10 +23,7 @@ class InputText extends StatelessWidget {
       controller: textEditingController,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 11,
-        ),
+        contentPadding: inputPadding,
         labelText: placeholder,
         border: const OutlineInputBorder(),
       ),

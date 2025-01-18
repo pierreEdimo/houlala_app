@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houlala_app/helpers/constants.dart';
 
 class TotalCartItem extends StatelessWidget {
   final int? totalQuantity;
@@ -15,7 +16,7 @@ class TotalCartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      spacing: 20,
+      spacing: horizontalPadding,
       children: [
         RichText(
           text: TextSpan(

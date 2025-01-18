@@ -91,9 +91,8 @@ class CartItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      color: Colors.white,
+    return CustomCard(
+      padding: EdgeInsets.zero,
       child: SizedBox(
         height: 170,
         child: Row(

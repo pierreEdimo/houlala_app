@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/constants.dart';
+
 class InputPassword extends StatelessWidget {
   final TextEditingController? passwordController;
   final RegExp? passwordRex;
@@ -16,13 +18,10 @@ class InputPassword extends StatelessWidget {
       controller: passwordController,
       obscureText: true,
       keyboardType: TextInputType.visiblePassword,
-      decoration: const InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 8.0,
-            vertical: 11.0,
-          ),
+      decoration: InputDecoration(
+          contentPadding: inputPadding,
           labelText: "Mot de passe",
-          border: OutlineInputBorder()),
+          border: const OutlineInputBorder()),
       validator: (value) {
         value = passwordController!.text;
         if (value.isEmpty) {

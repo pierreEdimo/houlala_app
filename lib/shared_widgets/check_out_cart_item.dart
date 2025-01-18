@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
 import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
@@ -24,9 +25,8 @@ class CheckOutCartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      color: Colors.transparent,
+    return CustomCard(
+      padding: EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -58,14 +58,13 @@ class CheckOutCartItem extends StatelessWidget {
               )
             ],
           ),
-          ListView(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            padding: EdgeInsets.zero,
+          Column(
             children: mappedCartItem!.cartItems!
-                .map((cartItem) => ProductItemCard(
-                      item: cartItem,
-                    ))
+                .map(
+                  (cartItem) => ProductItemCard(
+                    item: cartItem,
+                  ),
+                )
                 .toList(),
           ),
           TotalCartItem(

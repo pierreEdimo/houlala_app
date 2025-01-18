@@ -6,6 +6,7 @@ import 'package:houlala_app/features/products/controllers/product_controller.dar
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class ListProductCard extends ConsumerWidget {
   final VoidCallback? onAddToBasket;
@@ -29,17 +30,15 @@ class ListProductCard extends ConsumerWidget {
       },
       child: SizedBox(
         height: 210,
-        child: Card(
-          color: Colors.white,
-          elevation: 0,
+        child: CustomCard(
+          padding: EdgeInsets.zero,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 flex: 2,
-                child: Card(
-                  color: Colors.white,
-                  elevation: 2,
+                child: CustomCard(
+                  padding: EdgeInsets.zero,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: radius,

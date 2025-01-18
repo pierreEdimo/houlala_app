@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class CardTile extends StatelessWidget {
   final Widget? title;
@@ -17,24 +18,16 @@ class CardTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Card(
-        elevation: 0,
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.grey.shade200), 
-          borderRadius: BorderRadius.circular(8)
+      child: CustomCard(
+        padding: const EdgeInsets.symmetric(horizontal: 11),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            title ?? Container(),
+            suffixIcon ?? Container()
+          ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 11.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              title ?? Container(),
-              suffixIcon ?? Container()
-            ],
-          ),
-        ),
-      ),
+      )
     );
   }
 }
