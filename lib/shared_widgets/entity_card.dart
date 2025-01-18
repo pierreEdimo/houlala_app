@@ -30,7 +30,7 @@ class EntityCard extends StatelessWidget {
           ),
           Text(
             entity!.title!,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
