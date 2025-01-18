@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/app_menu/model/app_menu.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class EntityCard extends StatelessWidget {
   final AppMenu? entity;
@@ -18,9 +19,7 @@ class EntityCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Card(
-              elevation: 0,
-              color: Colors.white,
+            child: CustomCard(
               child: Center(
                 child: Image.asset(
                   'images/user-menu/${entity!.thumbnail}',
