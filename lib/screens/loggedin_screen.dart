@@ -56,20 +56,23 @@ class LoggedInScreen extends ConsumerWidget {
                           children: [
                             GestureDetector(
                               onTap: () {},
-                              child: CustomCard(
-                                child: Row(
-                                  spacing: 10,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const CircleAvatar(
-                                      backgroundImage:
-                                      AssetImage('images/user.png'),
-                                      radius: 13,
+                              child: Row(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('images/user.png'),
+                                    radius: 13,
+                                  ),
+                                  Text(
+                                    '${connectedUser.userName}',
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold
                                     ),
-                                    Text('${connectedUser.userName}')
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
                             )
                           ],
