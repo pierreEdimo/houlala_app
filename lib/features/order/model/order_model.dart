@@ -3,6 +3,8 @@ import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
 
+import '../../address/model/address.dart';
+
 part 'order_model.freezed.dart';
 part 'order_model.g.dart';
 
@@ -18,6 +20,7 @@ class OrderModel with _$OrderModel {
     String? deliveryStatus,
     DateTime? createdAt,
     DateTime? updatedAt,
+    Address? address,
 }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);

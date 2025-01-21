@@ -39,96 +39,92 @@ class LoggedInScreen extends ConsumerWidget {
         loading: authController.loading,
         errorMessage: authController.errorMessage,
         child: connectedUser != null
-            ? CustomContainer(
-                loading: false,
-                errorMessage: errorMessage,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: horizontalPadding,
-                      right: horizontalPadding,
-                      top: verticalPadding,
-                      bottom: 110,
-                    ),
-                    child: Column(
-                      spacing: verticalPadding,
-                      children: [
-                        GridView.count(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          crossAxisCount: 3,
-                          mainAxisSpacing: 23,
-                          crossAxisSpacing: 23,
-                          childAspectRatio: 1 / 1.1,
-                          children: entities
-                              .map(
-                                (entity) => EntityCard(
-                                  entity: entity,
-                                ),
-                              )
-                              .toList(),
-                        ),
-                        GridView.count(
-                          crossAxisCount: 1,
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          childAspectRatio: 6,
-                          children: [
-                            CardTile(
-                              onTap: () => logout(ref),
-                              title: Text(
-                                'Se Deconnecter',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              suffixIcon: const HeroIcon(
-                                HeroIcons.chevronRight,
-                              ),
-                            ),
-                            CardTile(
-                              onTap: () {},
-                              title: Text(
-                                'Contactez nous',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              suffixIcon: const HeroIcon(
-                                HeroIcons.chevronRight,
-                              ),
-                            ),
-                            CardTile(
-                              onTap: () {},
-                              title: Text(
-                                'Condition de Confidentialité',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              suffixIcon: const HeroIcon(
-                                HeroIcons.chevronRight,
-                              ),
-                            ),
-                            CardTile(
-                              onTap: () {},
-                              title: Text(
-                                'Impressum',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              suffixIcon: const HeroIcon(
-                                HeroIcons.chevronRight,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+            ? SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: horizontalPadding,
+                  right: horizontalPadding,
+                  top: verticalPadding,
+                  bottom: 110,
                 ),
-              )
+                child: Column(
+                  spacing: verticalPadding,
+                  children: [
+                    GridView.count(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 23,
+                      crossAxisSpacing: 8,
+                      childAspectRatio: 1 / 0.7,
+                      children: entities
+                          .map(
+                            (entity) => EntityCard(
+                              entity: entity,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    GridView.count(
+                      crossAxisCount: 1,
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      childAspectRatio: 6,
+                      children: [
+                        CardTile(
+                          onTap: () => logout(ref),
+                          title: Text(
+                            'Se Deconnecter',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          suffixIcon: const HeroIcon(
+                            HeroIcons.chevronRight,
+                          ),
+                        ),
+                        CardTile(
+                          onTap: () {},
+                          title: Text(
+                            'Contactez nous',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          suffixIcon: const HeroIcon(
+                            HeroIcons.chevronRight,
+                          ),
+                        ),
+                        CardTile(
+                          onTap: () {},
+                          title: Text(
+                            'Condition de Confidentialité',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          suffixIcon: const HeroIcon(
+                            HeroIcons.chevronRight,
+                          ),
+                        ),
+                        CardTile(
+                          onTap: () {},
+                          title: Text(
+                            'Impressum',
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          suffixIcon: const HeroIcon(
+                            HeroIcons.chevronRight,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
             : Container(),
       ),
     );

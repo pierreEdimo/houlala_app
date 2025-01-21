@@ -29,6 +29,7 @@ mixin _$OrderModel {
   String? get deliveryStatus => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  Address? get address => throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,10 +56,12 @@ abstract class $OrderModelCopyWith<$Res> {
       List<CartItem>? cartItems,
       String? deliveryStatus,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      Address? address});
 
   $UserModelCopyWith<$Res>? get user;
   $LocalModelCopyWith<$Res>? get local;
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -85,6 +88,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? deliveryStatus = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -123,6 +127,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ) as $Val);
   }
 
@@ -153,6 +161,20 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       return _then(_value.copyWith(local: value) as $Val);
     });
   }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -172,12 +194,15 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       List<CartItem>? cartItems,
       String? deliveryStatus,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      Address? address});
 
   @override
   $UserModelCopyWith<$Res>? get user;
   @override
   $LocalModelCopyWith<$Res>? get local;
+  @override
+  $AddressCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -202,6 +227,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? deliveryStatus = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? address = freezed,
   }) {
     return _then(_$OrderModelImpl(
       id: freezed == id
@@ -240,6 +266,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ));
   }
 }
@@ -256,7 +286,8 @@ class _$OrderModelImpl implements _OrderModel {
       final List<CartItem>? cartItems,
       this.deliveryStatus,
       this.createdAt,
-      this.updatedAt})
+      this.updatedAt,
+      this.address})
       : _cartItems = cartItems;
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -288,10 +319,12 @@ class _$OrderModelImpl implements _OrderModel {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  @override
+  final Address? address;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, user: $user, local: $local, totalQuantity: $totalQuantity, totalPrice: $totalPrice, cartItems: $cartItems, deliveryStatus: $deliveryStatus, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'OrderModel(id: $id, user: $user, local: $local, totalQuantity: $totalQuantity, totalPrice: $totalPrice, cartItems: $cartItems, deliveryStatus: $deliveryStatus, createdAt: $createdAt, updatedAt: $updatedAt, address: $address)';
   }
 
   @override
@@ -313,7 +346,8 @@ class _$OrderModelImpl implements _OrderModel {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.address, address) || other.address == address));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -328,7 +362,8 @@ class _$OrderModelImpl implements _OrderModel {
       const DeepCollectionEquality().hash(_cartItems),
       deliveryStatus,
       createdAt,
-      updatedAt);
+      updatedAt,
+      address);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -356,7 +391,8 @@ abstract class _OrderModel implements OrderModel {
       final List<CartItem>? cartItems,
       final String? deliveryStatus,
       final DateTime? createdAt,
-      final DateTime? updatedAt}) = _$OrderModelImpl;
+      final DateTime? updatedAt,
+      final Address? address}) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$OrderModelImpl.fromJson;
@@ -379,6 +415,8 @@ abstract class _OrderModel implements OrderModel {
   DateTime? get createdAt;
   @override
   DateTime? get updatedAt;
+  @override
+  Address? get address;
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.

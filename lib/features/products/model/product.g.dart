@@ -35,7 +35,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       local: json['local'] == null
           ? null
           : LocalModel.fromJson(json['local'] as Map<String, dynamic>),
-      isFavorite: json['isFavorite'] as bool? ?? false,
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>

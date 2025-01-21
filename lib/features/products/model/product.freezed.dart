@@ -354,7 +354,7 @@ class _$ProductImpl implements _Product {
       this.category,
       this.productType,
       this.local,
-      this.isFavorite = false})
+      this.isFavorite})
       : _images = images;
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -399,7 +399,6 @@ class _$ProductImpl implements _Product {
   @override
   final LocalModel? local;
   @override
-  @JsonKey()
   final bool? isFavorite;
 
   @override

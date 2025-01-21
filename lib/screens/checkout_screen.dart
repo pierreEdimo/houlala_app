@@ -18,6 +18,7 @@ import 'package:houlala_app/shared_widgets/ItemTotalCard.dart';
 import 'package:houlala_app/shared_widgets/address_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
+import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/check_out_cart_item.dart';
 import 'package:houlala_app/shared_widgets/payment_button.dart';
 import 'package:houlala_app/shared_widgets/user_info_card.dart';
@@ -35,6 +36,7 @@ class CheckoutScreen extends ConsumerWidget {
     Address? selectedAddress = addressController.getDeliveryAddress(1);
     List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     UserModel? connectedUser = authController.connectedUser;
+    bool? loading = orderController.loading;
 
     void confirmPayment() {
       if (!authController.hasUserInfo && !addressController.hasAddress) {
@@ -46,6 +48,7 @@ class CheckoutScreen extends ConsumerWidget {
               user: connectedUser,
               cartItems: mappedCartItem.cartItems,
               local: mappedCartItem.local,
+              address: selectedAddress,
               totalPrice:
                   ItemCalculations.getTotalPrice(mappedCartItem.cartItems!),
               totalQuantity:
@@ -53,12 +56,13 @@ class CheckoutScreen extends ConsumerWidget {
 
           try {
             orderController.placeOrder(order);
-            cartController.emptiesTheCartAfterOrder();
           } catch (e) {
             if (kDebugMode) {
               print(e);
             }
+            rethrow;
           }
+          cartController.emptiesTheCartAfterOrder();
         }
       }
     }
@@ -74,47 +78,51 @@ class CheckoutScreen extends ConsumerWidget {
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 22),
         ),
       ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: stackDefaultPadding,
-              child: Column(
-                spacing: verticalPadding,
-                children: [
-                  UserInfoCard(
-                    hasUserInfo: authController.hasUserInfo,
-                    userModel: connectedUser,
-                  ),
-                  AddressCard(
-                    loading: addressController.loading,
-                    hasAddress: addressController.hasAddress,
-                    selectedAddress: selectedAddress,
-                  ),
-                  CustomCard(
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      children: mappedCartItems
-                          .map(
-                            (item) => CheckOutCartItem(
-                              mappedCartItem: item,
-                            ),
-                          )
-                          .toList(),
+      body: CustomContainer(
+        loading: loading,
+        errorMessage: orderController.errorMessage,
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: stackDefaultPadding,
+                child: Column(
+                  spacing: verticalPadding,
+                  children: [
+                    UserInfoCard(
+                      hasUserInfo: authController.hasUserInfo,
+                      userModel: connectedUser,
                     ),
-                  ),
-                  ItemTotalCart(
-                    mappedCartItems: mappedCartItems,
-                  )
-                ],
+                    AddressCard(
+                      loading: addressController.loading,
+                      hasAddress: addressController.hasAddress,
+                      selectedAddress: selectedAddress,
+                    ),
+                    CustomCard(
+                      child: ListView(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        children: mappedCartItems
+                            .map(
+                              (item) => CheckOutCartItem(
+                                mappedCartItem: item,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                    ItemTotalCart(
+                      mappedCartItems: mappedCartItems,
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          PaymentButton(
-            onPressed: () => confirmPayment(),
-          )
-        ],
+            PaymentButton(
+              onPressed: () => confirmPayment(),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -36,6 +36,7 @@ final class OrderStateNotifier extends StateNotifier<OrderState> {
     } else {
       CustomToastNotification.showErrorAction(
           "Erreur lors de l'envoie de vos commandes");
+      state = state.copyWith(loading: false);
       throw 'error';
     }
     state = state.copyWith(loading: false);
