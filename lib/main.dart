@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houlala_app/screens/address_screen.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
 import 'package:houlala_app/screens/cart_screen.dart';
 import 'package:houlala_app/screens/category_detail_screen.dart';
@@ -96,6 +97,7 @@ class MyApp extends StatelessWidget {
             '/myFavorite': (context) => const MyFavoritesScreen(),
             '/myList': (context) => const MyListsScreen(),
             '/myMessage': (context) => const MyMessagesScreen(),
+            '/myAddresses': (context) => const AddressScreen(),
             '/subStoreCategoryDetail': (context) =>
                 const StoreTypeDetailScreen(),
           },
