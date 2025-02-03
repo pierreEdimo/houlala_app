@@ -7,6 +7,8 @@ part 'address.g.dart';
 class Address with _$Address {
   factory Address({
     int? id,
+    String? lastName,
+    String? firstName,
     String? street,
     String? country,
     String? poBox,
