@@ -26,6 +26,7 @@ mixin _$UserModel {
   String? get lastName => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
+  int? get deliveryAddressId => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? userName,
       String? lastName,
       String? firstName,
-      String? phoneNumber});
+      String? phoneNumber,
+      int? deliveryAddressId});
 }
 
 /// @nodoc
@@ -72,6 +74,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lastName = freezed,
     Object? firstName = freezed,
     Object? phoneNumber = freezed,
+    Object? deliveryAddressId = freezed,
   }) {
     return _then(_value.copyWith(
       email: freezed == email
@@ -98,6 +101,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      deliveryAddressId: freezed == deliveryAddressId
+          ? _value.deliveryAddressId
+          : deliveryAddressId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -116,7 +123,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? userName,
       String? lastName,
       String? firstName,
-      String? phoneNumber});
+      String? phoneNumber,
+      int? deliveryAddressId});
 }
 
 /// @nodoc
@@ -138,6 +146,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lastName = freezed,
     Object? firstName = freezed,
     Object? phoneNumber = freezed,
+    Object? deliveryAddressId = freezed,
   }) {
     return _then(_$UserModelImpl(
       email: freezed == email
@@ -164,6 +173,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      deliveryAddressId: freezed == deliveryAddressId
+          ? _value.deliveryAddressId
+          : deliveryAddressId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -177,7 +190,8 @@ class _$UserModelImpl implements _UserModel {
       this.userName,
       this.lastName,
       this.firstName,
-      this.phoneNumber});
+      this.phoneNumber,
+      this.deliveryAddressId});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -194,10 +208,12 @@ class _$UserModelImpl implements _UserModel {
   final String? firstName;
   @override
   final String? phoneNumber;
+  @override
+  final int? deliveryAddressId;
 
   @override
   String toString() {
-    return 'UserModel(email: $email, id: $id, userName: $userName, lastName: $lastName, firstName: $firstName, phoneNumber: $phoneNumber)';
+    return 'UserModel(email: $email, id: $id, userName: $userName, lastName: $lastName, firstName: $firstName, phoneNumber: $phoneNumber, deliveryAddressId: $deliveryAddressId)';
   }
 
   @override
@@ -214,13 +230,15 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.deliveryAddressId, deliveryAddressId) ||
+                other.deliveryAddressId == deliveryAddressId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, id, userName, lastName, firstName, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, email, id, userName, lastName,
+      firstName, phoneNumber, deliveryAddressId);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -245,7 +263,8 @@ abstract class _UserModel implements UserModel {
       final String? userName,
       final String? lastName,
       final String? firstName,
-      final String? phoneNumber}) = _$UserModelImpl;
+      final String? phoneNumber,
+      final int? deliveryAddressId}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -262,6 +281,8 @@ abstract class _UserModel implements UserModel {
   String? get firstName;
   @override
   String? get phoneNumber;
+  @override
+  int? get deliveryAddressId;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
