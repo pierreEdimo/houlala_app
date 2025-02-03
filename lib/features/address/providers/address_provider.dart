@@ -65,11 +65,15 @@ final class AddressStateNotifier extends StateNotifier<AddressState> {
         for (Address existingAddress in List.from(state.addressList))
           if (existingAddress.id == id)
             existingAddress.copyWith(
+                firstName: address.firstName,
+                lastName: address.lastName,
                 street: address.street,
                 houseNumber: address.houseNumber,
                 city: address.city,
                 country: address.country,
                 poBox: address.poBox)
+          else
+            existingAddress
       ];
       state = state.copyWith(addressList: updatedAddressList);
       navigatorKey.currentState!.pop();
