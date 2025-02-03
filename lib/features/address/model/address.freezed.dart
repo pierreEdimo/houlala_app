@@ -21,6 +21,8 @@ Address _$AddressFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Address {
   int? get id => throw _privateConstructorUsedError;
+  String? get lastName => throw _privateConstructorUsedError;
+  String? get firstName => throw _privateConstructorUsedError;
   String? get street => throw _privateConstructorUsedError;
   String? get country => throw _privateConstructorUsedError;
   String? get poBox => throw _privateConstructorUsedError;
@@ -43,6 +45,8 @@ abstract class $AddressCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      String? lastName,
+      String? firstName,
       String? street,
       String? country,
       String? poBox,
@@ -66,6 +70,8 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
   @override
   $Res call({
     Object? id = freezed,
+    Object? lastName = freezed,
+    Object? firstName = freezed,
     Object? street = freezed,
     Object? country = freezed,
     Object? poBox = freezed,
@@ -77,6 +83,14 @@ class _$AddressCopyWithImpl<$Res, $Val extends Address>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
       street: freezed == street
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
@@ -110,6 +124,8 @@ abstract class _$$AddressImplCopyWith<$Res> implements $AddressCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      String? lastName,
+      String? firstName,
       String? street,
       String? country,
       String? poBox,
@@ -131,6 +147,8 @@ class __$$AddressImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? lastName = freezed,
+    Object? firstName = freezed,
     Object? street = freezed,
     Object? country = freezed,
     Object? poBox = freezed,
@@ -142,6 +160,14 @@ class __$$AddressImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastName: freezed == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstName: freezed == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String?,
       street: freezed == street
           ? _value.street
           : street // ignore: cast_nullable_to_non_nullable
@@ -171,6 +197,8 @@ class __$$AddressImplCopyWithImpl<$Res>
 class _$AddressImpl implements _Address {
   _$AddressImpl(
       {this.id,
+      this.lastName,
+      this.firstName,
       this.street,
       this.country,
       this.poBox,
@@ -182,6 +210,10 @@ class _$AddressImpl implements _Address {
 
   @override
   final int? id;
+  @override
+  final String? lastName;
+  @override
+  final String? firstName;
   @override
   final String? street;
   @override
@@ -195,7 +227,7 @@ class _$AddressImpl implements _Address {
 
   @override
   String toString() {
-    return 'Address(id: $id, street: $street, country: $country, poBox: $poBox, city: $city, houseNumber: $houseNumber)';
+    return 'Address(id: $id, lastName: $lastName, firstName: $firstName, street: $street, country: $country, poBox: $poBox, city: $city, houseNumber: $houseNumber)';
   }
 
   @override
@@ -204,6 +236,10 @@ class _$AddressImpl implements _Address {
         (other.runtimeType == runtimeType &&
             other is _$AddressImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
             (identical(other.street, street) || other.street == street) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.poBox, poBox) || other.poBox == poBox) &&
@@ -214,8 +250,8 @@ class _$AddressImpl implements _Address {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, street, country, poBox, city, houseNumber);
+  int get hashCode => Object.hash(runtimeType, id, lastName, firstName, street,
+      country, poBox, city, houseNumber);
 
   /// Create a copy of Address
   /// with the given fields replaced by the non-null parameter values.
@@ -236,6 +272,8 @@ class _$AddressImpl implements _Address {
 abstract class _Address implements Address {
   factory _Address(
       {final int? id,
+      final String? lastName,
+      final String? firstName,
       final String? street,
       final String? country,
       final String? poBox,
@@ -246,6 +284,10 @@ abstract class _Address implements Address {
 
   @override
   int? get id;
+  @override
+  String? get lastName;
+  @override
+  String? get firstName;
   @override
   String? get street;
   @override
