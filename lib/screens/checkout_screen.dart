@@ -15,7 +15,7 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:houlala_app/shared_widgets/ItemTotalCard.dart';
-import 'package:houlala_app/shared_widgets/address_card.dart';
+import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
@@ -33,9 +33,9 @@ class CheckoutScreen extends ConsumerWidget {
     AuthController authController = AuthController(ref);
     OrderController orderController = OrderController(ref);
 
-    Address? selectedAddress = addressController.getDeliveryAddress(1);
-    List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     UserModel? connectedUser = authController.connectedUser;
+    Address? selectedAddress = addressController.getDeliveryAddress(connectedUser!.deliveryAddressId!);
+    List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     bool? loading = orderController.loading;
 
     void confirmPayment() {
@@ -93,7 +93,7 @@ class CheckoutScreen extends ConsumerWidget {
                       hasUserInfo: authController.hasUserInfo,
                       userModel: connectedUser,
                     ),
-                    AddressCard(
+                    AddressInfoCard(
                       loading: addressController.loading,
                       hasAddress: addressController.hasAddress,
                       selectedAddress: selectedAddress,
