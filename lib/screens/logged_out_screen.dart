@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 
-import '../shared_widgets/card_tile.dart';
+import 'c_list_tile.dart';
 
 class LoggedOutScreen extends StatelessWidget {
   const LoggedOutScreen({super.key});
@@ -41,61 +42,58 @@ class LoggedOutScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const ClampingScrollPhysics(),
-                  crossAxisCount: 1,
-                  childAspectRatio: 6,
-                  children: [
-                    CardTile(
-                      onTap: () => Navigator.of(context).pushNamed('/login'),
-                      title: Text(
-                        'Se Connecter',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
+                CustomCard(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CustomListTile(
+                          onTap: () =>
+                              Navigator.of(context).pushNamed('/login'),
+                          leading: const HeroIcon(
+                            HeroIcons.arrowRightEndOnRectangle,
+                            size: 18,
+                          ),
+                          title: const Text(
+                            'Se Connecter',
+                          ),
                         ),
-                      ),
-                      suffixIcon: const HeroIcon(
-                        HeroIcons.chevronRight,
-                      ),
-                    ),
-                    CardTile(
-                      onTap: () {},
-                      title: Text(
-                        'Contactez nous',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
                         ),
-                      ),
-                      suffixIcon: const HeroIcon(
-                        HeroIcons.chevronRight,
-                      ),
-                    ),
-                    CardTile(
-                      onTap: () {},
-                      title: Text(
-                        'Condition de Confidentialité',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
+                        CustomListTile(
+                          onTap: () {},
+                          leading: const HeroIcon(
+                            HeroIcons.envelopeOpen,
+                            size: 18,
+                          ),
+                          title: const Text('Contactez nous'),
                         ),
-                      ),
-                      suffixIcon: const HeroIcon(
-                        HeroIcons.chevronRight,
-                      ),
-                    ),
-                    CardTile(
-                      onTap: () {},
-                      title: Text(
-                        'Impressum',
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold,
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
                         ),
-                      ),
-                      suffixIcon: const HeroIcon(
-                        HeroIcons.chevronRight,
-                      ),
-                    ),
-                  ],
+                        CustomListTile(
+                          onTap: () {},
+                          leading: const HeroIcon(
+                            HeroIcons.shieldCheck,
+                            size: 18,
+                          ),
+                          title: const Text('Condition de Confidentialité'),
+                        ),
+                        const Divider(
+                          height: 1,
+                          thickness: 1,
+                        ),
+                        CustomListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.info_outlined,
+                            size: 18,
+                          ),
+                          title: const Text('Impressum'),
+                        ),
+                      ]),
                 )
               ],
             ),
