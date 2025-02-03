@@ -10,9 +10,9 @@ import 'package:houlala_app/features/auth/providers/auth_provider.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
+import 'package:houlala_app/screens/c_list_tile.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
-import 'package:houlala_app/shared_widgets/card_tile.dart';
 import 'package:houlala_app/shared_widgets/entity_card.dart';
 
 class LoggedInScreen extends ConsumerWidget {
@@ -40,91 +40,90 @@ class LoggedInScreen extends ConsumerWidget {
         errorMessage: authController.errorMessage,
         child: connectedUser != null
             ? SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: horizontalPadding,
-                  right: horizontalPadding,
-                  top: verticalPadding,
-                  bottom: 110,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: horizontalPadding,
+                    right: horizontalPadding,
+                    top: verticalPadding,
+                    bottom: 110,
+                  ),
+                  child: Column(
+                    spacing: verticalPadding,
+                    children: [
+                      GridView.count(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 23,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 1 / 0.7,
+                        children: entities
+                            .map(
+                              (entity) => EntityCard(
+                                entity: entity,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      CustomCard(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            CustomListTile(
+                              onTap: () => logout(ref),
+                              leading: const HeroIcon(
+                                HeroIcons.arrowLeftEndOnRectangle,
+                                size: 18,
+                                color: Colors.red,
+                              ),
+                              title: const Text(
+                                'Se Deconnecter',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                            const Divider(
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            CustomListTile(
+                              onTap: () {},
+                              leading: const HeroIcon(
+                                HeroIcons.envelopeOpen,
+                                size: 18,
+                              ),
+                              title: const Text('Contactez nous'),
+                            ),
+                            const Divider(
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            CustomListTile(
+                              onTap: () {},
+                              leading: const HeroIcon(
+                                HeroIcons.shieldCheck,
+                                size: 18,
+                              ),
+                              title: const Text('Condition de Confidentialité'),
+                            ),
+                            const Divider(
+                              height: 1,
+                              thickness: 1,
+                            ),
+                            CustomListTile(
+                              onTap: () {},
+                              leading: const Icon(
+                                Icons.info_outlined,
+                                size: 18,
+                              ),
+                              title: const Text('Impressum'),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                child: Column(
-                  spacing: verticalPadding,
-                  children: [
-                    GridView.count(
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 23,
-                      crossAxisSpacing: 8,
-                      childAspectRatio: 1 / 0.7,
-                      children: entities
-                          .map(
-                            (entity) => EntityCard(
-                              entity: entity,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                    GridView.count(
-                      crossAxisCount: 1,
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      childAspectRatio: 6,
-                      children: [
-                        CardTile(
-                          onTap: () => logout(ref),
-                          title: Text(
-                            'Se Deconnecter',
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          suffixIcon: const HeroIcon(
-                            HeroIcons.chevronRight,
-                          ),
-                        ),
-                        CardTile(
-                          onTap: () {},
-                          title: Text(
-                            'Contactez nous',
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          suffixIcon: const HeroIcon(
-                            HeroIcons.chevronRight,
-                          ),
-                        ),
-                        CardTile(
-                          onTap: () {},
-                          title: Text(
-                            'Condition de Confidentialité',
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          suffixIcon: const HeroIcon(
-                            HeroIcons.chevronRight,
-                          ),
-                        ),
-                        CardTile(
-                          onTap: () {},
-                          title: Text(
-                            'Impressum',
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          suffixIcon: const HeroIcon(
-                            HeroIcons.chevronRight,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            )
+              )
             : Container(),
       ),
     );
