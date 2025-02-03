@@ -77,10 +77,12 @@ class _UserInfoCardState extends ConsumerState<UserInfoCard> {
                         child: InkWell(
                           onTap: () => CustomBottomSheet.openEditInfosForm(
                               _formkey,
-                              emailController..text = connectedUser!.email ?? '',
+                              emailController
+                                ..text = connectedUser!.email ?? '',
                               firstNameController
                                 ..text = connectedUser.firstName ?? '',
-                              lastNameController..text = connectedUser.lastName ?? '',
+                              lastNameController
+                                ..text = connectedUser.lastName ?? '',
                               phoneNumberController
                                 ..text = connectedUser.phoneNumber ?? '',
                               authController),
