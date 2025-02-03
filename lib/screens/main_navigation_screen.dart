@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/screens/profile_screen.dart';
+import '../features/auth/controllers/auth_controller.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input_button.dart';
 import 'discover_screen.dart';
@@ -35,6 +36,10 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = AuthController(ref);
+
+    bool isLoggedIn = authController.isLoggedIn;
+
     return Scaffold(
       appBar: CustomAppBar(
         title: SearchInputButton(
@@ -50,7 +55,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               onPressed: () => Navigator.of(context).pushNamed('/cart'),
               icon: const HeroIcon(HeroIcons.shoppingBag)),
           IconButton(
-            onPressed: () => Navigator.of(context).pushNamed('/notifications'),
+            onPressed: () => Navigator.of(context)
+                .pushNamed(isLoggedIn ? '/notifications' : '/login'),
             icon: const HeroIcon(HeroIcons.bell),
           )
         ],
@@ -70,7 +76,8 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
               child: Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(65.0)),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
                 color: Colors.white,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
