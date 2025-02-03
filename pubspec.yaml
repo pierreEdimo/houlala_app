@@ -52,6 +52,7 @@ dependencies:
   get: ^4.6.6
   sizer: ^3.0.4
   intl: ^0.20.1
+  isar: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:
