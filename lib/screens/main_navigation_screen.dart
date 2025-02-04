@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/screens/profile_screen.dart';
+import 'package:sizer/sizer.dart';
 import '../features/auth/controllers/auth_controller.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input_button.dart';
@@ -72,7 +73,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
             child: Container(
               margin: const EdgeInsets.only(bottom: 20),
               height: 80,
-              width: MediaQuery.of(context).size.width * 0.85,
+              width: 90.w,
               child: Card(
                 elevation: 2,
                 shape: RoundedRectangleBorder(
