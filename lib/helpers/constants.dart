@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 const verticalPadding = 25.0;
 const horizontalPadding = 11.0;
 const stackBottomPadding = 80.0;
+Divider divider = const Divider(height: 1, thickness: 1);
 BorderRadius radius = BorderRadius.circular(8.0);
 double productAspectRatio = 1 / 1.5;
 EdgeInsetsGeometry stackDefaultPadding = const EdgeInsets.only(
