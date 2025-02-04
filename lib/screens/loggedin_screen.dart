@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/app_menu/model/app_menu.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/app_menu/controllers/app_menu_controller.dart';
@@ -9,9 +8,13 @@ import 'package:houlala_app/features/auth/providers/auth_provider.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
-import 'package:houlala_app/screens/c_list_tile.dart';
+import 'package:houlala_app/shared_widgets/about_tile.dart';
+import 'package:houlala_app/shared_widgets/condition_tile.dart';
+import 'package:houlala_app/shared_widgets/logout_tile.dart';
+import 'package:houlala_app/shared_widgets/policy_tile.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/contact_us_tile.dart';
 import 'package:houlala_app/shared_widgets/entity_card.dart';
 
 class LoggedInScreen extends ConsumerWidget {
@@ -67,57 +70,18 @@ class LoggedInScreen extends ConsumerWidget {
                             .toList(),
                       ),
                       CustomCard(
+                        child: LogoutTile(
+                          onTap: () => logout(ref),
+                        ),
+                      ),
+                      const CustomCard(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            CustomListTile(
-                              onTap: () => logout(ref),
-                              leading: const HeroIcon(
-                                HeroIcons.arrowLeftEndOnRectangle,
-                                size: 18,
-                                color: Colors.red,
-                              ),
-                              title: const Text(
-                                'Se Deconnecter',
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            ),
-                            const Divider(
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            CustomListTile(
-                              onTap: () {},
-                              leading: const HeroIcon(
-                                HeroIcons.envelopeOpen,
-                                size: 18,
-                              ),
-                              title: const Text('Contactez nous'),
-                            ),
-                            const Divider(
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            CustomListTile(
-                              onTap: () {},
-                              leading: const HeroIcon(
-                                HeroIcons.shieldCheck,
-                                size: 18,
-                              ),
-                              title: const Text('Condition de Confidentialité'),
-                            ),
-                            const Divider(
-                              height: 1,
-                              thickness: 1,
-                            ),
-                            CustomListTile(
-                              onTap: () {},
-                              leading: const Icon(
-                                Icons.info_outlined,
-                                size: 18,
-                              ),
-                              title: const Text('Impressum'),
-                            ),
+                            ContactUsTile(),
+                            ConditionTile(),
+                            PolicyTile(),
+                            AboutTile(),
                           ],
                         ),
                       )
