@@ -99,10 +99,20 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
   Future<void> checkAndSetConnectedUser({String? userToken}) async {
     state = state.copyWith(loading: true);
     String? token = userToken ?? await TokenHelper.getToken();
+
     if (token != null) {
-      UserModel userModel =
-          await authRepository.fetchConnectedUser(userToken: userToken);
-      state = state.copyWith(loggedIn: true, connectedUser: userModel);
+      try {
+        UserModel userModel =
+            await authRepository.fetchConnectedUser(userToken: userToken);
+        state = state.copyWith(loggedIn: true, connectedUser: userModel);
+      } catch (exception) {
+        state = state.copyWith(
+            loggedIn: false,
+            errorMessage:
+                "Impossible de charger les informations de l'utilisateur.");
+        CustomToastNotification.showErrorAction(
+            "Impossible de charger les informations de l'utilisateur.");
+      }
     }
     state = state.copyWith(loading: false);
   }
