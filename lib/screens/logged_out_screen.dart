@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/shared_widgets/about_tile.dart';
+import 'package:houlala_app/shared_widgets/condition_tile.dart';
+import 'package:houlala_app/shared_widgets/login_tile.dart';
+import 'package:houlala_app/shared_widgets/policy_tile.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
-
-import 'c_list_tile.dart';
+import 'package:houlala_app/shared_widgets/contact_us_tile.dart';
 
 class LoggedOutScreen extends ConsumerWidget {
   const LoggedOutScreen({super.key});
@@ -22,9 +24,9 @@ class LoggedOutScreen extends ConsumerWidget {
         errorMessage: errorMessage,
         child: errorMessage.isNotEmpty
             ? Container()
-            : SingleChildScrollView(
+            : const SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                       left: horizontalPadding,
                       right: horizontalPadding,
                       top: verticalPadding,
@@ -33,57 +35,16 @@ class LoggedOutScreen extends ConsumerWidget {
                     spacing: verticalPadding,
                     children: [
                       CustomCard(
+                        child: LoginTile(),
+                      ),
+                      CustomCard(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              CustomListTile(
-                                onTap: () =>
-                                    Navigator.of(context).pushNamed('/login'),
-                                leading: const HeroIcon(
-                                  HeroIcons.arrowRightEndOnRectangle,
-                                  size: 18,
-                                ),
-                                title: const Text(
-                                  'Se Connecter',
-                                ),
-                              ),
-                              const Divider(
-                                height: 1,
-                                thickness: 1,
-                              ),
-                              CustomListTile(
-                                onTap: () {},
-                                leading: const HeroIcon(
-                                  HeroIcons.envelopeOpen,
-                                  size: 18,
-                                ),
-                                title: const Text('Contactez nous'),
-                              ),
-                              const Divider(
-                                height: 1,
-                                thickness: 1,
-                              ),
-                              CustomListTile(
-                                onTap: () {},
-                                leading: const HeroIcon(
-                                  HeroIcons.shieldCheck,
-                                  size: 18,
-                                ),
-                                title:
-                                    const Text('Condition de Confidentialité'),
-                              ),
-                              const Divider(
-                                height: 1,
-                                thickness: 1,
-                              ),
-                              CustomListTile(
-                                onTap: () {},
-                                leading: const Icon(
-                                  Icons.info_outlined,
-                                  size: 18,
-                                ),
-                                title: const Text('Impressum'),
-                              ),
+                              ContactUsTile(),
+                              ConditionTile(),
+                              PolicyTile(),
+                              AboutTile(),
                             ]),
                       )
                     ],
