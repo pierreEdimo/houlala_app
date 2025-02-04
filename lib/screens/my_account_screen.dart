@@ -96,7 +96,7 @@ class MyAccountScreen extends StatelessWidget {
                         ),
                         title: const Text(
                           'Supprimer votre compte',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.red,
                           ),
                         ),
