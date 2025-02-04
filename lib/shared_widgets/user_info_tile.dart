@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
-import 'package:houlala_app/screens/c_list_tile.dart';
+import 'package:houlala_app/shared_widgets/c_list_tile.dart';
 
 import '../features/auth/controllers/auth_controller.dart';
 import '../helpers/bottom_sheet.dart';

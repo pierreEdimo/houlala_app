@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/constants.dart';
-import 'package:houlala_app/screens/c_list_tile.dart';
+import 'package:houlala_app/shared_widgets/c_list_tile.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
