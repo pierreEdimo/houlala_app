@@ -14,7 +14,7 @@ import 'package:houlala_app/features/order/model/order_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
-import 'package:houlala_app/shared_widgets/ItemTotalCard.dart';
+import 'package:houlala_app/shared_widgets/item_total_card.dart';
 import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
