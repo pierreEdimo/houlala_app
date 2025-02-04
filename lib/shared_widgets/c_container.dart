@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
+import 'package:toastification/toastification.dart';
 
 class CustomContainer extends StatelessWidget {
   final bool? loading;
@@ -13,7 +15,10 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       if (errorMessage!.isNotEmpty) {
-        print(errorMessage);
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          CustomToastNotification.showCustomToast(
+              errorMessage!, ToastificationType.error);
+        });
       }
 
       if (loading != null && loading == true) {
