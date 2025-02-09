@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/address/controllers/address_controller.dart';
 import 'package:houlala_app/features/address/model/address.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
@@ -39,7 +40,6 @@ class CustomBottomSheet {
           ],
         ),
       ),
-      isDismissible: false,
       enableDrag: false,
     );
   }
@@ -58,7 +58,7 @@ class CustomBottomSheet {
                   Icons.check_circle,
                   color: Colors.green,
                 ),
-                Text('Votre produit a ete ajoute au panier avec succes.')
+                Text('Votre produit a été ajouté au panier avec succès.')
               ],
             ),
           ),
@@ -103,10 +103,18 @@ class CustomBottomSheet {
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: ColumnHeaders(
-                    title: "Informations personnelles",
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const ColumnHeaders(
+                        title: "Informations personnelles",
+                      ),
+                      IconButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          icon: const HeroIcon(HeroIcons.xMark), )
+                    ],
                   ),
                 ),
                 Column(
@@ -138,34 +146,21 @@ class CustomBottomSheet {
                       infoMessage: 'Inserez votre Numero de telephone',
                       mustFill: true,
                     ),
-                    Row(
-                      spacing: 10,
-                      children: [
-                        Expanded(
-                          child: CustomButton(
-                            color: Colors.grey,
-                            onPressed: () => navigatorKey.currentState!.pop(),
-                            title: 'Annuller',
-                          ),
-                        ),
-                        Expanded(
-                          child: CustomButton(
-                            onPressed: () {
-                              if (formkey.currentState!.validate()) {
-                                EditInfo info = EditInfo(
-                                  email: emailController.text,
-                                  firstName: firstNameController.text,
-                                  lastName: lastNameController.text,
-                                  phoneNumber: phoneNumberController.text,
-                                );
+                    CustomButton(
+                      leadingIcon: HeroIcons.serverStack,
+                      onPressed: () {
+                        if (formkey.currentState!.validate()) {
+                          EditInfo info = EditInfo(
+                            email: emailController.text,
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            phoneNumber: phoneNumberController.text,
+                          );
 
-                                authController.editUserInfo(info);
-                              }
-                            },
-                            title: 'Enregistrer',
-                          ),
-                        )
-                      ],
+                          authController.editUserInfo(info);
+                        }
+                      },
+                      title: 'Enregistrer',
                     )
                   ],
                 )
@@ -186,7 +181,8 @@ class CustomBottomSheet {
       TextEditingController lastNameController,
       TextEditingController firstNameController,
       AddressController addressController,
-      {int? id}) {
+      {int? id,
+      bool? isDefault = false}) {
     openBottomSheet(
       StatefulBuilder(builder: (context, setState) {
         return Form(
@@ -195,29 +191,72 @@ class CustomBottomSheet {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 10,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 15),
-                child: ColumnHeaders(
-                  title: "Adresse de livraison",
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const ColumnHeaders(
+                      title: "Adresse de livraison",
+                    ),
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const HeroIcon(HeroIcons.xMark),
+                    )
+                  ],
                 ),
               ),
               Column(
                 spacing: 15,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      child: Row(
+                        children: [
+                          Container(
+                              width: 18,
+                              height: 18,
+                              margin: const EdgeInsets.only(left: 5, right: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: isDefault!
+                                    ? Colors.orange
+                                    : const Color(0xffbffffff),
+                                border: Border.all(
+                                  color: const Color(0xffb000000),
+                                ),
+                              ),
+                              child: isDefault
+                                  ? const Icon(
+                                      Icons.check,
+                                      size: 8,
+                                      color: Color(0xffbffffff),
+                                    )
+                                  : const Icon(
+                                      Icons.check_box_outline_blank,
+                                      size: 10.0,
+                                      color: Colors.transparent,
+                                    )),
+                          const Text('Choisissez comme adresse par defaut')
+                        ],
+                      ),
+                    ),
+                  ),
                   InputText(
                     placeholder: 'Nom de famille',
                     textEditingController: lastNameController,
                     keyboardType: TextInputType.text,
-                    infoMessage: 'Inserez votre nom de famille',
+                    infoMessage: 'Insérez votre nom de famille',
                     mustFill: true,
                   ),
                   InputText(
                     placeholder: 'Prenom',
                     textEditingController: firstNameController,
                     keyboardType: TextInputType.text,
-                    infoMessage: 'Inserez votre prenom',
+                    infoMessage: 'Insérez votre prenom',
                     mustFill: true,
                   ),
                   Row(
@@ -229,7 +268,7 @@ class CustomBottomSheet {
                           placeholder: 'Adresse',
                           textEditingController: streetController,
                           keyboardType: TextInputType.text,
-                          infoMessage: 'Inserez votre adresse',
+                          infoMessage: 'Insérez votre adresse',
                           mustFill: true,
                         ),
                       ),
@@ -260,50 +299,37 @@ class CustomBottomSheet {
                           textEditingController: cityController,
                           keyboardType: TextInputType.text,
                           mustFill: true,
-                          infoMessage: 'Inserez votre ville',
+                          infoMessage: 'Insérez votre ville',
                         ),
                       )
                     ],
                   ),
-                  Row(
-                    spacing: 10,
-                    children: [
-                      Expanded(
-                        child: CustomButton(
-                          color: Colors.grey,
-                          onPressed: () => navigatorKey.currentState!.pop(),
-                          title: 'Annuller',
-                        ),
-                      ),
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              Address address = Address(
-                                  firstName: firstNameController.text,
-                                  lastName: lastNameController.text,
-                                  street: streetController.text,
-                                  poBox: poBoxController.text,
-                                  country: 'Cameroun',
-                                  houseNumber: houseNumberController.text,
-                                  city: cityController.text);
-                              if (id != null) {
-                                addressController.editAddress(id, address);
-                              } else {
-                                addressController.createAddress(address);
-                              }
-                              firstNameController.clear();
-                              lastNameController.clear();
-                              streetController.clear();
-                              poBoxController.clear();
-                              cityController.clear();
-                              houseNumberController.clear();
-                            }
-                          },
-                          title: 'Enregistrer',
-                        ),
-                      )
-                    ],
+                  CustomButton(
+                    leadingIcon: HeroIcons.serverStack,
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        Address address = Address(
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            street: streetController.text,
+                            poBox: poBoxController.text,
+                            country: 'Cameroun',
+                            houseNumber: houseNumberController.text,
+                            city: cityController.text);
+                        if (id != null) {
+                          addressController.editAddress(id, address);
+                        } else {
+                          addressController.createAddress(address);
+                        }
+                        firstNameController.clear();
+                        lastNameController.clear();
+                        streetController.clear();
+                        poBoxController.clear();
+                        cityController.clear();
+                        houseNumberController.clear();
+                      }
+                    },
+                    title: 'Enregistrer',
                   )
                 ],
               )
