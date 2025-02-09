@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
@@ -183,16 +184,15 @@ class ProductDetailScreen extends ConsumerWidget {
                               ),
                             ],
                           ),
-                          // Html(
-                          //   style: {
-                          //     "body": Style(
-                          //       letterSpacing: 0.5,
-                          //       lineHeight: LineHeight.em(1.3),
-                          //       wordSpacing: 0.5
-                          //     )
-                          //   },
-                          //   data: selectedProduct.longDescription,
-                          // )
+                          Html(
+                            style: {
+                              "body": Style(
+                                  letterSpacing: 0.5,
+                                  lineHeight: LineHeight.em(1.3),
+                                  wordSpacing: 0.5)
+                            },
+                            data: selectedProduct.description,
+                          )
                         ],
                       ),
                     ),
@@ -202,7 +202,7 @@ class ProductDetailScreen extends ConsumerWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 1,
                       height: 90,
-                      color: Colors.transparent,
+                      color: const Color(0xFFf4efe8),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: horizontalPadding),
