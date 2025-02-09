@@ -108,6 +108,9 @@ flutter:
     - images/user-menu/transactions.png
     - images/user-menu/settings.png
     - images/user.png
+    - texts/about.html
+    - texts/term.html
+    - texts/policy.html
 
   # To add assets to your application, add an assets section, like this:
   # assets:
