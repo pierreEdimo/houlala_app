@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:toastification/toastification.dart';
