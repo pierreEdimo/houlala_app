@@ -34,6 +34,10 @@ import 'package:sizer/sizer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:toastification/toastification.dart';
 
+import 'screens/about_screen.dart';
+import 'screens/condition_screen.dart';
+import 'screens/policy_screen.dart';
+
 const storage = FlutterSecureStorage();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -98,8 +102,10 @@ class MyApp extends StatelessWidget {
             '/myList': (context) => const MyListsScreen(),
             '/myMessage': (context) => const MyMessagesScreen(),
             '/myAddresses': (context) => const AddressScreen(),
-            '/subStoreCategoryDetail': (context) =>
-                const StoreTypeDetailScreen(),
+            '/subStoreCategoryDetail': (context) => const StoreTypeDetailScreen(),
+            '/policy': (context) => const PolicyScreen(),
+            '/about': (context) => const AboutScreen(),
+            '/condition': (context) => const ConditionScreen(),
           },
         ),
       );
