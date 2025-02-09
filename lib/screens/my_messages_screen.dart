@@ -16,10 +16,7 @@ class MyMessagesScreen extends StatelessWidget {
         ),
         title: Text(
           'Mes messages',
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 22),
         ),
       ),
       body: const Center(
