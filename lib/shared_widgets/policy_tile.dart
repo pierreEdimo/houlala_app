@@ -9,12 +9,12 @@ class PolicyTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      onTap: () {},
+      onTap: () => Navigator.pushNamed(context, '/policy'),
       leading: const HeroIcon(
         HeroIcons.shieldCheck,
         size: 18,
       ),
-      title: const Text('Politique de Confidentialité'),
+      title: const Text('Politique de confidentialité'),
     );
   }
 }

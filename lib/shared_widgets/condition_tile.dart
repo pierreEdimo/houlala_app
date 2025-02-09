@@ -10,7 +10,7 @@ class ConditionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      onTap: () {},
+      onTap: () => Navigator.pushNamed(context, '/condition'),
       leading: const HeroIcon(
         HeroIcons.clipboardDocumentCheck,
         size: 18,

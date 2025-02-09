@@ -5,10 +5,11 @@ import 'c_list_tile.dart';
 class AboutTile extends StatelessWidget {
   const AboutTile({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      onTap: () {},
+      onTap: () => Navigator.pushNamed(context, '/about'),
       leading: const Icon(
         Icons.info_outlined,
         size: 18,
