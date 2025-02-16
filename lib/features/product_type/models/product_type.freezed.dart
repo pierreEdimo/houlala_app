@@ -20,10 +20,17 @@ ProductType _$ProductTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductType {
-  int? get id => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get imageUrl => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get route => throw _privateConstructorUsedError;
+  @HiveField(4)
   CategoryModel? get category => throw _privateConstructorUsedError;
 
   /// Serializes this ProductType to a JSON map.
@@ -43,11 +50,11 @@ abstract class $ProductTypeCopyWith<$Res> {
       _$ProductTypeCopyWithImpl<$Res, ProductType>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? imageUrl,
-      String? route,
-      CategoryModel? category});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? imageUrl,
+      @HiveField(3) String? route,
+      @HiveField(4) CategoryModel? category});
 
   $CategoryModelCopyWith<$Res>? get category;
 }
@@ -67,16 +74,16 @@ class _$ProductTypeCopyWithImpl<$Res, $Val extends ProductType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? route = freezed,
     Object? category = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -121,11 +128,11 @@ abstract class _$$ProductTypeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? imageUrl,
-      String? route,
-      CategoryModel? category});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? imageUrl,
+      @HiveField(3) String? route,
+      @HiveField(4) CategoryModel? category});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -144,16 +151,16 @@ class __$$ProductTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? route = freezed,
     Object? category = freezed,
   }) {
     return _then(_$ProductTypeImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -177,27 +184,39 @@ class __$$ProductTypeImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductTypeImpl implements _ProductType {
+class _$ProductTypeImpl extends _ProductType {
   _$ProductTypeImpl(
-      {this.id, this.name, this.imageUrl, this.route, this.category});
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.name,
+      @HiveField(2) this.imageUrl,
+      @HiveField(3) this.route,
+      @HiveField(4) this.category})
+      : super._();
 
   factory _$ProductTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductTypeImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? name;
   @override
+  @HiveField(2)
   final String? imageUrl;
   @override
+  @HiveField(3)
   final String? route;
   @override
+  @HiveField(4)
   final CategoryModel? category;
 
   @override
   String toString() {
-    return 'ProductType(id: $id, name: $name, imageUrl: $imageUrl, route: $route, category: $category)';
+    return 'ProductType(dbId: $dbId, name: $name, imageUrl: $imageUrl, route: $route, category: $category)';
   }
 
   @override
@@ -205,7 +224,7 @@ class _$ProductTypeImpl implements _ProductType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductTypeImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
@@ -217,7 +236,7 @@ class _$ProductTypeImpl implements _ProductType {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, imageUrl, route, category);
+      Object.hash(runtimeType, dbId, name, imageUrl, route, category);
 
   /// Create a copy of ProductType
   /// with the given fields replaced by the non-null parameter values.
@@ -235,26 +254,34 @@ class _$ProductTypeImpl implements _ProductType {
   }
 }
 
-abstract class _ProductType implements ProductType {
+abstract class _ProductType extends ProductType {
   factory _ProductType(
-      {final int? id,
-      final String? name,
-      final String? imageUrl,
-      final String? route,
-      final CategoryModel? category}) = _$ProductTypeImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? name,
+      @HiveField(2) final String? imageUrl,
+      @HiveField(3) final String? route,
+      @HiveField(4) final CategoryModel? category}) = _$ProductTypeImpl;
+  _ProductType._() : super._();
 
   factory _ProductType.fromJson(Map<String, dynamic> json) =
       _$ProductTypeImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get name;
   @override
+  @HiveField(2)
   String? get imageUrl;
   @override
+  @HiveField(3)
   String? get route;
   @override
+  @HiveField(4)
   CategoryModel? get category;
 
   /// Create a copy of ProductType
