@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 
-class GastCheckoutScreen extends StatelessWidget {
+class GastCheckoutScreen extends ConsumerWidget {
   const GastCheckoutScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
     return Scaffold(
       appBar: CustomAppBar(
         leading: IconButton(
