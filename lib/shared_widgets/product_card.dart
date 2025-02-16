@@ -18,9 +18,9 @@ class ProductCard extends ConsumerWidget {
     ProductController productController = ProductController(ref);
     return InkWell(
       onTap: () {
-        productController.getSelectedProduct(product!.id!);
+        productController.getSelectedProduct(product!.dbId!);
         Navigator.of(context)
-            .pushNamed('/productDetail', arguments: product!.id!);
+            .pushNamed('/productDetail', arguments: product!.dbId!);
       },
       child: Card(
         elevation: 0,

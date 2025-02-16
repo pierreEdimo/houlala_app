@@ -16,7 +16,7 @@ class ProductController {
   }
 
   List<Product> getProductByCategoryId(int cid) {
-    return productList.where((product) => product.category!.id == cid).toList();
+    return productList.where((product) => product.category!.dbId == cid).toList();
   }
 
   void getSelectedProduct(int id) {
@@ -37,14 +37,14 @@ class ProductController {
 
   List<Product> getTopSellingProductsByLocalId(int localId) {
     return productList
-        .where((product) => product.local!.id == localId)
+        .where((product) => product.local!.dbId == localId)
         .take(4)
         .toList();
   }
 
   List<Product> getProductByLocalId(int localId) {
     return productList
-        .where((product) => product.local!.id == localId)
+        .where((product) => product.local!.dbId == localId)
         .toList();
   }
 
@@ -77,7 +77,7 @@ class ProductController {
   List<Product> getProductBySubCategoryId(int cid, int scid) {
     return productList
         .where((product) =>
-            product.category!.id == cid && product.productType!.id == scid)
+            product.category!.dbId == cid && product.productType!.dbId == scid)
         .toList();
   }
 
