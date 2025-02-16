@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
@@ -29,9 +30,12 @@ class MappedCartItemCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CartController cartController = CartController(ref);
+    AuthController authController = AuthController(ref);
 
-    void deleteProductFromCart(int id) {
-      cartController.removeProductFromCart(id);
+    bool isLoggedIn = authController.isLoggedIn;
+
+    void deleteProductFromCart(CartItem item) {
+      cartController.removeProductFromCart(item, isLoggedIn: isLoggedIn);
     }
 
     void decreaseItemQuantity(int id) {
@@ -57,9 +61,9 @@ class MappedCartItemCard extends ConsumerWidget {
             children: mappedCartItem!.cartItems!
                 .map(
                   (item) => CartItemCard(
-                    onDecrease: () => decreaseItemQuantity(item.id!),
-                    onIncrease: () => increaseItemQuantity(item.id!),
-                    onPressed: () => deleteProductFromCart(item.id!),
+                    onDecrease: () => decreaseItemQuantity(item.dbId!),
+                    onIncrease: () => increaseItemQuantity(item.dbId!),
+                    onPressed: () => deleteProductFromCart(item),
                     cartItem: item,
                   ),
                 )
