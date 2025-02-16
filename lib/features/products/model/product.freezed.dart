@@ -20,20 +20,37 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Product {
-  int? get id => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get description => throw _privateConstructorUsedError;
+  @HiveField(3)
   double? get unitSellingPrice => throw _privateConstructorUsedError;
+  @HiveField(4)
   double? get unitBuyingPrice => throw _privateConstructorUsedError;
+  @HiveField(5)
   int? get quantity => throw _privateConstructorUsedError;
+  @HiveField(6)
   int? get defaultQuantity => throw _privateConstructorUsedError;
+  @HiveField(7)
   List<String>? get images => throw _privateConstructorUsedError;
+  @HiveField(8)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @HiveField(9)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @HiveField(10)
   DateTime? get availableDate => throw _privateConstructorUsedError;
+  @HiveField(11)
   CategoryModel? get category => throw _privateConstructorUsedError;
+  @HiveField(12)
   ProductType? get productType => throw _privateConstructorUsedError;
+  @HiveField(13)
   LocalModel? get local => throw _privateConstructorUsedError;
+  @HiveField(14)
   bool? get isFavorite => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
@@ -51,21 +68,21 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? description,
-      double? unitSellingPrice,
-      double? unitBuyingPrice,
-      int? quantity,
-      int? defaultQuantity,
-      List<String>? images,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      DateTime? availableDate,
-      CategoryModel? category,
-      ProductType? productType,
-      LocalModel? local,
-      bool? isFavorite});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? description,
+      @HiveField(3) double? unitSellingPrice,
+      @HiveField(4) double? unitBuyingPrice,
+      @HiveField(5) int? quantity,
+      @HiveField(6) int? defaultQuantity,
+      @HiveField(7) List<String>? images,
+      @HiveField(8) DateTime? createdAt,
+      @HiveField(9) DateTime? updatedAt,
+      @HiveField(10) DateTime? availableDate,
+      @HiveField(11) CategoryModel? category,
+      @HiveField(12) ProductType? productType,
+      @HiveField(13) LocalModel? local,
+      @HiveField(14) bool? isFavorite});
 
   $CategoryModelCopyWith<$Res>? get category;
   $ProductTypeCopyWith<$Res>? get productType;
@@ -87,7 +104,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitSellingPrice = freezed,
@@ -104,9 +121,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? isFavorite = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -218,21 +235,21 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? description,
-      double? unitSellingPrice,
-      double? unitBuyingPrice,
-      int? quantity,
-      int? defaultQuantity,
-      List<String>? images,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      DateTime? availableDate,
-      CategoryModel? category,
-      ProductType? productType,
-      LocalModel? local,
-      bool? isFavorite});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? description,
+      @HiveField(3) double? unitSellingPrice,
+      @HiveField(4) double? unitBuyingPrice,
+      @HiveField(5) int? quantity,
+      @HiveField(6) int? defaultQuantity,
+      @HiveField(7) List<String>? images,
+      @HiveField(8) DateTime? createdAt,
+      @HiveField(9) DateTime? updatedAt,
+      @HiveField(10) DateTime? availableDate,
+      @HiveField(11) CategoryModel? category,
+      @HiveField(12) ProductType? productType,
+      @HiveField(13) LocalModel? local,
+      @HiveField(14) bool? isFavorite});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -255,7 +272,7 @@ class __$$ProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? unitSellingPrice = freezed,
@@ -272,9 +289,9 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? isFavorite = freezed,
   }) {
     return _then(_$ProductImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -338,46 +355,57 @@ class __$$ProductImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductImpl implements _Product {
+class _$ProductImpl extends _Product {
   _$ProductImpl(
-      {this.id,
-      this.name,
-      this.description,
-      this.unitSellingPrice,
-      this.unitBuyingPrice,
-      this.quantity = 1,
-      this.defaultQuantity = 1,
-      final List<String>? images,
-      this.createdAt,
-      this.updatedAt,
-      this.availableDate,
-      this.category,
-      this.productType,
-      this.local,
-      this.isFavorite})
-      : _images = images;
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.name,
+      @HiveField(2) this.description,
+      @HiveField(3) this.unitSellingPrice,
+      @HiveField(4) this.unitBuyingPrice,
+      @HiveField(5) this.quantity = 1,
+      @HiveField(6) this.defaultQuantity = 1,
+      @HiveField(7) final List<String>? images,
+      @HiveField(8) this.createdAt,
+      @HiveField(9) this.updatedAt,
+      @HiveField(10) this.availableDate,
+      @HiveField(11) this.category,
+      @HiveField(12) this.productType,
+      @HiveField(13) this.local,
+      @HiveField(14) this.isFavorite})
+      : _images = images,
+        super._();
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? name;
   @override
+  @HiveField(2)
   final String? description;
   @override
+  @HiveField(3)
   final double? unitSellingPrice;
   @override
+  @HiveField(4)
   final double? unitBuyingPrice;
   @override
   @JsonKey()
+  @HiveField(5)
   final int? quantity;
   @override
   @JsonKey()
+  @HiveField(6)
   final int? defaultQuantity;
   final List<String>? _images;
   @override
+  @HiveField(7)
   List<String>? get images {
     final value = _images;
     if (value == null) return null;
@@ -387,23 +415,30 @@ class _$ProductImpl implements _Product {
   }
 
   @override
+  @HiveField(8)
   final DateTime? createdAt;
   @override
+  @HiveField(9)
   final DateTime? updatedAt;
   @override
+  @HiveField(10)
   final DateTime? availableDate;
   @override
+  @HiveField(11)
   final CategoryModel? category;
   @override
+  @HiveField(12)
   final ProductType? productType;
   @override
+  @HiveField(13)
   final LocalModel? local;
   @override
+  @HiveField(14)
   final bool? isFavorite;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local, isFavorite: $isFavorite)';
+    return 'Product(dbId: $dbId, name: $name, description: $description, unitSellingPrice: $unitSellingPrice, unitBuyingPrice: $unitBuyingPrice, quantity: $quantity, defaultQuantity: $defaultQuantity, images: $images, createdAt: $createdAt, updatedAt: $updatedAt, availableDate: $availableDate, category: $category, productType: $productType, local: $local, isFavorite: $isFavorite)';
   }
 
   @override
@@ -411,7 +446,7 @@ class _$ProductImpl implements _Product {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -443,7 +478,7 @@ class _$ProductImpl implements _Product {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
+      dbId,
       name,
       description,
       unitSellingPrice,
@@ -475,55 +510,73 @@ class _$ProductImpl implements _Product {
   }
 }
 
-abstract class _Product implements Product {
+abstract class _Product extends Product {
   factory _Product(
-      {final int? id,
-      final String? name,
-      final String? description,
-      final double? unitSellingPrice,
-      final double? unitBuyingPrice,
-      final int? quantity,
-      final int? defaultQuantity,
-      final List<String>? images,
-      final DateTime? createdAt,
-      final DateTime? updatedAt,
-      final DateTime? availableDate,
-      final CategoryModel? category,
-      final ProductType? productType,
-      final LocalModel? local,
-      final bool? isFavorite}) = _$ProductImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? name,
+      @HiveField(2) final String? description,
+      @HiveField(3) final double? unitSellingPrice,
+      @HiveField(4) final double? unitBuyingPrice,
+      @HiveField(5) final int? quantity,
+      @HiveField(6) final int? defaultQuantity,
+      @HiveField(7) final List<String>? images,
+      @HiveField(8) final DateTime? createdAt,
+      @HiveField(9) final DateTime? updatedAt,
+      @HiveField(10) final DateTime? availableDate,
+      @HiveField(11) final CategoryModel? category,
+      @HiveField(12) final ProductType? productType,
+      @HiveField(13) final LocalModel? local,
+      @HiveField(14) final bool? isFavorite}) = _$ProductImpl;
+  _Product._() : super._();
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get name;
   @override
+  @HiveField(2)
   String? get description;
   @override
+  @HiveField(3)
   double? get unitSellingPrice;
   @override
+  @HiveField(4)
   double? get unitBuyingPrice;
   @override
+  @HiveField(5)
   int? get quantity;
   @override
+  @HiveField(6)
   int? get defaultQuantity;
   @override
+  @HiveField(7)
   List<String>? get images;
   @override
+  @HiveField(8)
   DateTime? get createdAt;
   @override
+  @HiveField(9)
   DateTime? get updatedAt;
   @override
+  @HiveField(10)
   DateTime? get availableDate;
   @override
+  @HiveField(11)
   CategoryModel? get category;
   @override
+  @HiveField(12)
   ProductType? get productType;
   @override
+  @HiveField(13)
   LocalModel? get local;
   @override
+  @HiveField(14)
   bool? get isFavorite;
 
   /// Create a copy of Product

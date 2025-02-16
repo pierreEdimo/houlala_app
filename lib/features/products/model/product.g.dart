@@ -3,12 +3,92 @@
 part of 'product.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class ProductAdapter extends TypeAdapter<Product> {
+  @override
+  final int typeId = 3;
+
+  @override
+  Product read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Product(
+      dbId: (fields[0] as num?)?.toInt(),
+      name: fields[1] as String?,
+      description: fields[2] as String?,
+      unitSellingPrice: (fields[3] as num?)?.toDouble(),
+      unitBuyingPrice: (fields[4] as num?)?.toDouble(),
+      quantity: (fields[5] as num?)?.toInt(),
+      defaultQuantity: (fields[6] as num?)?.toInt(),
+      images: (fields[7] as List?)?.cast<String>(),
+      createdAt: fields[8] as DateTime?,
+      updatedAt: fields[9] as DateTime?,
+      availableDate: fields[10] as DateTime?,
+      category: fields[11] as CategoryModel?,
+      productType: fields[12] as ProductType?,
+      local: fields[13] as LocalModel?,
+      isFavorite: fields[14] as bool?,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Product obj) {
+    writer
+      ..writeByte(15)
+      ..writeByte(0)
+      ..write(obj.dbId)
+      ..writeByte(1)
+      ..write(obj.name)
+      ..writeByte(2)
+      ..write(obj.description)
+      ..writeByte(3)
+      ..write(obj.unitSellingPrice)
+      ..writeByte(4)
+      ..write(obj.unitBuyingPrice)
+      ..writeByte(5)
+      ..write(obj.quantity)
+      ..writeByte(6)
+      ..write(obj.defaultQuantity)
+      ..writeByte(7)
+      ..write(obj.images)
+      ..writeByte(8)
+      ..write(obj.createdAt)
+      ..writeByte(9)
+      ..write(obj.updatedAt)
+      ..writeByte(10)
+      ..write(obj.availableDate)
+      ..writeByte(11)
+      ..write(obj.category)
+      ..writeByte(12)
+      ..write(obj.productType)
+      ..writeByte(13)
+      ..write(obj.local)
+      ..writeByte(14)
+      ..write(obj.isFavorite);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
 _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
-      id: (json['id'] as num?)?.toInt(),
+      dbId: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
       description: json['description'] as String?,
       unitSellingPrice: (json['unitSellingPrice'] as num?)?.toDouble(),
@@ -40,7 +120,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': instance.dbId,
       'name': instance.name,
       'description': instance.description,
       'unitSellingPrice': instance.unitSellingPrice,
