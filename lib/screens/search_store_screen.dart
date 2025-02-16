@@ -20,7 +20,7 @@ class SearchStoreScreen extends ConsumerWidget {
     LocalsController sellersController = LocalsController(ref);
     SearchArgs searchArgs =
         ModalRoute.of(context)!.settings.arguments as SearchArgs;
-    List<LocalModel> filteredLocals = sellersController.fllteredLocals;
+    List<LocalModel> filteredLocals = sellersController.filteredLocals;
 
     bool isSearchSubmitted = ref.watch(searchStateNotifierProvider);
 
