@@ -18,16 +18,16 @@ class LocalsController {
 
   List<LocalModel> getLocalsListByCategoryId(int categoryId) {
     return localList
-        .where((seller) => seller.productType!.id == categoryId)
+        .where((seller) => seller.productType!.dbId == categoryId)
         .toList();
   }
 
-  List<LocalModel> get fllteredLocals {
+  List<LocalModel> get filteredLocals {
     return ref!.watch(localStateNotifierProvider).filteredLocalList;
   }
 
   LocalModel? getSelectedLocal(int id) {
-    return localList.firstWhereOrNull((local) => local.id == id);
+    return localList.firstWhereOrNull((local) => local.dbId == id);
   }
 
   bool get loading {

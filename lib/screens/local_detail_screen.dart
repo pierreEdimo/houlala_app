@@ -63,7 +63,7 @@ class LocalProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Product> productList =
-        productController!.getProductByLocalId(localModel!.id!);
+        productController!.getProductByLocalId(localModel!.dbId!);
     return Stack(
       children: [
         SingleChildScrollView(
@@ -79,7 +79,7 @@ class LocalProducts extends StatelessWidget {
                     arguments: SearchArgs(
                         categoryId: null,
                         productTypeId: null,
-                        sellerId: localModel!.id!),
+                        sellerId: localModel!.dbId!),
                   ),
                 ),
                 VerticalProductGrid(
@@ -188,7 +188,7 @@ class LocalInfo extends ConsumerWidget {
                           localModel!.productType!.route!,
                           arguments: CategoryArg(
                               categoryId:
-                                  localModel!.productType!.category!.id!,
+                                  localModel!.productType!.category!.dbId!,
                               categoryName: localModel!.productType!.name,
                               productType: localModel!.productType)),
                       child: Text(
@@ -224,7 +224,7 @@ class LocalHome extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ProductController productController = ProductController(ref);
     List<Product> productList =
-        productController.getTopSellingProductsByLocalId(localModel!.id!);
+        productController.getTopSellingProductsByLocalId(localModel!.dbId!);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(

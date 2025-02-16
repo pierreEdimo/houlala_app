@@ -24,9 +24,9 @@ class ListProductCard extends ConsumerWidget {
 
     return InkWell(
       onTap: () {
-        productController.getSelectedProduct(product!.id!);
+        productController.getSelectedProduct(product!.dbId!);
         Navigator.of(context)
-            .pushNamed('/productDetail', arguments: product!.id!);
+            .pushNamed('/productDetail', arguments: product!.dbId!);
       },
       child: SizedBox(
         height: 210,

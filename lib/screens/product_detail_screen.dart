@@ -42,7 +42,7 @@ class ProductDetailScreen extends ConsumerWidget {
         userId: connectedUser?.id,
       );
 
-      cartController.addProductToCart(createCartItem);
+      cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
     }
 
     return selectedProduct != null
@@ -58,10 +58,10 @@ class ProductDetailScreen extends ConsumerWidget {
                     if (isLoggedIn) {
                       if (!selectedProduct.isFavorite!) {
                         productController
-                            .addProductToFavorite(selectedProduct.id!);
+                            .addProductToFavorite(selectedProduct.dbId!);
                       } else {
                         productController
-                            .removeProductFromFavorite(selectedProduct.id!);
+                            .removeProductFromFavorite(selectedProduct.dbId!);
                       }
                     } else {
                       Navigator.of(context).pushNamed('/login');

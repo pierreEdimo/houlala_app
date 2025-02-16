@@ -26,7 +26,7 @@ class StoreTypeDetailScreen extends ConsumerWidget {
     bool isLoading = localsController.loading;
     String errorMessage = localsController.errorMessage;
     List<LocalModel> localList = localsController
-        .getLocalsListByCategoryId(categoryArg.productType!.id!);
+        .getLocalsListByCategoryId(categoryArg.productType!.dbId!);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -38,7 +38,7 @@ class StoreTypeDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pushNamed(
             '/searchStore',
             arguments: SearchArgs(
-              productTypeId: categoryArg.productType!.id,
+              productTypeId: categoryArg.productType!.dbId,
               hinText: 'Rechercher dans ${categoryArg.productType!.name}'
             ),
           ),

@@ -20,7 +20,7 @@ class LocalCard extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
         '/localDetail',
-        arguments: local?.id,
+        arguments: local?.dbId,
       ),
       child: CustomCard(
         child: SizedBox(
