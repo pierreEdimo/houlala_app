@@ -72,7 +72,7 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
       existingProduct = existingProduct!.copyWith(isFavorite: false);
       List<Product> updatedBookmarkedlist = [
         for (var product in state.bookmarkedList)
-          if (product.id != existingProduct.id) product
+          if (product.dbId != existingProduct.dbId) product
       ];
       state = state.copyWith(
           selectedProduct: existingProduct,
