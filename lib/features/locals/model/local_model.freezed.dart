@@ -20,21 +20,39 @@ LocalModel _$LocalModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LocalModel {
-  int? get id => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get userId => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get imageUrl => throw _privateConstructorUsedError;
+  @HiveField(4)
   bool? get isStore => throw _privateConstructorUsedError;
+  @HiveField(5)
   bool? get isVerified => throw _privateConstructorUsedError;
+  @HiveField(6)
   String? get description => throw _privateConstructorUsedError;
+  @HiveField(7)
   String? get telephoneNumber => throw _privateConstructorUsedError;
+  @HiveField(8)
   String? get email => throw _privateConstructorUsedError;
+  @HiveField(9)
   String? get website => throw _privateConstructorUsedError;
+  @HiveField(10)
   String? get countryCode => throw _privateConstructorUsedError;
+  @HiveField(11)
   String? get city => throw _privateConstructorUsedError;
+  @HiveField(12)
   String? get street => throw _privateConstructorUsedError;
+  @HiveField(13)
   DateTime? get createdAt => throw _privateConstructorUsedError;
+  @HiveField(14)
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @HiveField(15)
   ProductType? get productType => throw _privateConstructorUsedError;
 
   /// Serializes this LocalModel to a JSON map.
@@ -54,22 +72,22 @@ abstract class $LocalModelCopyWith<$Res> {
       _$LocalModelCopyWithImpl<$Res, LocalModel>;
   @useResult
   $Res call(
-      {int? id,
-      String? userId,
-      String? name,
-      String? imageUrl,
-      bool? isStore,
-      bool? isVerified,
-      String? description,
-      String? telephoneNumber,
-      String? email,
-      String? website,
-      String? countryCode,
-      String? city,
-      String? street,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      ProductType? productType});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) String? name,
+      @HiveField(3) String? imageUrl,
+      @HiveField(4) bool? isStore,
+      @HiveField(5) bool? isVerified,
+      @HiveField(6) String? description,
+      @HiveField(7) String? telephoneNumber,
+      @HiveField(8) String? email,
+      @HiveField(9) String? website,
+      @HiveField(10) String? countryCode,
+      @HiveField(11) String? city,
+      @HiveField(12) String? street,
+      @HiveField(13) DateTime? createdAt,
+      @HiveField(14) DateTime? updatedAt,
+      @HiveField(15) ProductType? productType});
 
   $ProductTypeCopyWith<$Res>? get productType;
 }
@@ -89,7 +107,7 @@ class _$LocalModelCopyWithImpl<$Res, $Val extends LocalModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
@@ -107,9 +125,9 @@ class _$LocalModelCopyWithImpl<$Res, $Val extends LocalModel>
     Object? productType = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -198,22 +216,22 @@ abstract class _$$LocalModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? userId,
-      String? name,
-      String? imageUrl,
-      bool? isStore,
-      bool? isVerified,
-      String? description,
-      String? telephoneNumber,
-      String? email,
-      String? website,
-      String? countryCode,
-      String? city,
-      String? street,
-      DateTime? createdAt,
-      DateTime? updatedAt,
-      ProductType? productType});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) String? name,
+      @HiveField(3) String? imageUrl,
+      @HiveField(4) bool? isStore,
+      @HiveField(5) bool? isVerified,
+      @HiveField(6) String? description,
+      @HiveField(7) String? telephoneNumber,
+      @HiveField(8) String? email,
+      @HiveField(9) String? website,
+      @HiveField(10) String? countryCode,
+      @HiveField(11) String? city,
+      @HiveField(12) String? street,
+      @HiveField(13) DateTime? createdAt,
+      @HiveField(14) DateTime? updatedAt,
+      @HiveField(15) ProductType? productType});
 
   @override
   $ProductTypeCopyWith<$Res>? get productType;
@@ -232,7 +250,7 @@ class __$$LocalModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
@@ -250,9 +268,9 @@ class __$$LocalModelImplCopyWithImpl<$Res>
     Object? productType = freezed,
   }) {
     return _then(_$LocalModelImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -320,64 +338,83 @@ class __$$LocalModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LocalModelImpl implements _LocalModel {
+class _$LocalModelImpl extends _LocalModel {
   _$LocalModelImpl(
-      {this.id,
-      this.userId,
-      this.name,
-      this.imageUrl,
-      this.isStore,
-      this.isVerified,
-      this.description,
-      this.telephoneNumber,
-      this.email,
-      this.website,
-      this.countryCode,
-      this.city,
-      this.street,
-      this.createdAt,
-      this.updatedAt,
-      this.productType});
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.userId,
+      @HiveField(2) this.name,
+      @HiveField(3) this.imageUrl,
+      @HiveField(4) this.isStore,
+      @HiveField(5) this.isVerified,
+      @HiveField(6) this.description,
+      @HiveField(7) this.telephoneNumber,
+      @HiveField(8) this.email,
+      @HiveField(9) this.website,
+      @HiveField(10) this.countryCode,
+      @HiveField(11) this.city,
+      @HiveField(12) this.street,
+      @HiveField(13) this.createdAt,
+      @HiveField(14) this.updatedAt,
+      @HiveField(15) this.productType})
+      : super._();
 
   factory _$LocalModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocalModelImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? userId;
   @override
+  @HiveField(2)
   final String? name;
   @override
+  @HiveField(3)
   final String? imageUrl;
   @override
+  @HiveField(4)
   final bool? isStore;
   @override
+  @HiveField(5)
   final bool? isVerified;
   @override
+  @HiveField(6)
   final String? description;
   @override
+  @HiveField(7)
   final String? telephoneNumber;
   @override
+  @HiveField(8)
   final String? email;
   @override
+  @HiveField(9)
   final String? website;
   @override
+  @HiveField(10)
   final String? countryCode;
   @override
+  @HiveField(11)
   final String? city;
   @override
+  @HiveField(12)
   final String? street;
   @override
+  @HiveField(13)
   final DateTime? createdAt;
   @override
+  @HiveField(14)
   final DateTime? updatedAt;
   @override
+  @HiveField(15)
   final ProductType? productType;
 
   @override
   String toString() {
-    return 'LocalModel(id: $id, userId: $userId, name: $name, imageUrl: $imageUrl, isStore: $isStore, isVerified: $isVerified, description: $description, telephoneNumber: $telephoneNumber, email: $email, website: $website, countryCode: $countryCode, city: $city, street: $street, createdAt: $createdAt, updatedAt: $updatedAt, productType: $productType)';
+    return 'LocalModel(dbId: $dbId, userId: $userId, name: $name, imageUrl: $imageUrl, isStore: $isStore, isVerified: $isVerified, description: $description, telephoneNumber: $telephoneNumber, email: $email, website: $website, countryCode: $countryCode, city: $city, street: $street, createdAt: $createdAt, updatedAt: $updatedAt, productType: $productType)';
   }
 
   @override
@@ -385,7 +422,7 @@ class _$LocalModelImpl implements _LocalModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -415,7 +452,7 @@ class _$LocalModelImpl implements _LocalModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
+      dbId,
       userId,
       name,
       imageUrl,
@@ -448,59 +485,78 @@ class _$LocalModelImpl implements _LocalModel {
   }
 }
 
-abstract class _LocalModel implements LocalModel {
+abstract class _LocalModel extends LocalModel {
   factory _LocalModel(
-      {final int? id,
-      final String? userId,
-      final String? name,
-      final String? imageUrl,
-      final bool? isStore,
-      final bool? isVerified,
-      final String? description,
-      final String? telephoneNumber,
-      final String? email,
-      final String? website,
-      final String? countryCode,
-      final String? city,
-      final String? street,
-      final DateTime? createdAt,
-      final DateTime? updatedAt,
-      final ProductType? productType}) = _$LocalModelImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? userId,
+      @HiveField(2) final String? name,
+      @HiveField(3) final String? imageUrl,
+      @HiveField(4) final bool? isStore,
+      @HiveField(5) final bool? isVerified,
+      @HiveField(6) final String? description,
+      @HiveField(7) final String? telephoneNumber,
+      @HiveField(8) final String? email,
+      @HiveField(9) final String? website,
+      @HiveField(10) final String? countryCode,
+      @HiveField(11) final String? city,
+      @HiveField(12) final String? street,
+      @HiveField(13) final DateTime? createdAt,
+      @HiveField(14) final DateTime? updatedAt,
+      @HiveField(15) final ProductType? productType}) = _$LocalModelImpl;
+  _LocalModel._() : super._();
 
   factory _LocalModel.fromJson(Map<String, dynamic> json) =
       _$LocalModelImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get userId;
   @override
+  @HiveField(2)
   String? get name;
   @override
+  @HiveField(3)
   String? get imageUrl;
   @override
+  @HiveField(4)
   bool? get isStore;
   @override
+  @HiveField(5)
   bool? get isVerified;
   @override
+  @HiveField(6)
   String? get description;
   @override
+  @HiveField(7)
   String? get telephoneNumber;
   @override
+  @HiveField(8)
   String? get email;
   @override
+  @HiveField(9)
   String? get website;
   @override
+  @HiveField(10)
   String? get countryCode;
   @override
+  @HiveField(11)
   String? get city;
   @override
+  @HiveField(12)
   String? get street;
   @override
+  @HiveField(13)
   DateTime? get createdAt;
   @override
+  @HiveField(14)
   DateTime? get updatedAt;
   @override
+  @HiveField(15)
   ProductType? get productType;
 
   /// Create a copy of LocalModel
