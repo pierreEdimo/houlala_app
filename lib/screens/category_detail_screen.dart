@@ -27,12 +27,12 @@ class CategoryDetailScreen extends ConsumerWidget {
     CategoryController controller = CategoryController(ref);
 
     var selectedCategory = controller.categoryList
-        .where((category) => category.id == categoryArg.categoryId)
+        .where((category) => category.dbId == categoryArg.categoryId)
         .toList()
         .first;
 
     return CategoryDetailBody(
-      categoryId: selectedCategory.id,
+      categoryId: selectedCategory.dbId,
       categoryName: selectedCategory.name,
     );
   }

@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
           Navigator.of(context).pushNamed('${category!.route}',
               arguments: CategoryArg(
                 categoryName: category!.name!,
-                categoryId: category!.id!,
+                categoryId: category!.dbId!,
               )),
       child: CustomCard(
         padding: const EdgeInsets.all(8),
