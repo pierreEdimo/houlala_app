@@ -24,7 +24,7 @@ class ProductTypeDetailScreen extends ConsumerWidget {
 
 
     ProductController productController = ProductController(ref);
-    List<Product> productList = productController.getProductBySubCategoryId(categoryArg.categoryId!, productType!.id!);
+    List<Product> productList = productController.getProductBySubCategoryId(categoryArg.categoryId!, productType!.dbId!);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -39,7 +39,7 @@ class ProductTypeDetailScreen extends ConsumerWidget {
             arguments: SearchArgs(
               hinText: 'Recherecher dans ${productType.name}',
               categoryId: categoryArg.categoryId,
-              productTypeId: productType.id!
+              productTypeId: productType.dbId!
             )
           ),
         ),
