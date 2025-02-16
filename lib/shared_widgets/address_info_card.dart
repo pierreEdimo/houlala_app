@@ -112,7 +112,8 @@ class _AddressCardState extends ConsumerState<AddressInfoCard> {
                                             widget.selectedAddress!.firstName ??
                                                 '',
                                       addressController,
-                                      id: widget.selectedAddress?.id),
+                                      id: widget.selectedAddress?.id,
+                                      isDefault: true),
                               child: const Text(
                                 'Modifiez votre adresse',
                                 style: TextStyle(color: Colors.blue),

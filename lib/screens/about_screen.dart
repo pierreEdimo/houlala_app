@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 
@@ -28,12 +29,32 @@ class AboutScreen extends ConsumerWidget {
         ),
       ),
       body: CustomContainer(
-        loading: loading,
-        errorMessage: '',
-        child: SingleChildScrollView(
-          child: Html(data: htmlContent),
-        )
-      ),
+          loading: loading,
+          errorMessage: '',
+          child: SingleChildScrollView(
+            child: Html(
+              data: htmlContent,
+              style: {
+                'h4': Style(
+                    padding: HtmlPaddings.zero,
+                    margin: Margins.zero,
+                    fontWeight: FontWeight.bold),
+                'p': Style(
+                  padding: HtmlPaddings.zero,
+                  margin: Margins.zero,
+                ),
+                '.info-container, .mission-container, .contact-container':
+                    Style(
+                  margin: Margins.only(
+                    bottom: verticalPadding,
+                  ),
+                ),
+                '.contact-content, .intro-container, ul ': Style(
+                  margin: Margins.only(top: 10)
+                )
+              },
+            ),
+          )),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,14 +7,14 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
+import 'package:houlala_app/features/products/controllers/product_controller.dart';
+import 'package:houlala_app/features/products/model/product.dart';
+import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/shared_widgets/c_app_bar.dart';
+import 'package:houlala_app/shared_widgets/c_button.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/image_slider.dart';
 
-import '../features/products/controllers/product_controller.dart';
-import '../features/products/model/product.dart';
-import '../helpers/constants.dart';
-import '../shared_widgets/c_app_bar.dart';
-import '../shared_widgets/c_button.dart';
-import '../shared_widgets/image_slider.dart';
 
 class ProductDetailScreen extends ConsumerWidget {
   const ProductDetailScreen({super.key});
@@ -34,7 +33,7 @@ class ProductDetailScreen extends ConsumerWidget {
 
     late int quantity = selectedProduct!.defaultQuantity!;
 
-    void addProductToCart(int qty) {
+    void addProductToCart(int qty, bool isLoggedIn) {
       double price = selectedProduct!.unitSellingPrice! * qty;
       CartItem createCartItem = CartItem(
         quantity: qty,
@@ -44,12 +43,6 @@ class ProductDetailScreen extends ConsumerWidget {
       );
 
       cartController.addProductToCart(createCartItem);
-    }
-
-    void addProductToGastCard() {
-      if (kDebugMode) {
-        print('this is for gast');
-      }
     }
 
     return selectedProduct != null
@@ -230,9 +223,8 @@ class ProductDetailScreen extends ConsumerWidget {
                               ],
                             ),
                             CustomButton(
-                              onPressed: () => isLoggedIn
-                                  ? addProductToCart(quantity)
-                                  : addProductToGastCard(),
+                              onPressed: () =>
+                                  addProductToCart(quantity, isLoggedIn),
                               leadingIcon: HeroIcons.shoppingBag,
                               title: 'Ajouter au Panier',
                             )

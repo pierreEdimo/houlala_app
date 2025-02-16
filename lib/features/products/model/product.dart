@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:houlala_app/features/category/model/category_model.dart';
-
 import '../../product_type/models/product_type.dart';
 import '../../locals/model/local_model.dart';
 

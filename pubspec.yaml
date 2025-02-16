@@ -52,9 +52,10 @@ dependencies:
   get: ^4.6.6
   sizer: ^3.0.4
   intl: ^0.20.1
-  isar: 4.0.0-dev.14
-  isar_flutter_libs: 4.0.0-dev.14
   flutter_html: ^3.0.0-beta.2
+  path_provider: ^2.1.5
+  path: ^1.9.0
+
 
 dev_dependencies:
   flutter_test:

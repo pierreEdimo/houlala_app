@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:houlala_app/features/products/model/product.dart';
+import 'package:houlala_app/features/products/repositories/product_repository.dart';
+import 'package:houlala_app/features/products/state/product_state.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:http/http.dart';
-import '../model/product.dart';
-import '../repositories/product_repository.dart';
-import '../state/product_state.dart';
 
 final productRepositoryProvider =
     Provider<ProductRepository>((ref) => ProductRepository());

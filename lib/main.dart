@@ -102,7 +102,8 @@ class MyApp extends StatelessWidget {
             '/myList': (context) => const MyListsScreen(),
             '/myMessage': (context) => const MyMessagesScreen(),
             '/myAddresses': (context) => const AddressScreen(),
-            '/subStoreCategoryDetail': (context) => const StoreTypeDetailScreen(),
+            '/subStoreCategoryDetail': (context) =>
+                const StoreTypeDetailScreen(),
             '/policy': (context) => const PolicyScreen(),
             '/about': (context) => const AboutScreen(),
             '/condition': (context) => const ConditionScreen(),

@@ -112,8 +112,9 @@ class CustomBottomSheet {
                         title: "Informations personnelles",
                       ),
                       IconButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          icon: const HeroIcon(HeroIcons.xMark), )
+                        onPressed: () => Navigator.of(context).pop(),
+                        icon: const HeroIcon(HeroIcons.xMark),
+                      )
                     ],
                   ),
                 ),
@@ -189,7 +190,6 @@ class CustomBottomSheet {
           key: formkey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            spacing: 10,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 15),
@@ -214,35 +214,46 @@ class CustomBottomSheet {
                     onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Row(
-                        children: [
-                          Container(
-                              width: 18,
-                              height: 18,
-                              margin: const EdgeInsets.only(left: 5, right: 10),
+                      child: !isDefault!
+                          ? Row(
+                              children: [
+                                Container(
+                                    width: 18,
+                                    height: 18,
+                                    margin: const EdgeInsets.only(
+                                        left: 5, right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: isDefault
+                                          ? Colors.orange
+                                          : const Color(0xffbffffff),
+                                      border: Border.all(
+                                        color: const Color(0xffb000000),
+                                      ),
+                                    ),
+                                    child: isDefault
+                                        ? const Icon(
+                                            Icons.check,
+                                            size: 8,
+                                            color: Color(0xffbffffff),
+                                          )
+                                        : const Icon(
+                                            Icons.check_box_outline_blank,
+                                            size: 10.0,
+                                            color: Colors.transparent,
+                                          )),
+                                const Text(
+                                    'Choisissez comme adresse par defaut')
+                              ],
+                            )
+                          : Container(
+                              padding: const EdgeInsets.all(22),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: isDefault!
-                                    ? Colors.orange
-                                    : const Color(0xffbffffff),
-                                border: Border.all(
-                                  color: const Color(0xffb000000),
-                                ),
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.grey.shade200,
                               ),
-                              child: isDefault
-                                  ? const Icon(
-                                      Icons.check,
-                                      size: 8,
-                                      color: Color(0xffbffffff),
-                                    )
-                                  : const Icon(
-                                      Icons.check_box_outline_blank,
-                                      size: 10.0,
-                                      color: Colors.transparent,
-                                    )),
-                          const Text('Choisissez comme adresse par defaut')
-                        ],
-                      ),
+                        child:const Text('Cette adresse est actuellement votre adresse de livraison par défaut.'),
+                            ),
                     ),
                   ),
                   InputText(
