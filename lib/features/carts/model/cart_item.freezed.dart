@@ -20,10 +20,17 @@ CartItem _$CartItemFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CartItem {
-  int? get id => throw _privateConstructorUsedError;
+//ignore: invalid_annotation_target
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get userId => throw _privateConstructorUsedError;
+  @HiveField(2)
   Product? get product => throw _privateConstructorUsedError;
+  @HiveField(3)
   int? get quantity => throw _privateConstructorUsedError;
+  @HiveField(4)
   double? get price => throw _privateConstructorUsedError;
 
   /// Serializes this CartItem to a JSON map.
@@ -42,11 +49,11 @@ abstract class $CartItemCopyWith<$Res> {
       _$CartItemCopyWithImpl<$Res, CartItem>;
   @useResult
   $Res call(
-      {int? id,
-      String? userId,
-      Product? product,
-      int? quantity,
-      double? price});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) Product? product,
+      @HiveField(3) int? quantity,
+      @HiveField(4) double? price});
 
   $ProductCopyWith<$Res>? get product;
 }
@@ -66,16 +73,16 @@ class _$CartItemCopyWithImpl<$Res, $Val extends CartItem>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? product = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -120,11 +127,11 @@ abstract class _$$CartItemImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? userId,
-      Product? product,
-      int? quantity,
-      double? price});
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) Product? product,
+      @HiveField(3) int? quantity,
+      @HiveField(4) double? price});
 
   @override
   $ProductCopyWith<$Res>? get product;
@@ -143,16 +150,16 @@ class __$$CartItemImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? product = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
   }) {
     return _then(_$CartItemImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -176,27 +183,39 @@ class __$$CartItemImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CartItemImpl implements _CartItem {
+class _$CartItemImpl extends _CartItem {
   _$CartItemImpl(
-      {this.id, this.userId, this.product, this.quantity, this.price});
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.userId,
+      @HiveField(2) this.product,
+      @HiveField(3) this.quantity,
+      @HiveField(4) this.price})
+      : super._();
 
   factory _$CartItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartItemImplFromJson(json);
 
+//ignore: invalid_annotation_target
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? userId;
   @override
+  @HiveField(2)
   final Product? product;
   @override
+  @HiveField(3)
   final int? quantity;
   @override
+  @HiveField(4)
   final double? price;
 
   @override
   String toString() {
-    return 'CartItem(id: $id, userId: $userId, product: $product, quantity: $quantity, price: $price)';
+    return 'CartItem(dbId: $dbId, userId: $userId, product: $product, quantity: $quantity, price: $price)';
   }
 
   @override
@@ -204,7 +223,7 @@ class _$CartItemImpl implements _CartItem {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartItemImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.product, product) || other.product == product) &&
             (identical(other.quantity, quantity) ||
@@ -215,7 +234,7 @@ class _$CartItemImpl implements _CartItem {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, userId, product, quantity, price);
+      Object.hash(runtimeType, dbId, userId, product, quantity, price);
 
   /// Create a copy of CartItem
   /// with the given fields replaced by the non-null parameter values.
@@ -233,26 +252,34 @@ class _$CartItemImpl implements _CartItem {
   }
 }
 
-abstract class _CartItem implements CartItem {
+abstract class _CartItem extends CartItem {
   factory _CartItem(
-      {final int? id,
-      final String? userId,
-      final Product? product,
-      final int? quantity,
-      final double? price}) = _$CartItemImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? userId,
+      @HiveField(2) final Product? product,
+      @HiveField(3) final int? quantity,
+      @HiveField(4) final double? price}) = _$CartItemImpl;
+  _CartItem._() : super._();
 
   factory _CartItem.fromJson(Map<String, dynamic> json) =
       _$CartItemImpl.fromJson;
 
+//ignore: invalid_annotation_target
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get userId;
   @override
+  @HiveField(2)
   Product? get product;
   @override
+  @HiveField(3)
   int? get quantity;
   @override
+  @HiveField(4)
   double? get price;
 
   /// Create a copy of CartItem
