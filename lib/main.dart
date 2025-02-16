@@ -5,6 +5,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houlala_app/features/carts/model/cart_item.dart';
+import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/screens/address_screen.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
 import 'package:houlala_app/screens/cart_screen.dart';
@@ -33,6 +38,7 @@ import 'package:houlala_app/screens/product_type_detail_screen.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:toastification/toastification.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import 'screens/about_screen.dart';
 import 'screens/condition_screen.dart';
@@ -42,6 +48,16 @@ const storage = FlutterSecureStorage();
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(LocalModelAdapter());
+  Hive.registerAdapter(ProductTypeAdapter());
+  Hive.registerAdapter(CategoryModelAdapter());
+  Hive.registerAdapter(ProductAdapter());
+  Hive.registerAdapter(CartItemAdapter());
+
+  await Hive.openBox<CartItem>('cartItems');
+
   initializeDateFormatting('fr_FR', null);
   await dotenv.load(fileName: '.env');
   runApp(const ProviderScope(child: MyApp()));
