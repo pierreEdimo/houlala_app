@@ -20,9 +20,15 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryModel {
-  int? get id => throw _privateConstructorUsedError;
+// ignore: invalid_annotation_target
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get imageUrl => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get route => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryModel to a JSON map.
@@ -41,7 +47,11 @@ abstract class $CategoryModelCopyWith<$Res> {
           CategoryModel value, $Res Function(CategoryModel) then) =
       _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
-  $Res call({int? id, String? name, String? imageUrl, String? route});
+  $Res call(
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? imageUrl,
+      @HiveField(3) String? route});
 }
 
 /// @nodoc
@@ -59,15 +69,15 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? route = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -93,7 +103,11 @@ abstract class _$$CategoryImplCopyWith<$Res>
       __$$CategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? name, String? imageUrl, String? route});
+  $Res call(
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? name,
+      @HiveField(2) String? imageUrl,
+      @HiveField(3) String? route});
 }
 
 /// @nodoc
@@ -109,15 +123,15 @@ class __$$CategoryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
     Object? route = freezed,
   }) {
     return _then(_$CategoryImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -137,24 +151,35 @@ class __$$CategoryImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CategoryImpl implements _Category {
-  _$CategoryImpl({this.id, this.name, this.imageUrl, this.route});
+class _$CategoryImpl extends _Category {
+  _$CategoryImpl(
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.name,
+      @HiveField(2) this.imageUrl,
+      @HiveField(3) this.route})
+      : super._();
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? name;
   @override
+  @HiveField(2)
   final String? imageUrl;
   @override
+  @HiveField(3)
   final String? route;
 
   @override
   String toString() {
-    return 'CategoryModel(id: $id, name: $name, imageUrl: $imageUrl, route: $route)';
+    return 'CategoryModel(dbId: $dbId, name: $name, imageUrl: $imageUrl, route: $route)';
   }
 
   @override
@@ -162,7 +187,7 @@ class _$CategoryImpl implements _Category {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
@@ -171,7 +196,7 @@ class _$CategoryImpl implements _Category {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, imageUrl, route);
+  int get hashCode => Object.hash(runtimeType, dbId, name, imageUrl, route);
 
   /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -189,23 +214,30 @@ class _$CategoryImpl implements _Category {
   }
 }
 
-abstract class _Category implements CategoryModel {
+abstract class _Category extends CategoryModel {
   factory _Category(
-      {final int? id,
-      final String? name,
-      final String? imageUrl,
-      final String? route}) = _$CategoryImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? name,
+      @HiveField(2) final String? imageUrl,
+      @HiveField(3) final String? route}) = _$CategoryImpl;
+  _Category._() : super._();
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get name;
   @override
+  @HiveField(2)
   String? get imageUrl;
   @override
+  @HiveField(3)
   String? get route;
 
   /// Create a copy of CategoryModel
