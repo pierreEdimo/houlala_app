@@ -60,7 +60,7 @@ class LoggedInCartScreen extends ConsumerWidget {
                 ],
               )
             : const Center(
-                child: Text('Votre panier est vide'),
+                child: Text('Votre panier est vide.'),
               ),
       ),
     );
