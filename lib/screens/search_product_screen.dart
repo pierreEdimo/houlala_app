@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
@@ -42,13 +41,7 @@ class SearchProductScreen extends ConsumerWidget {
           product: selectedProduct,
           userId: connectedUser?.id);
 
-      cartController.addProductToCart(createCartItem);
-    }
-
-    void addProductToGastCard() {
-      if (kDebugMode) {
-        print('this is for gast');
-      }
+      cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
     }
 
     return Scaffold(
@@ -98,11 +91,7 @@ class SearchProductScreen extends ConsumerWidget {
                               .map(
                                 (product) => ListProductCard(
                                   onAddToBasket: () {
-                                    if (isLoggedIn) {
-                                      addProductToCart(product);
-                                    } else {
-                                      addProductToGastCard();
-                                    }
+                                    addProductToCart(product);
                                   },
                                   product: product,
                                 ),
