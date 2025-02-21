@@ -1,0 +1,1 @@
+/home/pnk/workspace/houlala_v2/houlala_app/build/app/intermediates/cxx/Debug/4t162f1d/obj/arm64-v8a

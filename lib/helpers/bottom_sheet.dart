@@ -226,16 +226,16 @@ class CustomBottomSheet {
                                       borderRadius: BorderRadius.circular(5),
                                       color: isDefault
                                           ? Colors.orange
-                                          : const Color(0xffbffffff),
+                                          : const Color(0xFBFFFFFF),
                                       border: Border.all(
-                                        color: const Color(0xffb000000),
+                                        color: const Color(0xFB000000),
                                       ),
                                     ),
                                     child: isDefault
                                         ? const Icon(
                                             Icons.check,
                                             size: 8,
-                                            color: Color(0xffbffffff),
+                                            color: Color(0xFBFFFFFF),
                                           )
                                         : const Icon(
                                             Icons.check_box_outline_blank,
@@ -252,7 +252,8 @@ class CustomBottomSheet {
                                 borderRadius: BorderRadius.circular(8),
                                 color: Colors.grey.shade200,
                               ),
-                        child:const Text('Cette adresse est actuellement votre adresse de livraison par défaut.'),
+                              child: const Text(
+                                  'Cette adresse est actuellement votre adresse de livraison par défaut.'),
                             ),
                     ),
                   ),

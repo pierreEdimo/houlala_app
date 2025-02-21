@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "/home/pnk/snap/flutter/common/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/pnk/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/pnk/workspace/houlala_v2/houlala_app/android/app/.cxx/Debug/4t162f1d/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/pnk/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/pnk/workspace/houlala_v2/houlala_app/android/app/.cxx/Debug/4t162f1d/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {},
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/pnk/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/pnk/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": []
+}

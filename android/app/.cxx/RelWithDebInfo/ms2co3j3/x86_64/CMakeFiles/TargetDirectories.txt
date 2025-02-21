@@ -1,0 +1,2 @@
+/home/pnk/workspace/houlala_v2/houlala_app/android/app/.cxx/RelWithDebInfo/ms2co3j3/x86_64/CMakeFiles/edit_cache.dir
+/home/pnk/workspace/houlala_v2/houlala_app/android/app/.cxx/RelWithDebInfo/ms2co3j3/x86_64/CMakeFiles/rebuild_cache.dir
