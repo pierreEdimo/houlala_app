@@ -38,12 +38,12 @@ class MappedCartItemCard extends ConsumerWidget {
       cartController.removeProductFromCart(item, isLoggedIn: isLoggedIn);
     }
 
-    void decreaseItemQuantity(int id) {
-      cartController.decreaseItemQuantity(id);
+    void decreaseItemQuantity(CartItem item) {
+      cartController.decreaseItemQuantity(item, isLoggedIn: isLoggedIn);
     }
 
-    void increaseItemQuantity(int id) {
-      cartController.increaseItemQuantity(id);
+    void increaseItemQuantity(CartItem item) {
+      cartController.increaseItemQuantity(item, isLoggedIn: isLoggedIn);
     }
 
     return CustomCard(
@@ -61,8 +61,8 @@ class MappedCartItemCard extends ConsumerWidget {
             children: mappedCartItem!.cartItems!
                 .map(
                   (item) => CartItemCard(
-                    onDecrease: () => decreaseItemQuantity(item.dbId!),
-                    onIncrease: () => increaseItemQuantity(item.dbId!),
+                    onDecrease: () => decreaseItemQuantity(item),
+                    onIncrease: () => increaseItemQuantity(item),
                     onPressed: () => deleteProductFromCart(item),
                     cartItem: item,
                   ),

@@ -50,6 +50,42 @@ class LocalCartItemStateNotifier extends StateNotifier<LocalCartItemState> {
     }
   }
 
+  void increaseQuantity(CartItem item) async {
+    final cartItems = cartList.values.toList();
+
+    final index = cartItems
+        .indexWhere((cart) => cart.product!.dbId == item.product!.dbId!);
+
+    final existingCartItem = cartItems[index];
+    final updatedCartItem = existingCartItem.copyWith(
+        quantity: existingCartItem.quantity! + 1,
+        price: existingCartItem.price! + item.product!.unitSellingPrice!);
+
+    await cartList.putAt(index, updatedCartItem);
+
+    List<CartItem> updatedCartItems = List.from(state.cartItemList);
+    updatedCartItems[index] = updatedCartItem;
+    state = state.copyWith(cartItemList: updatedCartItems);
+  }
+
+  void decreaseQuantity(CartItem item) async {
+    final cartItems = cartList.values.toList();
+
+    final index = cartItems
+        .indexWhere((cart) => cart.product!.dbId == item.product!.dbId!);
+
+    final existingCartItem = cartItems[index];
+    final updatedCartItem = existingCartItem.copyWith(
+        quantity: existingCartItem.quantity! - 1,
+        price: existingCartItem.price! - item.product!.unitSellingPrice!);
+
+    await cartList.putAt(index, updatedCartItem);
+
+    List<CartItem> updatedCartItems = List.from(state.cartItemList);
+    updatedCartItems[index] = updatedCartItem;
+    state = state.copyWith(cartItemList: updatedCartItems);
+  }
+
   void removeItemFromCart(CartItem item) async {
     await cartList.delete(item.key);
     List<CartItem> updatedItems = [

@@ -195,6 +195,7 @@ class _$ProductTypeImpl extends _ProductType {
   factory _$ProductTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductTypeImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
@@ -264,6 +265,7 @@ abstract class _ProductType extends ProductType {
   factory _ProductType.fromJson(Map<String, dynamic> json) =
       _$ProductTypeImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')

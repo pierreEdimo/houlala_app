@@ -194,6 +194,7 @@ class _$CartItemImpl extends _CartItem {
   factory _$CartItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartItemImplFromJson(json);
 
+//ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
@@ -262,6 +263,7 @@ abstract class _CartItem extends CartItem {
   factory _CartItem.fromJson(Map<String, dynamic> json) =
       _$CartItemImpl.fromJson;
 
+//ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')

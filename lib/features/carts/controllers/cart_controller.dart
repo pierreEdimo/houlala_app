@@ -71,12 +71,26 @@ class CartController {
     }
   }
 
-  void increaseItemQuantity(int id) {
-    ref!.read(cartItemStateNotifierProvider.notifier).increaseItemQuantity(id);
+  void increaseItemQuantity(CartItem item, {bool isLoggedIn = false}) {
+    if (isLoggedIn) {
+      ref!
+          .read(cartItemStateNotifierProvider.notifier)
+          .increaseItemQuantity(item.dbId!);
+    } else {
+      ref!
+          .read(localCartItemStateNotifierProvider.notifier)
+          .increaseQuantity(item);
+    }
   }
 
-  void decreaseItemQuantity(int id) {
-    ref!.read(cartItemStateNotifierProvider.notifier).decreaseItemQuantity(id);
+  void decreaseItemQuantity(CartItem item, {bool isLoggedIn = false}) {
+    if (isLoggedIn) {
+      ref!.read(cartItemStateNotifierProvider.notifier).decreaseItemQuantity(item.dbId!);
+    } else {
+      ref!
+          .read(localCartItemStateNotifierProvider.notifier)
+          .decreaseQuantity(item);
+    }
   }
 
   void removeProductFromCart(CartItem item, {bool isLoggedIn = false}) {
