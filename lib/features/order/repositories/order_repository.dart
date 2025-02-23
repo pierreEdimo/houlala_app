@@ -19,18 +19,22 @@ class OrderRepository {
 
   Future<List<OrderModel>> fetchUsersOrders() async {
     String? token = await TokenHelper.getToken();
-    final Response response = await get(Uri.parse('${dotenv.env['ORDER_URL']}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $token'
-        });
-    if (response.statusCode == HttpStatus.ok) {
-      List<dynamic> body = jsonDecode(response.body);
-      List<OrderModel> orders =
-          body.map((dynamic order) => OrderModel.fromJson(order)).toList();
-      return orders;
-    } else {
-      throw 'no orders';
+    if (token != null) {
+      final Response response = await get(
+          Uri.parse('${dotenv.env['ORDER_URL']}'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $token'
+          });
+      if (response.statusCode == HttpStatus.ok) {
+        List<dynamic> body = jsonDecode(response.body);
+        List<OrderModel> orders =
+            body.map((dynamic order) => OrderModel.fromJson(order)).toList();
+        return orders;
+      } else {
+        throw 'no orders';
+      }
     }
+    return [];
   }
 }
