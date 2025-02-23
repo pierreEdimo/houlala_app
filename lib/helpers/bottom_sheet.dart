@@ -183,6 +183,7 @@ class CustomBottomSheet {
       TextEditingController firstNameController,
       AddressController addressController,
       {int? id,
+      bool? isLoggedIn = false,
       bool? isDefault = false}) {
     openBottomSheet(
       StatefulBuilder(builder: (context, setState) {
@@ -328,11 +329,17 @@ class CustomBottomSheet {
                             country: 'Cameroun',
                             houseNumber: houseNumberController.text,
                             city: cityController.text);
-                        if (id != null) {
-                          addressController.editAddress(id, address);
+
+                        if (isLoggedIn!) {
+                          if (id != null) {
+                            addressController.editAddress(id, address);
+                          } else {
+                            addressController.createAddress(address);
+                          }
                         } else {
-                          addressController.createAddress(address);
+                          addressController.setGastUserAddress(address);
                         }
+
                         firstNameController.clear();
                         lastNameController.clear();
                         streetController.clear();
