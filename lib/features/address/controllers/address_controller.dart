@@ -16,6 +16,10 @@ class AddressController {
     return usersAddresses.isNotEmpty ||
         ref!.watch(addressStateNotifierProvider).gastUserAddress!.city != null;
   }
+  bool get hasGastAddress {
+    return ref!.watch(addressStateNotifierProvider).gastUserAddress!.city !=
+        null;
+  }
 
   bool get loading {
     return ref!.watch(addressStateNotifierProvider).loading;
