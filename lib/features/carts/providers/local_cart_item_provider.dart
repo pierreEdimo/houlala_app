@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/carts/state/local_cart_item_state.dart';
+import 'package:houlala_app/helpers/bottom_sheet.dart';
 import 'package:houlala_app/helpers/boxes.dart';
 
 final localCartItemStateNotifierProvider =
@@ -48,6 +49,7 @@ class LocalCartItemStateNotifier extends StateNotifier<LocalCartItemState> {
         state = state.copyWith(cartItemList: [...state.cartItemList, item]);
       }
     }
+    CustomBottomSheet.openBottomSheetOnSuccess();
   }
 
   void increaseQuantity(CartItem item) async {
@@ -93,5 +95,13 @@ class LocalCartItemStateNotifier extends StateNotifier<LocalCartItemState> {
         if (cartItem.product!.dbId != item.product!.dbId) cartItem
     ];
     state = state.copyWith(cartItemList: updatedItems);
+  }
+
+  void deleteAllItemAfterOrder() async {
+    final cartItems = cartList.values.toList();
+    for (final CartItem cartItem in cartItems) {
+      await cartList.delete(cartItem.key);
+    }
+    state = state.copyWith(cartItemList: []);
   }
 }
