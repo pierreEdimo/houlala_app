@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/address/controllers/address_controller.dart';
 import 'package:houlala_app/features/address/model/address.dart';
+import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
-import 'package:houlala_app/features/order/controller/order_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
@@ -14,8 +15,8 @@ import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/check_out_cart_item.dart';
 import 'package:houlala_app/shared_widgets/item_total_card.dart';
-import 'package:houlala_app/shared_widgets/mapped_cart_item_card.dart';
 import 'package:houlala_app/shared_widgets/payment_button.dart';
+import 'package:houlala_app/shared_widgets/user_info_card.dart';
 
 class GastCheckoutScreen extends ConsumerWidget {
   const GastCheckoutScreen({super.key});
@@ -24,9 +25,13 @@ class GastCheckoutScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CartController cartController = CartController(ref);
     AddressController addressController = AddressController(ref);
-    OrderController orderController = OrderController(ref);
+    AuthController authController = AuthController(ref);
 
+    UserModel? gastUser = authController.gastUser;
+    bool? hastGastUserInfo = authController.hasGastUserInfo;
     List<MappedCartItem> mappedCartItems = cartController.mappedDbCartItemList;
+    Address? gastUserAddress = addressController.gastUserAddress;
+    bool hasAddress = addressController.hasAddress;
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -50,6 +55,16 @@ class GastCheckoutScreen extends ConsumerWidget {
                 child: Column(
                   spacing: verticalPadding,
                   children: [
+                    UserInfoCard(
+                      hasUserInfo: hastGastUserInfo,
+                      userModel: gastUser,
+                    ),
+                    AddressInfoCard(
+                      isLoggedIn: false,
+                      hasAddress: hasAddress,
+                      loading: false,
+                      selectedAddress: gastUserAddress,
+                    ),
                     CustomCard(
                       child: Column(
                         children: mappedCartItems
@@ -69,7 +84,7 @@ class GastCheckoutScreen extends ConsumerWidget {
               ),
             ),
             PaymentButton(
-              onPressed: () => print('Hello World !'),
+              onPressed: () => {},
             )
           ],
         ),
