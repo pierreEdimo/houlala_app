@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
-import 'package:houlala_app/shared_widgets/column_headers.dart';
 
 import '../helpers/item_calculations.dart';
 
@@ -26,18 +25,14 @@ class ItemTotalCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomCard(
       child: SizedBox(
-        height: 100,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ColumnHeaders(
-              title: 'Total($totalQuantity)',
-            ),
+            Text('Total($totalQuantity)'),
             Expanded(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end ,
                 children: [
                   Text(
                     '$totalPrice',
