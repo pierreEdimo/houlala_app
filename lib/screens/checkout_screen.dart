@@ -97,6 +97,7 @@ class CheckoutScreen extends ConsumerWidget {
                       loading: addressController.loading,
                       hasAddress: addressController.hasAddress,
                       selectedAddress: selectedAddress,
+                      isLoggedIn: authController.isLoggedIn,
                     ),
                     CustomCard(
                       child: ListView(
