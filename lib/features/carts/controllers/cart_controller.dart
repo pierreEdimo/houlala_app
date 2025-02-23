@@ -85,7 +85,9 @@ class CartController {
 
   void decreaseItemQuantity(CartItem item, {bool isLoggedIn = false}) {
     if (isLoggedIn) {
-      ref!.read(cartItemStateNotifierProvider.notifier).decreaseItemQuantity(item.dbId!);
+      ref!
+          .read(cartItemStateNotifierProvider.notifier)
+          .decreaseItemQuantity(item.dbId!);
     } else {
       ref!
           .read(localCartItemStateNotifierProvider.notifier)
@@ -103,5 +105,11 @@ class CartController {
           .read(localCartItemStateNotifierProvider.notifier)
           .removeItemFromCart(item);
     }
+  }
+
+  void deleteAllItemsAfterOrder() {
+    ref!
+        .read(localCartItemStateNotifierProvider.notifier)
+        .deleteAllItemAfterOrder();
   }
 }
