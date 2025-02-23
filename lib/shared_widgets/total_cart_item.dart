@@ -20,7 +20,7 @@ class TotalCartItem extends StatelessWidget {
       children: [
         RichText(
           text: TextSpan(
-            text: 'Total: ',
+            text: 'Sous-total: ',
             style: DefaultTextStyle.of(context).style,
             children: <TextSpan>[TextSpan(text: '$totalQuantity')],
           ),
