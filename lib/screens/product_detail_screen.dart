@@ -15,7 +15,6 @@ import 'package:houlala_app/shared_widgets/c_button.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/image_slider.dart';
 
-
 class ProductDetailScreen extends ConsumerWidget {
   const ProductDetailScreen({super.key});
 
@@ -39,7 +38,7 @@ class ProductDetailScreen extends ConsumerWidget {
         quantity: qty,
         price: price,
         product: selectedProduct,
-        userId: connectedUser?.id,
+        userId: connectedUser != null ? connectedUser.id : 'gast_id',
       );
 
       cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
