@@ -41,7 +41,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   Widget build(BuildContext context) {
     AuthController authController = AuthController(ref);
 
-    predefinedIndex = ModalRoute.of(context)?.settings.arguments as int?;
     bool isLoggedIn = authController.isLoggedIn;
 
     return Scaffold(
