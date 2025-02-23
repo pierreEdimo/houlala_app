@@ -13,7 +13,8 @@ class AddressController {
   }
 
   bool get hasAddress {
-    return usersAddresses.isNotEmpty;
+    return usersAddresses.isNotEmpty ||
+        ref!.watch(addressStateNotifierProvider).gastUserAddress!.city != null;
   }
 
   bool get loading {
@@ -28,6 +29,10 @@ class AddressController {
     return usersAddresses.firstWhereOrNull((address) => address.id == id);
   }
 
+  Address? get gastUserAddress {
+    return ref!.watch(addressStateNotifierProvider).gastUserAddress;
+  }
+
   void createAddress(Address address) {
     ref!.read(addressStateNotifierProvider.notifier).createAddress(address);
   }
@@ -38,5 +43,11 @@ class AddressController {
 
   void editAddress(int id, Address address) {
     ref!.read(addressStateNotifierProvider.notifier).editAddress(id, address);
+  }
+
+  void setGastUserAddress(Address address) {
+    ref!
+        .read(addressStateNotifierProvider.notifier)
+        .setGastUserAddress(address);
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/address/model/address.dart';
@@ -22,6 +21,7 @@ final class AddressStateNotifier extends StateNotifier<AddressState> {
 
   AddressStateNotifier(this.addressRepository) : super(AddressState()) {
     fetchUsersAddress();
+    createGastAddress();
   }
 
   Future<void> fetchUsersAddress() async {
@@ -104,5 +104,15 @@ final class AddressStateNotifier extends StateNotifier<AddressState> {
           errorMessage: "erreur lors de la suppression de l'adresse",
           loading: false);
     }
+  }
+
+  setGastUserAddress(Address address) {
+    state = state.copyWith(gastUserAddress: address);
+    navigatorKey.currentState!.pop();
+  }
+
+  void createGastAddress() {
+    final Address emptyAddress = Address();
+    state = state.copyWith(gastUserAddress: emptyAddress);
   }
 }
