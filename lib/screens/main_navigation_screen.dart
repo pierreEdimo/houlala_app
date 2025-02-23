@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/search_args.dart';
+import 'package:houlala_app/screens/cart_screen.dart';
 import 'package:houlala_app/screens/profile_screen.dart';
 import 'package:sizer/sizer.dart';
 import '../features/auth/controllers/auth_controller.dart';
@@ -26,6 +27,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const DiscoverScreen(),
+    const CartScreen(),
     const ProfileScreen(),
   ];
 
@@ -39,6 +41,7 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
   Widget build(BuildContext context) {
     AuthController authController = AuthController(ref);
 
+    predefinedIndex = ModalRoute.of(context)?.settings.arguments as int?;
     bool isLoggedIn = authController.isLoggedIn;
 
     return Scaffold(
@@ -52,9 +55,6 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
           hinText: 'Rechercher les produits',
         ),
         actions: [
-          IconButton(
-              onPressed: () => Navigator.of(context).pushNamed('/cart'),
-              icon: const HeroIcon(HeroIcons.shoppingBag)),
           IconButton(
             onPressed: () => Navigator.of(context)
                 .pushNamed(isLoggedIn ? '/notifications' : '/login'),
@@ -109,6 +109,16 @@ class _MainNavigationScreenState extends ConsumerState<MainNavigationScreen> {
                       IconButton(
                         onPressed: () => _onItemTaped(2),
                         icon: _selectedIndex != 2
+                            ? const HeroIcon(HeroIcons.shoppingBag)
+                            : const HeroIcon(
+                                HeroIcons.shoppingBag,
+                                style: HeroIconStyle.solid,
+                                color: Colors.orange,
+                              ),
+                      ),
+                      IconButton(
+                        onPressed: () => _onItemTaped(3),
+                        icon: _selectedIndex != 3
                             ? const HeroIcon(HeroIcons.user)
                             : const HeroIcon(
                                 HeroIcons.user,
