@@ -10,6 +10,7 @@ class AuthState with _$AuthState{
     @Default('') String token,
     @Default(false) bool loggedIn,
     @Default(null) UserModel? connectedUser,
-    @Default('') String errorMessage
+    @Default('') String errorMessage,
+    @Default(null) UserModel? gastUser,
   }) = _AuthState;
 }

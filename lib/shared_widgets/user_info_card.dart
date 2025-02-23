@@ -31,7 +31,7 @@ class _UserInfoCardState extends ConsumerState<UserInfoCard> {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = AuthController(ref);
-    final UserModel? connectedUser = authController.connectedUser;
+    final UserModel? connectedUser = widget.userModel;
 
     return CustomCard(
       child: Container(

@@ -26,6 +26,7 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
 
   AuthStateNotifier(this.authRepository) : super(AuthState()) {
     checkAndSetConnectedUser();
+    createGastUser();
   }
 
   Future<void> login(Login login) async {
@@ -119,5 +120,14 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
 
   void loggOut() {
     state = state.copyWith(loggedIn: false);
+  }
+
+  void createGastUser() {
+    UserModel gastUser = UserModel();
+    state = state.copyWith(gastUser: gastUser);
+  }
+
+  void setGastUser(UserModel gastUserModel) {
+    state = state.copyWith(gastUser: gastUserModel);
   }
 }
