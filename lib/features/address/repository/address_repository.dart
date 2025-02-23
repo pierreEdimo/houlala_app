@@ -9,20 +9,23 @@ import 'package:http/http.dart';
 class AddressRepository {
   Future<List<Address>> getUsersAddress() async {
     var token = await TokenHelper.getToken();
-    String? uri = dotenv.env['ADDRESS_URL'];
-    final Response response =
-        await get(Uri.parse(uri!), headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
-    });
-    if (response.statusCode == HttpStatus.ok) {
-      List<dynamic> body = jsonDecode(response.body);
-      List<Address> addresses =
-          body.map((dynamic address) => Address.fromJson(address)).toList();
-      return addresses;
-    } else {
-      throw 'no adresses';
+    if (token != null) {
+      String? uri = dotenv.env['ADDRESS_URL'];
+      final Response response =
+          await get(Uri.parse(uri!), headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token'
+      });
+      if (response.statusCode == HttpStatus.ok) {
+        List<dynamic> body = jsonDecode(response.body);
+        List<Address> addresses =
+            body.map((dynamic address) => Address.fromJson(address)).toList();
+        return addresses;
+      } else {
+        throw 'no adresses';
+      }
     }
+    return [];
   }
 
   Future<Response> createAddress(Address address) async {
