@@ -36,10 +36,11 @@ class SearchProductScreen extends ConsumerWidget {
 
     void addProductToCart(Product selectedProduct) {
       CartItem createCartItem = CartItem(
-          quantity: 1,
-          price: selectedProduct.unitSellingPrice,
-          product: selectedProduct,
-          userId: connectedUser?.id);
+        quantity: 1,
+        price: selectedProduct.unitSellingPrice,
+        product: selectedProduct,
+        userId: connectedUser != null ? connectedUser.id : 'gast-id',
+      );
 
       cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
     }
