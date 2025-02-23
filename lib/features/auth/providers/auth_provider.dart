@@ -129,5 +129,6 @@ final class AuthStateNotifier extends StateNotifier<AuthState> {
 
   void setGastUser(UserModel gastUserModel) {
     state = state.copyWith(gastUser: gastUserModel);
+    navigatorKey.currentState!.pop();
   }
 }
