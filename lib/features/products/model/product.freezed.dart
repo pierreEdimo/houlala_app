@@ -377,7 +377,6 @@ class _$ProductImpl extends _Product {
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
 
-// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
@@ -530,7 +529,6 @@ abstract class _Product extends Product {
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
-// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')

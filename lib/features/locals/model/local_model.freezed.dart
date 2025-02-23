@@ -360,7 +360,6 @@ class _$LocalModelImpl extends _LocalModel {
   factory _$LocalModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LocalModelImplFromJson(json);
 
-// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
@@ -507,7 +506,6 @@ abstract class _LocalModel extends LocalModel {
   factory _LocalModel.fromJson(Map<String, dynamic> json) =
       _$LocalModelImpl.fromJson;
 
-// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
