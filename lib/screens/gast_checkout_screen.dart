@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +9,11 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/order/controller/order_controller.dart';
+import 'package:houlala_app/features/order/model/order_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/helpers/item_calculations.dart';
+import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
@@ -26,12 +31,44 @@ class GastCheckoutScreen extends ConsumerWidget {
     CartController cartController = CartController(ref);
     AddressController addressController = AddressController(ref);
     AuthController authController = AuthController(ref);
+    OrderController orderController = OrderController(ref);
 
     UserModel? gastUser = authController.gastUser;
     bool? hastGastUserInfo = authController.hasGastUserInfo;
     List<MappedCartItem> mappedCartItems = cartController.mappedDbCartItemList;
     Address? gastUserAddress = addressController.gastUserAddress;
     bool hasAddress = addressController.hasAddress;
+    bool loading = orderController.loading;
+
+    void confirmPayment() {
+      if (!authController.hasGastUserInfo &&
+          !addressController.hasGastAddress) {
+        CustomToastNotification.showErrorAction(
+            "Svp veuillez ajouter vos informations personnelles et votre adresse.");
+      } else {
+        for (var mappedCartItem in mappedCartItems) {
+          OrderModel order = OrderModel(
+              user: gastUser,
+              cartItems: mappedCartItem.cartItems,
+              local: mappedCartItem.local,
+              address: gastUserAddress,
+              totalQuantity:
+                  ItemCalculations.getTotalQuantity(mappedCartItem.cartItems!),
+              totalPrice:
+                  ItemCalculations.getTotalPrice(mappedCartItem.cartItems!));
+
+          try {
+            orderController.placeOrder(order);
+          } catch (e) {
+            if (kDebugMode) {
+              print(e);
+            }
+            rethrow;
+          }
+          cartController.deleteAllItemsAfterOrder();
+        }
+      }
+    }
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -45,7 +82,7 @@ class GastCheckoutScreen extends ConsumerWidget {
         ),
       ),
       body: CustomContainer(
-        loading: false,
+        loading: loading,
         errorMessage: '',
         child: Stack(
           children: [
@@ -84,7 +121,7 @@ class GastCheckoutScreen extends ConsumerWidget {
               ),
             ),
             PaymentButton(
-              onPressed: () => {},
+              onPressed: () => confirmPayment(),
             )
           ],
         ),
