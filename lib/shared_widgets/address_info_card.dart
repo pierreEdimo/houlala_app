@@ -11,12 +11,14 @@ class AddressInfoCard extends ConsumerStatefulWidget {
   final bool hasAddress;
   final Address? selectedAddress;
   final bool? loading;
+  final bool? isLoggedIn;
 
   const AddressInfoCard({
     super.key,
     required this.hasAddress,
     this.selectedAddress,
     this.loading,
+    this.isLoggedIn,
   });
 
   @override
@@ -54,14 +56,16 @@ class _AddressCardState extends ConsumerState<AddressInfoCard> {
                       const ColumnHeaders(title: 'Adresse de livraison'),
                       AddInfoButton(
                         onPressed: () => CustomBottomSheet.openSaveAddressForm(
-                            _formkey,
-                            streetController,
-                            poBoxController,
-                            cityController,
-                            houseNumberController,
-                            lastNameController,
-                            firstNameController,
-                            addressController),
+                          _formkey,
+                          streetController,
+                          poBoxController,
+                          cityController,
+                          houseNumberController,
+                          lastNameController,
+                          firstNameController,
+                          addressController,
+                          isLoggedIn: widget.isLoggedIn
+                        ),
                         title: 'Ajoutez votre adresse',
                       )
                     ],
@@ -113,6 +117,7 @@ class _AddressCardState extends ConsumerState<AddressInfoCard> {
                                                 '',
                                       addressController,
                                       id: widget.selectedAddress?.id,
+                                      isLoggedIn: widget.isLoggedIn,
                                       isDefault: true),
                               child: const Text(
                                 'Modifiez votre adresse',
