@@ -12,7 +12,6 @@ import 'package:houlala_app/features/product_type/models/product_type.dart';
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/screens/address_screen.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
-import 'package:houlala_app/screens/cart_screen.dart';
 import 'package:houlala_app/screens/category_detail_screen.dart';
 import 'package:houlala_app/screens/checkout_screen.dart';
 import 'package:houlala_app/screens/gast_checkout_screen.dart';
@@ -101,7 +100,6 @@ class MyApp extends StatelessWidget {
             '/searchStore': (context) => const SearchStoreScreen(),
             '/allProducts': (context) => const AllProductScreen(),
             '/subCategoryDetail': (context) => const ProductTypeDetailScreen(),
-            '/cart': (context) => const CartScreen(),
             '/notifications': (context) => const NotificationScreen(),
             '/login': (context) => const LoginScreen(),
             '/logup': (context) => const LogupScreen(),
