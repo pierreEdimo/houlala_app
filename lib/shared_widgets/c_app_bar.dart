@@ -24,7 +24,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Expanded(
-                    flex: 3,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -32,21 +31,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         leading != null && title != null
                             ? const SizedBox(width: 10)
                             : Container(),
-                        title != null ? Flexible(child: title!) : Container(),
+                        title != null ? Expanded(child: title!) : Container(),
                       ],
                     ),
                   ),
                   actions != null
-                      ? Expanded(
-                          flex: 1,
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: actions!,
-                            ),
-                          ),
-                        )
+                      ? Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: actions!,
+                        ),
+                      )
                       : Container(),
                 ],
               ),
