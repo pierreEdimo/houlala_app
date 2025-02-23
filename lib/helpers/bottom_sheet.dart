@@ -5,6 +5,7 @@ import 'package:houlala_app/features/address/controllers/address_controller.dart
 import 'package:houlala_app/features/address/model/address.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/edit_info.dart';
+import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/main.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
@@ -74,8 +75,8 @@ class CustomBottomSheet {
               ),
               Expanded(
                 child: CustomButton(
-                  onPressed: () =>
-                      navigatorKey.currentState?.popAndPushNamed('/cart'),
+                  onPressed: () => navigatorKey.currentState
+                      ?.popAndPushNamed('/', arguments: 2),
                   title: 'Panier',
                 ),
               )
@@ -87,13 +88,13 @@ class CustomBottomSheet {
   }
 
   static void openEditInfosForm(
-    GlobalKey<FormState> formkey,
-    TextEditingController emailController,
-    TextEditingController firstNameController,
-    TextEditingController lastNameController,
-    TextEditingController phoneNumberController,
-    AuthController authController,
-  ) {
+      GlobalKey<FormState> formkey,
+      TextEditingController emailController,
+      TextEditingController firstNameController,
+      TextEditingController lastNameController,
+      TextEditingController phoneNumberController,
+      AuthController authController,
+      {bool isLoggedIn = false}) {
     openBottomSheet(
       StatefulBuilder(
         builder: (context, setState) {
@@ -158,7 +159,17 @@ class CustomBottomSheet {
                             phoneNumber: phoneNumberController.text,
                           );
 
-                          authController.editUserInfo(info);
+                          if (isLoggedIn) {
+                            authController.editUserInfo(info);
+                          } else {
+                            UserModel? gastUser = UserModel(
+                                email: emailController.text,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                phoneNumber: phoneNumberController.text);
+
+                            authController.setGastUserInfo(gastUser);
+                          }
                         }
                       },
                       title: 'Enregistrer',
@@ -211,53 +222,56 @@ class CustomBottomSheet {
                 spacing: 15,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: !isDefault!
-                          ? Row(
-                              children: [
-                                Container(
-                                    width: 18,
-                                    height: 18,
-                                    margin: const EdgeInsets.only(
-                                        left: 5, right: 10),
+                  isLoggedIn!
+                      ? InkWell(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: !isDefault!
+                                ? Row(
+                                    children: [
+                                      Container(
+                                          width: 18,
+                                          height: 18,
+                                          margin: const EdgeInsets.only(
+                                              left: 5, right: 10),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: isDefault
+                                                ? Colors.orange
+                                                : const Color(0xFBFFFFFF),
+                                            border: Border.all(
+                                              color: const Color(0xFB000000),
+                                            ),
+                                          ),
+                                          child: isDefault
+                                              ? const Icon(
+                                                  Icons.check,
+                                                  size: 8,
+                                                  color: Color(0xFBFFFFFF),
+                                                )
+                                              : const Icon(
+                                                  Icons.check_box_outline_blank,
+                                                  size: 10.0,
+                                                  color: Colors.transparent,
+                                                )),
+                                      const Text(
+                                          'Choisissez comme adresse par defaut')
+                                    ],
+                                  )
+                                : Container(
+                                    padding: const EdgeInsets.all(22),
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: isDefault
-                                          ? Colors.orange
-                                          : const Color(0xFBFFFFFF),
-                                      border: Border.all(
-                                        color: const Color(0xFB000000),
-                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.grey.shade200,
                                     ),
-                                    child: isDefault
-                                        ? const Icon(
-                                            Icons.check,
-                                            size: 8,
-                                            color: Color(0xFBFFFFFF),
-                                          )
-                                        : const Icon(
-                                            Icons.check_box_outline_blank,
-                                            size: 10.0,
-                                            color: Colors.transparent,
-                                          )),
-                                const Text(
-                                    'Choisissez comme adresse par defaut')
-                              ],
-                            )
-                          : Container(
-                              padding: const EdgeInsets.all(22),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Colors.grey.shade200,
-                              ),
-                              child: const Text(
-                                  'Cette adresse est actuellement votre adresse de livraison par défaut.'),
-                            ),
-                    ),
-                  ),
+                                    child: const Text(
+                                        'Cette adresse est actuellement votre adresse de livraison par défaut.'),
+                                  ),
+                          ),
+                        )
+                      : Container(),
                   InputText(
                     placeholder: 'Nom de famille',
                     textEditingController: lastNameController,
@@ -330,7 +344,7 @@ class CustomBottomSheet {
                             houseNumber: houseNumberController.text,
                             city: cityController.text);
 
-                        if (isLoggedIn!) {
+                        if (isLoggedIn) {
                           if (id != null) {
                             addressController.editAddress(id, address);
                           } else {
