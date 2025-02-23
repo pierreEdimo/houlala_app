@@ -19,6 +19,7 @@ mixin _$AddressState {
   List<Address> get addressList => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  Address? get gastUserAddress => throw _privateConstructorUsedError;
 
   /// Create a copy of AddressState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,13 @@ abstract class $AddressStateCopyWith<$Res> {
           AddressState value, $Res Function(AddressState) then) =
       _$AddressStateCopyWithImpl<$Res, AddressState>;
   @useResult
-  $Res call({List<Address> addressList, String errorMessage, bool loading});
+  $Res call(
+      {List<Address> addressList,
+      String errorMessage,
+      bool loading,
+      Address? gastUserAddress});
+
+  $AddressCopyWith<$Res>? get gastUserAddress;
 }
 
 /// @nodoc
@@ -54,6 +61,7 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
     Object? addressList = null,
     Object? errorMessage = null,
     Object? loading = null,
+    Object? gastUserAddress = freezed,
   }) {
     return _then(_value.copyWith(
       addressList: null == addressList
@@ -68,7 +76,25 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      gastUserAddress: freezed == gastUserAddress
+          ? _value.gastUserAddress
+          : gastUserAddress // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ) as $Val);
+  }
+
+  /// Create a copy of AddressState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressCopyWith<$Res>? get gastUserAddress {
+    if (_value.gastUserAddress == null) {
+      return null;
+    }
+
+    return $AddressCopyWith<$Res>(_value.gastUserAddress!, (value) {
+      return _then(_value.copyWith(gastUserAddress: value) as $Val);
+    });
   }
 }
 
@@ -80,7 +106,14 @@ abstract class _$$AddressStateImplCopyWith<$Res>
       __$$AddressStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Address> addressList, String errorMessage, bool loading});
+  $Res call(
+      {List<Address> addressList,
+      String errorMessage,
+      bool loading,
+      Address? gastUserAddress});
+
+  @override
+  $AddressCopyWith<$Res>? get gastUserAddress;
 }
 
 /// @nodoc
@@ -99,6 +132,7 @@ class __$$AddressStateImplCopyWithImpl<$Res>
     Object? addressList = null,
     Object? errorMessage = null,
     Object? loading = null,
+    Object? gastUserAddress = freezed,
   }) {
     return _then(_$AddressStateImpl(
       addressList: null == addressList
@@ -113,6 +147,10 @@ class __$$AddressStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      gastUserAddress: freezed == gastUserAddress
+          ? _value.gastUserAddress
+          : gastUserAddress // ignore: cast_nullable_to_non_nullable
+              as Address?,
     ));
   }
 }
@@ -123,7 +161,8 @@ class _$AddressStateImpl implements _AddressState {
   _$AddressStateImpl(
       {final List<Address> addressList = const [],
       this.errorMessage = '',
-      this.loading = true})
+      this.loading = true,
+      this.gastUserAddress = null})
       : _addressList = addressList;
 
   final List<Address> _addressList;
@@ -141,10 +180,13 @@ class _$AddressStateImpl implements _AddressState {
   @override
   @JsonKey()
   final bool loading;
+  @override
+  @JsonKey()
+  final Address? gastUserAddress;
 
   @override
   String toString() {
-    return 'AddressState(addressList: $addressList, errorMessage: $errorMessage, loading: $loading)';
+    return 'AddressState(addressList: $addressList, errorMessage: $errorMessage, loading: $loading, gastUserAddress: $gastUserAddress)';
   }
 
   @override
@@ -156,12 +198,18 @@ class _$AddressStateImpl implements _AddressState {
                 .equals(other._addressList, _addressList) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.loading, loading) || other.loading == loading));
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.gastUserAddress, gastUserAddress) ||
+                other.gastUserAddress == gastUserAddress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_addressList), errorMessage, loading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_addressList),
+      errorMessage,
+      loading,
+      gastUserAddress);
 
   /// Create a copy of AddressState
   /// with the given fields replaced by the non-null parameter values.
@@ -176,7 +224,8 @@ abstract class _AddressState implements AddressState {
   factory _AddressState(
       {final List<Address> addressList,
       final String errorMessage,
-      final bool loading}) = _$AddressStateImpl;
+      final bool loading,
+      final Address? gastUserAddress}) = _$AddressStateImpl;
 
   @override
   List<Address> get addressList;
@@ -184,6 +233,8 @@ abstract class _AddressState implements AddressState {
   String get errorMessage;
   @override
   bool get loading;
+  @override
+  Address? get gastUserAddress;
 
   /// Create a copy of AddressState
   /// with the given fields replaced by the non-null parameter values.

@@ -9,5 +9,6 @@ class AddressState with _$AddressState {
     @Default([]) List<Address> addressList,
     @Default('') String errorMessage,
     @Default(true) bool loading,
-}) = _AddressState;
+    @Default(null) Address? gastUserAddress,
+  }) = _AddressState;
 }
