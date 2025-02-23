@@ -22,6 +22,10 @@ class AuthController {
     ref!.read(authStateNotifierProvider.notifier).editUserInfo(info);
   }
 
+  void setGastUserInfo(UserModel user) {
+    ref!.read(authStateNotifierProvider.notifier).setGastUser(user);
+  }
+
   String get errorMessage {
     return ref!.watch(authStateNotifierProvider).errorMessage;
   }
