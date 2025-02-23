@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class LocalCard extends StatelessWidget {
@@ -22,10 +23,15 @@ class LocalCard extends StatelessWidget {
         '/localDetail',
         arguments: local?.dbId,
       ),
-      child: CustomCard(
+      child: Card(
+        elevation: 0,
+        color: Colors.transparent,
         child: SizedBox(
           width: 180,
-          child: Stack(
+          child: Column(
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Center(
                 child: Container(
@@ -33,12 +39,12 @@ class LocalCard extends StatelessWidget {
                   width: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(150.0),
-                    color: Colors.orange,
+                    color: Colors.white,
                   ),
                   child: Center(
                     child: Container(
-                      height: 90,
-                      width: 90,
+                      height: 75,
+                      width: 75,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(150.0),
                         image: DecorationImage(
@@ -52,21 +58,14 @@ class LocalCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 1,
-                  padding: const EdgeInsets.only(top: 5.0),
-                  color: Colors.white,
-                  height: 50,
-                  child: Text(
-                    local!.name!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold, fontSize: 18.0),
-                  ),
+              Flexible(
+                child: Text(
+                  local!.name!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold, fontSize: 18.0),
                 ),
               )
             ],
