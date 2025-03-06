@@ -18,7 +18,7 @@ import 'package:houlala_app/screens/gast_checkout_screen.dart';
 import 'package:houlala_app/screens/local_detail_screen.dart';
 import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
-import 'package:houlala_app/screens/main_navigation_screen.dart';
+import 'package:houlala_app/screens/main_screen.dart';
 import 'package:houlala_app/screens/my_account_screen.dart';
 import 'package:houlala_app/screens/my_bills_screen.dart';
 import 'package:houlala_app/screens/my_favorites_screen.dart';
@@ -93,7 +93,7 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: '/',
           routes: {
-            '/': (context) => const MainNavigationScreen(),
+            '/': (context) => const MainScreen(),
             '/productDetail': (context) => const ProductDetailScreen(),
             '/categoryDetail': (context) => const CategoryDetailScreen(),
             '/searchProducts': (context) => const SearchProductScreen(),
