@@ -10,15 +10,18 @@ import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
 import 'package:houlala_app/features/product_type/models/product_type.dart';
 import 'package:houlala_app/features/products/model/product.dart';
+import 'package:houlala_app/helpers/no_transitions_builder.dart';
 import 'package:houlala_app/screens/address_screen.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
+import 'package:houlala_app/screens/cart_screen.dart';
 import 'package:houlala_app/screens/category_detail_screen.dart';
 import 'package:houlala_app/screens/checkout_screen.dart';
+import 'package:houlala_app/screens/discover_screen.dart';
 import 'package:houlala_app/screens/gast_checkout_screen.dart';
+import 'package:houlala_app/screens/home_screen.dart';
 import 'package:houlala_app/screens/local_detail_screen.dart';
 import 'package:houlala_app/screens/login_screen.dart';
 import 'package:houlala_app/screens/logup_screen.dart';
-import 'package:houlala_app/screens/main_screen.dart';
 import 'package:houlala_app/screens/my_account_screen.dart';
 import 'package:houlala_app/screens/my_bills_screen.dart';
 import 'package:houlala_app/screens/my_favorites_screen.dart';
@@ -29,6 +32,7 @@ import 'package:houlala_app/screens/no_product_screen.dart';
 import 'package:houlala_app/screens/no_store_screen.dart';
 import 'package:houlala_app/screens/notification_screen.dart';
 import 'package:houlala_app/screens/product_detail_screen.dart';
+import 'package:houlala_app/screens/profile_screen.dart';
 import 'package:houlala_app/screens/search_product_screen.dart';
 import 'package:houlala_app/screens/search_store_screen.dart';
 import 'package:houlala_app/screens/store_detail_screen.dart';
@@ -90,10 +94,19 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
             useMaterial3: true,
             scaffoldBackgroundColor: const Color(0xFFf4efe8),
+            pageTransitionsTheme: const PageTransitionsTheme(
+              builders: <TargetPlatform, PageTransitionsBuilder>{
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.android: TransitionsBuilder()
+              }
+            )
           ),
           initialRoute: '/',
           routes: {
-            '/': (context) => const MainScreen(),
+            '/': (context) => const HomeScreen(),
+            '/discover': (context) => const DiscoverScreen(),
+            '/user': (context) => const ProfileScreen(),
+            '/carts': (context) => const CartScreen(),
             '/productDetail': (context) => const ProductDetailScreen(),
             '/categoryDetail': (context) => const CategoryDetailScreen(),
             '/searchProducts': (context) => const SearchProductScreen(),

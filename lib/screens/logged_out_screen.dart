@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/about_tile.dart';
+import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/condition_tile.dart';
 import 'package:houlala_app/shared_widgets/login_tile.dart';
 import 'package:houlala_app/shared_widgets/policy_tile.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/contact_us_tile.dart';
+import 'package:houlala_app/shared_widgets/search_input_button.dart';
 
 class LoggedOutScreen extends ConsumerWidget {
   const LoggedOutScreen({super.key});
@@ -19,6 +23,23 @@ class LoggedOutScreen extends ConsumerWidget {
     String errorMessage = authController.errorMessage;
 
     return Scaffold(
+      appBar: CustomAppBar(
+        title: SearchInputButton(
+          onPressed: () => Navigator.pushNamed(
+            context,
+            '/searchProducts',
+            arguments: SearchArgs(
+                categoryId: null, productTypeId: null, sellerId: null),
+          ),
+          hinText: 'Rechercher des produits',
+        ),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pushNamed('/login'),
+            icon: const HeroIcon(HeroIcons.bell),
+          )
+        ],
+      ),
       body: CustomContainer(
         loading: false,
         errorMessage: errorMessage,

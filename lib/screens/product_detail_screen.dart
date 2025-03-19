@@ -13,6 +13,7 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/image_slider.dart';
 
 class ProductDetailScreen extends ConsumerWidget {
@@ -24,13 +25,12 @@ class ProductDetailScreen extends ConsumerWidget {
     AuthController authController = AuthController(ref);
     CartController cartController = CartController(ref);
 
-    //final int productId = ModalRoute.of(context)!.settings.arguments as int;
     final UserModel? connectedUser = authController.connectedUser;
     final bool isLoggedIn = authController.isLoggedIn;
 
     Product? selectedProduct = productController.selectedProduct;
 
-    late int quantity = selectedProduct!.defaultQuantity!;
+    late int? quantity = selectedProduct?.defaultQuantity;
 
     void addProductToCart(int qty, bool isLoggedIn) {
       double price = selectedProduct!.unitSellingPrice! * qty;
@@ -44,138 +44,143 @@ class ProductDetailScreen extends ConsumerWidget {
       cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
     }
 
-    return selectedProduct != null
-        ? Scaffold(
-            appBar: CustomAppBar(
-              leading: IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const HeroIcon(HeroIcons.chevronLeft),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    if (isLoggedIn) {
-                      if (!selectedProduct.isFavorite!) {
-                        productController
-                            .addProductToFavorite(selectedProduct.dbId!);
-                      } else {
-                        productController
-                            .removeProductFromFavorite(selectedProduct.dbId!);
-                      }
-                    } else {
-                      Navigator.of(context).pushNamed('/login');
-                    }
-                  },
-                  icon: selectedProduct.isFavorite!
-                      ? const HeroIcon(
-                          HeroIcons.heart,
-                          style: HeroIconStyle.solid,
-                          color: Colors.red,
-                        )
-                      : const HeroIcon(HeroIcons.heart),
-                ),
-                // IconButton(
-                //   onPressed: () {},
-                //   icon: const HeroIcon(HeroIcons.share),
-                // )
-              ],
-            ),
-            body: CustomContainer(
-              errorMessage: productController.errorMessage,
-              loading: productController.loading,
-              child: Stack(
-                children: [
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: stackDefaultPadding,
-                      child: Column(
+    return CustomScaffold(
+      appBar: CustomAppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const HeroIcon(HeroIcons.chevronLeft),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              if (isLoggedIn) {
+                if (selectedProduct != null) {
+                  if (!selectedProduct.isFavorite!) {
+                    productController
+                        .addProductToFavorite(selectedProduct.dbId!);
+                  } else {
+                    productController
+                        .removeProductFromFavorite(selectedProduct.dbId!);
+                  }
+                } else {
+                  Navigator.of(context).pushNamed('/login');
+                }
+              }
+            },
+            icon: selectedProduct != null
+                ? selectedProduct.isFavorite!
+                    ? const HeroIcon(
+                        HeroIcons.heart,
+                        style: HeroIconStyle.solid,
+                        color: Colors.red,
+                      )
+                    : const HeroIcon(HeroIcons.heart)
+                : const HeroIcon(HeroIcons.heart),
+          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: const HeroIcon(HeroIcons.share),
+          // )
+        ],
+      ),
+      body: CustomContainer(
+        errorMessage: productController.errorMessage,
+        loading: productController.loading,
+        child: selectedProduct != null
+            ? SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      bottom: 110,
+                      left: horizontalPadding,
+                      right: horizontalPadding,
+                      top: verticalPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Column(
+                        spacing: verticalPadding,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Column(
-                            spacing: verticalPadding,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                          Container(
+                            height: 400,
+                            decoration: BoxDecoration(
+                                color: Colors.white, borderRadius: radius),
+                            child: ImageSlider(
+                              images: selectedProduct.images,
+                            ),
+                          ),
+                          Row(
+                            spacing: 10,
                             children: [
-                              Container(
-                                height: 400,
-                                decoration: BoxDecoration(
-                                    color: Colors.white, borderRadius: radius),
-                                child: ImageSlider(
-                                  images: selectedProduct.images,
-                                ),
+                              const HeroIcon(
+                                HeroIcons.buildingStorefront,
+                                size: 17,
                               ),
-                              Row(
-                                spacing: 10,
-                                children: [
-                                  const HeroIcon(
-                                    HeroIcons.buildingStorefront,
-                                    size: 17,
-                                  ),
-                                  Text(
-                                    selectedProduct.local!.name!,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  )
-                                ],
+                              Text(
+                                selectedProduct.local!.name!,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      Text(
+                        selectedProduct.name!,
+                        style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.bold, fontSize: 22.0),
+                      ),
+                      Row(
+                        spacing: 20,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '${selectedProduct.unitSellingPrice}',
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold, fontSize: 22),
+                              ),
+                              const Text(
+                                'XAF',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                ),
                               )
                             ],
                           ),
-                          Text(
-                            selectedProduct.name!,
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold, fontSize: 22.0),
-                          ),
-                          Row(
-                            spacing: 20,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Row(
+                          StatefulBuilder(
+                            builder:
+                                (BuildContext context, StateSetter setState) {
+                              return Row(
                                 children: [
-                                  HeroIcon(
-                                    HeroIcons.star,
-                                    color: Colors.amber,
-                                    style: HeroIconStyle.solid,
+                                  IconButton(
+                                    onPressed: () => setState(() {
+                                      if (quantity! > 1) {
+                                        quantity = quantity! - 1;
+                                      }
+                                    }),
+                                    icon: const HeroIcon(HeroIcons.minus),
                                   ),
-                                  Text(
-                                    '(4.9)',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    '2.8k reviews',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                                  Text('$quantity'),
+                                  IconButton(
+                                      onPressed: () => setState(() {
+                                            quantity = quantity! + 1;
+                                          }),
+                                      icon: const HeroIcon(HeroIcons.plus))
                                 ],
-                              ),
-                              StatefulBuilder(
-                                builder: (BuildContext context,
-                                    StateSetter setState) {
-                                  return Row(
-                                    children: [
-                                      IconButton(
-                                        onPressed: () => setState(() {
-                                          if (quantity > 1) quantity -= 1;
-                                        }),
-                                        icon: const HeroIcon(HeroIcons.minus),
-                                      ),
-                                      Text('$quantity'),
-                                      IconButton(
-                                          onPressed: () => setState(() {
-                                                quantity += 1;
-                                              }),
-                                          icon: const HeroIcon(HeroIcons.plus))
-                                    ],
-                                  );
-                                },
-                              ),
-                            ],
+                              );
+                            },
                           ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        spacing: verticalPadding,
+                        children: [
                           Html(
                             style: {
                               "body": Style(
@@ -184,64 +189,21 @@ class ProductDetailScreen extends ConsumerWidget {
                                   wordSpacing: 0.5)
                             },
                             data: selectedProduct.description,
-                          )
+                          ),
+                          CustomButton(
+                            leadingIcon: HeroIcons.plus,
+                            onPressed: () =>
+                                addProductToCart(quantity!, isLoggedIn),
+                            title: 'Ajouter au panier',
+                          ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1,
-                      height: 90,
-                      color: const Color(0xFFf4efe8),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: horizontalPadding),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Prix',
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  '${selectedProduct.unitSellingPrice} XAF',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                            CustomButton(
-                              onPressed: () =>
-                                  addProductToCart(quantity, isLoggedIn),
-                              leadingIcon: HeroIcons.shoppingBag,
-                              title: 'Ajouter au Panier',
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
-        : Scaffold(
-            body: CustomContainer(
-              loading: productController.loading,
-              errorMessage: productController.errorMessage,
-              child: Container(),
-            ),
-          );
+                ),
+              )
+            : Container(),
+      ),
+    );
   }
 }

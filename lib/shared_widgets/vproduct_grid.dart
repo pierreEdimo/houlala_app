@@ -23,6 +23,8 @@ class VerticalProductGrid extends StatelessWidget {
       shrinkWrap: shrinkWrap ?? false,
       physics: physics,
       childAspectRatio: aspectRatio ?? 1.0,
+      mainAxisSpacing: 11,
+      crossAxisSpacing: 11,
       children: productList!
           .map(
             (product) => ProductCard(

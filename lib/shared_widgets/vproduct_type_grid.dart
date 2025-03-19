@@ -21,6 +21,8 @@ class VertiProductTypeGrid extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 2,
       shrinkWrap: shrinkWrap ?? false,
+      mainAxisSpacing: 11,
+      crossAxisSpacing: 11,
       physics: physics,
       children: productTypeList!
           .map(

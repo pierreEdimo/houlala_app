@@ -10,6 +10,7 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
@@ -34,7 +35,7 @@ class StoreDetailScreen extends ConsumerWidget {
     List<ProductType> productTypeList =
         subCategoryControllers.fetchCategoriesByCid(categoryArg.categoryId!);
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -81,8 +82,10 @@ class StoreDetailScreen extends ConsumerWidget {
                     GridView.count(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
+                      crossAxisSpacing: 11,
+                      mainAxisSpacing: 11,
                       crossAxisCount: 2,
-                      childAspectRatio: 1 / 1.2,
+                      childAspectRatio: 1/0.7,
                       children: localList
                           .map((local) => LocalCard(
                                 local: local,

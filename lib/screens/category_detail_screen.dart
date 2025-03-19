@@ -4,6 +4,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
 import 'package:houlala_app/features/category/controllers/category_controller.dart';
 import 'package:houlala_app/helpers/search_args.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
 import '../features/products/controllers/product_controller.dart';
@@ -14,7 +15,6 @@ import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/c_container.dart';
 import '../shared_widgets/column_headers.dart';
-import '../shared_widgets/filter_button.dart';
 import '../shared_widgets/search_input_button.dart';
 
 class CategoryDetailScreen extends ConsumerWidget {
@@ -64,7 +64,7 @@ class CategoryDetailBody extends ConsumerWidget {
         ? 'Erreur dans la connexion à la base de données'
         : '';
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -81,53 +81,46 @@ class CategoryDetailBody extends ConsumerWidget {
       body: CustomContainer(
         loading: typeLoading,
         errorMessage: errorMessage,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: stackDefaultPadding,
-                child: Column(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: stackDefaultPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ColumnHeaders(title: categoryName),
+                productTypeList.isEmpty
+                    ? const SizedBox(height: verticalPadding)
+                    : Container(),
+                productTypeList.length > 1
+                    ? VertiProductTypeGrid(
+                        categoryId: categoryId,
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        productTypeList: productTypeList,
+                      )
+                    : Container(),
+                productTypeList.length > 1
+                    ? const SizedBox(
+                        height: verticalPadding,
+                      )
+                    : Container(),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ColumnHeaders(title: categoryName),
-                    productTypeList.isEmpty
-                        ? const SizedBox(height: verticalPadding)
-                        : Container(),
-                    productTypeList.length > 1
-                        ? VertiProductTypeGrid(
-                            categoryId: categoryId,
-                            shrinkWrap: true,
-                            physics: const ClampingScrollPhysics(),
-                            productTypeList: productTypeList,
-                          )
-                        : Container(),
-                    productTypeList.length > 1
-                        ? const SizedBox(
-                            height: verticalPadding,
-                          )
-                        : Container(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          '${productFromCategories.length} produits',
-                        ),
-                        VerticalProductGrid(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          aspectRatio: productAspectRatio,
-                          productList: productFromCategories,
-                        )
-                      ],
+                    Text(
+                      '${productFromCategories.length} produits',
+                    ),
+                    VerticalProductGrid(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      aspectRatio: productAspectRatio,
+                      productList: productFromCategories,
                     )
                   ],
-                ),
-              ),
+                )
+              ],
             ),
-            productFromCategories.length > 1
-                ? const FilterButton()
-                : Container()
-          ],
+          ),
         ),
       ),
     );
