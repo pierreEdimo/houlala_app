@@ -69,7 +69,10 @@ class OrderCard extends StatelessWidget {
                         '$totalPaid',
                         style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
                       ),
-                      const Text('XAF'),
+                      Text(
+                        'XAF',
+                        style: TextStyle(fontSize: priceFontSize),
+                      ),
                     ],
                   )
                 ],
@@ -137,7 +140,10 @@ class OrderedProduct extends StatelessWidget {
                               style: GoogleFonts.poppins(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
-                            const Text('XAF')
+                            Text(
+                              'XAF',
+                              style: TextStyle(fontSize: priceFontSize),
+                            )
                           ],
                         )
                       ],

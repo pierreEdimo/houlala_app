@@ -78,15 +78,24 @@ class ListProductCard extends ConsumerWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 18,
                                 ),
                               ),
-                              Text(
-                                '${product!.unitSellingPrice!} XAF',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    '${product!.unitSellingPrice!}',
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                  Text(
+                                    'XAF',
+                                    style: TextStyle(fontSize: priceFontSize),
+                                  )
+                                ],
                               )
                             ],
                           ),

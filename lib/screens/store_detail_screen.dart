@@ -13,9 +13,8 @@ import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
+import 'package:houlala_app/shared_widgets/vlocals_grid.dart';
 import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
-
-import '../shared_widgets/local_card.dart';
 
 class StoreDetailScreen extends ConsumerWidget {
   const StoreDetailScreen({super.key});
@@ -79,18 +78,11 @@ class StoreDetailScreen extends ConsumerWidget {
                     const ColumnHeaders(
                       title: 'Decouvrez nos partenaires',
                     ),
-                    GridView.count(
+                    VerticalLocalsGrid(
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
-                      crossAxisSpacing: 11,
-                      mainAxisSpacing: 11,
-                      crossAxisCount: 2,
-                      childAspectRatio: 1/0.7,
-                      children: localList
-                          .map((local) => LocalCard(
-                                local: local,
-                              ))
-                          .toList(),
+                      aspectRatio: verticalStoreRatio,
+                      localList: localList,
                     )
                   ],
                 )

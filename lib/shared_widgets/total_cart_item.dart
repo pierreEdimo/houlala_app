@@ -15,33 +15,26 @@ class TotalCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
       spacing: horizontalPadding,
       children: [
-        RichText(
-          text: TextSpan(
-            text: 'Sous-total: ',
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[TextSpan(text: '$totalQuantity')],
-          ),
-        ),
+        Text('Sous-total($totalQuantity)'),
         Row(
-          spacing: 4,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Text('prix:'),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '$totalPrice',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                ),
-                const Text('XAF')
-              ],
+            Text(
+              '$totalPrice',
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+            Text(
+              'XAF',
+              style: TextStyle(
+                fontSize: priceFontSize,
+              ),
             )
           ],
         )

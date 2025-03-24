@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
+import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import '../features/products/model/product.dart';
 
@@ -58,12 +59,23 @@ class ProductCard extends ConsumerWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w900, fontSize: 16),
+                      fontWeight: FontWeight.w900, fontSize: 18),
                 ),
-                Text(
-                  '${product!.unitSellingPrice!.toString()} XAF',
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold, fontSize: 17),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '${product!.unitSellingPrice!}',
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold, fontSize: 22),
+                    ),
+                    Text(
+                      'XAF',
+                      style: TextStyle(
+                        fontSize: priceFontSize
+                      ),
+                    )
+                  ],
                 )
               ],
             )

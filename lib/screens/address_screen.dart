@@ -73,7 +73,7 @@ class _AddressScreenState extends ConsumerState<AddressScreen> {
         child: Stack(
           children: [
             ListView(
-              padding: stackDefaultPadding,
+              padding: customDefaultPadding,
               children: addressList
                   .map(
                     (address) => AddressCard(

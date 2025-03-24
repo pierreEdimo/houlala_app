@@ -18,6 +18,7 @@ import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/check_out_cart_item.dart';
 import 'package:houlala_app/shared_widgets/item_total_card.dart';
 import 'package:houlala_app/shared_widgets/payment_button.dart';
@@ -70,7 +71,7 @@ class GastCheckoutScreen extends ConsumerWidget {
       }
     }
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -84,46 +85,42 @@ class GastCheckoutScreen extends ConsumerWidget {
       body: CustomContainer(
         loading: loading,
         errorMessage: '',
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: stackDefaultPadding,
-                child: Column(
-                  spacing: verticalPadding,
-                  children: [
-                    UserInfoCard(
-                      hasUserInfo: hastGastUserInfo,
-                      userModel: gastUser,
-                    ),
-                    AddressInfoCard(
-                      isLoggedIn: false,
-                      hasAddress: hasAddress,
-                      loading: false,
-                      selectedAddress: gastUserAddress,
-                    ),
-                    CustomCard(
-                      child: Column(
-                        children: mappedCartItems
-                            .map(
-                              (item) => CheckOutCartItem(
-                                mappedCartItem: item,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                    ItemTotalCart(
-                      mappedCartItems: mappedCartItems,
-                    )
-                  ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: customDefaultPadding,
+            child: Column(
+              spacing: verticalPadding,
+              children: [
+                UserInfoCard(
+                  hasUserInfo: hastGastUserInfo,
+                  userModel: gastUser,
                 ),
-              ),
+                AddressInfoCard(
+                  isLoggedIn: false,
+                  hasAddress: hasAddress,
+                  loading: false,
+                  selectedAddress: gastUserAddress,
+                ),
+                CustomCard(
+                  child: Column(
+                    children: mappedCartItems
+                        .map(
+                          (item) => CheckOutCartItem(
+                            mappedCartItem: item,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                ItemTotalCart(
+                  mappedCartItems: mappedCartItems,
+                ),
+                PaymentButton(
+                  onPressed: () => confirmPayment(),
+                )
+              ],
             ),
-            PaymentButton(
-              onPressed: () => confirmPayment(),
-            )
-          ],
+          ),
         ),
       ),
     );

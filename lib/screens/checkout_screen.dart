@@ -14,6 +14,7 @@ import 'package:houlala_app/features/order/model/order_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/item_total_card.dart';
 import 'package:houlala_app/shared_widgets/address_info_card.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
@@ -34,7 +35,8 @@ class CheckoutScreen extends ConsumerWidget {
     OrderController orderController = OrderController(ref);
 
     UserModel? connectedUser = authController.connectedUser;
-    Address? selectedAddress = addressController.getDeliveryAddress(connectedUser!.deliveryAddressId!);
+    Address? selectedAddress =
+        addressController.getDeliveryAddress(connectedUser!.deliveryAddressId!);
     List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     bool? loading = orderController.loading;
 
@@ -67,7 +69,7 @@ class CheckoutScreen extends ConsumerWidget {
       }
     }
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -81,48 +83,44 @@ class CheckoutScreen extends ConsumerWidget {
       body: CustomContainer(
         loading: loading,
         errorMessage: orderController.errorMessage,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: stackDefaultPadding,
-                child: Column(
-                  spacing: verticalPadding,
-                  children: [
-                    UserInfoCard(
-                      hasUserInfo: authController.hasUserInfo,
-                      userModel: connectedUser,
-                    ),
-                    AddressInfoCard(
-                      loading: addressController.loading,
-                      hasAddress: addressController.hasAddress,
-                      selectedAddress: selectedAddress,
-                      isLoggedIn: authController.isLoggedIn,
-                    ),
-                    CustomCard(
-                      child: ListView(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        children: mappedCartItems
-                            .map(
-                              (item) => CheckOutCartItem(
-                                mappedCartItem: item,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                    ItemTotalCart(
-                      mappedCartItems: mappedCartItems,
-                    )
-                  ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: customDefaultPadding,
+            child: Column(
+              spacing: verticalPadding,
+              children: [
+                UserInfoCard(
+                  hasUserInfo: authController.hasUserInfo,
+                  userModel: connectedUser,
                 ),
-              ),
+                AddressInfoCard(
+                  loading: addressController.loading,
+                  hasAddress: addressController.hasAddress,
+                  selectedAddress: selectedAddress,
+                  isLoggedIn: authController.isLoggedIn,
+                ),
+                CustomCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: 8,
+                    children: mappedCartItems
+                        .map(
+                          (item) => CheckOutCartItem(
+                            mappedCartItem: item,
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                ItemTotalCart(
+                  mappedCartItems: mappedCartItems,
+                ),
+                PaymentButton(
+                  onPressed: () => confirmPayment(),
+                )
+              ],
             ),
-            PaymentButton(
-              onPressed: () => confirmPayment(),
-            )
-          ],
+          ),
         ),
       ),
     );

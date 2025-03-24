@@ -43,7 +43,7 @@ class _AddressCardState extends ConsumerState<AddressInfoCard> {
         constraints: const BoxConstraints(minHeight: 80),
         child: Builder(
           builder: (context) {
-            if (widget.loading! || widget.selectedAddress == null) {
+            if (widget.loading!) {
               return const Center(
                 child: CircularProgressIndicator(),
               );

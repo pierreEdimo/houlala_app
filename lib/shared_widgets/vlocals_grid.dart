@@ -23,6 +23,8 @@ class VerticalLocalsGrid extends StatelessWidget {
       physics: physics,
       childAspectRatio: aspectRatio ?? 1.0,
       crossAxisCount: 2,
+      crossAxisSpacing: 8,
+      mainAxisSpacing: 8,
       children: localList!
           .map((seller) => LocalCard(
                 local: seller,

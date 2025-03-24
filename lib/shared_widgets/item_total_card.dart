@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 
 import '../helpers/item_calculations.dart';
@@ -32,16 +33,17 @@ class ItemTotalCart extends StatelessWidget {
             Expanded(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end ,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     '$totalPrice',
                     style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 22),
                   ),
-                  const Text('XAF')
+                  Text(
+                    'XAF',
+                    style: TextStyle(fontSize: priceFontSize),
+                  )
                 ],
               ),
             )

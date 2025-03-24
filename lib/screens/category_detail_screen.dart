@@ -83,7 +83,7 @@ class CategoryDetailBody extends ConsumerWidget {
         errorMessage: errorMessage,
         child: SingleChildScrollView(
           child: Padding(
-            padding: stackDefaultPadding,
+            padding: customDefaultPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

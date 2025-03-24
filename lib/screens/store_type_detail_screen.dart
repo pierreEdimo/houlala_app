@@ -7,7 +7,7 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
-import 'package:houlala_app/shared_widgets/filter_button.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vlocals_grid.dart';
 
@@ -28,7 +28,7 @@ class StoreTypeDetailScreen extends ConsumerWidget {
     List<LocalModel> localList = localsController
         .getLocalsListByCategoryId(categoryArg.productType!.dbId!);
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -48,29 +48,24 @@ class StoreTypeDetailScreen extends ConsumerWidget {
       body: CustomContainer(
         loading: isLoading,
         errorMessage: errorMessage,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: stackDefaultPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      '${localList.length} Magasin(s) dans ${categoryArg.productType!.name}',
-                    ),
-                    VerticalLocalsGrid(
-                      shrinkWrap: true,
-                      physics: const ClampingScrollPhysics(),
-                      aspectRatio: 1 / 1.2,
-                      localList: localList,
-                    )
-                  ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: customDefaultPadding,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  '${localList.length} Magasin(s) dans ${categoryArg.productType!.name}',
                 ),
-              ),
+                VerticalLocalsGrid(
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  aspectRatio: verticalStoreRatio,
+                  localList: localList,
+                )
+              ],
             ),
-            localList.length > 1 ? const FilterButton() : Container()
-          ],
+          ),
         ),
       ),
     );

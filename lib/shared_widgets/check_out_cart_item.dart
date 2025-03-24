@@ -7,6 +7,8 @@ import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
 import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
+import '../helpers/constants.dart';
+
 class CheckOutCartItem extends StatelessWidget {
   final MappedCartItem? mappedCartItem;
 
@@ -29,6 +31,7 @@ class CheckOutCartItem extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 8,
         children: [
           Row(
             spacing: 10,
@@ -115,7 +118,7 @@ class ProductItemCard extends StatelessWidget {
                   ),
                   Text('${item!.quantity!}'),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
                         '${item!.price!}',
@@ -124,8 +127,9 @@ class ProductItemCard extends StatelessWidget {
                           fontSize: 22,
                         ),
                       ),
-                      const Text(
+                      Text(
                         'XAF',
+                        style: TextStyle(fontSize: priceFontSize),
                       )
                     ],
                   )

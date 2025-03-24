@@ -10,6 +10,7 @@ import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
 import 'package:houlala_app/shared_widgets/about_tile.dart';
 import 'package:houlala_app/shared_widgets/condition_tile.dart';
+import 'package:houlala_app/shared_widgets/default_app_bar.dart';
 import 'package:houlala_app/shared_widgets/logout_tile.dart';
 import 'package:houlala_app/shared_widgets/policy_tile.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
@@ -39,6 +40,9 @@ class LoggedInScreen extends ConsumerWidget {
         : authController.errorMessage;
 
     return Scaffold(
+      appBar: const DefaultAppBar(
+        navigationRoute: '/notifications',
+      ),
       body: CustomContainer(
         loading: authController.loading,
         errorMessage: errorMessage,

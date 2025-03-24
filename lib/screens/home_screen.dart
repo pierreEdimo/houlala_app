@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/category/controllers/category_controller.dart';
 import 'package:houlala_app/features/category/model/category_model.dart';
@@ -9,17 +8,15 @@ import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
-import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/category_card.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
-import 'package:houlala_app/shared_widgets/search_input_button.dart';
+import 'package:houlala_app/shared_widgets/default_app_bar.dart';
 import 'package:houlala_app/shared_widgets/see_more_button.dart';
 import 'package:houlala_app/shared_widgets/local_card.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
 
-import '../helpers/search_args.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -53,23 +50,8 @@ class HomeScreen extends ConsumerWidget {
     }
 
     return CustomScaffold(
-      appBar: CustomAppBar(
-        title: SearchInputButton(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            '/searchProducts',
-            arguments: SearchArgs(
-                categoryId: null, productTypeId: null, sellerId: null),
-          ),
-          hinText: 'Rechercher des produits',
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context)
-                .pushNamed(isLoggedIn ? '/notifications' : '/login'),
-            icon: const HeroIcon(HeroIcons.bell),
-          )
-        ],
+      appBar: DefaultAppBar(
+        navigationRoute: isLoggedIn ? '/notifications' : '/login',
       ),
       body: CustomContainer(
         loading: productController.loading &&

@@ -62,9 +62,9 @@ class ProductDetailScreen extends ConsumerWidget {
                     productController
                         .removeProductFromFavorite(selectedProduct.dbId!);
                   }
-                } else {
-                  Navigator.of(context).pushNamed('/login');
                 }
+              } else {
+                Navigator.of(context).pushNamed('/login');
               }
             },
             icon: selectedProduct != null

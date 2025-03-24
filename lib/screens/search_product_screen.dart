@@ -11,7 +11,7 @@ import 'package:houlala_app/features/locals//providers/search_local_provider.dar
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
-import 'package:houlala_app/shared_widgets/filter_button.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/list_product_card.dart';
 import 'package:houlala_app/shared_widgets/product_list.dart';
 import 'package:houlala_app/shared_widgets/search_field.dart';
@@ -45,7 +45,7 @@ class SearchProductScreen extends ConsumerWidget {
       cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
     }
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () {
@@ -54,7 +54,7 @@ class SearchProductScreen extends ConsumerWidget {
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
         title: SearchField(
-          placeholder: 'Rechercher produit',
+          placeholder: '${searchArgs.hinText}',
           onSubmitted: (value) {
             if (value.isNotEmpty) {
               productController.searchProduct(
@@ -74,40 +74,33 @@ class SearchProductScreen extends ConsumerWidget {
       ),
       body: !isSearchSubmitted
           ? Container() //todo: implement a screen to filter Suggestion
-          : Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: stackDefaultPadding,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text(
-                          '${searchProductList.length} produit(s) trouve(s)',
-                        ),
-                        ProductList(
-                          shrinkWrap: true,
-                          scrollPhysics: const ClampingScrollPhysics(),
-                          productList: searchProductList
-                              .map(
-                                (product) => ListProductCard(
-                                  onAddToBasket: () {
-                                    addProductToCart(product);
-                                  },
-                                  product: product,
-                                ),
-                              )
-                              .toList(),
-                        )
-                      ],
-                    ),
+          : SingleChildScrollView(
+            child: Padding(
+              padding: customDefaultPadding,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    '${searchProductList.length} produit(s) trouve(s)',
                   ),
-                ),
-                searchProductList.isNotEmpty
-                    ? const FilterButton()
-                    : Container()
-              ],
+                  ProductList(
+                    shrinkWrap: true,
+                    scrollPhysics: const ClampingScrollPhysics(),
+                    productList: searchProductList
+                        .map(
+                          (product) => ListProductCard(
+                            onAddToBasket: () {
+                              addProductToCart(product);
+                            },
+                            product: product,
+                          ),
+                        )
+                        .toList(),
+                  )
+                ],
+              ),
             ),
+          ),
     );
   }
 }

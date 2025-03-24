@@ -5,6 +5,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 import 'package:houlala_app/shared_widgets/cart_header.dart';
@@ -146,7 +147,7 @@ class CartItemCard extends StatelessWidget {
                     },
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
                         '${cartItem!.price!}',
@@ -155,8 +156,11 @@ class CartItemCard extends StatelessWidget {
                           fontSize: 22,
                         ),
                       ),
-                      const Text(
+                      Text(
                         ' XAF',
+                        style: TextStyle(
+                          fontSize: priceFontSize,
+                        ),
                       )
                     ],
                   )

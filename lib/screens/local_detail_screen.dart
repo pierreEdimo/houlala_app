@@ -11,7 +11,7 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/open_url.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
-import 'package:houlala_app/shared_widgets/filter_button.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/local_nav.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
@@ -27,7 +27,7 @@ class LocalDetailScreen extends ConsumerWidget {
     final int localId = ModalRoute.of(context)!.settings.arguments as int;
     LocalModel? selectedLocal = localController.getSelectedLocal(localId);
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -64,35 +64,29 @@ class LocalProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Product> productList =
         productController!.getProductByLocalId(localModel!.dbId!);
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Padding(
-            padding: stackDefaultPadding,
-            child: Column(
-              spacing: 20,
-              children: [
-                SearchInputButton(
-                  hinText: 'Rechercher dans ${localModel!.name!}',
-                  onPressed: () => Navigator.of(context).pushNamed(
-                    '/searchProducts',
-                    arguments: SearchArgs(
-                        categoryId: null,
-                        productTypeId: null,
-                        sellerId: localModel!.dbId!),
-                  ),
-                ),
-                VerticalProductGrid(
-                  aspectRatio: productAspectRatio,
-                  shrinkWrap: true,
-                  productList: productList,
-                )
-              ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: customDefaultPadding,
+        child: Column(
+          spacing: verticalPadding,
+          children: [
+            SearchInputButton(
+              hinText: 'Rechercher dans ${localModel!.name!}',
+              onPressed: () => Navigator.of(context).pushNamed(
+                '/searchProducts',
+                arguments: SearchArgs(
+                    hinText: 'Rechercher dans ${localModel!.name!}',
+                    sellerId: localModel!.dbId!),
+              ),
             ),
-          ),
+            VerticalProductGrid(
+              aspectRatio: productAspectRatio,
+              shrinkWrap: true,
+              productList: productList,
+            )
+          ],
         ),
-        productList.isNotEmpty ? const FilterButton() : Container()
-      ],
+      ),
     );
   }
 }
@@ -227,10 +221,7 @@ class LocalHome extends ConsumerWidget {
         productController.getTopSellingProductsByLocalId(localModel!.dbId!);
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: horizontalPadding,
-          vertical: verticalPadding,
-        ),
+        padding: customDefaultPadding,
         child: Column(
           spacing: 20,
           children: [
@@ -252,7 +243,6 @@ class LocalHome extends ConsumerWidget {
             ),
             productList.isNotEmpty
                 ? Column(
-                    spacing: 7,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(

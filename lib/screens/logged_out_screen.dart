@@ -28,8 +28,7 @@ class LoggedOutScreen extends ConsumerWidget {
           onPressed: () => Navigator.pushNamed(
             context,
             '/searchProducts',
-            arguments: SearchArgs(
-                categoryId: null, productTypeId: null, sellerId: null),
+            arguments: SearchArgs(hinText: 'Rechercher des produits'),
           ),
           hinText: 'Rechercher des produits',
         ),

@@ -5,7 +5,7 @@ import 'package:houlala_app/features/locals/providers/search_local_provider.dart
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
-import 'package:houlala_app/shared_widgets/filter_button.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/result_seller_card.dart';
 import 'package:houlala_app/shared_widgets/search_field.dart';
 
@@ -24,7 +24,7 @@ class SearchStoreScreen extends ConsumerWidget {
 
     bool isSearchSubmitted = ref.watch(searchStateNotifierProvider);
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () {
@@ -54,32 +54,27 @@ class SearchStoreScreen extends ConsumerWidget {
       ),
       body: !isSearchSubmitted
           ? Container() // todo: implement a screen to filter vorschlag
-          : Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: stackDefaultPadding,
-                    child: Column(
+          : SingleChildScrollView(
+              child: Padding(
+                padding: customDefaultPadding,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text('${filteredLocals.length} magasin(s) trouve(s)'),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text('${filteredLocals.length} magasin(s) trouve(s)'),
-                        ListView(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          children: filteredLocals
-                              .map(
-                                (seller) => ResultSellerCard(
-                                  local: seller,
-                                ),
-                              )
-                              .toList(),
-                        )
-                      ],
-                    ),
-                  ),
+                      spacing: 8,
+                      children: filteredLocals
+                          .map(
+                            (seller) => ResultSellerCard(
+                              local: seller,
+                            ),
+                          )
+                          .toList(),
+                    )
+                  ],
                 ),
-                filteredLocals.isNotEmpty ? const FilterButton() : Container()
-              ],
+              ),
             ),
     );
   }
