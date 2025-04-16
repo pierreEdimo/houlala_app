@@ -13,12 +13,9 @@ class CartProductName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name!,
-      maxLines: 3,
+      maxLines: 2,
       overflow: TextOverflow.ellipsis,
-      style: GoogleFonts.poppins(
-        fontWeight: FontWeight.w900,
-        fontSize: 16
-      ),
+      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
     );
   }
 }
