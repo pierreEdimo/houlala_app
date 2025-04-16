@@ -69,7 +69,6 @@ class _AddressScreenState extends ConsumerState<AddressScreen> {
       ),
       body: CustomContainer(
         loading: addressController.loading,
-        errorMessage: addressController.errorMessage,
         child: Stack(
           children: [
             ListView(
