@@ -1,12 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/register.dart';
-import 'package:houlala_app/helpers/constants.dart';
+import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
-import 'package:houlala_app/shared_widgets/c_card.dart';
+import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/input_email.dart';
 import 'package:houlala_app/shared_widgets/input_password.dart';
 import 'package:houlala_app/shared_widgets/input_text.dart';
@@ -33,91 +33,66 @@ class _LogupScreenState extends ConsumerState<LogupScreen> {
 
     void register() {
       Register register = Register(
-        userName: userNameController.text,
-        passWord: passwordController.text,
-        email: emailController.text
-      );
+          userName: userNameController.text,
+          passWord: passwordController.text,
+          email: emailController.text);
 
       authController.register(register);
     }
 
     return Scaffold(
+      appBar: CustomAppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const HeroIcon(HeroIcons.chevronLeft)),
+        title: Text(
+          'Creer un compte',
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 22),
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.minHeight),
-                child: Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: horizontalPadding),
+            return CustomContainer(
+              child: SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.minHeight),
+                  child: Form(
+                    key: _formKey,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 25,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Center(
-                          child: Image.asset(
-                            'images/houlala1.png',
-                            height: 150,
-                          ),
+                        Column(
+                          spacing: 8,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            InputEmail(
+                              emailController: emailController,
+                            ),
+                            InputText(
+                              textEditingController: userNameController,
+                              mustFill: true,
+                              keyboardType: TextInputType.text,
+                              infoMessage: "Inserez votre nom d'utilisateur",
+                              placeholder: "Nom d'utilisateur",
+                            ),
+                            InputPassword(
+                              passwordRex: specialCharRegex,
+                              passwordController: passwordController,
+                            ),
+                          ],
                         ),
-                        CustomCard(
-                          child: Column(
-                            spacing: verticalPadding,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Column(
-                                spacing: 10,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  InputEmail(
-                                    emailController: emailController,
-                                  ),
-                                  InputText(
-                                    textEditingController: userNameController,
-                                    mustFill: true,
-                                    keyboardType: TextInputType.text,
-                                    infoMessage: "Inserez votre nom d'utilisateur",
-                                    placeholder: "Nom d'utilisateur",
-                                  ),
-                                  InputPassword(
-                                    passwordRex: specialCharRegex,
-                                    passwordController: passwordController,
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                spacing: 10,
-                                children: [
-                                  CustomButton(
-                                    onPressed: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        if (kDebugMode) {
-                                          print('Hello');
-                                        }
-                                        register();
-                                      }
-                                    },
-                                    leadingIcon: HeroIcons.arrowRightEndOnRectangle,
-                                    color: Colors.orange,
-                                    title: 'Créer un compte',
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Text('Vous avez un compte?'),
-                                      TextButton(
-                                        onPressed: () => Navigator.of(context).pop(),
-                                        child: const Text('Se Connecter'),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                        CustomButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              register();
+                            }
+                          },
+                          leadingIcon: HeroIcons.arrowRightEndOnRectangle,
+                          color: Colors.orange,
+                          title: 'Créer un compte',
                         ),
                       ],
                     ),
