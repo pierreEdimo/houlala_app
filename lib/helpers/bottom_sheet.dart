@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
@@ -6,6 +7,7 @@ import 'package:houlala_app/features/address/model/address.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/edit_info.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
+import 'package:houlala_app/features/main_nav/main_nav_providers.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/main.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
@@ -45,7 +47,7 @@ class CustomBottomSheet {
     );
   }
 
-  static void openBottomSheetOnSuccess() {
+  static void openBottomSheetOnSuccess(WidgetRef ref) {
     openBottomSheet(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +61,10 @@ class CustomBottomSheet {
                   Icons.check_circle,
                   color: Colors.green,
                 ),
-                Text('Votre produit a été ajouté au panier avec succès.')
+                Flexible(
+                  child:
+                      Text('Votre produit a été ajouté au panier avec succès.'),
+                )
               ],
             ),
           ),
@@ -75,8 +80,13 @@ class CustomBottomSheet {
               ),
               Expanded(
                 child: CustomButton(
-                  onPressed: () => navigatorKey.currentState
-                      ?.popAndPushNamed('/', arguments: 2),
+                  onPressed: () {
+                    navigatorKey.currentState
+                        ?.popAndPushNamed('/carts', arguments: 2);
+                    ref
+                        .read(mainNavStateNotifierProvider.notifier)
+                        .onItemTaped(2);
+                  },
                   title: 'Panier',
                 ),
               )
@@ -222,56 +232,6 @@ class CustomBottomSheet {
                 spacing: 15,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  isLoggedIn!
-                      ? InkWell(
-                          onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            child: !isDefault!
-                                ? Row(
-                                    children: [
-                                      Container(
-                                          width: 18,
-                                          height: 18,
-                                          margin: const EdgeInsets.only(
-                                              left: 5, right: 10),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: isDefault
-                                                ? Colors.orange
-                                                : const Color(0xFBFFFFFF),
-                                            border: Border.all(
-                                              color: const Color(0xFB000000),
-                                            ),
-                                          ),
-                                          child: isDefault
-                                              ? const Icon(
-                                                  Icons.check,
-                                                  size: 8,
-                                                  color: Color(0xFBFFFFFF),
-                                                )
-                                              : const Icon(
-                                                  Icons.check_box_outline_blank,
-                                                  size: 10.0,
-                                                  color: Colors.transparent,
-                                                )),
-                                      const Text(
-                                          'Choisissez comme adresse par defaut')
-                                    ],
-                                  )
-                                : Container(
-                                    padding: const EdgeInsets.all(22),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey.shade200,
-                                    ),
-                                    child: const Text(
-                                        'Cette adresse est actuellement votre adresse de livraison par défaut.'),
-                                  ),
-                          ),
-                        )
-                      : Container(),
                   InputText(
                     placeholder: 'Nom de famille',
                     textEditingController: lastNameController,
@@ -344,7 +304,7 @@ class CustomBottomSheet {
                             houseNumber: houseNumberController.text,
                             city: cityController.text);
 
-                        if (isLoggedIn) {
+                        if (isLoggedIn!) {
                           if (id != null) {
                             addressController.editAddress(id, address);
                           } else {
