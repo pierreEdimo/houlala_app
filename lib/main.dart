@@ -90,17 +90,15 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
           theme: ThemeData(
-            textTheme: GoogleFonts.poppinsTextTheme(),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-            useMaterial3: true,
-            scaffoldBackgroundColor: const Color(0xFFf4efe8),
-            pageTransitionsTheme: const PageTransitionsTheme(
-              builders: <TargetPlatform, PageTransitionsBuilder>{
-                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-                TargetPlatform.android: TransitionsBuilder()
-              }
-            )
-          ),
+              textTheme: GoogleFonts.poppinsTextTheme(),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+              useMaterial3: true,
+              scaffoldBackgroundColor: const Color(0xFFf4efe8),
+              pageTransitionsTheme: const PageTransitionsTheme(
+                  builders: <TargetPlatform, PageTransitionsBuilder>{
+                    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+                    TargetPlatform.android: TransitionsBuilder()
+                  })),
           initialRoute: '/',
           routes: {
             '/': (context) => const HomeScreen(),
@@ -108,26 +106,26 @@ class MyApp extends StatelessWidget {
             '/user': (context) => const ProfileScreen(),
             '/carts': (context) => const CartScreen(),
             '/productDetail': (context) => const ProductDetailScreen(),
-            '/categoryDetail': (context) => const CategoryDetailScreen(),
+            '/categories': (context) => const CategoryDetailScreen(),
             '/searchProducts': (context) => const SearchProductScreen(),
             '/searchStore': (context) => const SearchStoreScreen(),
-            '/allProducts': (context) => const AllProductScreen(),
-            '/subCategoryDetail': (context) => const ProductTypeDetailScreen(),
+            '/products': (context) => const AllProductScreen(),
+            '/sub-categories': (context) => const ProductTypeDetailScreen(),
             '/notifications': (context) => const NotificationScreen(),
             '/login': (context) => const LoginScreen(),
             '/logup': (context) => const LogupScreen(),
-            '/noProducts': (context) => const NoProductScreen(),
-            '/storeDetail': (context) => const StoreDetailScreen(),
-            '/noStore': (context) => const NoStoreScreen(),
+            '/no-products': (context) => const NoProductScreen(),
+            '/stores': (context) => const StoreDetailScreen(),
+            '/no-stores': (context) => const NoStoreScreen(),
             '/checkout': (context) => const CheckoutScreen(),
-            '/gastCheckout': (context) => const GastCheckoutScreen(),
-            '/localDetail': (context) => const LocalDetailScreen(),
-            '/myOrders': (context) => const MyOrdersScreen(),
-            '/myAccount': (context) => const MyAccountScreen(),
+            '/gast-checkout': (context) => const GastCheckoutScreen(),
+            '/store-detail': (context) => const LocalDetailScreen(),
+            '/orders': (context) => const MyOrdersScreen(),
+            '/account': (context) => const MyAccountScreen(),
             '/myBills': (context) => const MyBillsScreen(),
-            '/myFavorite': (context) => const MyFavoritesScreen(),
-            '/myList': (context) => const MyListsScreen(),
-            '/myMessage': (context) => const MyMessagesScreen(),
+            '/favorites': (context) => const MyFavoritesScreen(),
+            '/lists': (context) => const MyListsScreen(),
+            '/messages': (context) => const MyMessagesScreen(),
             '/myAddresses': (context) => const AddressScreen(),
             '/subStoreCategoryDetail': (context) =>
                 const StoreTypeDetailScreen(),
