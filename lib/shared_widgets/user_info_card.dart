@@ -85,6 +85,7 @@ class _UserInfoCardState extends ConsumerState<UserInfoCard> {
                                 ..text = connectedUser.lastName ?? '',
                               phoneNumberController
                                 ..text = connectedUser.phoneNumber ?? '',
+                              isLoggedIn: true,
                               authController),
                           child: const Text(
                             'Modifiez vos informations',
