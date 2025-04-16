@@ -59,8 +59,7 @@ class ProductTypeCard extends StatelessWidget {
                   child: Text(
                     subCategory!.name!,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold, fontSize: 18),
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
