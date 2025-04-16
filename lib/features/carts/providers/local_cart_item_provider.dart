@@ -21,7 +21,7 @@ class LocalCartItemStateNotifier extends StateNotifier<LocalCartItemState> {
     state = state.copyWith(cartItemList: cartItems, isCartLoading: false);
   }
 
-  void addProductToCartItem(CartItem item) async {
+  void addProductToCartItem(CartItem item, WidgetRef ref) async {
     final cartItems = cartList.values.toList();
 
     if (cartItems.isEmpty) {
@@ -49,7 +49,7 @@ class LocalCartItemStateNotifier extends StateNotifier<LocalCartItemState> {
         state = state.copyWith(cartItemList: [...state.cartItemList, item]);
       }
     }
-    CustomBottomSheet.openBottomSheetOnSuccess();
+    CustomBottomSheet.openBottomSheetOnSuccess(ref);
   }
 
   void increaseQuantity(CartItem item) async {
