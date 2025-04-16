@@ -29,7 +29,7 @@ class ListProductCard extends ConsumerWidget {
             .pushNamed('/productDetail', arguments: product!.dbId!);
       },
       child: SizedBox(
-        height: 210,
+        height: 190,
         child: CustomCard(
           padding: EdgeInsets.zero,
           child: Row(
@@ -68,8 +68,9 @@ class ListProductCard extends ConsumerWidget {
                                 product!.category!.name!,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: GoogleFonts.poppins(
                                     color: Colors.grey,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
@@ -77,9 +78,7 @@ class ListProductCard extends ConsumerWidget {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
+                                    fontWeight: FontWeight.bold),
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -88,7 +87,7 @@ class ListProductCard extends ConsumerWidget {
                                     '${product!.unitSellingPrice!}',
                                     style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 22,
+                                      fontSize: 18,
                                     ),
                                   ),
                                   Text(
