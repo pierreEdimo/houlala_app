@@ -7,6 +7,7 @@ class VertiProductTypeGrid extends StatelessWidget {
   final ScrollPhysics? physics;
   final List<ProductType>? productTypeList;
   final int? categoryId;
+  final EdgeInsets? padding;
 
   const VertiProductTypeGrid({
     super.key,
@@ -14,6 +15,7 @@ class VertiProductTypeGrid extends StatelessWidget {
     this.physics,
     this.shrinkWrap,
     this.categoryId,
+    this.padding
   });
 
   @override
@@ -23,6 +25,7 @@ class VertiProductTypeGrid extends StatelessWidget {
       shrinkWrap: shrinkWrap ?? false,
       mainAxisSpacing: 11,
       crossAxisSpacing: 11,
+      padding: padding,
       physics: physics,
       children: productTypeList!
           .map(
