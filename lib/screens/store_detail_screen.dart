@@ -14,7 +14,7 @@ import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vlocals_grid.dart';
-import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
+import 'package:houlala_app/shared_widgets/product_type_grid.dart';
 
 class StoreDetailScreen extends ConsumerWidget {
   const StoreDetailScreen({super.key});
@@ -29,7 +29,6 @@ class StoreDetailScreen extends ConsumerWidget {
 
     bool isLoading = localsController.loading;
     List<LocalModel> localList = localsController.localList;
-    String errorMessage = localsController.errorMessage;
 
     List<ProductType> productTypeList =
         subCategoryControllers.fetchCategoriesByCid(categoryArg.categoryId!);
@@ -50,7 +49,6 @@ class StoreDetailScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: isLoading,
-        errorMessage: errorMessage,
         child: SingleChildScrollView(
           child: Padding(
             padding: defaultPadding,
