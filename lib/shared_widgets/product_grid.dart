@@ -7,6 +7,7 @@ class VerticalProductGrid extends StatelessWidget {
   final List<Product>? productList;
   final ScrollPhysics? physics;
   final double? aspectRatio;
+  final EdgeInsets? padding;
 
   const VerticalProductGrid({
     super.key,
@@ -14,6 +15,7 @@ class VerticalProductGrid extends StatelessWidget {
     this.productList,
     this.physics,
     this.aspectRatio,
+    this.padding,
   });
 
   @override
@@ -21,6 +23,7 @@ class VerticalProductGrid extends StatelessWidget {
     return GridView.count(
       crossAxisCount: 2,
       shrinkWrap: shrinkWrap ?? false,
+      padding: padding ?? const EdgeInsets.only(bottom: 110),
       physics: physics,
       childAspectRatio: aspectRatio ?? 1.0,
       mainAxisSpacing: 11,
