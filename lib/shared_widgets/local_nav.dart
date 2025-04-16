@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class LocalNavigation extends StatefulWidget {
   final List<String>? menuItems;
@@ -47,7 +48,7 @@ class _LocalNavigationState extends State<LocalNavigation> {
                     });
                   },
                   child: Container(
-                    width: 150,
+                    width: 100.w / 3,
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
                       border: Border(
@@ -67,7 +68,6 @@ class _LocalNavigationState extends State<LocalNavigation> {
                                 fontWeight: _isSelected
                                     ? FontWeight.bold
                                     : FontWeight.w700,
-                                fontSize: _isSelected ? 18 : 16,
                                 color: _isSelected
                                     ? Colors.orangeAccent
                                     : Colors.black)),
