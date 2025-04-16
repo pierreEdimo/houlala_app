@@ -6,6 +6,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
 import '../features/about/provider/about_provider.dart';
 
@@ -17,7 +18,7 @@ class AboutScreen extends ConsumerWidget {
     String htmlContent = ref.watch(aboutStateNotifierProvider).htmlContent;
     bool loading = ref.watch(aboutStateNotifierProvider).loading;
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -30,29 +31,30 @@ class AboutScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
           loading: loading,
-          errorMessage: '',
           child: SingleChildScrollView(
-            child: Html(
-              data: htmlContent,
-              style: {
-                'h4': Style(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 110),
+              child: Html(
+                data: htmlContent,
+                style: {
+                  'h4': Style(
+                      padding: HtmlPaddings.zero,
+                      margin: Margins.zero,
+                      fontWeight: FontWeight.bold),
+                  'p': Style(
                     padding: HtmlPaddings.zero,
                     margin: Margins.zero,
-                    fontWeight: FontWeight.bold),
-                'p': Style(
-                  padding: HtmlPaddings.zero,
-                  margin: Margins.zero,
-                ),
-                '.info-container, .mission-container, .contact-container':
-                    Style(
-                  margin: Margins.only(
-                    bottom: verticalPadding,
                   ),
-                ),
-                '.contact-content, .intro-container, ul ': Style(
-                  margin: Margins.only(top: 10)
-                )
-              },
+                  '.info-container, .mission-container, .contact-container':
+                      Style(
+                    margin: Margins.only(
+                      bottom: verticalPadding,
+                    ),
+                  ),
+                  '.contact-content, .intro-container, ul ':
+                      Style(margin: Margins.only(top: 10))
+                },
+              ),
             ),
           )),
     );

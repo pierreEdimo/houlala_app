@@ -16,20 +16,14 @@ class LoggedInCartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     CartController cartController = CartController(ref);
-    String errorMessage = cartController.errorMessage;
     List<MappedCartItem> cartItems = cartController.cartItemList;
 
     return CustomContainer(
       loading: cartController.loading,
-      errorMessage: errorMessage,
       child: cartItems.isNotEmpty
           ? SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 110,
-                    left: horizontalPadding,
-                    right: horizontalPadding,
-                    top: verticalPadding),
+                padding: const EdgeInsets.only(bottom: 110),
                 child: Column(
                   spacing: verticalPadding,
                   children: [

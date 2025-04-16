@@ -5,6 +5,7 @@ import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/app_menu/controllers/app_menu_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/auth/providers/auth_provider.dart';
+import 'package:houlala_app/features/main_nav/main_nav_providers.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
@@ -23,9 +24,10 @@ class LoggedInScreen extends ConsumerWidget {
 
   Future<void> logout(WidgetRef ref) async {
     TokenHelper.deleteToken();
-    ref.read(authStateNotifierProvider.notifier).checkAndSetConnectedUser();
+    //ref.read(authStateNotifierProvider.notifier).checkAndSetConnectedUser();
     ref.read(authStateNotifierProvider.notifier).loggOut();
     navigatorKey.currentState?.pushReplacementNamed('/');
+    ref.read(mainNavStateNotifierProvider.notifier).onItemTaped(0);
   }
 
   @override
@@ -35,9 +37,6 @@ class LoggedInScreen extends ConsumerWidget {
 
     UserModel? connectedUser = authController.connectedUser;
     List<AppMenu> entities = userMenuController.entities;
-    String errorMessage = authController.errorMessage.isEmpty
-        ? userMenuController.errorMessage
-        : authController.errorMessage;
 
     return Scaffold(
       appBar: const DefaultAppBar(
@@ -45,16 +44,10 @@ class LoggedInScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: authController.loading,
-        errorMessage: errorMessage,
         child: connectedUser != null
             ? SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: horizontalPadding,
-                    right: horizontalPadding,
-                    top: verticalPadding,
-                    bottom: 110,
-                  ),
+                  padding: const EdgeInsets.only(bottom: 110),
                   child: Column(
                     spacing: verticalPadding,
                     children: [

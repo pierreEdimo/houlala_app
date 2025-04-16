@@ -15,7 +15,7 @@ import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/default_app_bar.dart';
 import 'package:houlala_app/shared_widgets/see_more_button.dart';
 import 'package:houlala_app/shared_widgets/local_card.dart';
-import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
+import 'package:houlala_app/shared_widgets/product_grid.dart';
 
 
 class HomeScreen extends ConsumerWidget {
@@ -40,15 +40,6 @@ class HomeScreen extends ConsumerWidget {
     LocalsController sellersController = LocalsController(ref);
     List<LocalModel> topSellingList = sellersController.topLocalList;
 
-    String getErrorMessage() {
-      if (productController.errorMessage.isNotEmpty ||
-          sellersController.errorMessage.isNotEmpty ||
-          categoriesController.errorMessage.isNotEmpty) {
-        return 'Erreur de connexion avec la base de données';
-      }
-      return '';
-    }
-
     return CustomScaffold(
       appBar: DefaultAppBar(
         navigationRoute: isLoggedIn ? '/notifications' : '/login',
@@ -57,7 +48,6 @@ class HomeScreen extends ConsumerWidget {
         loading: productController.loading &&
             categoriesController.loading &&
             sellersController.loading,
-        errorMessage: getErrorMessage(),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
 import '../features/policy/provider/policy_provider.dart';
 
@@ -16,7 +17,7 @@ class PolicyScreen extends ConsumerWidget {
     String htmlContent = ref.watch(policyStateNotifierProvider).htmlContent;
     bool loading = ref.watch(policyStateNotifierProvider).loading;
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -32,9 +33,11 @@ class PolicyScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: '',
         child: SingleChildScrollView(
-          child: Html(data: htmlContent),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 110),
+            child: Html(data: htmlContent),
+          ),
         ),
       ),
     );

@@ -6,8 +6,7 @@ import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/default_app_bar.dart';
-import 'package:houlala_app/shared_widgets/vcategory_grid.dart';
-import '../helpers/constants.dart';
+import 'package:houlala_app/shared_widgets/category_grid.dart';
 import '../shared_widgets/column_headers.dart';
 
 class DiscoverScreen extends ConsumerWidget {
@@ -21,30 +20,27 @@ class DiscoverScreen extends ConsumerWidget {
     CategoryController categoriesController = CategoryController(ref);
     List<CategoryModel> categories = categoriesController.categoryList;
     bool loading = categoriesController.loading;
+
     return CustomScaffold(
       appBar: DefaultAppBar(
         navigationRoute: loggedIn ? '/notifications' : '/login',
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: categoriesController.errorMessage,
         child: SingleChildScrollView(
-          child: Padding(
-            padding: customDefaultPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const ColumnHeaders(
-                  title: 'Decouvrez les produits par Categories',
-                ),
-                VerticalCategoryGrid(
-                  categoryList: categories,
-                  shrinkWrap: true,
-                  aspectRatio: 1 / 0.9,
-                  physics: const ClampingScrollPhysics(),
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const ColumnHeaders(
+                title: 'Decouvrez les produits par Categories',
+              ),
+              CategoryGrid(
+                categoryList: categories,
+                shrinkWrap: true,
+                aspectRatio: 1 / 0.9,
+                physics: const ClampingScrollPhysics(),
+              ),
+            ],
           ),
         ),
       ),

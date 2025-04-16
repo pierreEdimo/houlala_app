@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/about_tile.dart';
@@ -19,8 +18,6 @@ class LoggedOutScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AuthController authController = AuthController(ref);
-    String errorMessage = authController.errorMessage;
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -39,38 +36,30 @@ class LoggedOutScreen extends ConsumerWidget {
           )
         ],
       ),
-      body: CustomContainer(
-        loading: false,
-        errorMessage: errorMessage,
-        child: errorMessage.isNotEmpty
-            ? Container()
-            : const SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: horizontalPadding,
-                      right: horizontalPadding,
-                      top: verticalPadding,
-                      bottom: 110),
-                  child: Column(
-                    spacing: verticalPadding,
-                    children: [
-                      CustomCard(
-                        child: LoginTile(),
-                      ),
-                      CustomCard(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              ContactUsTile(),
-                              ConditionTile(),
-                              PolicyTile(),
-                              AboutTile(),
-                            ]),
-                      )
-                    ],
-                  ),
+      body: const CustomContainer(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 110),
+            child: Column(
+              spacing: verticalPadding,
+              children: [
+                CustomCard(
+                  child: LoginTile(),
                 ),
-              ),
+                CustomCard(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ContactUsTile(),
+                        ConditionTile(),
+                        PolicyTile(),
+                        AboutTile(),
+                      ]),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -5,8 +5,8 @@ import 'package:houlala_app/args/category_args.dart';
 import 'package:houlala_app/features/category/controllers/category_controller.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
-import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
-import 'package:houlala_app/shared_widgets/vproduct_type_grid.dart';
+import 'package:houlala_app/shared_widgets/product_grid.dart';
+import 'package:houlala_app/shared_widgets/product_type_grid.dart';
 import '../features/products/controllers/product_controller.dart';
 import '../features/products/model/product.dart';
 import '../features/product_type/controllers/product_type_controller.dart';
@@ -60,10 +60,6 @@ class CategoryDetailBody extends ConsumerWidget {
 
     bool typeLoading = productTypeController.isLoading;
 
-    String errorMessage = productController.errorMessage.isNotEmpty
-        ? 'Erreur dans la connexion à la base de données'
-        : '';
-
     return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
@@ -80,46 +76,42 @@ class CategoryDetailBody extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: typeLoading,
-        errorMessage: errorMessage,
         child: SingleChildScrollView(
-          child: Padding(
-            padding: customDefaultPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ColumnHeaders(title: categoryName),
-                productTypeList.isEmpty
-                    ? const SizedBox(height: verticalPadding)
-                    : Container(),
-                productTypeList.length > 1
-                    ? VertiProductTypeGrid(
-                        categoryId: categoryId,
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        productTypeList: productTypeList,
-                      )
-                    : Container(),
-                productTypeList.length > 1
-                    ? const SizedBox(
-                        height: verticalPadding,
-                      )
-                    : Container(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      '${productFromCategories.length} produits',
-                    ),
-                    VerticalProductGrid(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ColumnHeaders(title: categoryName),
+              productTypeList.isEmpty
+                  ? const SizedBox(height: verticalPadding)
+                  : Container(),
+              productTypeList.length > 1
+                  ? VertiProductTypeGrid(
+                      categoryId: categoryId,
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),
-                      aspectRatio: productAspectRatio,
-                      productList: productFromCategories,
+                      productTypeList: productTypeList,
                     )
-                  ],
-                )
-              ],
-            ),
+                  : Container(),
+              productTypeList.length > 1
+                  ? const SizedBox(
+                      height: verticalPadding,
+                    )
+                  : Container(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    '${productFromCategories.length} produits',
+                  ),
+                  VerticalProductGrid(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    aspectRatio: productAspectRatio,
+                    productList: productFromCategories,
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),

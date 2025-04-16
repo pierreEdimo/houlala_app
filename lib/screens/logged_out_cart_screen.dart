@@ -18,21 +18,13 @@ class LoggedOutCartScreen extends ConsumerWidget {
 
     List<MappedCartItem> cartItemList = cartController.mappedDbCartItemList;
     bool loading = ref.watch(localCartItemStateNotifierProvider).isCartLoading;
-    String errorMessage =
-        ref.watch(localCartItemStateNotifierProvider).errorMessage;
 
     return CustomContainer(
       loading: loading,
-      errorMessage: errorMessage,
       child: cartItemList.isNotEmpty
           ? SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 110,
-                  left: horizontalPadding,
-                  right: horizontalPadding,
-                  top: verticalPadding,
-                ),
+                padding: const EdgeInsets.only(bottom: 110),
                 child: Column(
                   spacing: verticalPadding,
                   children: [
@@ -48,7 +40,7 @@ class LoggedOutCartScreen extends ConsumerWidget {
                     ),
                     CheckoutButton(
                       onPressed: () =>
-                          Navigator.of(context).pushNamed('/gastCheckout'),
+                          Navigator.of(context).pushNamed('/gast-checkout'),
                     )
                   ],
                 ),

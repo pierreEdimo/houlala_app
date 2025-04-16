@@ -8,7 +8,6 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
-import 'package:houlala_app/shared_widgets/filter_button.dart';
 import 'package:houlala_app/shared_widgets/order_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,7 +20,6 @@ class MyOrdersScreen extends ConsumerWidget {
 
     List<OrderModel> orderList = orderController.orderList;
     bool loading = orderController.loading;
-    String errorMessage = orderController.errorMessage;
 
     return CustomScaffold(
       appBar: CustomAppBar(
@@ -36,7 +34,6 @@ class MyOrdersScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: errorMessage,
         child: orderList.isNotEmpty
             ? ListView(
                 padding: customDefaultPadding,

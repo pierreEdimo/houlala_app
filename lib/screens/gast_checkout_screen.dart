@@ -84,10 +84,9 @@ class GastCheckoutScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: '',
         child: SingleChildScrollView(
           child: Padding(
-            padding: customDefaultPadding,
+            padding: const EdgeInsets.only(bottom: 110),
             child: Column(
               spacing: verticalPadding,
               children: [
