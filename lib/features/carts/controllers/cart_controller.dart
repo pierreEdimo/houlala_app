@@ -63,11 +63,11 @@ class CartController {
     if (isLoggedIn) {
       ref!
           .read(cartItemStateNotifierProvider.notifier)
-          .addProductToCart(createCartItem);
+          .addProductToCart(createCartItem, ref!);
     } else {
       ref!
           .read(localCartItemStateNotifierProvider.notifier)
-          .addProductToCartItem(createCartItem);
+          .addProductToCartItem(createCartItem, ref!);
     }
   }
 
