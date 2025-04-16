@@ -12,38 +12,23 @@ class ResultSellerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
-        '/localDetail',
+        '/store-detail',
         arguments: local?.dbId,
       ),
       child: CustomCard(
         child: Row(
           spacing: 10,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: Center(
-                child: Container(
-                  height: 90,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(100.0),
-                  ),
-                  child: Center(
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100.0),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('images/${local!.imageUrl}'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(200.0),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('images/${local!.imageUrl}'),
+                  )),
             ),
             Expanded(
               flex: 3,
