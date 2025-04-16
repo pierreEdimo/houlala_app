@@ -8,9 +8,9 @@ import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
 import 'package:houlala_app/features/products/model/product.dart';
 import 'package:houlala_app/features/locals//providers/search_local_provider.dart';
-import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
+import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/list_product_card.dart';
 import 'package:houlala_app/shared_widgets/product_list.dart';
@@ -74,33 +74,39 @@ class SearchProductScreen extends ConsumerWidget {
       ),
       body: !isSearchSubmitted
           ? Container() //todo: implement a screen to filter Suggestion
-          : SingleChildScrollView(
-            child: Padding(
-              padding: customDefaultPadding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '${searchProductList.length} produit(s) trouve(s)',
+          : CustomContainer(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 110),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            '${searchProductList.length} produit(s) trouve(s)',
+                          )
+                        ],
+                      ),
+                      ProductList(
+                        shrinkWrap: true,
+                        scrollPhysics: const ClampingScrollPhysics(),
+                        productList: searchProductList
+                            .map(
+                              (product) => ListProductCard(
+                                onAddToBasket: () {
+                                  addProductToCart(product);
+                                },
+                                product: product,
+                              ),
+                            )
+                            .toList(),
+                      )
+                    ],
                   ),
-                  ProductList(
-                    shrinkWrap: true,
-                    scrollPhysics: const ClampingScrollPhysics(),
-                    productList: searchProductList
-                        .map(
-                          (product) => ListProductCard(
-                            onAddToBasket: () {
-                              addProductToCart(product);
-                            },
-                            product: product,
-                          ),
-                        )
-                        .toList(),
-                  )
-                ],
+                ),
               ),
             ),
-          ),
     );
   }
 }
