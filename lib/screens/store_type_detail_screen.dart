@@ -24,7 +24,6 @@ class StoreTypeDetailScreen extends ConsumerWidget {
     LocalsController localsController = LocalsController(ref);
 
     bool isLoading = localsController.loading;
-    String errorMessage = localsController.errorMessage;
     List<LocalModel> localList = localsController
         .getLocalsListByCategoryId(categoryArg.productType!.dbId!);
 
@@ -47,7 +46,6 @@ class StoreTypeDetailScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: isLoading,
-        errorMessage: errorMessage,
         child: SingleChildScrollView(
           child: Padding(
             padding: customDefaultPadding,
