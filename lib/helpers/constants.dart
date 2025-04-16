@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const verticalPadding = 25.0;
-const horizontalPadding = 11.0;
+const double verticalPadding = 15;
+const double horizontalPadding = 11;
 const stackBottomPadding = 80.0;
 Divider divider = const Divider(height: 1, thickness: 1);
 BorderRadius radius = BorderRadius.circular(8.0);
