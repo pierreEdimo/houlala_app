@@ -19,51 +19,38 @@ class LocalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
-        '/localDetail',
+        '/store-detail',
         arguments: local?.dbId,
       ),
       child: CustomCard(
-        child: SizedBox(
-          width: 180,
-          child: Center(
-            child: Container(
-              height: 150,
-              width: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 65,
-                    width: 65,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(150.0),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: !isUrl(local!.imageUrl!)
-                            ? AssetImage('images/${local!.imageUrl}')
-                            : NetworkImage(local!.imageUrl!),
-                      ),
-                    ),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(150.0),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: !isUrl(local!.imageUrl!)
+                        ? AssetImage('images/${local!.imageUrl}')
+                        : NetworkImage(local!.imageUrl!),
                   ),
-                  Flexible(
-                    child: Text(
-                      local!.name!,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold, fontSize: 18.0),
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+              Expanded(
+                child: Text(
+                  local!.name!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           ),
         ),
       ),
