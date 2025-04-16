@@ -54,12 +54,12 @@ class MappedCartItemStateNotifier extends StateNotifier<MappedCartItemState> {
     }
   }
 
-  Future<void> addProductToCart(CartItem createCartItem) async {
+  Future<void> addProductToCart(CartItem createCartItem, WidgetRef ref) async {
     final Response response =
         await cartRepository.addProductToCart(createCartItem);
     if (response.statusCode == HttpStatus.ok) {
       _updateState(response);
-      CustomBottomSheet.openBottomSheetOnSuccess();
+      CustomBottomSheet.openBottomSheetOnSuccess(ref);
     } else {
       if (kDebugMode) {
         print(response.body);
