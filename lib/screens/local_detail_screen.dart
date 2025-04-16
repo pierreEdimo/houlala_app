@@ -11,10 +11,11 @@ import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/open_url.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
+import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/local_nav.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
-import 'package:houlala_app/shared_widgets/vproduct_grid.dart';
+import 'package:houlala_app/shared_widgets/product_grid.dart';
 
 class LocalDetailScreen extends ConsumerWidget {
   const LocalDetailScreen({super.key});
@@ -33,11 +34,20 @@ class LocalDetailScreen extends ConsumerWidget {
           onPressed: () => Navigator.of(context).pop(),
           icon: const HeroIcon(HeroIcons.chevronLeft),
         ),
+        title: Text(
+          selectedLocal != null ? selectedLocal.name! : '',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            fontSize: 22
+          ),
+        ),
       ),
       body: selectedLocal == null
           ? Container()
           : LocalNavigation(
-              menuItems: const ["Accueil", "Informations", "Produits"],
+              menuItems: const ["Accueil", "Infos", "Produits"],
               widgetOptions: [
                 LocalHome(localModel: selectedLocal),
                 LocalInfo(localModel: selectedLocal),
@@ -64,27 +74,29 @@ class LocalProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Product> productList =
         productController!.getProductByLocalId(localModel!.dbId!);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: customDefaultPadding,
-        child: Column(
-          spacing: verticalPadding,
-          children: [
-            SearchInputButton(
-              hinText: 'Rechercher dans ${localModel!.name!}',
-              onPressed: () => Navigator.of(context).pushNamed(
-                '/searchProducts',
-                arguments: SearchArgs(
-                    hinText: 'Rechercher dans ${localModel!.name!}',
-                    sellerId: localModel!.dbId!),
+    return CustomContainer(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: verticalPadding),
+          child: Column(
+            spacing: verticalPadding,
+            children: [
+              SearchInputButton(
+                hinText: 'Rechercher dans ${localModel!.name!}',
+                onPressed: () => Navigator.of(context).pushNamed(
+                  '/searchProducts',
+                  arguments: SearchArgs(
+                      hinText: 'Rechercher dans ${localModel!.name!}',
+                      sellerId: localModel!.dbId!),
+                ),
               ),
-            ),
-            VerticalProductGrid(
-              aspectRatio: productAspectRatio,
-              shrinkWrap: true,
-              productList: productList,
-            )
-          ],
+              VerticalProductGrid(
+                aspectRatio: productAspectRatio,
+                shrinkWrap: true,
+                productList: productList,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -101,105 +113,104 @@ class LocalInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: horizontalPadding,
-        vertical: verticalPadding,
-      ),
+    return CustomContainer(
       child: SingleChildScrollView(
-        child: Column(
-          spacing: verticalPadding,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(localModel!.description!),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              spacing: 7,
-              children: [
-                localModel!.email != null
-                    ? Row(
-                        spacing: 5,
-                        children: [
-                          const Text('E-mail:'),
-                          Flexible(
-                              child: GestureDetector(
-                            onTap: () => OpenUrl.openContact(
-                                'mailto', localModel!.email!),
-                            child: Text(
-                              localModel!.email!,
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ))
-                        ],
-                      )
-                    : Container(),
-                localModel!.telephoneNumber != null
-                    ? Row(
-                        spacing: 5,
-                        children: [
-                          const Text('Numero de telephone:'),
-                          Flexible(
-                              child: GestureDetector(
-                            onTap: () => OpenUrl.openContact(
-                                'tel', localModel!.telephoneNumber!),
-                            child: Text(
-                              localModel!.telephoneNumber!,
-                              style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ))
-                        ],
-                      )
-                    : Container(),
-                localModel!.website != null
-                    ? Row(
-                        spacing: 5,
-                        children: [
-                          const Text('Site web:'),
-                          Flexible(
-                            child: GestureDetector(
-                              onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.only(top: verticalPadding, bottom: 110),
+          child: Column(
+            spacing: verticalPadding,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(localModel!.description!),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                spacing: 7,
+                children: [
+                  localModel!.email != null
+                      ? Row(
+                          spacing: 5,
+                          children: [
+                            const Text('E-mail:'),
+                            Flexible(
+                                child: GestureDetector(
+                              onTap: () => OpenUrl.openContact(
+                                  'mailto', localModel!.email!),
                               child: Text(
-                                localModel!.website!,
+                                localModel!.email!,
                                 style: GoogleFonts.poppins(
-                                    textStyle: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                )),
+                                ),
+                              ),
+                            ))
+                          ],
+                        )
+                      : Container(),
+                  localModel!.telephoneNumber != null
+                      ? Row(
+                          spacing: 5,
+                          children: [
+                            const Text('Numero de telephone:'),
+                            Flexible(
+                                child: GestureDetector(
+                              onTap: () => OpenUrl.openContact(
+                                  'tel', localModel!.telephoneNumber!),
+                              child: Text(
+                                localModel!.telephoneNumber!,
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ))
+                          ],
+                        )
+                      : Container(),
+                  localModel!.website != null
+                      ? Row(
+                          spacing: 5,
+                          children: [
+                            const Text('Site web:'),
+                            Flexible(
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  localModel!.website!,
+                                  style: GoogleFonts.poppins(
+                                      textStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        )
+                      : Container(),
+                  Row(
+                    spacing: 5,
+                    children: [
+                      const Text('Domaine'),
+                      GestureDetector(
+                        onTap: () => Navigator.of(context).pushNamed(
+                            localModel!.productType!.route!,
+                            arguments: CategoryArg(
+                                categoryId:
+                                    localModel!.productType!.category!.dbId!,
+                                categoryName: localModel!.productType!.name,
+                                productType: localModel!.productType)),
+                        child: Text(
+                          localModel!.productType!.name!,
+                          style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )),
+                        ),
                       )
-                    : Container(),
-                Row(
-                  spacing: 5,
-                  children: [
-                    const Text('Domaine'),
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pushNamed(
-                          localModel!.productType!.route!,
-                          arguments: CategoryArg(
-                              categoryId:
-                                  localModel!.productType!.category!.dbId!,
-                              categoryName: localModel!.productType!.name,
-                              productType: localModel!.productType)),
-                      child: Text(
-                        localModel!.productType!.name!,
-                        style: GoogleFonts.poppins(
-                            textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        )),
-                      ),
-                    )
-                  ],
-                ),
-                Text(
-                    "Adresse: ${localModel!.street!} ${localModel!.city!}, ${localModel!.countryCode!} ")
-              ],
-            )
-          ],
+                    ],
+                  ),
+                  Text(
+                      "Adresse: ${localModel!.street!} ${localModel!.city!}, ${localModel!.countryCode!} ")
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -219,45 +230,47 @@ class LocalHome extends ConsumerWidget {
     ProductController productController = ProductController(ref);
     List<Product> productList =
         productController.getTopSellingProductsByLocalId(localModel!.dbId!);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: customDefaultPadding,
-        child: Column(
-          spacing: 20,
-          children: [
-            Column(
-              spacing: 7,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'A propos',
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+    return CustomContainer(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: verticalPadding),
+          child: Column(
+            spacing: verticalPadding,
+            children: [
+              Column(
+                spacing: 7,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'A propos',
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
                     ),
                   ),
-                ),
-                Text(localModel!.description!)
-              ],
-            ),
-            productList.isNotEmpty
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Produits les plus vendus par ${localModel!.name!}',
-                      ),
-                      VerticalProductGrid(
-                        shrinkWrap: true,
-                        aspectRatio: productAspectRatio,
-                        physics: const ClampingScrollPhysics(),
-                        productList: productList,
-                      )
-                    ],
-                  )
-                : Container()
-          ],
+                  Text(localModel!.description!)
+                ],
+              ),
+              productList.isNotEmpty
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Produits les plus vendus par ${localModel!.name!}',
+                        ),
+                        VerticalProductGrid(
+                          shrinkWrap: true,
+                          aspectRatio: productAspectRatio,
+                          physics: const ClampingScrollPhysics(),
+                          productList: productList,
+                        )
+                      ],
+                    )
+                  : Container()
+            ],
+          ),
         ),
       ),
     );
