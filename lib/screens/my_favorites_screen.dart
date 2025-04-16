@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/products/controllers/product_controller.dart';
 import 'package:houlala_app/features/products/model/product.dart';
-import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/list_product_card.dart';
 import 'package:houlala_app/shared_widgets/product_list.dart';
 
@@ -19,8 +19,7 @@ class MyFavoritesScreen extends ConsumerWidget {
 
     List<Product> productList = productController.favoriteProductList;
     bool loading = productController.loading;
-    String errorMessage = productController.errorMessage;
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -36,13 +35,9 @@ class MyFavoritesScreen extends ConsumerWidget {
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: errorMessage,
         child: productList.isNotEmpty
             ? ProductList(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: horizontalPadding,
-                  vertical: verticalPadding,
-                ),
+                padding: const EdgeInsets.only(bottom: 110),
                 shrinkWrap: false,
                 productList: productList
                     .map((product) => ListProductCard(
