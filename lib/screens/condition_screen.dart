@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
+import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
 import '../features/term/provider/term_provider.dart';
 
@@ -16,7 +17,7 @@ class ConditionScreen extends ConsumerWidget {
     String htmlContent = ref.watch(termStateNotifierProvider).htmlContent;
     bool loading = ref.watch(termStateNotifierProvider).loading;
 
-    return Scaffold(
+    return CustomScaffold(
       appBar: CustomAppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -24,14 +25,16 @@ class ConditionScreen extends ConsumerWidget {
         ),
         title: Text(
           "Conditions d'utilisations",
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 22),
         ),
       ),
       body: CustomContainer(
         loading: loading,
-        errorMessage: '',
         child: SingleChildScrollView(
-          child: Html(data: htmlContent),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 110),
+            child: Html(data: htmlContent),
+          ),
         ),
       ),
     );
