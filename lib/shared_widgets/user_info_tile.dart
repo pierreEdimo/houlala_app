@@ -28,17 +28,19 @@ class _UserInfoTileState extends ConsumerState<UserInfoTile> {
 
     return CustomListTile(
       onTap: () => CustomBottomSheet.openEditInfosForm(
-          _formkey,
-          emailController..text = connectedUser!.email ?? '',
-          firstNameController..text = connectedUser.firstName ?? '',
-          lastNameController..text = connectedUser.lastName ?? '',
-          phoneNumberController..text = connectedUser.phoneNumber ?? '',
-          authController),
+        _formkey,
+        emailController..text = connectedUser!.email ?? '',
+        firstNameController..text = connectedUser.firstName ?? '',
+        lastNameController..text = connectedUser.lastName ?? '',
+        phoneNumberController..text = connectedUser.phoneNumber ?? '',
+        isLoggedIn: true,
+        authController,
+      ),
       leading: const HeroIcon(
         HeroIcons.pencil,
         size: 18,
       ),
-      title: const Text('Modifier vos informations personnelles'),
+      title: const Text('Modifier vos informations'),
     );
   }
 }
