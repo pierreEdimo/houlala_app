@@ -23,9 +23,7 @@ class ProductCard extends ConsumerWidget {
         Navigator.of(context)
             .pushNamed('/productDetail', arguments: product!.dbId!);
       },
-      child: Card(
-        elevation: 0,
-        color: Colors.transparent,
+      child: SizedBox(
         child: Column(
           spacing: 5,
           children: [
@@ -52,14 +50,15 @@ class ProductCard extends ConsumerWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w500),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12),
                 ),
                 Text(
                   product!.name!,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w900, fontSize: 18),
+                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -67,13 +66,11 @@ class ProductCard extends ConsumerWidget {
                     Text(
                       '${product!.unitSellingPrice!}',
                       style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.bold, fontSize: 22),
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'XAF',
-                      style: TextStyle(
-                        fontSize: priceFontSize
-                      ),
+                      style: TextStyle(fontSize: priceFontSize),
                     )
                   ],
                 )
