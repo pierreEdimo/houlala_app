@@ -99,7 +99,7 @@ class CartItemCard extends StatelessWidget {
     return CustomCard(
       padding: EdgeInsets.zero,
       child: SizedBox(
-        height: 170,
+        height: 160,
         child: Row(
           spacing: 5,
           children: [
@@ -121,21 +121,25 @@ class CartItemCard extends StatelessWidget {
                   StatefulBuilder(
                     builder: (BuildContext context, StateSetter setState) {
                       return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                            onPressed: cartItem!.quantity! == 1
-                                ? onPressed
-                                : onDecrease,
-                            icon: cartItem!.quantity! == 1
-                                ? const HeroIcon(HeroIcons.trash)
-                                : const HeroIcon(HeroIcons.minus),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: cartItem!.quantity! == 1
+                                    ? onPressed
+                                    : onDecrease,
+                                icon: cartItem!.quantity! == 1
+                                    ? const HeroIcon(HeroIcons.trash)
+                                    : const HeroIcon(HeroIcons.minus),
+                              ),
+                              Text('${cartItem!.quantity!}'),
+                              IconButton(
+                                onPressed: onIncrease,
+                                icon: const HeroIcon(HeroIcons.plus),
+                              ),
+                            ],
                           ),
-                          Text('${cartItem!.quantity!}'),
-                          IconButton(
-                            onPressed: onIncrease,
-                            icon: const HeroIcon(HeroIcons.plus),
-                          ),
-                          const SizedBox(width: 20),
                           IconButton(
                             onPressed: onPressed,
                             icon: const HeroIcon(
@@ -153,7 +157,7 @@ class CartItemCard extends StatelessWidget {
                         '${cartItem!.price!}',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
-                          fontSize: 22,
+                          fontSize: 18,
                         ),
                       ),
                       Text(
