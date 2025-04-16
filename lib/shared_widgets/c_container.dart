@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/helpers/toast_notification.dart';
-import 'package:toastification/toastification.dart';
+import 'package:houlala_app/helpers/constants.dart';
 
 class CustomContainer extends StatelessWidget {
   final bool? loading;
-  final String? errorMessage;
   final Widget? child;
+  final EdgeInsets? padding;
 
   const CustomContainer(
-      {super.key, this.loading, this.errorMessage, this.child});
+      {super.key, this.loading, this.child, this.padding});
 
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      if (errorMessage!.isNotEmpty) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          CustomToastNotification.showCustomToast(
-              errorMessage!, ToastificationType.error);
-        });
-      }
-
-      if (loading != null && loading == true) {
+      if (loading == true) {
         return const Center(
           child: CircularProgressIndicator(),
         );
       }
 
-      return child ?? Container();
+      return child != null
+          ? Padding(
+              padding: padding ??
+                  const EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: child,
+            )
+          : Container();
     });
   }
 }
