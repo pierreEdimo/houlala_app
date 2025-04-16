@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/locals/providers/search_local_provider.dart';
-import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
+import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/result_seller_card.dart';
 import 'package:houlala_app/shared_widgets/search_field.dart';
@@ -54,25 +54,27 @@ class SearchStoreScreen extends ConsumerWidget {
       ),
       body: !isSearchSubmitted
           ? Container() // todo: implement a screen to filter vorschlag
-          : SingleChildScrollView(
-              child: Padding(
-                padding: customDefaultPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text('${filteredLocals.length} magasin(s) trouve(s)'),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      spacing: 8,
-                      children: filteredLocals
-                          .map(
-                            (seller) => ResultSellerCard(
-                              local: seller,
-                            ),
-                          )
-                          .toList(),
-                    )
-                  ],
+          : CustomContainer(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 110),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('${filteredLocals.length} magasin(s) trouve(s)'),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        spacing: 8,
+                        children: filteredLocals
+                            .map(
+                              (seller) => ResultSellerCard(
+                                local: seller,
+                              ),
+                            )
+                            .toList(),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
