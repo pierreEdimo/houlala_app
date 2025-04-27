@@ -1,4 +1,4 @@
-import '../features/products/model/product.dart';
+import '../features/products/product.dart';
 
 class ProductsArgs {
   final String? defaultFilter;

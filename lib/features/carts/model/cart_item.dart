@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_ce/hive.dart';
-import 'package:houlala_app/features/products/model/product.dart';
+import 'package:houlala_app/features/products/product.dart';
 
 part 'cart_item.freezed.dart';
 

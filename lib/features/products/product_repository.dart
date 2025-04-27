@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:http/http.dart';
-import '../model/product.dart';
+import 'product.dart';
 
 class ProductRepository {
   Future<List<Product>> fetchProducts() async {
@@ -51,11 +51,12 @@ class ProductRepository {
                     'Authorization': 'Bearer $token'
                   }
                 : null);
-    if(response.statusCode == HttpStatus.ok){
-      return Product.fromJson(jsonDecode(response.body));
-    } else {
-      throw "no product";
+
+    if (response.statusCode != HttpStatus.ok) {
+      throw HttpException("Le produit avec l'ID: $id n'a pas été trouvé.");
     }
+
+    return Product.fromJson(jsonDecode(response.body));
   }
 
   Future<List<Product>> searchProducts(String term,
@@ -85,13 +86,12 @@ class ProductRepository {
               }
             : null);
 
-    if (response.statusCode == HttpStatus.ok) {
-      List<dynamic> body = jsonDecode(response.body);
-      List<Product> products =
-          body.map((dynamic product) => Product.fromJson(product)).toList();
-      return products;
-    } else {
-      throw 'no products';
+    if (response.statusCode != HttpStatus.ok) {
+      throw const HttpException(
+          'erreur lors du chargement des produits dans la base de données');
     }
+
+    List<dynamic> body = jsonDecode(response.body);
+    return body.map((dynamic product) => Product.fromJson(product)).toList();
   }
 }

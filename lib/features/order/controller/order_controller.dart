@@ -8,11 +8,7 @@ class OrderController {
   OrderController(this.ref) : super();
 
   void placeOrder(OrderModel orderModel) {
-    try {
-      ref!.read(orderStateNotifierProvider.notifier).placeOrder(orderModel);
-    } catch (e) {
-      rethrow;
-    }
+    ref!.read(orderStateNotifierProvider.notifier).placeOrder(orderModel);
   }
 
   bool get loading {

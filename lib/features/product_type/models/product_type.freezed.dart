@@ -20,6 +20,7 @@ ProductType _$ProductTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductType {
+// ignore: invalid_annotation_target
   @HiveField(0)
   @JsonKey(name: 'id')
   int? get dbId => throw _privateConstructorUsedError;
@@ -195,6 +196,7 @@ class _$ProductTypeImpl extends _ProductType {
   factory _$ProductTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductTypeImplFromJson(json);
 
+// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')
@@ -264,6 +266,7 @@ abstract class _ProductType extends ProductType {
   factory _ProductType.fromJson(Map<String, dynamic> json) =
       _$ProductTypeImpl.fromJson;
 
+// ignore: invalid_annotation_target
   @override
   @HiveField(0)
   @JsonKey(name: 'id')

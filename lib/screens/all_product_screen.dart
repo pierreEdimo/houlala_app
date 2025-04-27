@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import '../features/products/controllers/product_controller.dart';
-import '../features/products/model/product.dart';
+import '../features/products/product_controller.dart';
+import '../features/products/product.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/filter_button.dart';

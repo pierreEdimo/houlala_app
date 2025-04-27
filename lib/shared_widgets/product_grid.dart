@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/products/model/product.dart';
+import 'package:houlala_app/features/products/product.dart';
 import 'package:houlala_app/shared_widgets/product_card.dart';
 
 class VerticalProductGrid extends StatelessWidget {

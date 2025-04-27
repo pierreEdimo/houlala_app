@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/products/controllers/product_controller.dart';
+import 'package:houlala_app/features/products/product_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
-import '../features/products/model/product.dart';
+import '../features/products/product.dart';
 
 class ProductCard extends ConsumerWidget {
   final Product? product;

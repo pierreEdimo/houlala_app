@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/products/model/product.dart';
-import 'package:houlala_app/features/products/repositories/product_repository.dart';
-import 'package:houlala_app/features/products/state/product_state.dart';
+import 'package:houlala_app/exception/http_exception.dart';
+import 'package:houlala_app/features/products/product.dart';
+import 'package:houlala_app/features/products/product_repository.dart';
+import 'package:houlala_app/features/products/product_state.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:http/http.dart';
 
@@ -27,7 +28,7 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
       state = state.copyWith(loading: true);
       List<Product> products = await productRepository.fetchProducts();
       state = state.copyWith(loading: false, productList: products);
-    } catch (exception) {
+    } on HttpErrorException {
       CustomToastNotification.showErrorAction(
           "Erreur lors du chargement des produits.");
       state = state.copyWith(
@@ -41,46 +42,47 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
       state = state.copyWith(loading: true);
       Product selectedProduct = await productRepository.fetchSingleProduct(id);
       state = state.copyWith(loading: false, selectedProduct: selectedProduct);
-    } catch (exception) {
+    } on HttpErrorException {
       CustomToastNotification.showErrorAction(
           "Erreur lors du chargement du produit.");
-      state = state.copyWith(
-          loading: false,
-          errorMessage: "Erreur lors du chargement du produit.");
     }
   }
 
   Future<void> addProductToFavorite(int id) async {
     final Response response = await productRepository.addProductsToFavorite(id);
-    if (response.statusCode == HttpStatus.ok) {
-      var existingProduct = state.selectedProduct;
-      existingProduct = existingProduct!.copyWith(isFavorite: true);
-      state = state.copyWith(
-          selectedProduct: existingProduct,
-          bookmarkedList: [...state.bookmarkedList, existingProduct]);
-    } else {
-      CustomToastNotification.showErrorAction("Erreur.");
-      state = state.copyWith(loading: false, errorMessage: "Erreur.");
+
+    if (response.statusCode != HttpStatus.ok) {
+      CustomToastNotification.showErrorAction(
+          "Erreur lors de l'ajout du produit avec Id $id dans les Favoris.");
+      return;
     }
+
+    var existingProduct = state.selectedProduct;
+    existingProduct = existingProduct!.copyWith(isFavorite: true);
+    state = state.copyWith(
+      selectedProduct: existingProduct,
+      bookmarkedList: [...state.bookmarkedList, existingProduct]
+    );
   }
 
   Future<void> removeProductFromFavorite(int id) async {
     final Response response =
         await productRepository.removeProductFromFavorite(id);
-    if (response.statusCode == HttpStatus.ok) {
-      var existingProduct = state.selectedProduct;
-      existingProduct = existingProduct!.copyWith(isFavorite: false);
-      List<Product> updatedBookmarkedlist = [
-        for (var product in state.bookmarkedList)
-          if (product.dbId != existingProduct.dbId) product
-      ];
-      state = state.copyWith(
-          selectedProduct: existingProduct,
-          bookmarkedList: updatedBookmarkedlist);
-    } else {
-      CustomToastNotification.showErrorAction("Erreur.");
-      state = state.copyWith(loading: false, errorMessage: "Erreur.");
+
+    if (response.statusCode != HttpStatus.ok) {
+      CustomToastNotification.showErrorAction(
+          "Erreur lors de la suppression du produit avec Id $id des Favoris");
+      return;
     }
+
+    var existingProduct = state.selectedProduct;
+    existingProduct = existingProduct!.copyWith(isFavorite: false);
+    List<Product> updatedFavoritesList = [
+      for (var product in state.bookmarkedList)
+        if (product.dbId != existingProduct.dbId) product
+    ];
+    state = state.copyWith(
+        selectedProduct: existingProduct, bookmarkedList: updatedFavoritesList);
   }
 
   Future<void> loadFavoritesProducts() async {
@@ -88,12 +90,9 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
       state = state.copyWith(loading: false);
       List<Product> products = await productRepository.fetchFavoritesProducts();
       state = state.copyWith(loading: false, bookmarkedList: products);
-    } catch (exception) {
+    } on HttpErrorException {
       CustomToastNotification.showErrorAction(
           "Erreur lors du chargement des produits.");
-      state = state.copyWith(
-          loading: false,
-          errorMessage: "Erreur lors du chargement des produits.");
     }
   }
 
@@ -108,10 +107,9 @@ class ProductStateNotifier extends StateNotifier<ProductState> {
         sellerId: sellerId,
       );
       state = state.copyWith(loading: false, searchProductList: products);
-    } catch (exception) {
-      state = state.copyWith(
-          loading: false,
-          errorMessage: "Erreur lors du chargement des produits.");
+    } on HttpErrorException {
+      CustomToastNotification.showErrorAction(
+          "Erreur lors du chargement des produits.");
     }
   }
 
