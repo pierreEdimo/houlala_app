@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/about/state/about_state.dart';
+import 'package:houlala_app/features/about/about_state.dart';
 import 'package:houlala_app/helpers/assets_loader.dart';
 
 final aboutStateNotifierProvider =

@@ -8,7 +8,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
-import '../features/about/provider/about_provider.dart';
+import '../features/about/about_provider.dart';
 
 class AboutScreen extends ConsumerWidget {
   const AboutScreen({super.key});
