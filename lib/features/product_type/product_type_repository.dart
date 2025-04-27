@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
-import '../models/product_type.dart';
+import 'product_type.dart';
 
 class ProductTypeRepository {
   Future<List<ProductType>> fetchSubCategories() async {

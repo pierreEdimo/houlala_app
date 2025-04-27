@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/product_type/product_type.dart';
 import 'package:houlala_app/shared_widgets/product_type_card.dart';
 
 class VertiProductTypeGrid extends StatelessWidget {

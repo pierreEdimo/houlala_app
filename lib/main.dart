@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
-import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/product_type/product_type.dart';
 import 'package:houlala_app/features/products/product.dart';
 import 'package:houlala_app/helpers/no_transitions_builder.dart';
 import 'package:houlala_app/screens/address_screen.dart';

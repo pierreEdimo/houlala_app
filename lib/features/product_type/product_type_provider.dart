@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/product_type/state/product_type_map.state.dart';
-import '../models/product_type.dart';
-import '../repositories/product_type_repository.dart';
+import 'package:houlala_app/features/product_type/product_type_map.state.dart';
+import 'product_type.dart';
+import 'product_type_repository.dart';
 
 final productTypeRepositoryProvider =
     Provider<ProductTypeRepository>((_) => ProductTypeRepository());

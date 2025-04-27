@@ -1,7 +1,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_ce/hive.dart';
-import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/product_type/product_type.dart';
 
 part 'local_model.freezed.dart';
 part 'local_model.g.dart';

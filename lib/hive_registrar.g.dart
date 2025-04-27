@@ -6,7 +6,7 @@ import 'package:hive_ce/hive.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
-import 'package:houlala_app/features/product_type/models/product_type.dart';
+import 'package:houlala_app/features/product_type/product_type.dart';
 import 'package:houlala_app/features/products/product.dart';
 
 extension HiveRegistrar on HiveInterface {

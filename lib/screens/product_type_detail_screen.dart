@@ -8,7 +8,7 @@ import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/product_grid.dart';
 import '../features/products/product_controller.dart';
 import '../features/products/product.dart';
-import '../features/product_type/models/product_type.dart';
+import '../features/product_type/product_type.dart';
 import '../helpers/constants.dart';
 import '../shared_widgets/c_app_bar.dart';
 import '../shared_widgets/search_input_button.dart';

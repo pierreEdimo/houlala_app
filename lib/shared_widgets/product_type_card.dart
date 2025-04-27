@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/args/category_args.dart';
-import '../features/product_type/models/product_type.dart';
+import '../features/product_type/product_type.dart';
 
 class ProductTypeCard extends StatelessWidget {
   final ProductType? subCategory;

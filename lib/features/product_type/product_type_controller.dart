@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/product_type.dart';
-import '../providers/product_type_provider.dart';
+import 'product_type.dart';
+import 'product_type_provider.dart';
 
 class ProductTypeController {
   WidgetRef? ref;

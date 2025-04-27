@@ -12,7 +12,6 @@ class ProductType extends HiveObject with _$ProductType {
   ProductType._();
 
   factory ProductType({
-    // ignore: invalid_annotation_target
     @HiveField(0) @JsonKey(name: 'id')int? dbId,
     
     @HiveField(1)
