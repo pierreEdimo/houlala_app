@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/address/model/address.dart';
-import 'package:houlala_app/features/address/providers/address_provider.dart';
+import 'package:houlala_app/features/address/address.dart';
+import 'package:houlala_app/features/address/address_provider.dart';
 
 class AddressController {
   final WidgetRef? ref;

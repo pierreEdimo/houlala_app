@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/address/controllers/address_controller.dart';
-import 'package:houlala_app/features/address/model/address.dart';
+import 'package:houlala_app/features/address/address_controller.dart';
+import 'package:houlala_app/features/address/address.dart';
 import 'package:houlala_app/helpers/bottom_sheet.dart';
 import 'package:houlala_app/shared_widgets/add_info_button.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';

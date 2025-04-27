@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/address/controllers/address_controller.dart';
+import 'package:houlala_app/features/address/address_controller.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/helpers/bottom_sheet.dart';
@@ -13,7 +13,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:toastification/toastification.dart';
 
-import '../features/address/model/address.dart';
+import '../features/address/address.dart';
 import '../helpers/constants.dart';
 
 class AddressScreen extends ConsumerStatefulWidget {

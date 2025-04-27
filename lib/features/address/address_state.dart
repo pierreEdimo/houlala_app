@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:houlala_app/features/address/model/address.dart';
+import 'package:houlala_app/features/address/address.dart';
 
 part 'address_state.freezed.dart';
 
