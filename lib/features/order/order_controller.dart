@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/order/model/order_model.dart';
-import 'package:houlala_app/features/order/providers/order_provider.dart';
+import 'package:houlala_app/features/order/order_model.dart';
+import 'package:houlala_app/features/order/order_provider.dart';
 
 class OrderController {
   final WidgetRef? ref;

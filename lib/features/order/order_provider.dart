@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/order/repositories/order_repository.dart';
-import 'package:houlala_app/features/order/state/order_state.dart';
+import 'package:houlala_app/features/order/order_repository.dart';
+import 'package:houlala_app/features/order/order_state.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
 import 'package:http/http.dart';
 
-import '../model/order_model.dart';
+import 'order_model.dart';
 
 final orderRepositoryProvider =
     Provider<OrderRepository>((ref) => OrderRepository());
