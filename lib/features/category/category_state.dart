@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/features/category/category_model.dart';
 
 
 part 'category_state.freezed.dart';

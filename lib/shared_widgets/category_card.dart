@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houlala_app/args/category_args.dart';
-import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/features/category/category_model.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class CategoryCard extends StatelessWidget {

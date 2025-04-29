@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/features/category/category_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/category_card.dart';
 

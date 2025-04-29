@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/category/model/category_model.dart';
+import 'package:houlala_app/features/category/category_model.dart';
 
-import '../providers/category_provider.dart';
+import 'category_provider.dart';
 
 
 class CategoryController {

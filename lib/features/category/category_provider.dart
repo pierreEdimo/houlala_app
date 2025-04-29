@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/category/model/category_model.dart';
-import '../repository/category_repository.dart';
-import '../state/category_state.dart';
+import 'package:houlala_app/features/category/category_model.dart';
+import 'category_repository.dart';
+import 'category_state.dart';
 
 final categoryRepositoryProvider =
     Provider<CategoryRepository>((ref) => CategoryRepository());
