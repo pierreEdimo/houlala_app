@@ -13,7 +13,6 @@ class LocalModel extends HiveObject with _$LocalModel{
   LocalModel._();
 
   factory LocalModel({
-    // ignore: invalid_annotation_target
     @HiveField(0) @JsonKey(name: 'id') int? dbId,
 
     @HiveField(1)

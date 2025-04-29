@@ -12,7 +12,6 @@ class CartItem extends HiveObject with _$CartItem {
   CartItem._();
 
   factory CartItem({
-    //ignore: invalid_annotation_target
     @HiveField(0) @JsonKey(name: 'id') int? dbId,
     
     @HiveField(1)
