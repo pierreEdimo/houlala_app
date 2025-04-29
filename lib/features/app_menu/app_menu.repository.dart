@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:houlala_app/features/app_menu/model/app_menu.dart';
+import 'package:houlala_app/features/app_menu/app_menu.dart';
 import 'package:http/http.dart';
 
 class AppMenuRepository {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/app_menu/model/app_menu.dart';
+import 'package:houlala_app/features/app_menu/app_menu.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class EntityCard extends StatelessWidget {

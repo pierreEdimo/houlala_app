@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/app_menu/model/app_menu.dart';
-import 'package:houlala_app/features/app_menu/repository/app_menu.repository.dart';
-import 'package:houlala_app/features/app_menu/state/app_menu_state.dart';
+import 'package:houlala_app/features/app_menu/app_menu.dart';
+import 'package:houlala_app/features/app_menu/app_menu.repository.dart';
+import 'package:houlala_app/features/app_menu/app_menu_state.dart';
 
 final appMenuRepositoryProvider =
     Provider<AppMenuRepository>((ref) => AppMenuRepository());

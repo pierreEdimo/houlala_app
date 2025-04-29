@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/app_menu/model/app_menu.dart';
+import 'package:houlala_app/features/app_menu/app_menu.dart';
 import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
-import 'package:houlala_app/features/app_menu/controllers/app_menu_controller.dart';
+import 'package:houlala_app/features/app_menu/app_menu_controller.dart';
 import 'package:houlala_app/features/auth/model/user_model.dart';
 import 'package:houlala_app/features/auth/providers/auth_provider.dart';
 import 'package:houlala_app/features/main_nav/main_nav_providers.dart';
