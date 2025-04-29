@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/auth_controller.dart';
 import 'package:houlala_app/features/category/controllers/category_controller.dart';
 import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/products/product_controller.dart';

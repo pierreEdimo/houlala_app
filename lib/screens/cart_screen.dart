@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/auth_controller.dart';
 import 'package:houlala_app/screens/logged_in_cart_screen.dart';
 import 'package:houlala_app/screens/logged_out_cart_screen.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';

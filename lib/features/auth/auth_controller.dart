@@ -1,9 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/auth/model/edit_info.dart';
-import 'package:houlala_app/features/auth/model/login.dart';
-import 'package:houlala_app/features/auth/model/register.dart';
-import 'package:houlala_app/features/auth/model/user_model.dart';
-import 'package:houlala_app/features/auth/providers/auth_provider.dart';
+import 'package:houlala_app/features/auth/edit_info.dart';
+import 'package:houlala_app/features/auth/auth_provider.dart';
+import 'package:houlala_app/features/auth/login.dart';
+import 'package:houlala_app/features/auth/register.dart';
+import 'package:houlala_app/features/auth/user_model.dart';
+
 
 class AuthController {
   final WidgetRef? ref;

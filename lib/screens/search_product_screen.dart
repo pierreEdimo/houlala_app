@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
-import 'package:houlala_app/features/auth/model/user_model.dart';
+import 'package:houlala_app/features/auth/auth_controller.dart';
+import 'package:houlala_app/features/auth/user_model.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/products/product_controller.dart';

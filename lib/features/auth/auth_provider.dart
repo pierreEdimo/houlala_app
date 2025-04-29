@@ -2,17 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/auth/model/edit_info.dart';
-import 'package:houlala_app/features/auth/model/login.dart';
-import 'package:houlala_app/features/auth/model/register.dart';
-import 'package:houlala_app/features/auth/model/user_model.dart';
-import 'package:houlala_app/features/auth/model/user_token.dart';
-import 'package:houlala_app/features/auth/repositories/auth_repository.dart';
-import 'package:houlala_app/features/auth/state/auth_state.dart';
+import 'package:houlala_app/features/auth/edit_info.dart';
+import 'package:houlala_app/features/auth/auth_repository.dart';
+import 'package:houlala_app/features/auth/auth_state.dart';
+import 'package:houlala_app/features/auth/register.dart';
+import 'package:houlala_app/features/auth/user_model.dart';
+import 'package:houlala_app/features/auth/user_token.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
 import 'package:houlala_app/helpers/token_helper.dart';
 import 'package:houlala_app/main.dart';
 import 'package:http/http.dart';
+
+import 'login.dart';
 
 final authRepositoryProvider =
     Provider<AuthRepository>((ref) => AuthRepository());

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/auth_controller.dart';
 import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
 import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/constants.dart';

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:houlala_app/features/auth/model/user_model.dart';
+import 'package:houlala_app/features/auth/user_model.dart';
 import 'package:houlala_app/features/carts/model/cart_item.dart';
 import 'package:houlala_app/features/locals/model/local_model.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
-import 'package:houlala_app/features/auth/controllers/auth_controller.dart';
+import 'package:houlala_app/features/auth/auth_controller.dart';
 import 'package:houlala_app/features/main_nav/main_nav_providers.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/screens/cart_screen.dart';
