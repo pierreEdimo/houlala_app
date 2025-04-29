@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 

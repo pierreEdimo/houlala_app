@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:houlala_app/features/carts/model/cart_item.dart';
-import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/carts/cart_item.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item.dart';
 import 'package:http/http.dart';
 
 class CartRepository {

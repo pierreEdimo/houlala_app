@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item.dart';
 
 part 'mapped_cart_item_state.freezed.dart';
 

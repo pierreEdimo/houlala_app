@@ -3,7 +3,7 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
-import 'package:houlala_app/features/carts/model/cart_item.dart';
+import 'package:houlala_app/features/carts/cart_item.dart';
 import 'package:houlala_app/features/category/category_model.dart';
 import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/features/product_type/product_type.dart';

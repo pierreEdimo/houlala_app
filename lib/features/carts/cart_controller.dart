@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/carts/model/cart_item.dart';
-import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
-import 'package:houlala_app/features/carts/providers/local_cart_item_provider.dart';
-import 'package:houlala_app/features/carts/providers/mapped_cart_item_provider.dart';
+import 'package:houlala_app/features/carts/cart_item.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item.dart';
+import 'package:houlala_app/features/carts/local_cart_item_provider.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item_provider.dart';
 
 class CartController {
   WidgetRef? ref;

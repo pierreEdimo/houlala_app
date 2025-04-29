@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/auth_controller.dart';
-import 'package:houlala_app/features/carts/controllers/cart_controller.dart';
-import 'package:houlala_app/features/carts/model/mapped_cart_item.dart';
+import 'package:houlala_app/features/carts/cart_controller.dart';
+import 'package:houlala_app/features/carts/mapped_cart_item.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
@@ -13,7 +13,7 @@ import 'package:houlala_app/shared_widgets/cart_item_product_image.dart';
 import 'package:houlala_app/shared_widgets/cart_product_name.dart';
 import 'package:houlala_app/shared_widgets/total_cart_item.dart';
 
-import '../features/carts/model/cart_item.dart';
+import '../features/carts/cart_item.dart';
 
 class MappedCartItemCard extends ConsumerWidget {
   final MappedCartItem? mappedCartItem;

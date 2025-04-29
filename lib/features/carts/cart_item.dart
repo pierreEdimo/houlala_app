@@ -3,7 +3,6 @@ import 'package:hive_ce/hive.dart';
 import 'package:houlala_app/features/products/product.dart';
 
 part 'cart_item.freezed.dart';
-
 part 'cart_item.g.dart';
 
 @freezed

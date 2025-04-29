@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/carts/model/cart_item.dart';
+import 'package:houlala_app/features/carts/cart_item.dart';
 import 'package:houlala_app/features/category/category_model.dart';
 import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/features/product_type/product_type.dart';

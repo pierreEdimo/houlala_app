@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/carts/model/cart_item.dart';
-import 'package:houlala_app/features/carts/state/local_cart_item_state.dart';
+import 'package:houlala_app/features/carts/cart_item.dart';
+import 'package:houlala_app/features/carts/local_cart_item_state.dart';
 import 'package:houlala_app/helpers/bottom_sheet.dart';
 import 'package:houlala_app/helpers/boxes.dart';
 
