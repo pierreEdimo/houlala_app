@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/policy/state/policy_state.dart';
+import 'package:houlala_app/features/policy/policy_state.dart';
 import 'package:houlala_app/helpers/assets_loader.dart';
 
 final policyStateNotifierProvider =

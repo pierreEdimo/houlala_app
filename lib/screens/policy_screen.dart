@@ -7,7 +7,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
-import '../features/policy/provider/policy_provider.dart';
+import '../features/policy/policy_provider.dart';
 
 class PolicyScreen extends ConsumerWidget {
   const PolicyScreen({super.key});
