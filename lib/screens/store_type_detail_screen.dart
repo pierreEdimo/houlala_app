@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/args/category_args.dart';
-import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
+import 'package:houlala_app/features/locals/locals_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
@@ -11,7 +11,7 @@ import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/search_input_button.dart';
 import 'package:houlala_app/shared_widgets/vlocals_grid.dart';
 
-import '../features/locals/model/local_model.dart';
+import '../features/locals/local_model.dart';
 
 class StoreTypeDetailScreen extends ConsumerWidget {
   const StoreTypeDetailScreen({super.key});

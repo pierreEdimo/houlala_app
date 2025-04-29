@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
-import '../repositories/local_repository.dart';
-import '../state/local_model_state.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
+import 'local_repository.dart';
+import 'local_model_state.dart';
 
 final localRepositoryProvider =
     Provider<LocalRepository>((ref) => LocalRepository());

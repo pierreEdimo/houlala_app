@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:http/http.dart';
 
 class LocalRepository {

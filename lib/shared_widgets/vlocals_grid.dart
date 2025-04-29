@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/shared_widgets/local_card.dart';
 
 class VerticalLocalsGrid extends StatelessWidget {

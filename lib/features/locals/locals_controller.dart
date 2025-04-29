@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
-import '../providers/local_provider.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
+import 'local_provider.dart';
 
 class LocalsController {
   WidgetRef? ref;

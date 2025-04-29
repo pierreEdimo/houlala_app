@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
 
 class ResultSellerCard extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
 
 part 'local_model_state.freezed.dart';
 

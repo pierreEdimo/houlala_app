@@ -5,8 +5,8 @@ import 'package:houlala_app/features/category/controllers/category_controller.da
 import 'package:houlala_app/features/category/model/category_model.dart';
 import 'package:houlala_app/features/products/product_controller.dart';
 import 'package:houlala_app/features/products/product.dart';
-import 'package:houlala_app/features/locals/controllers/locals_controller.dart';
-import 'package:houlala_app/features/locals/model/local_model.dart';
+import 'package:houlala_app/features/locals/locals_controller.dart';
+import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
