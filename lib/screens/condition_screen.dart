@@ -7,7 +7,7 @@ import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 
-import '../features/term/provider/term_provider.dart';
+import '../features/term/term_provider.dart';
 
 class ConditionScreen extends ConsumerWidget {
   const ConditionScreen({super.key});

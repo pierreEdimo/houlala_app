@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/term/state/term_state.dart';
+import 'package:houlala_app/features/term/term_state.dart';
 
-import '../../../helpers/assets_loader.dart';
+import '../../helpers/assets_loader.dart';
 
 final termStateNotifierProvider =
     StateNotifierProvider<TermStateNotifier, TermState>(
