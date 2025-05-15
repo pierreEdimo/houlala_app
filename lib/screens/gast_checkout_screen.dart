@@ -40,6 +40,7 @@ class GastCheckoutScreen extends ConsumerWidget {
     Address? gastUserAddress = addressController.gastUserAddress;
     bool hasAddress = addressController.hasAddress;
     bool loading = orderController.loading;
+    bool isLoggedIn = authController.isLoggedIn;
 
     void confirmPayment() {
       if (!authController.hasGastUserInfo &&
@@ -93,9 +94,10 @@ class GastCheckoutScreen extends ConsumerWidget {
                 UserInfoCard(
                   hasUserInfo: hastGastUserInfo,
                   userModel: gastUser,
+                  isLoggedIn: isLoggedIn,
                 ),
                 AddressInfoCard(
-                  isLoggedIn: false,
+                  isLoggedIn: isLoggedIn,
                   hasAddress: hasAddress,
                   loading: false,
                   selectedAddress: gastUserAddress,

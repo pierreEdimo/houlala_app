@@ -22,7 +22,7 @@ class SearchStoreScreen extends ConsumerWidget {
         ModalRoute.of(context)!.settings.arguments as SearchArgs;
     List<LocalModel> filteredLocals = sellersController.filteredLocals;
 
-    bool isSearchSubmitted = ref.watch(searchStateNotifierProvider);
+    bool isSearchSubmitted = ref.watch(searchLocalStateNotifierProvider);
 
     return CustomScaffold(
       appBar: CustomAppBar(
@@ -44,7 +44,7 @@ class SearchStoreScreen extends ConsumerWidget {
                 sellersController.searchLocals(value);
               }
               ref
-                  .read(searchStateNotifierProvider.notifier)
+                  .read(searchLocalStateNotifierProvider.notifier)
                   .setSearchSubmittedTrue();
             } else {
               DoNothingAction();

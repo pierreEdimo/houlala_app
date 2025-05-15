@@ -39,9 +39,12 @@ class CheckoutScreen extends ConsumerWidget {
         addressController.getDeliveryAddress(connectedUser!.deliveryAddressId!);
     List<MappedCartItem> mappedCartItems = cartController.cartItemList;
     bool? loading = orderController.loading;
+    bool isLoggedIn = authController.isLoggedIn;
 
     void confirmPayment() {
-      if (!authController.hasUserInfo && !addressController.hasAddress) {
+      print(authController.hasUserInfo);
+
+      if (!authController.hasUserInfo || !addressController.hasAddress) {
         CustomToastNotification.showErrorAction(
             'Svp veuillez ajouter vos informations personnelles et votre adresse.');
       } else {
@@ -91,12 +94,13 @@ class CheckoutScreen extends ConsumerWidget {
                 UserInfoCard(
                   hasUserInfo: authController.hasUserInfo,
                   userModel: connectedUser,
+                  isLoggedIn: isLoggedIn,
                 ),
                 AddressInfoCard(
                   loading: addressController.loading,
                   hasAddress: addressController.hasAddress,
                   selectedAddress: selectedAddress,
-                  isLoggedIn: authController.isLoggedIn,
+                  isLoggedIn: isLoggedIn,
                 ),
                 CustomCard(
                   child: Column(

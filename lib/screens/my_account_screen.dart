@@ -13,8 +13,8 @@ import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/column_headers.dart';
 import 'package:houlala_app/shared_widgets/user_info_tile.dart';
 
-class MyAccountScreen extends ConsumerWidget {
-  const MyAccountScreen({super.key});
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,7 +55,7 @@ class MyAccountScreen extends ConsumerWidget {
                         const UserInfoTile(),
                         CustomListTile(
                           onTap: () =>
-                              Navigator.of(context).pushNamed('/myAddresses'),
+                              Navigator.of(context).pushNamed('/addresses'),
                           leading: const Icon(
                             Icons.book_outlined,
                             size: 18,

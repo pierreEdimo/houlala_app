@@ -10,10 +10,12 @@ import 'package:houlala_app/shared_widgets/column_headers.dart';
 class UserInfoCard extends ConsumerStatefulWidget {
   final bool hasUserInfo;
   final UserModel? userModel;
+  final bool? isLoggedIn;
 
   const UserInfoCard({
     super.key,
     this.userModel,
+    this.isLoggedIn,
     required this.hasUserInfo,
   });
 
@@ -52,7 +54,8 @@ class _UserInfoCardState extends ConsumerState<UserInfoCard> {
                         lastNameController..text = connectedUser.lastName ?? '',
                         phoneNumberController
                           ..text = connectedUser.phoneNumber ?? '',
-                        authController),
+                        authController,
+                        isLoggedIn: widget.isLoggedIn!),
                     title: 'Ajoutez vos infos personnelles.',
                   )
                 ],
@@ -85,7 +88,7 @@ class _UserInfoCardState extends ConsumerState<UserInfoCard> {
                                 ..text = connectedUser.lastName ?? '',
                               phoneNumberController
                                 ..text = connectedUser.phoneNumber ?? '',
-                              isLoggedIn: true,
+                              isLoggedIn: widget.isLoggedIn!,
                               authController),
                           child: const Text(
                             'Modifiez vos informations',

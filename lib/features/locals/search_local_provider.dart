@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final searchStateNotifierProvider =
-    StateNotifierProvider.autoDispose<SearchStateNotifier, bool>(
-        (ref) => SearchStateNotifier());
+final searchLocalStateNotifierProvider =
+    StateNotifierProvider.autoDispose<SearchLocalStateNotifier, bool>(
+        (ref) => SearchLocalStateNotifier());
 
-class SearchStateNotifier extends StateNotifier<bool> {
-  SearchStateNotifier() : super(false);
+class SearchLocalStateNotifier extends StateNotifier<bool> {
+  SearchLocalStateNotifier() : super(false);
 
   void setSearchSubmittedTrue() {
     state = true;

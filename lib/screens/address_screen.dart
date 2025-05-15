@@ -89,6 +89,7 @@ class _AddressScreenState extends ConsumerState<AddressScreen> {
                         firstNameController..text = address.firstName ?? '',
                         addressController,
                         id: address.id,
+                        isLoggedIn: true,
                         isDefault:
                             connectedUser!.deliveryAddressId == address.id,
                       ),
@@ -106,6 +107,7 @@ class _AddressScreenState extends ConsumerState<AddressScreen> {
                   lastNameController,
                   firstNameController,
                   addressController,
+                  isLoggedIn: true,
                   id: null),
             )
           ],

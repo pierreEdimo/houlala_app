@@ -29,8 +29,8 @@ class LocalCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 45,
-                width: 45,
+                height: 50,
+                width: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(150.0),
                   image: DecorationImage(
@@ -41,14 +41,12 @@ class LocalCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Text(
-                  local!.name!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                ),
+              Text(
+                local!.name!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
               )
             ],
           ),
