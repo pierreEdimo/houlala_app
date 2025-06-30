@@ -5,7 +5,7 @@ import 'package:houlala_app/features/suggestion/suggestion_result.dart';
 import 'package:http/http.dart';
 
 class SuggestionRepository {
-  Future<List<SuggestionResult>> _fetchSuggestionsFromDb(String uri) async {
+  Future<List<SuggestionResult>> fetchSuggestions(String uri) async {
     final Response response = await get(Uri.parse(uri));
 
     if (response.statusCode != HttpStatus.ok) {

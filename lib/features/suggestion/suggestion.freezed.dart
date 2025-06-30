@@ -20,9 +20,15 @@ Suggestion _$SuggestionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Suggestion {
-  int? get id => throw _privateConstructorUsedError;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get userId => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get word => throw _privateConstructorUsedError;
+  @HiveField(3)
+  String? get searchCategory => throw _privateConstructorUsedError;
 
   /// Serializes this Suggestion to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +46,11 @@ abstract class $SuggestionCopyWith<$Res> {
           Suggestion value, $Res Function(Suggestion) then) =
       _$SuggestionCopyWithImpl<$Res, Suggestion>;
   @useResult
-  $Res call({int? id, String? userId, String? word});
+  $Res call(
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) String? word,
+      @HiveField(3) String? searchCategory});
 }
 
 /// @nodoc
@@ -58,14 +68,15 @@ class _$SuggestionCopyWithImpl<$Res, $Val extends Suggestion>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? word = freezed,
+    Object? searchCategory = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -74,6 +85,10 @@ class _$SuggestionCopyWithImpl<$Res, $Val extends Suggestion>
       word: freezed == word
           ? _value.word
           : word // ignore: cast_nullable_to_non_nullable
+              as String?,
+      searchCategory: freezed == searchCategory
+          ? _value.searchCategory
+          : searchCategory // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -87,7 +102,11 @@ abstract class _$$SuggestionImplCopyWith<$Res>
       __$$SuggestionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? userId, String? word});
+  $Res call(
+      {@HiveField(0) @JsonKey(name: 'id') int? dbId,
+      @HiveField(1) String? userId,
+      @HiveField(2) String? word,
+      @HiveField(3) String? searchCategory});
 }
 
 /// @nodoc
@@ -103,14 +122,15 @@ class __$$SuggestionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? dbId = freezed,
     Object? userId = freezed,
     Object? word = freezed,
+    Object? searchCategory = freezed,
   }) {
     return _then(_$SuggestionImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      dbId: freezed == dbId
+          ? _value.dbId
+          : dbId // ignore: cast_nullable_to_non_nullable
               as int?,
       userId: freezed == userId
           ? _value.userId
@@ -120,6 +140,10 @@ class __$$SuggestionImplCopyWithImpl<$Res>
           ? _value.word
           : word // ignore: cast_nullable_to_non_nullable
               as String?,
+      searchCategory: freezed == searchCategory
+          ? _value.searchCategory
+          : searchCategory // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -127,21 +151,33 @@ class __$$SuggestionImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SuggestionImpl extends _Suggestion {
-  _$SuggestionImpl({this.id, this.userId, this.word}) : super._();
+  _$SuggestionImpl(
+      {@HiveField(0) @JsonKey(name: 'id') this.dbId,
+      @HiveField(1) this.userId,
+      @HiveField(2) this.word,
+      @HiveField(3) this.searchCategory})
+      : super._();
 
   factory _$SuggestionImpl.fromJson(Map<String, dynamic> json) =>
       _$$SuggestionImplFromJson(json);
 
   @override
-  final int? id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  final int? dbId;
   @override
+  @HiveField(1)
   final String? userId;
   @override
+  @HiveField(2)
   final String? word;
+  @override
+  @HiveField(3)
+  final String? searchCategory;
 
   @override
   String toString() {
-    return 'Suggestion(id: $id, userId: $userId, word: $word)';
+    return 'Suggestion(dbId: $dbId, userId: $userId, word: $word, searchCategory: $searchCategory)';
   }
 
   @override
@@ -149,14 +185,17 @@ class _$SuggestionImpl extends _Suggestion {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuggestionImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.dbId, dbId) || other.dbId == dbId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.word, word) || other.word == word));
+            (identical(other.word, word) || other.word == word) &&
+            (identical(other.searchCategory, searchCategory) ||
+                other.searchCategory == searchCategory));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, word);
+  int get hashCode =>
+      Object.hash(runtimeType, dbId, userId, word, searchCategory);
 
   /// Create a copy of Suggestion
   /// with the given fields replaced by the non-null parameter values.
@@ -176,20 +215,28 @@ class _$SuggestionImpl extends _Suggestion {
 
 abstract class _Suggestion extends Suggestion {
   factory _Suggestion(
-      {final int? id,
-      final String? userId,
-      final String? word}) = _$SuggestionImpl;
+      {@HiveField(0) @JsonKey(name: 'id') final int? dbId,
+      @HiveField(1) final String? userId,
+      @HiveField(2) final String? word,
+      @HiveField(3) final String? searchCategory}) = _$SuggestionImpl;
   _Suggestion._() : super._();
 
   factory _Suggestion.fromJson(Map<String, dynamic> json) =
       _$SuggestionImpl.fromJson;
 
   @override
-  int? get id;
+  @HiveField(0)
+  @JsonKey(name: 'id')
+  int? get dbId;
   @override
+  @HiveField(1)
   String? get userId;
   @override
+  @HiveField(2)
   String? get word;
+  @override
+  @HiveField(3)
+  String? get searchCategory;
 
   /// Create a copy of Suggestion
   /// with the given fields replaced by the non-null parameter values.

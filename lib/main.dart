@@ -10,6 +10,7 @@ import 'package:houlala_app/features/category/category_model.dart';
 import 'package:houlala_app/features/locals/local_model.dart';
 import 'package:houlala_app/features/product_type/product_type.dart';
 import 'package:houlala_app/features/products/product.dart';
+import 'package:houlala_app/features/suggestion/suggestion.dart';
 import 'package:houlala_app/helpers/no_transitions_builder.dart';
 import 'package:houlala_app/screens/address_screen.dart';
 import 'package:houlala_app/screens/all_product_screen.dart';
@@ -58,6 +59,7 @@ Future main() async {
   Hive.registerAdapter(CategoryModelAdapter());
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(CartItemAdapter());
+  Hive.registerAdapter(SuggestionAdapter());
 
   await Hive.openBox<CartItem>('cartItems');
 
