@@ -9,12 +9,15 @@ import 'package:houlala_app/features/carts/cart_controller.dart';
 import 'package:houlala_app/features/carts/cart_item.dart';
 import 'package:houlala_app/features/products/product_controller.dart';
 import 'package:houlala_app/features/products/product.dart';
+import 'package:houlala_app/features/stock/stock_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_button.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
 import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/image_slider.dart';
+
+import '../features/stock/stock.dart';
 
 class ProductDetailScreen extends ConsumerWidget {
   const ProductDetailScreen({super.key});
@@ -23,11 +26,37 @@ class ProductDetailScreen extends ConsumerWidget {
     return Uri.parse(imageUrl).isAbsolute;
   }
 
+  void addProductToCart(
+      int quantity,
+      bool isLoggedIn,
+      Product selectedProduct,
+      UserModel? connectedUser,
+      CartController cartController,
+      StockController stockController) {
+    Stock loadedStock = stockController.loadedStock;
+
+    double price = selectedProduct.unitSellingPrice! * quantity;
+    CartItem createCartItem = CartItem(
+      quantity: quantity,
+      price: price,
+      product: selectedProduct,
+      userId: connectedUser != null ? connectedUser.id : 'gast_id',
+    );
+
+    // ajoute les produits dans le carte
+    cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
+
+    // met a jour la quantite des produits
+    stockController.decreaseStockQuantity(selectedProduct.dbId!, quantity);
+
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ProductController productController = ProductController(ref);
     AuthController authController = AuthController(ref);
     CartController cartController = CartController(ref);
+    StockController stockController = StockController(ref);
 
     final UserModel? connectedUser = authController.connectedUser;
     final bool isLoggedIn = authController.isLoggedIn;
@@ -36,16 +65,8 @@ class ProductDetailScreen extends ConsumerWidget {
 
     late int? quantity = selectedProduct?.defaultQuantity;
 
-    void addProductToCart(int qty, bool isLoggedIn) {
-      double price = selectedProduct!.unitSellingPrice! * qty;
-      CartItem createCartItem = CartItem(
-        quantity: qty,
-        price: price,
-        product: selectedProduct,
-        userId: connectedUser != null ? connectedUser.id : 'gast_id',
-      );
-
-      cartController.addProductToCart(createCartItem, isLoggedIn: isLoggedIn);
+    if (selectedProduct?.dbId != null) {
+      stockController.loadProductStock(selectedProduct!.dbId!);
     }
 
     return CustomScaffold(
@@ -214,8 +235,13 @@ class ProductDetailScreen extends ConsumerWidget {
                       ),
                       CustomButton(
                         leadingIcon: HeroIcons.plus,
-                        onPressed: () =>
-                            addProductToCart(quantity!, isLoggedIn),
+                        onPressed: () => addProductToCart(
+                            quantity!,
+                            isLoggedIn,
+                            selectedProduct!,
+                            connectedUser,
+                            cartController,
+                            stockController),
                         title: 'Ajouter au panier',
                       ),
                     ],

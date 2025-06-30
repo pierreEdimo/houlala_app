@@ -5,6 +5,7 @@ import 'package:heroicons/heroicons.dart';
 import 'package:houlala_app/features/auth/auth_controller.dart';
 import 'package:houlala_app/features/carts/cart_controller.dart';
 import 'package:houlala_app/features/carts/mapped_cart_item.dart';
+import 'package:houlala_app/features/stock/stock_controller.dart';
 import 'package:houlala_app/helpers/constants.dart';
 import 'package:houlala_app/helpers/item_calculations.dart';
 import 'package:houlala_app/shared_widgets/c_card.dart';
@@ -32,19 +33,35 @@ class MappedCartItemCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     CartController cartController = CartController(ref);
     AuthController authController = AuthController(ref);
+    StockController stockController = StockController(ref);
 
     bool isLoggedIn = authController.isLoggedIn;
 
     void deleteProductFromCart(CartItem item) {
+
+      // supprime le produit tout entier
       cartController.removeProductFromCart(item, isLoggedIn: isLoggedIn);
+
+      //augmente les produits dans le stock.
+      stockController.increaseStockQuantity(item.product!.dbId!, item.quantity!);
     }
 
     void decreaseItemQuantity(CartItem item) {
+
+      // reduit les produits du pannier
       cartController.decreaseItemQuantity(item, isLoggedIn: isLoggedIn);
+
+      //augmente les produits du stock
+      stockController.increaseStockQuantity(item.product!.dbId!, 1);
     }
 
     void increaseItemQuantity(CartItem item) {
+
+      // augmente les produits a commander.
       cartController.increaseItemQuantity(item, isLoggedIn: isLoggedIn);
+
+      // reduit les produits dans le stock.
+      stockController.decreaseStockQuantity(item.product!.dbId!, 1);
     }
 
     return CustomCard(

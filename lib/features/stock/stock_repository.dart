@@ -7,7 +7,7 @@ import 'package:http/http.dart';
 
 class StockRepository {
 
-  Future<Stock> fetchProductStock(int id) async {
+  Future<Stock> fetchProductStock(int? id) async {
     final Response response =
         await get(Uri.parse('${dotenv.env['STOCK_URL']}/$id'));
 

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:houlala_app/features/stock/stock.dart';
 import 'package:houlala_app/features/stock/stock_repository.dart';
 import 'package:houlala_app/features/stock/stock_state.dart';
 import 'package:houlala_app/helpers/toast_notification.dart';
@@ -38,6 +37,10 @@ class StockStateNotifier extends StateNotifier<StockState> {
           "Erreur lors de la mise a jour des stocks.");
     }
 
+    if (state.stock == null) {
+      loadProductStock(id);
+    }
+
     var existingStock = state.stock;
     existingStock = existingStock!
         .copyWith(availableQuantity: existingStock.initialQuantity! + quantity);
@@ -51,6 +54,10 @@ class StockStateNotifier extends StateNotifier<StockState> {
     if (response.statusCode != HttpStatus.noContent) {
       CustomToastNotification.showErrorAction(
           "Erreur lors du chargement des informations du produit.");
+    }
+
+    if (state.stock == null) {
+      loadProductStock(id);
     }
 
     var existingStock = state.stock;
