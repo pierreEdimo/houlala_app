@@ -19,16 +19,16 @@ class StockRepository {
     return Stock.fromJson(jsonDecode(response.body));
   }
 
-  Future<Response> increaseProductQuantity(int id, int quantity) async {
+  Future<Response> increaseProductQuantity(int id, int quantity) {
     var url = '${dotenv.env['STOCK_URL']}/increase/$id/quantities/$quantity';
 
-    return await _editStockQuantity(url);
+    return _editStockQuantity(url);
   }
 
-  Future<Response> decreaseProductQuantity(int id, int quantity) async {
+  Future<Response> decreaseProductQuantity(int id, int quantity) {
     var url = '${dotenv.env['STOCK_URL']}/decrease/$id/quantities/$quantity';
 
-    return await _editStockQuantity(url);
+    return _editStockQuantity(url);
   }
 
   Future<Response> _editStockQuantity(String url) async {
