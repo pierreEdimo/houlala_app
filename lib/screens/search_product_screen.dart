@@ -7,7 +7,6 @@ import 'package:houlala_app/features/carts/cart_controller.dart';
 import 'package:houlala_app/features/carts/cart_item.dart';
 import 'package:houlala_app/features/products/product_controller.dart';
 import 'package:houlala_app/features/products/product.dart';
-import 'package:houlala_app/features/locals/search_local_provider.dart';
 import 'package:houlala_app/features/products/search_product_provider.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';

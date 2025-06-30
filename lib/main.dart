@@ -62,6 +62,7 @@ Future main() async {
   Hive.registerAdapter(SuggestionAdapter());
 
   await Hive.openBox<CartItem>('cartItems');
+  await Hive.openBox<Suggestion>('suggestions');
 
   initializeDateFormatting('fr_FR', null);
   await dotenv.load(fileName: '.env');

@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SuggestionState {
-  SuggestionResult? get usersResult => throw _privateConstructorUsedError;
-  SuggestionResult? get localsResult => throw _privateConstructorUsedError;
-  SuggestionResult? get searchResult => throw _privateConstructorUsedError;
+  List<String> get usersResult => throw _privateConstructorUsedError;
+  List<String> get localsResult => throw _privateConstructorUsedError;
+  List<String> get searchResult => throw _privateConstructorUsedError;
+  List<String> get localUsersResult => throw _privateConstructorUsedError;
+  List<String> get localLocalsResult => throw _privateConstructorUsedError;
 
   /// Create a copy of SuggestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,13 +36,11 @@ abstract class $SuggestionStateCopyWith<$Res> {
       _$SuggestionStateCopyWithImpl<$Res, SuggestionState>;
   @useResult
   $Res call(
-      {SuggestionResult? usersResult,
-      SuggestionResult? localsResult,
-      SuggestionResult? searchResult});
-
-  $SuggestionResultCopyWith<$Res>? get usersResult;
-  $SuggestionResultCopyWith<$Res>? get localsResult;
-  $SuggestionResultCopyWith<$Res>? get searchResult;
+      {List<String> usersResult,
+      List<String> localsResult,
+      List<String> searchResult,
+      List<String> localUsersResult,
+      List<String> localLocalsResult});
 }
 
 /// @nodoc
@@ -58,66 +58,34 @@ class _$SuggestionStateCopyWithImpl<$Res, $Val extends SuggestionState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usersResult = freezed,
-    Object? localsResult = freezed,
-    Object? searchResult = freezed,
+    Object? usersResult = null,
+    Object? localsResult = null,
+    Object? searchResult = null,
+    Object? localUsersResult = null,
+    Object? localLocalsResult = null,
   }) {
     return _then(_value.copyWith(
-      usersResult: freezed == usersResult
+      usersResult: null == usersResult
           ? _value.usersResult
           : usersResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
-      localsResult: freezed == localsResult
+              as List<String>,
+      localsResult: null == localsResult
           ? _value.localsResult
           : localsResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
-      searchResult: freezed == searchResult
+              as List<String>,
+      searchResult: null == searchResult
           ? _value.searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
+              as List<String>,
+      localUsersResult: null == localUsersResult
+          ? _value.localUsersResult
+          : localUsersResult // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      localLocalsResult: null == localLocalsResult
+          ? _value.localLocalsResult
+          : localLocalsResult // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
-  }
-
-  /// Create a copy of SuggestionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SuggestionResultCopyWith<$Res>? get usersResult {
-    if (_value.usersResult == null) {
-      return null;
-    }
-
-    return $SuggestionResultCopyWith<$Res>(_value.usersResult!, (value) {
-      return _then(_value.copyWith(usersResult: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SuggestionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SuggestionResultCopyWith<$Res>? get localsResult {
-    if (_value.localsResult == null) {
-      return null;
-    }
-
-    return $SuggestionResultCopyWith<$Res>(_value.localsResult!, (value) {
-      return _then(_value.copyWith(localsResult: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SuggestionState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SuggestionResultCopyWith<$Res>? get searchResult {
-    if (_value.searchResult == null) {
-      return null;
-    }
-
-    return $SuggestionResultCopyWith<$Res>(_value.searchResult!, (value) {
-      return _then(_value.copyWith(searchResult: value) as $Val);
-    });
   }
 }
 
@@ -130,16 +98,11 @@ abstract class _$$SuggestionStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SuggestionResult? usersResult,
-      SuggestionResult? localsResult,
-      SuggestionResult? searchResult});
-
-  @override
-  $SuggestionResultCopyWith<$Res>? get usersResult;
-  @override
-  $SuggestionResultCopyWith<$Res>? get localsResult;
-  @override
-  $SuggestionResultCopyWith<$Res>? get searchResult;
+      {List<String> usersResult,
+      List<String> localsResult,
+      List<String> searchResult,
+      List<String> localUsersResult,
+      List<String> localLocalsResult});
 }
 
 /// @nodoc
@@ -155,23 +118,33 @@ class __$$SuggestionStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usersResult = freezed,
-    Object? localsResult = freezed,
-    Object? searchResult = freezed,
+    Object? usersResult = null,
+    Object? localsResult = null,
+    Object? searchResult = null,
+    Object? localUsersResult = null,
+    Object? localLocalsResult = null,
   }) {
     return _then(_$SuggestionStateImpl(
-      usersResult: freezed == usersResult
-          ? _value.usersResult
+      usersResult: null == usersResult
+          ? _value._usersResult
           : usersResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
-      localsResult: freezed == localsResult
-          ? _value.localsResult
+              as List<String>,
+      localsResult: null == localsResult
+          ? _value._localsResult
           : localsResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
-      searchResult: freezed == searchResult
-          ? _value.searchResult
+              as List<String>,
+      searchResult: null == searchResult
+          ? _value._searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
-              as SuggestionResult?,
+              as List<String>,
+      localUsersResult: null == localUsersResult
+          ? _value._localUsersResult
+          : localUsersResult // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      localLocalsResult: null == localLocalsResult
+          ? _value._localLocalsResult
+          : localLocalsResult // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -180,23 +153,67 @@ class __$$SuggestionStateImplCopyWithImpl<$Res>
 
 class _$SuggestionStateImpl implements _SuggestionState {
   _$SuggestionStateImpl(
-      {this.usersResult = null,
-      this.localsResult = null,
-      this.searchResult = null});
+      {final List<String> usersResult = const [],
+      final List<String> localsResult = const [],
+      final List<String> searchResult = const [],
+      final List<String> localUsersResult = const [],
+      final List<String> localLocalsResult = const []})
+      : _usersResult = usersResult,
+        _localsResult = localsResult,
+        _searchResult = searchResult,
+        _localUsersResult = localUsersResult,
+        _localLocalsResult = localLocalsResult;
 
+  final List<String> _usersResult;
   @override
   @JsonKey()
-  final SuggestionResult? usersResult;
+  List<String> get usersResult {
+    if (_usersResult is EqualUnmodifiableListView) return _usersResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_usersResult);
+  }
+
+  final List<String> _localsResult;
   @override
   @JsonKey()
-  final SuggestionResult? localsResult;
+  List<String> get localsResult {
+    if (_localsResult is EqualUnmodifiableListView) return _localsResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localsResult);
+  }
+
+  final List<String> _searchResult;
   @override
   @JsonKey()
-  final SuggestionResult? searchResult;
+  List<String> get searchResult {
+    if (_searchResult is EqualUnmodifiableListView) return _searchResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchResult);
+  }
+
+  final List<String> _localUsersResult;
+  @override
+  @JsonKey()
+  List<String> get localUsersResult {
+    if (_localUsersResult is EqualUnmodifiableListView)
+      return _localUsersResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localUsersResult);
+  }
+
+  final List<String> _localLocalsResult;
+  @override
+  @JsonKey()
+  List<String> get localLocalsResult {
+    if (_localLocalsResult is EqualUnmodifiableListView)
+      return _localLocalsResult;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_localLocalsResult);
+  }
 
   @override
   String toString() {
-    return 'SuggestionState(usersResult: $usersResult, localsResult: $localsResult, searchResult: $searchResult)';
+    return 'SuggestionState(usersResult: $usersResult, localsResult: $localsResult, searchResult: $searchResult, localUsersResult: $localUsersResult, localLocalsResult: $localLocalsResult)';
   }
 
   @override
@@ -204,17 +221,26 @@ class _$SuggestionStateImpl implements _SuggestionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuggestionStateImpl &&
-            (identical(other.usersResult, usersResult) ||
-                other.usersResult == usersResult) &&
-            (identical(other.localsResult, localsResult) ||
-                other.localsResult == localsResult) &&
-            (identical(other.searchResult, searchResult) ||
-                other.searchResult == searchResult));
+            const DeepCollectionEquality()
+                .equals(other._usersResult, _usersResult) &&
+            const DeepCollectionEquality()
+                .equals(other._localsResult, _localsResult) &&
+            const DeepCollectionEquality()
+                .equals(other._searchResult, _searchResult) &&
+            const DeepCollectionEquality()
+                .equals(other._localUsersResult, _localUsersResult) &&
+            const DeepCollectionEquality()
+                .equals(other._localLocalsResult, _localLocalsResult));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, usersResult, localsResult, searchResult);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_usersResult),
+      const DeepCollectionEquality().hash(_localsResult),
+      const DeepCollectionEquality().hash(_searchResult),
+      const DeepCollectionEquality().hash(_localUsersResult),
+      const DeepCollectionEquality().hash(_localLocalsResult));
 
   /// Create a copy of SuggestionState
   /// with the given fields replaced by the non-null parameter values.
@@ -228,16 +254,22 @@ class _$SuggestionStateImpl implements _SuggestionState {
 
 abstract class _SuggestionState implements SuggestionState {
   factory _SuggestionState(
-      {final SuggestionResult? usersResult,
-      final SuggestionResult? localsResult,
-      final SuggestionResult? searchResult}) = _$SuggestionStateImpl;
+      {final List<String> usersResult,
+      final List<String> localsResult,
+      final List<String> searchResult,
+      final List<String> localUsersResult,
+      final List<String> localLocalsResult}) = _$SuggestionStateImpl;
 
   @override
-  SuggestionResult? get usersResult;
+  List<String> get usersResult;
   @override
-  SuggestionResult? get localsResult;
+  List<String> get localsResult;
   @override
-  SuggestionResult? get searchResult;
+  List<String> get searchResult;
+  @override
+  List<String> get localUsersResult;
+  @override
+  List<String> get localLocalsResult;
 
   /// Create a copy of SuggestionState
   /// with the given fields replaced by the non-null parameter values.

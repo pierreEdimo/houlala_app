@@ -15,7 +15,7 @@ import 'package:houlala_app/helpers/bottom_sheet.dart';
 import 'package:http/http.dart';
 
 final cartItemRepositoryProvider =
-    Provider<CartRepository>((ref) => CartRepository());
+    Provider<CartRepository>((_) => CartRepository());
 
 final cartItemStateNotifierProvider =
     StateNotifierProvider<MappedCartItemStateNotifier, MappedCartItemState>(
