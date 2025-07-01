@@ -21,25 +21,25 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
   final UserModel? userModel;
   final suggestionList = Boxes.getSuggestions();
 
-  static const user = 'USER';
+  static const product = 'PRODUCT';
   static const local = 'LOCAL';
 
   SuggestionStateNotifier(this.suggestionRepository, this.userModel)
       : super(SuggestionState()) {
     if (userModel != null) {
-      fetchUsersSuggestions(userModel!.id!);
+      fetchProductsSuggestions(userModel!.id!);
       fetchLocalsSuggestions(userModel!.id!);
     } else {
       loadLocalLocalsSuggestions();
-      loadUsersLocalSuggestions();
+      loadProductsLocalSuggestions();
     }
   }
 
-  Future<void> fetchUsersSuggestions(String userId) async {
+  Future<void> fetchProductsSuggestions(String userId) async {
     try {
       SuggestionResult result =
-          await suggestionRepository.fetchUsersSuggestion(userId);
-      state = state.copyWith(usersResult: result.suggestions!);
+          await suggestionRepository.fetchProductsSuggestions(userId);
+      state = state.copyWith(productsResult: result.suggestions!);
     } on Exception {
       CustomToastNotification.showErrorAction(
           "Erreur lors du chargement des suggestions.");
@@ -49,7 +49,7 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
   Future<void> fetchLocalsSuggestions(String userId) async {
     try {
       SuggestionResult result =
-          await suggestionRepository.fetchLocasSuggestion(userId);
+          await suggestionRepository.fetchLocalsSuggestion(userId);
       state = state.copyWith(localsResult: result.suggestions!);
     } on Exception {
       CustomToastNotification.showErrorAction(
@@ -69,12 +69,12 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
     }
   }
 
-  Future<void> loadUsersLocalSuggestions() async {
+  Future<void> loadProductsLocalSuggestions() async {
     List<String> savedWords = [];
     List<String> removedDuplicates = [];
 
     List<Suggestion> usersSuggestions =
-        suggestionList.values.where((su) => su.searchCategory == user).toList();
+        suggestionList.values.where((su) => su.searchCategory == product).toList();
 
     if (usersSuggestions.isNotEmpty) {
       for (int i = 0; i < usersSuggestions.length; i++) {
@@ -83,8 +83,7 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
 
       removedDuplicates = savedWords.toSet().toList();
     }
-
-    state = state.copyWith(localUsersResult: removedDuplicates);
+    state = state.copyWith(localProductsResult: removedDuplicates);
   }
 
   Future<void> loadLocalLocalsSuggestions() async {
@@ -116,17 +115,17 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
       }
 
       if (savedSuggestion.userId != null &&
-          savedSuggestion.searchCategory == user) {
+          savedSuggestion.searchCategory == product) {
         state = state.copyWith(
-            usersResult: [...state.usersResult, savedSuggestion.word!]);
+            productsResult: [...state.productsResult, savedSuggestion.word!]);
       } else if (savedSuggestion.userId != null &&
           savedSuggestion.searchCategory == local) {
         state = state.copyWith(
             localsResult: [...state.localsResult, savedSuggestion.word!]);
       } else if (savedSuggestion.userId == null &&
-          savedSuggestion.searchCategory == user) {
-        state = state.copyWith(localUsersResult: [
-          ...state.localUsersResult,
+          savedSuggestion.searchCategory == product) {
+        state = state.copyWith(localProductsResult: [
+          ...state.localProductsResult,
           savedSuggestion.word!
         ]);
       } else if (savedSuggestion.userId == null &&

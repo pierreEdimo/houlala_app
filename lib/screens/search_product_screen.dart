@@ -8,6 +8,8 @@ import 'package:houlala_app/features/carts/cart_item.dart';
 import 'package:houlala_app/features/products/product_controller.dart';
 import 'package:houlala_app/features/products/product.dart';
 import 'package:houlala_app/features/products/search_product_provider.dart';
+import 'package:houlala_app/features/suggestion/suggestion.dart';
+import 'package:houlala_app/features/suggestion/suggestion_controller.dart';
 import 'package:houlala_app/helpers/search_args.dart';
 import 'package:houlala_app/shared_widgets/c_app_bar.dart';
 import 'package:houlala_app/shared_widgets/c_container.dart';
@@ -17,6 +19,8 @@ import 'package:houlala_app/shared_widgets/product_list.dart';
 import 'package:houlala_app/shared_widgets/search_field.dart';
 
 class SearchProductScreen extends ConsumerWidget {
+  static const product = 'PRODUCT';
+
   const SearchProductScreen({super.key});
 
   @override
@@ -26,6 +30,7 @@ class SearchProductScreen extends ConsumerWidget {
     ProductController productController = ProductController(ref);
     AuthController authController = AuthController(ref);
     CartController cartController = CartController(ref);
+    SuggestionController suggestionController = SuggestionController(ref);
 
     List<Product> searchProductList = productController.searchProductResultList;
     final UserModel? connectedUser = authController.connectedUser;
@@ -63,9 +68,17 @@ class SearchProductScreen extends ConsumerWidget {
                 subCategoryId: searchArgs.productTypeId,
                 sellerId: searchArgs.sellerId,
               );
-              ref
-                  .read(searchProductStateNotifierProvider.notifier)
-                  .setTrue();
+
+              // change la valeur de isSearchSubmitted.
+              ref.read(searchProductStateNotifierProvider.notifier).setTrue();
+
+              // enregistre le mot de la recherche
+              var suggestion = Suggestion(
+                  word: value,
+                  searchCategory: product,
+                  userId: connectedUser?.id);
+
+              suggestionController.saveWord(suggestion);
             } else {
               DoNothingAction();
             }

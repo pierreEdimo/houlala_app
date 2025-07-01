@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SuggestionState {
-  List<String> get usersResult => throw _privateConstructorUsedError;
+  List<String> get productsResult => throw _privateConstructorUsedError;
   List<String> get localsResult => throw _privateConstructorUsedError;
   List<String> get searchResult => throw _privateConstructorUsedError;
-  List<String> get localUsersResult => throw _privateConstructorUsedError;
+  List<String> get localProductsResult => throw _privateConstructorUsedError;
   List<String> get localLocalsResult => throw _privateConstructorUsedError;
 
   /// Create a copy of SuggestionState
@@ -36,10 +36,10 @@ abstract class $SuggestionStateCopyWith<$Res> {
       _$SuggestionStateCopyWithImpl<$Res, SuggestionState>;
   @useResult
   $Res call(
-      {List<String> usersResult,
+      {List<String> productsResult,
       List<String> localsResult,
       List<String> searchResult,
-      List<String> localUsersResult,
+      List<String> localProductsResult,
       List<String> localLocalsResult});
 }
 
@@ -58,16 +58,16 @@ class _$SuggestionStateCopyWithImpl<$Res, $Val extends SuggestionState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usersResult = null,
+    Object? productsResult = null,
     Object? localsResult = null,
     Object? searchResult = null,
-    Object? localUsersResult = null,
+    Object? localProductsResult = null,
     Object? localLocalsResult = null,
   }) {
     return _then(_value.copyWith(
-      usersResult: null == usersResult
-          ? _value.usersResult
-          : usersResult // ignore: cast_nullable_to_non_nullable
+      productsResult: null == productsResult
+          ? _value.productsResult
+          : productsResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
       localsResult: null == localsResult
           ? _value.localsResult
@@ -77,9 +77,9 @@ class _$SuggestionStateCopyWithImpl<$Res, $Val extends SuggestionState>
           ? _value.searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      localUsersResult: null == localUsersResult
-          ? _value.localUsersResult
-          : localUsersResult // ignore: cast_nullable_to_non_nullable
+      localProductsResult: null == localProductsResult
+          ? _value.localProductsResult
+          : localProductsResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
       localLocalsResult: null == localLocalsResult
           ? _value.localLocalsResult
@@ -98,10 +98,10 @@ abstract class _$$SuggestionStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<String> usersResult,
+      {List<String> productsResult,
       List<String> localsResult,
       List<String> searchResult,
-      List<String> localUsersResult,
+      List<String> localProductsResult,
       List<String> localLocalsResult});
 }
 
@@ -118,16 +118,16 @@ class __$$SuggestionStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? usersResult = null,
+    Object? productsResult = null,
     Object? localsResult = null,
     Object? searchResult = null,
-    Object? localUsersResult = null,
+    Object? localProductsResult = null,
     Object? localLocalsResult = null,
   }) {
     return _then(_$SuggestionStateImpl(
-      usersResult: null == usersResult
-          ? _value._usersResult
-          : usersResult // ignore: cast_nullable_to_non_nullable
+      productsResult: null == productsResult
+          ? _value._productsResult
+          : productsResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
       localsResult: null == localsResult
           ? _value._localsResult
@@ -137,9 +137,9 @@ class __$$SuggestionStateImplCopyWithImpl<$Res>
           ? _value._searchResult
           : searchResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      localUsersResult: null == localUsersResult
-          ? _value._localUsersResult
-          : localUsersResult // ignore: cast_nullable_to_non_nullable
+      localProductsResult: null == localProductsResult
+          ? _value._localProductsResult
+          : localProductsResult // ignore: cast_nullable_to_non_nullable
               as List<String>,
       localLocalsResult: null == localLocalsResult
           ? _value._localLocalsResult
@@ -153,24 +153,24 @@ class __$$SuggestionStateImplCopyWithImpl<$Res>
 
 class _$SuggestionStateImpl implements _SuggestionState {
   _$SuggestionStateImpl(
-      {final List<String> usersResult = const [],
+      {final List<String> productsResult = const [],
       final List<String> localsResult = const [],
       final List<String> searchResult = const [],
-      final List<String> localUsersResult = const [],
+      final List<String> localProductsResult = const [],
       final List<String> localLocalsResult = const []})
-      : _usersResult = usersResult,
+      : _productsResult = productsResult,
         _localsResult = localsResult,
         _searchResult = searchResult,
-        _localUsersResult = localUsersResult,
+        _localProductsResult = localProductsResult,
         _localLocalsResult = localLocalsResult;
 
-  final List<String> _usersResult;
+  final List<String> _productsResult;
   @override
   @JsonKey()
-  List<String> get usersResult {
-    if (_usersResult is EqualUnmodifiableListView) return _usersResult;
+  List<String> get productsResult {
+    if (_productsResult is EqualUnmodifiableListView) return _productsResult;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_usersResult);
+    return EqualUnmodifiableListView(_productsResult);
   }
 
   final List<String> _localsResult;
@@ -191,14 +191,14 @@ class _$SuggestionStateImpl implements _SuggestionState {
     return EqualUnmodifiableListView(_searchResult);
   }
 
-  final List<String> _localUsersResult;
+  final List<String> _localProductsResult;
   @override
   @JsonKey()
-  List<String> get localUsersResult {
-    if (_localUsersResult is EqualUnmodifiableListView)
-      return _localUsersResult;
+  List<String> get localProductsResult {
+    if (_localProductsResult is EqualUnmodifiableListView)
+      return _localProductsResult;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_localUsersResult);
+    return EqualUnmodifiableListView(_localProductsResult);
   }
 
   final List<String> _localLocalsResult;
@@ -213,7 +213,7 @@ class _$SuggestionStateImpl implements _SuggestionState {
 
   @override
   String toString() {
-    return 'SuggestionState(usersResult: $usersResult, localsResult: $localsResult, searchResult: $searchResult, localUsersResult: $localUsersResult, localLocalsResult: $localLocalsResult)';
+    return 'SuggestionState(productsResult: $productsResult, localsResult: $localsResult, searchResult: $searchResult, localProductsResult: $localProductsResult, localLocalsResult: $localLocalsResult)';
   }
 
   @override
@@ -222,13 +222,13 @@ class _$SuggestionStateImpl implements _SuggestionState {
         (other.runtimeType == runtimeType &&
             other is _$SuggestionStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._usersResult, _usersResult) &&
+                .equals(other._productsResult, _productsResult) &&
             const DeepCollectionEquality()
                 .equals(other._localsResult, _localsResult) &&
             const DeepCollectionEquality()
                 .equals(other._searchResult, _searchResult) &&
             const DeepCollectionEquality()
-                .equals(other._localUsersResult, _localUsersResult) &&
+                .equals(other._localProductsResult, _localProductsResult) &&
             const DeepCollectionEquality()
                 .equals(other._localLocalsResult, _localLocalsResult));
   }
@@ -236,10 +236,10 @@ class _$SuggestionStateImpl implements _SuggestionState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_usersResult),
+      const DeepCollectionEquality().hash(_productsResult),
       const DeepCollectionEquality().hash(_localsResult),
       const DeepCollectionEquality().hash(_searchResult),
-      const DeepCollectionEquality().hash(_localUsersResult),
+      const DeepCollectionEquality().hash(_localProductsResult),
       const DeepCollectionEquality().hash(_localLocalsResult));
 
   /// Create a copy of SuggestionState
@@ -254,20 +254,20 @@ class _$SuggestionStateImpl implements _SuggestionState {
 
 abstract class _SuggestionState implements SuggestionState {
   factory _SuggestionState(
-      {final List<String> usersResult,
+      {final List<String> productsResult,
       final List<String> localsResult,
       final List<String> searchResult,
-      final List<String> localUsersResult,
+      final List<String> localProductsResult,
       final List<String> localLocalsResult}) = _$SuggestionStateImpl;
 
   @override
-  List<String> get usersResult;
+  List<String> get productsResult;
   @override
   List<String> get localsResult;
   @override
   List<String> get searchResult;
   @override
-  List<String> get localUsersResult;
+  List<String> get localProductsResult;
   @override
   List<String> get localLocalsResult;
 

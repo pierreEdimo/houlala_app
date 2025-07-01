@@ -20,13 +20,13 @@ class SuggestionRepository {
     return _fetchSuggestions(uri);
   }
 
-  Future<SuggestionResult> fetchLocasSuggestion(String userId) async {
+  Future<SuggestionResult> fetchLocalsSuggestion(String userId) async {
     String uri = '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$local';
 
     return _fetchSuggestions(uri);
   }
 
-  Future<SuggestionResult> fetchUsersSuggestion(String userId) async {
+  Future<SuggestionResult> fetchProductsSuggestions(String userId) async {
     String uri = '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$user';
 
     return _fetchSuggestions(uri);
