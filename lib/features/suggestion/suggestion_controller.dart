@@ -46,4 +46,8 @@ class SuggestionController {
   List<String> get localLocalsLocations {
     return ref!.watch(suggestionStateNotifierProvider).localLocalsResult;
   }
+
+  List<String> get searchSuggestionsResult {
+    return ref!.watch(suggestionStateNotifierProvider).searchResult;
+  }
 }
