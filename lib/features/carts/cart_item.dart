@@ -12,7 +12,9 @@ class CartItem extends HiveObject with _$CartItem {
   CartItem._();
 
   factory CartItem({
-    @HiveField(0) @JsonKey(name: 'id') int? dbId,
+    @HiveField(0)
+    @JsonKey(name: 'id')
+    int? dbId,
     
     @HiveField(1)
     String? userId,
