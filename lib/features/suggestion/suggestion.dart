@@ -10,7 +10,9 @@ class Suggestion extends HiveObject with _$Suggestion {
   Suggestion._();
 
   factory Suggestion({
-    @HiveField(0) @JsonKey(name: 'id') int? dbId,
+    @HiveField(0)
+    @JsonKey(name: 'id')
+    int? dbId,
     
     @HiveField(1)
     String? userId,
