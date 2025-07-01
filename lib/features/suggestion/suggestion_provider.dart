@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:houlala_app/features/auth/auth_provider.dart';
 import 'package:houlala_app/features/auth/user_model.dart';
@@ -73,8 +75,9 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
     List<String> savedWords = [];
     List<String> removedDuplicates = [];
 
-    List<Suggestion> usersSuggestions =
-        suggestionList.values.where((su) => su.searchCategory == product).toList();
+    List<Suggestion> usersSuggestions = suggestionList.values
+        .where((su) => su.searchCategory == product)
+        .toList();
 
     if (usersSuggestions.isNotEmpty) {
       for (int i = 0; i < usersSuggestions.length; i++) {
@@ -110,7 +113,7 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
       Suggestion savedSuggestion =
           await suggestionRepository.saveWord(suggestion);
 
-      if (savedSuggestion.userId != null) {
+      if (savedSuggestion.userId == null) {
         suggestionList.add(savedSuggestion);
       }
 
@@ -135,7 +138,7 @@ class SuggestionStateNotifier extends StateNotifier<SuggestionState> {
           savedSuggestion.word!
         ]);
       }
-    } on Exception {
+    } on HttpException {
       CustomToastNotification.showErrorAction(
           "Erreur lors de la creation des suggestions.");
     }
