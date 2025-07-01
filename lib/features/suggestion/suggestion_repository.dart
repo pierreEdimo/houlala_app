@@ -10,8 +10,10 @@ class SuggestionRepository {
   static const local = 'LOCAL';
   static const user = 'USER';
 
-  Future<SuggestionResult> filterSuggestions(String term,String searchCategory, String? userId) {
-    String uri = '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$searchCategory';
+  Future<SuggestionResult> filterSuggestions(
+      String term, String searchCategory, String? userId) {
+    String uri =
+        '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$searchCategory';
 
     if (userId != null) {
       uri = '$uri&userId=$userId';
@@ -21,13 +23,15 @@ class SuggestionRepository {
   }
 
   Future<SuggestionResult> fetchLocalsSuggestion(String userId) async {
-    String uri = '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$local';
+    String uri =
+        '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$local';
 
     return _fetchSuggestions(uri);
   }
 
   Future<SuggestionResult> fetchProductsSuggestions(String userId) async {
-    String uri = '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$user';
+    String uri =
+        '${dotenv.env['SUGGESTION_URL']}?userId=$userId&searchCategory=$user';
 
     return _fetchSuggestions(uri);
   }
@@ -44,12 +48,14 @@ class SuggestionRepository {
 
   Future<Suggestion> saveWord(Suggestion suggestion) async {
     final Response response = await post(
-      Uri.parse('${dotenv.env['SUGGESTION_URL']}'),
-      body: jsonEncode(suggestion)
-    );
+        Uri.parse('${dotenv.env['SUGGESTION_URL']}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: jsonEncode(suggestion));
 
     if (response.statusCode != HttpStatus.created) {
-      throw 'erreur lors de la creation des suggestions';
+      throw const HttpException('erreur lors de la creation des suggestions');
     }
 
     return Suggestion.fromJson(jsonDecode(response.body));
