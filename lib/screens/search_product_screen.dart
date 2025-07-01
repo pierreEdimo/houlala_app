@@ -17,6 +17,7 @@ import 'package:houlala_app/shared_widgets/c_scaffold.dart';
 import 'package:houlala_app/shared_widgets/list_product_card.dart';
 import 'package:houlala_app/shared_widgets/product_list.dart';
 import 'package:houlala_app/shared_widgets/search_field.dart';
+import 'package:houlala_app/shared_widgets/suggestion_product_container.dart';
 
 class SearchProductScreen extends ConsumerWidget {
   static const product = 'PRODUCT';
@@ -86,7 +87,7 @@ class SearchProductScreen extends ConsumerWidget {
         ),
       ),
       body: !isSearchSubmitted
-          ? Container() //todo: implement a screen to filter Suggestion
+          ? const SuggestionProductContainer()
           : CustomContainer(
               child: SingleChildScrollView(
                 child: Padding(
